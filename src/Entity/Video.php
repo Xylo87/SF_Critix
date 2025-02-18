@@ -22,6 +22,10 @@ class Video
     #[ORM\Column(nullable: true)]
     private ?bool $isTrailer = null;
 
+    #[ORM\ManyToOne(inversedBy: 'videos')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Piece $piece = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -67,5 +71,17 @@ class Video
     public function __toString()
     {
         return $this->title;
+    }
+
+    public function getPiece(): ?Piece
+    {
+        return $this->piece;
+    }
+
+    public function setPiece(?Piece $piece): static
+    {
+        $this->piece = $piece;
+
+        return $this;
     }
 }

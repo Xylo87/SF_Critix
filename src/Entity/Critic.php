@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CriticRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -31,6 +33,39 @@ class Critic
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $originDatePost = null;
+
+    #[ORM\ManyToOne(inversedBy: 'critics')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Piece $piece = null;
+
+    #[ORM\ManyToOne(inversedBy: 'critics')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Influencer $influencer = null;
+
+    /**
+     * @var Collection<int, User>
+     */
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'critics')]
+    private Collection $users;
+
+    /**
+     * @var Collection<int, Agreement>
+     */
+    #[ORM\OneToMany(targetEntity: Agreement::class, mappedBy: 'critic', orphanRemoval: true)]
+    private Collection $agreements;
+
+    /**
+     * @var Collection<int, Comment>
+     */
+    #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'critic', orphanRemoval: true)]
+    private Collection $comments;
+
+    public function __construct()
+    {
+        $this->users = new ArrayCollection();
+        $this->agreements = new ArrayCollection();
+        $this->comments = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -113,5 +148,113 @@ class Critic
     public function __toString()
     {
         return $this->criticScore;
+    }
+
+    public function getPiece(): ?Piece
+    {
+        return $this->piece;
+    }
+
+    public function setPiece(?Piece $piece): static
+    {
+        $this->piece = $piece;
+
+        return $this;
+    }
+
+    public function getInfluencer(): ?Influencer
+    {
+        return $this->influencer;
+    }
+
+    public function setInfluencer(?Influencer $influencer): static
+    {
+        $this->influencer = $influencer;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): static
+    {
+        if (!$this->users->contains($user)) {
+            $this->users->add($user);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): static
+    {
+        $this->users->removeElement($user);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Agreement>
+     */
+    public function getAgreements(): Collection
+    {
+        return $this->agreements;
+    }
+
+    public function addAgreement(Agreement $agreement): static
+    {
+        if (!$this->agreements->contains($agreement)) {
+            $this->agreements->add($agreement);
+            $agreement->setCritic($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAgreement(Agreement $agreement): static
+    {
+        if ($this->agreements->removeElement($agreement)) {
+            // set the owning side to null (unless already changed)
+            if ($agreement->getCritic() === $this) {
+                $agreement->setCritic(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Comment>
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comment $comment): static
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments->add($comment);
+            $comment->setCritic($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comment $comment): static
+    {
+        if ($this->comments->removeElement($comment)) {
+            // set the owning side to null (unless already changed)
+            if ($comment->getCritic() === $this) {
+                $comment->setCritic(null);
+            }
+        }
+
+        return $this;
     }
 }

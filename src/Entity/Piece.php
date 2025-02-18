@@ -34,9 +34,34 @@ class Piece
     #[ORM\OneToMany(targetEntity: Image::class, mappedBy: 'piece', orphanRemoval: true)]
     private Collection $images;
 
+    /**
+     * @var Collection<int, Video>
+     */
+    #[ORM\OneToMany(targetEntity: Video::class, mappedBy: 'piece', orphanRemoval: true)]
+    private Collection $videos;
+
+    #[ORM\ManyToOne(inversedBy: 'pieces')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Category $category = null;
+
+    /**
+     * @var Collection<int, Critic>
+     */
+    #[ORM\OneToMany(targetEntity: Critic::class, mappedBy: 'piece')]
+    private Collection $critics;
+
+    /**
+     * @var Collection<int, Opinion>
+     */
+    #[ORM\OneToMany(targetEntity: Opinion::class, mappedBy: 'piece', orphanRemoval: true)]
+    private Collection $opinions;
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
+        $this->videos = new ArrayCollection();
+        $this->critics = new ArrayCollection();
+        $this->opinions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -123,6 +148,108 @@ class Piece
             // set the owning side to null (unless already changed)
             if ($image->getPiece() === $this) {
                 $image->setPiece(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Video>
+     */
+    public function getVideos(): Collection
+    {
+        return $this->videos;
+    }
+
+    public function addVideo(Video $video): static
+    {
+        if (!$this->videos->contains($video)) {
+            $this->videos->add($video);
+            $video->setPiece($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVideo(Video $video): static
+    {
+        if ($this->videos->removeElement($video)) {
+            // set the owning side to null (unless already changed)
+            if ($video->getPiece() === $this) {
+                $video->setPiece(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): static
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Critic>
+     */
+    public function getCritics(): Collection
+    {
+        return $this->critics;
+    }
+
+    public function addCritic(Critic $critic): static
+    {
+        if (!$this->critics->contains($critic)) {
+            $this->critics->add($critic);
+            $critic->setPiece($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCritic(Critic $critic): static
+    {
+        if ($this->critics->removeElement($critic)) {
+            // set the owning side to null (unless already changed)
+            if ($critic->getPiece() === $this) {
+                $critic->setPiece(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Opinion>
+     */
+    public function getOpinions(): Collection
+    {
+        return $this->opinions;
+    }
+
+    public function addOpinion(Opinion $opinion): static
+    {
+        if (!$this->opinions->contains($opinion)) {
+            $this->opinions->add($opinion);
+            $opinion->setPiece($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOpinion(Opinion $opinion): static
+    {
+        if ($this->opinions->removeElement($opinion)) {
+            // set the owning side to null (unless already changed)
+            if ($opinion->getPiece() === $this) {
+                $opinion->setPiece(null);
             }
         }
 

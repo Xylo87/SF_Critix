@@ -22,6 +22,10 @@ class Social
     #[ORM\Column(length: 255)]
     private ?string $link = null;
 
+    #[ORM\ManyToOne(inversedBy: 'socials')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Influencer $influencer = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -67,5 +71,17 @@ class Social
     public function __toString()
     {
         return $this->name;
+    }
+
+    public function getInfluencer(): ?Influencer
+    {
+        return $this->influencer;
+    }
+
+    public function setInfluencer(?Influencer $influencer): static
+    {
+        $this->influencer = $influencer;
+
+        return $this;
     }
 }

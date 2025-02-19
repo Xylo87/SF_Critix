@@ -18,6 +18,13 @@
                             {{message}}
                         </div>
                     {% endfor %}
+
+                    {# > Add/Edit Critic #}
+                    {% for message in app.flashes('crAddEditSuccess') %}
+                        <div class="alert alert-success">
+                            {{message}}
+                        </div>
+                    {% endfor %}
                 </div>
             </nav>
         {% block body %}{% endblock %}

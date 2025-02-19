@@ -117,7 +117,7 @@ class Piece
         return $this;
     }
 
-
+    // TO STRING -> Piece title
     public function __toString()
     {
         return $this->title;

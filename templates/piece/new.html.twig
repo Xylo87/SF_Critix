@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {% if edit %}
+    Edit Piece
+    {% else %}
+    Add Piece
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+    {% if edit %}
+    <h1>Edit a Piece</h1><br>
+    {% else %}
+    <h1>Add a Piece</h1><br>
+    {% endif %}
+
+    {{ form_start(formAddPiece) }}
+    
+        {{ form_row(formAddPiece.title) }}
+        {{ form_row(formAddPiece.about) }}
+        {{ form_row(formAddPiece.maker) }}
+        {{ form_row(formAddPiece.releaseDate) }}<br>
+        {{ form_row(formAddPiece.category) }}<br>
+        {{ form_row(formAddPiece.validate) }}
+
+    {{ form_end(formAddPiece) }}
+
+{% endblock %}

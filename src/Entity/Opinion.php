@@ -40,7 +40,7 @@ class Opinion
         return $this;
     }
 
-
+    // TO STRING -> User score on 5
     public function __toString()
     {
         return $this->userScore;

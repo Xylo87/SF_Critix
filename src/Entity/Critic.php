@@ -144,7 +144,7 @@ class Critic
         return $this;
     }
 
-
+    // TO STRING -> Critic score on 5
     public function __toString()
     {
         return $this->criticScore;

@@ -223,7 +223,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-
+    // TO STRING -> User NickName
     public function __toString()
     {
         return $this->nickName;

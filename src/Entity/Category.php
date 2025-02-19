@@ -46,7 +46,7 @@ class Category
         return $this;
     }
 
-
+    // TO STRING -> Category name
     public function __toString()
     {
         return $this->name;

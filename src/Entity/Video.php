@@ -67,7 +67,7 @@ class Video
         return $this;
     }
 
-
+    // TO STRING -> Video title
     public function __toString()
     {
         return $this->title;

@@ -72,7 +72,7 @@ class Comment
         return $this;
     }
 
-
+    // TO STRING -> Comment text
     public function __toString()
     {
         return $this->text;

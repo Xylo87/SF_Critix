@@ -41,7 +41,7 @@ class Agreement
         return $this;
     }
 
-
+    // TO STRING -> Agree or Disagree
     public function __toString()
     {
         return $this->isOk;

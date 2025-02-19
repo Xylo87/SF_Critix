@@ -106,7 +106,7 @@ class Influencer
         return $this;
     }
 
-
+    // TO STRING -> Influencer NickName
     public function __toString()
     {
         return $this->nickName;

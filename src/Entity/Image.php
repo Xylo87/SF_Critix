@@ -67,7 +67,7 @@ class Image
         return $this;
     }
 
-
+    // TO STRING -> Image title
     public function __toString()
     {
         return $this->title;

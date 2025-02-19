@@ -67,7 +67,7 @@ class Social
         return $this;
     }
 
-
+    // TO STRING -> Social media name
     public function __toString()
     {
         return $this->name;

@@ -29,7 +29,8 @@ class PieceFormType extends AbstractType
                 'label' => 'About :',
                 'attr' => [
                     'rows' => 8,
-                    'cols' => 60
+                    'cols' => 60,
+                    'placeholder' => 'Description may not exceed 360 characters'
                 ],
                 'constraints' => [
                     new Length([
@@ -51,13 +52,9 @@ class PieceFormType extends AbstractType
             ->add('category', EntityType::class, [
                 'class' => Category::class,
                 'label' => 'Category :'
-                // 'choice_label' => 'id',
+                // 'choice_label' => 'id'
             ])
-            ->add('validate', SubmitType::class, [
-                'attr' => [
-                    'class' => 'btn btn-success'
-                ]
-            ])
+            ->add('validate', SubmitType::class)
         ;
     }
 

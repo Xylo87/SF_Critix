@@ -29,6 +29,7 @@ class Critic
     private ?int $lengthMin = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, options:["default" => "CURRENT_TIMESTAMP"])]
+    #[Assert\GreaterThanOrEqual(value: "today", message: "Date cannot be set in the past")]
     private ?\DateTimeInterface $datePost = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
@@ -65,6 +66,7 @@ class Critic
         $this->users = new ArrayCollection();
         $this->agreements = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->datePost = new \DateTime();
     }
 
     public function getId(): ?int

@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {% if edit %}
+    Edit Critic
+    {% else %}
+    Add Critic
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+    {% if edit %}
+    <h1>Edit a Critic</h1><br>
+    {% else %}
+    <h1>Add a Critic</h1><br>
+    {% endif %}
+
+    {{ form_start(formAddCritic) }}
+    
+        {{ form_row(formAddCritic.media) }}<br>
+        {{ form_row(formAddCritic.summary) }}<br>
+        {{ form_row(formAddCritic.criticScore) }}
+        {{ form_row(formAddCritic.lengthMin) }}<br>
+        {{ form_row(formAddCritic.originDatePost) }}<br>
+        {{ form_row(formAddCritic.piece) }}
+        {{ form_row(formAddCritic.influencer) }}
+        {{ form_row(formAddCritic.validate) }}
+
+    {{ form_end(formAddCritic) }}
+
+{% endblock %}

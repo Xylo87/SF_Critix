@@ -42,7 +42,7 @@ final class PieceController extends AbstractController
             $entityManager->persist($piece);
             $entityManager->flush();
 
-            // >>> MESSAGE FLASH
+            $this->addFlash('piAddEditSuccess', ' "'.$piece->getTitle().'" added/edited !');
             return $this->redirectToRoute('app_piece');
         }
 

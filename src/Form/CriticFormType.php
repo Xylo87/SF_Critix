@@ -46,11 +46,12 @@ class CriticFormType extends AbstractType
             ])
             ->add('criticScore', NumberType::class, [
                 'label' => "Critic Score :",
+                'html5' => true,
                 'scale' => 1,
                 'attr' => [
                     'min' => 0,
                     'max' => 5,
-                    'step' => '0.5'
+                    'step' => 0.5
                 ],
                 'constraints' => [
                     new Range([

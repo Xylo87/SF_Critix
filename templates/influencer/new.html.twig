@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {% if edit %}
+    Edit Influencer
+    {% else %}
+    Add Influencer
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+    {% if edit %}
+    <h1>Edit an Influencer</h1><br>
+    {% else %}
+    <h1>Add an Influencer</h1><br>
+    {% endif %}
+
+    {{ form_start(formAddInfluencer) }}
+    
+        {{ form_row(formAddInfluencer.nickName) }}
+        {{ form_row(formAddInfluencer.realName) }}<br>
+        {{ form_row(formAddInfluencer.bio) }}<br>
+        {{ form_row(formAddInfluencer.validate) }}
+
+    {{ form_end(formAddInfluencer) }}
+
+{% endblock %}

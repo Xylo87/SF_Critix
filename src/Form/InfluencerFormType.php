@@ -1,0 +1,60 @@
+<?php
+
+namespace App\Form;
+
+use App\Entity\User;
+use App\Entity\Influencer;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+
+class InfluencerFormType extends AbstractType
+{
+    public function buildForm(FormBuilderInterface $builder, array $options): void
+    {
+        $builder
+            ->add('nickName', TextType::class, [
+                'label' => 'Nickname :',
+                'attr' => [
+                    'size' => 35
+                ]
+            ])
+            ->add('realName', TextType::class, [
+                'label' => 'Real name :',
+                'attr' => [
+                    'size' => 35
+                ]
+            ])
+            ->add('bio', TextareaType::class, [
+                'label' => 'Bio :',
+                'attr' => [
+                    'rows' => 7,
+                    'cols' => 60,
+                    'placeholder' => 'Description may not exceed 300 characters'
+                ],
+                'constraints' => [
+                    new Length([
+                        'max' => 300,
+                        'maxMessage' => 'Summary may not exceed 300 characters'
+                    ])
+                ]
+            ])
+
+            // ->add('photo')
+            
+            ->add('validate', SubmitType::class)
+        ;
+    }
+
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
+            'data_class' => Influencer::class,
+        ]);
+    }
+}

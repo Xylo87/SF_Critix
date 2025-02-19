@@ -25,6 +25,13 @@
                             {{message}}
                         </div>
                     {% endfor %}
+
+                    {# > Add/Edit Influencer #}
+                    {% for message in app.flashes('crAddEditSuccess') %}
+                        <div class="alert alert-success">
+                            {{message}}
+                        </div>
+                    {% endfor %}
                 </div>
             </nav>
         {% block body %}{% endblock %}

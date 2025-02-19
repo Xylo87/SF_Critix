@@ -44,9 +44,9 @@ class CriticFormType extends AbstractType
                     ])
                 ]
             ])
-            ->add('criticScore', IntegerType::class, [
+            ->add('criticScore', NumberType::class, [
                 'label' => "Critic Score :",
-                // 'scale' => 1,
+                'scale' => 1,
                 'attr' => [
                     'min' => 0,
                     'max' => 5,
@@ -66,9 +66,6 @@ class CriticFormType extends AbstractType
                     'min' => 0
                 ]
             ])
-            // ->add('datePost', DateType::class, [
-            //     'widget' => 'single_text',
-            // ])
             ->add('originDatePost', DateType::class, [
                 'widget' => 'single_text',
                 'label' => 'Original post date :'
@@ -76,12 +73,10 @@ class CriticFormType extends AbstractType
             ->add('piece', EntityType::class, [
                 'class' => Piece::class,
                 'label' => 'Piece :'
-                // 'choice_label' => 'id'
             ])
             ->add('influencer', EntityType::class, [
                 'class' => Influencer::class,
                 'label' => 'Influencer :'
-                // 'choice_label' => 'id'
             ])
             // ->add('users', EntityType::class, [
             //     'class' => User::class,

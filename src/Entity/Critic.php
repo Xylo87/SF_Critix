@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use App\Repository\CriticRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -29,10 +30,10 @@ class Critic
     private ?int $lengthMin = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, options:["default" => "CURRENT_TIMESTAMP"])]
-    #[Assert\GreaterThanOrEqual(value: "today", message: "Date cannot be set in the past")]
     private ?\DateTimeInterface $datePost = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[Assert\LessThanOrEqual(value: new \DateTime('today'), message: "Date cannot be set in the future")]
     private ?\DateTimeInterface $originDatePost = null;
 
     #[ORM\ManyToOne(inversedBy: 'critics')]

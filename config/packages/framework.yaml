@@ -8,7 +8,12 @@ framework:
     #esi: true
     #fragments: true
 
-    csrf_protection: true
+    csrf_protection: ~
+
+    form:
+        csrf_protection:
+            enabled: true
+            field_name: 'tokenCSRF'
 
 when@test:
     framework:

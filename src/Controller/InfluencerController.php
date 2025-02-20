@@ -21,10 +21,11 @@ final class InfluencerController extends AbstractController
     #[Route('/influencer', name: 'app_influencer')]
     public function index(InfluencerRepository $influencerRepository): Response
     {
-        // $influencers = $influencerRepository->findBy(
+        $influencers = $influencerRepository->findBy([], ["nickName" => "ASC"]);
 
         return $this->render('influencer/index.html.twig', [
             'controller_name' => 'InfluencerController',
+            'influencers' => $influencers
         ]);
     }
 

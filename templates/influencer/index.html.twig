@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello InfluencerController!{% endblock %}
+{% block title %}All influencers by media{% endblock %}
 
 {% block body %}
 <style>
@@ -9,9 +9,17 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <h1>All influencers by media</h1>
     <ul>
         <li><a href="{{ path('new_influencer')}}">Add an Influencer</a></li>
     </ul>
+    {% for influencer in influencers %}
+        <h2>{{influencer}}</h2>
+        {% if influencer.realName and influencer != influencer.realName %}
+            <h3>({{influencer.realname}})</h3>
+        {% endif %}
+        <p>{{influencer.bio}}</p>
+        <img src="/uploads/photos/influPhotos/{{influencer.photo}}" alt="{{influencer}}" style="width: 265px; height: 360px; object-fit: cover">
+    {% endfor %}
 </div>
 {% endblock %}

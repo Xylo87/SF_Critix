@@ -92,6 +92,9 @@ class CriticFormType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Critic::class,
+            'csrf_protection' => true,
+            'csrf_field_name' => 'tokenCSRF',
+            'csrf_token_id'   => 'task_item',
         ]);
     }
 }

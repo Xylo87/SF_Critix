@@ -28,6 +28,7 @@ class InfluencerFormType extends AbstractType
             ])
             ->add('realName', TextType::class, [
                 'label' => 'Real name :',
+                'required' => false,
                 'attr' => [
                     'size' => 35
                 ]
@@ -72,6 +73,9 @@ class InfluencerFormType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Influencer::class,
+            'csrf_protection' => true,
+            'csrf_field_name' => 'tokenCSRF',
+            'csrf_token_id'   => 'task_item',
         ]);
     }
 }

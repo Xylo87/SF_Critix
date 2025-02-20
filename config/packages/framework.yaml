@@ -8,8 +8,6 @@ framework:
     #esi: true
     #fragments: true
 
-    csrf_protection: ~
-
     form:
         csrf_protection:
             enabled: true

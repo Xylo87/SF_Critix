@@ -38,12 +38,12 @@ class InfluencerFormType extends AbstractType
                 'attr' => [
                     'rows' => 7,
                     'cols' => 60,
-                    'placeholder' => 'Description may not exceed 300 characters'
+                    'placeholder' => 'Bio may not exceed 300 characters'
                 ],
                 'constraints' => [
                     new Length([
                         'max' => 300,
-                        'maxMessage' => 'Summary may not exceed 300 characters'
+                        'maxMessage' => 'Bio may not exceed 300 characters'
                     ])
                 ]
             ])

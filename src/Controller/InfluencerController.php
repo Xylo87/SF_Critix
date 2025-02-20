@@ -17,7 +17,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 final class InfluencerController extends AbstractController
-{
+{   
+    // > Influencers listing
     #[Route('/influencer', name: 'app_influencer')]
     public function index(InfluencerRepository $influencerRepository): Response
     {
@@ -87,6 +88,19 @@ final class InfluencerController extends AbstractController
         return $this->render('influencer/new.html.twig', [
             'formAddInfluencer' => $form,
             'edit' => $influencer->getId()
+        ]);
+    }
+
+    #[Route('/influencer/{id}', name: 'show_influencer')]
+    public function show(Influencer $influencer = null): Response 
+    {
+        if (!$influencer) {
+            $this->addFlash('inSearchFail', 'Content creator you\'re looking for does not exist !');
+            return $this->redirectToRoute('app_influencer');
+        }
+
+        return $this->render('influencer/show.html.twig', [
+            'influencer' => $influencer
         ]);
     }
 }

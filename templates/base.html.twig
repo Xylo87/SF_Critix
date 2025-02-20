@@ -32,6 +32,13 @@
                             {{message}}
                         </div>
                     {% endfor %}
+
+                    {# > Search Influencer fail #}
+                    {% for message in app.flashes('inSearchFail') %}
+                        <div class="alert alert-danger">
+                            {{message}}
+                        </div>
+                    {% endfor %}
                 </div>
             </nav>
         {% block body %}{% endblock %}

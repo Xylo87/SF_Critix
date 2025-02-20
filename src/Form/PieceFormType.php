@@ -62,8 +62,6 @@ class PieceFormType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Piece::class,
-            'csrf_protection' => true,
-            'csrf_field_name' => '_token',
         ]);
     }
 }

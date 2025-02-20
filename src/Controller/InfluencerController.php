@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Influencer;
 use App\Form\InfluencerFormType;
+use App\Repository\InfluencerRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -11,14 +12,17 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
+use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 final class InfluencerController extends AbstractController
 {
     #[Route('/influencer', name: 'app_influencer')]
-    public function index(): Response
+    public function index(InfluencerRepository $influencerRepository): Response
     {
+        // $influencers = $influencerRepository->findBy(
+
         return $this->render('influencer/index.html.twig', [
             'controller_name' => 'InfluencerController',
         ]);
@@ -31,6 +35,7 @@ final class InfluencerController extends AbstractController
     Request $request, 
     EntityManagerInterface $entityManager,
     SluggerInterface $slugger,
+    CsrfTokenManagerInterface $csrf,
     #[Autowire('%kernel.project_dir%/public/uploads/photos/influPhotos')] string $photosDirectory
     ): Response 
     {

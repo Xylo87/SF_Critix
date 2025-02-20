@@ -8,6 +8,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 final class CriticController extends AbstractController
@@ -23,7 +24,7 @@ final class CriticController extends AbstractController
     // -> Add or edit a Critic
     #[Route('/critic/new', name: 'new_critic')]
     #[Route('/critic/{id}/edit', name: 'edit_critic')]
-    public function new_edit(Critic $critic = null, Request $request, EntityManagerInterface $entityManager): Response 
+    public function new_edit(Critic $critic = null, Request $request, EntityManagerInterface $entityManager, CsrfTokenManagerInterface $csrf): Response 
     {
         // > If Critic does not exist, create Critic
         if (!$critic) {

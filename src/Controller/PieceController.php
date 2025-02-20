@@ -8,6 +8,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 final class PieceController extends AbstractController
@@ -23,7 +24,7 @@ final class PieceController extends AbstractController
     // -> Add or edit a Piece
     #[Route('/piece/new', name: 'new_piece')]
     #[Route('/piece/{id}/edit', name: 'edit_piece')]
-    public function new_edit(Piece $piece = null, Request $request, EntityManagerInterface $entityManager): Response 
+    public function new_edit(Piece $piece = null, Request $request, EntityManagerInterface $entityManager, CsrfTokenManagerInterface $csrf): Response 
     {
         // > If Piece does not exist, create Piece
         if (!$piece) {

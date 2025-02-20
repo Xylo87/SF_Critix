@@ -8,7 +8,11 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 final class InfluencerController extends AbstractController
 {
@@ -23,7 +27,12 @@ final class InfluencerController extends AbstractController
     // -> Add or edit a Influencer
     #[Route('/influencer/new', name: 'new_influencer')]
     #[Route('/influencer/{id}/edit', name: 'edit_influencer')]
-    public function new_edit(Influencer $influencer = null, Request $request, EntityManagerInterface $entityManager): Response 
+    public function new_edit(Influencer $influencer = null, 
+    Request $request, 
+    EntityManagerInterface $entityManager,
+    SluggerInterface $slugger,
+    #[Autowire('%kernel.project_dir%/public/uploads/photos/influPhotos')] string $photosDirectory
+    ): Response 
     {
         // > If Influencer does not exist, create Influencer
         if (!$influencer) {
@@ -37,6 +46,28 @@ final class InfluencerController extends AbstractController
 
             // > Fetching datas from the submitted form
             $influencer = $form->getData();
+            $photoFile = $form->get('photo')->getData();
+
+            // > If a new photo is submitted
+            if ($photoFile) {
+                $originalFileName = pathinfo($photoFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFileName = $slugger->slug($originalFileName);
+                $newFileName = $safeFileName.'-'.uniqid().'.'.$photoFile->guessExtension();
+
+                // > Moving uploaded photo to directory
+                try {
+                    $photoFile->move($photosDirectory, $newFileName);
+                } catch (FileException $e) {
+                    ('An error occured while uploading the file : '.$e->getMessage()); die;
+                }
+            } 
+            // > Else : photo stays the same
+            else {
+                $newFileName = $influencer->getPhoto();
+            }
+
+            // > Photo is set with file name in the entity
+            $influencer->setPhoto($newFileName);
 
             // > 2 steps save in DataBase
             $entityManager->persist($influencer);

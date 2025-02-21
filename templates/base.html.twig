@@ -39,6 +39,13 @@
                             {{message}}
                         </div>
                     {% endfor %}
+
+                    {# > Search Category fail #}
+                    {% for message in app.flashes('caSearchFail') %}
+                        <div class="alert alert-danger">
+                            {{message}}
+                        </div>
+                    {% endfor %}
                 </div>
             </nav>
         {% block body %}{% endblock %}

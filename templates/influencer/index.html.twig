@@ -10,9 +10,10 @@
 
 <div class="example-wrapper">
     <h1>All content creators by media</h1>
-    <ul>
-        <li><a href="{{ path('new_influencer')}}">Add an Influencer</a></li>
-    </ul>
+
+    <a href="{{ path('new_influencer')}}">Add an Influencer</a>
+    <hr>
+    
     {% for influencer in influencers %}
         <h2>{{influencer}}</h2>
         {# > If Influencer's real name is known #}

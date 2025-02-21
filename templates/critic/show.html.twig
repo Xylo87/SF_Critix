@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{piece}}{% endblock %}
+{% block title %}CritX - {{piece.category}} - {{piece}}{% endblock %}
 
 {% block body %}
     <i>#{{piece.category}} > Critics</i>
@@ -23,9 +23,9 @@
                 allowfullscreen></iframe>
                 <h3>By: {{critic.influencer}}</h3>
                 <blockquote>{{critic.summary}}</blockquote>
-                <h3>Score: {{critic.criticScore}}</h3>
+                <h3>Score: {{critic.criticScore}}/5</h3>
                 <h4>{{critic.lengthMin}}min</h4>
-                <h4>Date post: {{critic.datePostENG}}</h4>
+                <h4>{{critic.datePostENG}}</h4>
                 <h4>Original date post: {{critic.originDatePostENG}}</h4>
             </li>
         {% endfor %}

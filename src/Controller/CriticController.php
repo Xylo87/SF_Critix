@@ -57,7 +57,7 @@ final class CriticController extends AbstractController
     }
 
     // > Display critics by Piece
-    #[Route('/piece/{id}', name: 'show_piece')]
+    #[Route('/piece/{id}/show', name: 'show_piece')]
     public function show(Piece $piece = null): Response
     {
         if (!$piece) {

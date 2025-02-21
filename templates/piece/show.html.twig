@@ -1,38 +1,7 @@
-{# {% extends 'base.html.twig' %}
+{% extends 'base.html.twig' %}
 
-{% block title %}{{category}}{% endblock %}
+{% block title %}{{piece}}{% endblock %}
 
 {% block body %}
-    <h1>All {{category}} critics</h1>
-    <hr>
-    <ul>
-        {% for piece in category.pieces %}
-            <li>
-                <h2><a href="{{ path('show_piece', {'id': piece.id})}}">{{piece}}</a></h2>
-                <p><u>Release date</u> : {{piece.releaseDateENG}}</p>
-                <p><u>Maker</u> : {{piece.maker}}</p>
-            </li>
-        {% endfor %}
-    </ul> #}
-    {# > If Influencer's real name is known #}
-    {# {% if influencer.realName and influencer != influencer.realName %}
-        <h3>({{influencer.realname}})</h3>
-    {% endif %}
-    <img src="/uploads/photos/influPhotos/{{influencer.photo}}" alt="{{influencer}}" style="width: 265px; height: 360px; object-fit: cover"> #}
-    
-    {# > Edit and suppression (modal) #}
-
-    {# <a class="btn btn-warning" href="{{ path('edit_stagiaire', {'id': stagiaire.id})}}">Edit</a> #}
-    {# <a class="btn btn-danger" href="{{ path('delete_stagiaire', {'id': stagiaire.id})}}">Delete</a></h2><br> #}
-    {# <a class="btn btn-danger deleteConfirm">Delete</a></h2><br> #}
-        {# <dialog class="openModal">
-            <div>
-                <h4>Êtes-vous sûr.e de vouloir supprimer le stagiaire "{{stagiaire}}" ?</h4>
-                <a class="btn btn-success" href="{{ path('delete_stagiaire', {'id': stagiaire.id})}}">Oui</a>
-                <a class="btn btn-danger closeModal">Non</a>
-            </div>
-        </dialog> #}
-
-    {# <p>{{influencer.bio}}</p>
-    <a href="{{path('app_influencer')}}"><i>All content creators by media</i></a> #}
-{# {% endblock %} #}
+   
+{% endblock %}

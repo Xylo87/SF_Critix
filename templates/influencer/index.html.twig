@@ -3,12 +3,8 @@
 {% block title %}All content creators by media{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<div>
 
-<div class="example-wrapper">
     <h1>All content creators by media</h1>
 
     <a href="{{ path('new_influencer')}}">Add an Influencer</a>
@@ -16,13 +12,18 @@
     
     {% for influencer in influencers %}
         <h2>{{influencer}}</h2>
+
         {# > If Influencer's real name is known #}
         {% if influencer.realName and influencer != influencer.realName %}
             <h3>({{influencer.realname}})</h3>
         {% endif %}
+        
         <a href="{{ path('show_influencer', {'id': influencer.id})}}">
             <img src="/uploads/photos/influPhotos/{{influencer.photo}}" alt="{{influencer}}" style="width: 265px; height: 360px; object-fit: cover">
         </a>
     {% endfor %}
 </div>
+
 {% endblock %}
+
+

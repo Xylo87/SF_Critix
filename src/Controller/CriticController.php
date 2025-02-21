@@ -57,11 +57,11 @@ final class CriticController extends AbstractController
     }
 
     // > Display critics by Piece
-    #[Route('/piece/{id}/show', name: 'show_piece')]
+    #[Route('/critics/{id}', name: 'show_critics')]
     public function show(Piece $piece = null): Response
     {
         if (!$piece) {
-            $this->addFlash('piSearchFail', 'The piece you\'re looking for does not exist !');
+            $this->addFlash('piSearchFail', 'The critics you\'re looking for does not exist !');
             return $this->redirectToRoute('app_home');
         }
 

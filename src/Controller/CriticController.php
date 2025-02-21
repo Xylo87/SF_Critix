@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Piece;
 use App\Entity\Critic;
 use App\Form\CriticFormType;
+use App\Repository\CriticRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -51,6 +53,20 @@ final class CriticController extends AbstractController
         return $this->render('critic/new.html.twig', [
             'formAddCritic' => $form,
             'edit' => $critic->getId()
+        ]);
+    }
+
+    // > Display critics by Piece
+    #[Route('/piece/{id}', name: 'show_piece')]
+    public function show(Piece $piece = null): Response
+    {
+        if (!$piece) {
+            $this->addFlash('piSearchFail', 'The piece you\'re looking for does not exist !');
+            return $this->redirectToRoute('app_home');
+        }
+
+        return $this->render('critic/show.html.twig', [
+            'piece' => $piece,
         ]);
     }
 }

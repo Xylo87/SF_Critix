@@ -1,27 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{# > English date Twig format
-{% set day = piece.releaseDate|date('j') %}
-{% set suffix = 'th' %} #}
-
 {% block title %}{{category}}{% endblock %}
 
 {% block body %}
-    <h1>All {{category}}</h1>
+    <h1>All {{category}} critics</h1>
     <hr>
     <ul>
-        {% for piece in pieces %}
+        {% for piece in category.pieces %}
             <li>
-                {{piece}}
-                {{piece.releaseDate | date("M. j Y")}}
-
-                {# {% if day in piece.releaseDate %}
-                    {% set suffix = 'st' %}
-                {% elseif day in piece.releaseDate %}
-                    {% set suffix = 'nd' %}
-                {% elseif day in piece.releaseDate %}
-                    {% set suffix = 'rd' %}
-                {% endif %} #}
+                <h2><a href="{{ path('show_piece', {'id': piece.id})}}">{{piece}}</a></h2>
+                <p><u>Release date</u> : {{piece.releaseDateENG}}</p>
+                <p><u>Maker</u> : {{piece.maker}}</p>
             </li>
         {% endfor %}
     </ul>

@@ -2,11 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\PieceRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use IntlDateFormatter;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\PieceRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: PieceRepository::class)]
 class Piece
@@ -108,6 +109,12 @@ class Piece
     public function getReleaseDate(): ?\DateTimeInterface
     {
         return $this->releaseDate;
+    }
+
+    // > English date formatter fonction
+    public function getReleaseDateENG(): ?string 
+    {        
+        return $this->releaseDate->format('M. jS, Y');
     }
 
     public function setReleaseDate(\DateTimeInterface $releaseDate): static

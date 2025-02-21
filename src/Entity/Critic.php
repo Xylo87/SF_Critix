@@ -128,6 +128,12 @@ class Critic
         return $this->datePost;
     }
 
+    // > English date formatter fonction
+    public function getDatePostENG(): ?string 
+    {        
+        return $this->datePost->format('M. jS, Y');
+    }
+
     public function setDatePost(\DateTimeInterface $datePost): static
     {
         $this->datePost = $datePost;
@@ -138,6 +144,12 @@ class Critic
     public function getOriginDatePost(): ?\DateTimeInterface
     {
         return $this->originDatePost;
+    }
+
+    // > English date formatter fonction
+    public function getOriginDatePostENG(): ?string 
+    {        
+        return $this->originDatePost->format('M. jS, Y');
     }
 
     public function setOriginDatePost(\DateTimeInterface $originDatePost): static

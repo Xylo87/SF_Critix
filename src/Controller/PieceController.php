@@ -38,7 +38,7 @@ final class PieceController extends AbstractController
             $entityManager->flush();
             
             $this->addFlash('piAddEditSuccess', ' "'.$piece.'" added/edited !');
-            return $this->redirectToRoute('app_piece');
+            return $this->redirectToRoute('app_home');
         }
         
         // > Return infos to view
@@ -50,18 +50,15 @@ final class PieceController extends AbstractController
 
     // > Display pieces by Category
     #[Route('/category/{id}', name: 'show_category')]
-    public function show(Category $category, PieceRepository $pieceRepository): Response
+    public function show(Category $category = null): Response
     {
         if (!$category) {
-            $this->addFlash('caSearchFail', 'Category you\'re looking for does not exist !');
+            $this->addFlash('caSearchFail', 'The category you\'re looking for does not exist !');
             return $this->redirectToRoute('app_home');
         }
 
-        $pieces = $pieceRepository->findBy(['category' => $category]);
-
-        return $this->render('piece/show.html.twig', [
+        return $this->render('piece/index.html.twig', [
             'category' => $category,
-            'pieces' => $pieces
         ]);
     }
 }

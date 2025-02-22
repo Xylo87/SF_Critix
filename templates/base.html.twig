@@ -47,6 +47,13 @@
                         </div>
                     {% endfor %}
 
+                    {# > Search Critics fail #}
+                    {% for message in app.flashes('crSearchFail') %}
+                        <div class="alert alert-danger">
+                            {{message}}
+                        </div>
+                    {% endfor %}
+
                     {# > Search Piece fail #}
                     {% for message in app.flashes('piSearchFail') %}
                         <div class="alert alert-danger">

@@ -3,5 +3,16 @@
 {% block title %}{{piece}}{% endblock %}
 
 {% block body %}
+
+<div>
+    <i>#{{piece.category}} > Infos</i>
+    <h2>Infos on →</h2>
+    <h1>{{piece}}</h1>
+    <p><u>Release date</u> : {{piece.releaseDateENG}}</p>
+    <p><u>Maker</u> : {{piece.maker}}</p>
+    <p><u>About</u> : {{piece.about}}</p>
+    <h2>Go to critics <br>
+    → <a href="{{ path('show_critics', {'id': piece.id})}}">{{piece}}</a></h2>
+</div>
    
 {% endblock %}

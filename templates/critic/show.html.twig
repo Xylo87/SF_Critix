@@ -11,7 +11,7 @@
     <p><u>Release date</u> : {{piece.releaseDateENG}}</p>
     <p><u>Maker</u> : {{piece.maker}}</p>
     <p><u>About</u> : {{piece.about}}</p>
-    <h4><a href=""></a>+ More infos</h4>
+    <h4><a href="{{ path('show_piece', {'id': piece.id})}}">+ More infos</a></h4>
     <h3>Latest critics</h3>
     <hr>
     {% for critic in piece.critics %}

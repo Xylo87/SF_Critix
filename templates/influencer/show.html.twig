@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{influencer}}{% endblock %}
+{% block title %}CritX - Content Creators - {{influencer}}{% endblock %}
 
 {% block body %}
     <h1>All about</h1>
@@ -28,5 +28,10 @@
         </dialog> #}
 
     <p>{{influencer.bio}}</p>
+
+    {% for critic in influencer.critics %}
+        <p>Critics : <a href="{{ path('show_critics', {'id': critic.piece.id})}}">{{critic.piece}}</a></p>
+    {% endfor %}
+    <br>
     <a href="{{path('app_influencer')}}"><i>All content creators by media</i></a>
 {% endblock %}

@@ -11,6 +11,9 @@
     <p><u>Release date</u> : {{piece.releaseDateENG}}</p>
     <p><u>Maker</u> : {{piece.maker}}</p>
     <p><u>About</u> : {{piece.about}}</p>
+    {# {% for image in piece.images %}
+        {{image}}
+    {% endfor %} #}
     <h2>Go to critics <br>
     → <a href="{{ path('show_critics', {'id': piece.id})}}">{{piece}}</a></h2>
 </div>

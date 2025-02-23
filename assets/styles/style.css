@@ -1,0 +1,33 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #0d1d45;
+    color: #F2F2F2;
+}
+
+a {
+    color: #ff4500;
+}
+
+/* > Add Piece > Images collection forms add */
+.addFormImages li {
+    margin-bottom: 20px;
+}
+
+/* > Add Piece > Images collection forms display */
+.displayFormImagesLabel {
+    font-size: 150%;
+    font-weight: 700;
+}
+
+#piece_form_images {
+    margin-top: 10px;
+}
+
+#piece_form_images > div {
+    margin-top: 20px;
+}

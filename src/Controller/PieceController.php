@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Image;
 use App\Entity\Piece;
 use App\Entity\Category;
 use App\Form\PieceFormType;
@@ -10,6 +11,8 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -18,7 +21,13 @@ final class PieceController extends AbstractController
     // -> Add or edit a Piece
     #[Route('/piece/new', name: 'new_piece')]
     #[Route('/piece/{id}/edit', name: 'edit_piece')]
-    public function new_edit(Piece $piece = null, Request $request, EntityManagerInterface $entityManager, CsrfTokenManagerInterface $csrf): Response 
+    public function new_edit(Piece $piece = null, 
+    Request $request, 
+    EntityManagerInterface $entityManager,
+    SluggerInterface $slugger,
+    CsrfTokenManagerInterface $csrf,
+    #[Autowire('%kernel.project_dir%/public/uploads/images')] string $imagesDirectory
+    ): Response
     {
         // > If Piece does not exist, create Piece
         if (!$piece) {
@@ -32,6 +41,28 @@ final class PieceController extends AbstractController
             
             // > Fetching datas from the submitted form
             $piece = $form->getData();
+            $imageFile = $form->get('link')->getData();
+            
+            // > If a new photo is submitted
+            if ($imageFile) {
+                $originalFileName = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFileName = $slugger->slug($originalFileName);
+                $newFileName = $safeFileName.'-'.uniqid().'.'.$imageFile->guessExtension();
+
+                // > Moving uploaded image to directory
+                try {
+                    $imageFile->move($imagesDirectory, $newFileName);
+                } catch (FileException $e) {
+                    ('An error occured while uploading the file : '.$e->getMessage()); die;
+                }
+            } 
+            // > Else : image stays the same
+            else {
+                $newFileName = $piece->getImages();
+            }
+
+            // > Photo is set with file name in the entity
+            $influencer->setImage($newFileName);
             
             // > 2 steps save in DataBase
             $entityManager->persist($piece);

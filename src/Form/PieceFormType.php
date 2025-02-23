@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Piece;
 use App\Entity\Category;
+use App\Form\ImageFormType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -13,6 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class PieceFormType extends AbstractType
 {
@@ -53,6 +55,16 @@ class PieceFormType extends AbstractType
                 'class' => Category::class,
                 'label' => 'Category :'
                 // 'choice_label' => 'id'
+            ])
+            ->add('images', CollectionType::class, [
+                'entry_type' => ImageFormType::class,
+                'entry_options' => ['label' => false],
+                'label_attr' => [
+                    'class' => 'displayFormImagesLabel'
+                ],
+                'required' => false,
+                'allow_add' => true,
+                'by_reference' => false
             ])
             ->add('validate', SubmitType::class)
         ;

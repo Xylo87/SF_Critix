@@ -22,7 +22,15 @@
         {{ form_row(formAddPiece.maker) }}
         {{ form_row(formAddPiece.releaseDate) }}
         {{ form_row(formAddPiece.category) }}<br>
-        {{ form_row(formAddPiece.validate) }}
+
+        {# > "Add images" forms prototypes #}
+        <button type="button" class="addFormImagesLink" data-collection-holder-class="addFormImages">Add images</button><br><br>
+        <ul class="addFormImages"
+        data-index="{{ formAddPiece.images|length > 0 ? formAddPiece.images|last.vars.name + 1 : 0}}"
+        data-prototype="{{ form_widget(formAddPiece.images.vars.prototype)|e('html_attr')}}">
+        </ul>
+
+        {{ form_row(formAddPiece.validate) }}<br><br>
 
     {{ form_end(formAddPiece) }}
 

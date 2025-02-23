@@ -41,8 +41,13 @@ final class PieceController extends AbstractController
             
             // > Fetching datas from the submitted form
             $piece = $form->getData();
-            $imageFile = $form->get('link')->getData();
+            // $imageFile = $form->get('link')->getData();
             
+            // $images = $piece->getImages();
+            // foreach ($images as $image) {
+            //     $imageFile = $image->getLink();
+            // }
+
             // > If a new photo is submitted
             if ($imageFile) {
                 $originalFileName = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);

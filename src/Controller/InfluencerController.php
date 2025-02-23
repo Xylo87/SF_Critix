@@ -19,7 +19,7 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 final class InfluencerController extends AbstractController
 {   
     // > Influencers listing
-    #[Route('/influencer', name: 'app_influencer')]
+    #[Route('/influencers', name: 'app_influencer')]
     public function index(InfluencerRepository $influencerRepository): Response
     {
         $influencers = $influencerRepository->findBy([], ["nickName" => "ASC"]);

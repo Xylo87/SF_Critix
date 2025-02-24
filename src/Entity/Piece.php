@@ -57,6 +57,9 @@ class Piece
     #[ORM\OneToMany(targetEntity: Opinion::class, mappedBy: 'piece', orphanRemoval: true)]
     private Collection $opinions;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $isUpcoming = null;
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
@@ -259,6 +262,18 @@ class Piece
                 $opinion->setPiece(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isUpcoming(): ?bool
+    {
+        return $this->isUpcoming;
+    }
+
+    public function setIsUpcoming(?bool $isUpcoming): static
+    {
+        $this->isUpcoming = $isUpcoming;
 
         return $this;
     }

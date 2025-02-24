@@ -16,7 +16,7 @@ class Image
     #[ORM\Column(length: 50)]
     private ?string $title = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $link = null;
 
     #[ORM\Column(nullable: true)]

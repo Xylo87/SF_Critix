@@ -13,6 +13,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
@@ -50,6 +51,9 @@ class PieceFormType extends AbstractType
             ->add('releaseDate', DateType::class, [
                 'widget' => 'single_text',
                 'label' => 'Release Date :'
+            ])
+            ->add('isUpcoming', CheckboxType::class, [
+                'label' => 'Upcoming ? :'
             ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,

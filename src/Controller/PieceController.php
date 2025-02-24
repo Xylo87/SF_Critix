@@ -40,7 +40,7 @@ final class PieceController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             
             // > Fetching datas from the submitted form
-            $piece = $form->getData();
+            // $piece = $form->getData();
             // $imageFile = $form->get('link')->getData();
             
             // $images = $piece->getImages();
@@ -49,25 +49,25 @@ final class PieceController extends AbstractController
             // }
 
             // > If a new photo is submitted
-            if ($imageFile) {
-                $originalFileName = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
-                $safeFileName = $slugger->slug($originalFileName);
-                $newFileName = $safeFileName.'-'.uniqid().'.'.$imageFile->guessExtension();
+            // if ($imageFile) {
+            //     $originalFileName = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+            //     $safeFileName = $slugger->slug($originalFileName);
+            //     $newFileName = $safeFileName.'-'.uniqid().'.'.$imageFile->guessExtension();
 
-                // > Moving uploaded image to directory
-                try {
-                    $imageFile->move($imagesDirectory, $newFileName);
-                } catch (FileException $e) {
-                    ('An error occured while uploading the file : '.$e->getMessage()); die;
-                }
-            } 
+            //     // > Moving uploaded image to directory
+            //     try {
+            //         $imageFile->move($imagesDirectory, $newFileName);
+            //     } catch (FileException $e) {
+            //         ('An error occured while uploading the file : '.$e->getMessage()); die;
+            //     }
+            // } 
             // > Else : image stays the same
-            else {
-                $newFileName = $piece->getImages();
-            }
+            // else {
+            //     $newFileName = $piece->getImages();
+            // }
 
             // > Photo is set with file name in the entity
-            $influencer->setImage($newFileName);
+            // $influencer->setImage($newFileName);
             
             // > 2 steps save in DataBase
             $entityManager->persist($piece);

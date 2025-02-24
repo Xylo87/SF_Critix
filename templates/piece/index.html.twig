@@ -11,7 +11,13 @@
     <hr>
     {% for piece in category.pieces %}
         <h2><a href="{{ path('show_critics', {'id': piece.id})}}">{{piece}}</a></h2>
-        <p><u>Release date</u> : {{piece.releaseDateENG}}</p>
+        
+        {% if piece.isUpcoming %}
+            <p><u>Release date</u> : {{piece.releaseDateENG|date("Y") }} (Upcoming)</p>
+        {% else %}
+            <p><u>Release date</u> : {{piece.releaseDateENG}}</p>
+        {% endif %}
+
         <p><u>Maker</u> : {{piece.maker}}</p>
     {% endfor %}
 </div>

@@ -40,12 +40,18 @@ final class PieceController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             
             // > Fetching datas from the submitted form
-            // $piece = $form->getData();
-            // $imageFile = $form->get('link')->getData();
+            $piece = $form->getData();
+
+            // $images = $form->get('link')->getData();
+
+            // $images = $form->get('images')->getData();
             
             // $images = $piece->getImages();
+            // dd($images);
+
             // foreach ($images as $image) {
             //     $imageFile = $image->getLink();
+            //     dd($imageFile)
             // }
 
             // > If a new photo is submitted

@@ -8,7 +8,13 @@
     <i>#{{piece.category}} > Critics</i>
     <h2>Critics on →</h2>
     <h1>{{piece}}</h1>
-    <p><u>Release date</u> : {{piece.releaseDateENG}}</p>
+
+    {% if piece.isUpcoming %}
+        <p><u>Release date</u> : {{piece.releaseDateENG|date("Y") }} (Upcoming)</p>
+    {% else %}
+        <p><u>Release date</u> : {{piece.releaseDateENG}}</p>
+    {% endif %}
+    
     <p><u>Maker</u> : {{piece.maker}}</p>
     <p><u>About</u> : {{piece.about}}</p>
     <h4><a href="{{ path('show_piece', {'id': piece.id})}}">+ More infos</a></h4>

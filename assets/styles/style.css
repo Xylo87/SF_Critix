@@ -31,3 +31,9 @@ a {
 #piece_form_images > div {
     margin-top: 20px;
 }
+
+/* > Add Piece > Videos collection forms display */
+.displayFormVideosLabel {
+    font-size: 150%;
+    font-weight: 700;
+}

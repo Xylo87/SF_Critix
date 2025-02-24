@@ -53,7 +53,8 @@ class PieceFormType extends AbstractType
                 'label' => 'Release Date :'
             ])
             ->add('isUpcoming', CheckboxType::class, [
-                'label' => 'Upcoming ? :'
+                'label' => 'Upcoming ? :',
+                'required' => false,
             ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,
@@ -65,6 +66,16 @@ class PieceFormType extends AbstractType
                 'entry_options' => ['label' => false],
                 'label_attr' => [
                     'class' => 'displayFormImagesLabel'
+                ],
+                'required' => false,
+                'allow_add' => true,
+                'by_reference' => false
+            ])
+            ->add('videos', CollectionType::class, [
+                'entry_type' => VideoFormType::class,
+                'entry_options' => ['label' => false],
+                'label_attr' => [
+                    'class' => 'displayFormVideosLabel'
                 ],
                 'required' => false,
                 'allow_add' => true,

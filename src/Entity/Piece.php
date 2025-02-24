@@ -38,7 +38,7 @@ class Piece
     /**
      * @var Collection<int, Video>
      */
-    #[ORM\OneToMany(targetEntity: Video::class, mappedBy: 'piece', orphanRemoval: true)]
+    #[ORM\OneToMany(targetEntity: Video::class, mappedBy: 'piece', orphanRemoval: true, cascade: ['persist'])]
     private Collection $videos;
 
     #[ORM\ManyToOne(inversedBy: 'pieces')]

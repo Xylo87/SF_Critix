@@ -2,25 +2,30 @@
 
 namespace App\Form;
 
-use App\Entity\Piece;
-use App\Entity\Video;
+use App\Entity\Social;
+use App\Entity\Influencer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
-class VideoFormType extends AbstractType
+class SocialFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('title', TextType::class, [
+            ->add('name', TextType::class, [
                 'label' => 'Title :',
                 'attr' => [
-                    'size' => 35
+                    'size' => 20
+                ]
+            ])
+            ->add('subNumber', TextType::class, [
+                'label' => 'Subscribers number :',
+                'attr' => [
+                    'size' => 20
                 ]
             ])
             ->add('link', UrlType::class, [
@@ -29,11 +34,8 @@ class VideoFormType extends AbstractType
                     'size' => 60
                 ]
             ])
-            ->add('isTrailer', CheckboxType::class, [
-                'label' => 'Trailer ? :'
-            ])
-            // ->add('piece', EntityType::class, [
-            //     'class' => Piece::class,
+            // ->add('influencer', EntityType::class, [
+            //     'class' => Influencer::class,
             //     'choice_label' => 'id',
             // ])
         ;
@@ -42,10 +44,7 @@ class VideoFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Video::class,
-            'csrf_protection' => true,
-            'csrf_field_name' => 'tokenCSRF',
-            'csrf_token_id'   => 'task_item',
+            'data_class' => Social::class,
         ]);
     }
 }

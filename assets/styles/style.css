@@ -13,6 +13,8 @@ a {
     color: #ff4500;
 }
 
+
+
 /* > Add Piece > Images collection forms add */
 .addFormImages li {
     margin-bottom: 20px;
@@ -26,14 +28,30 @@ a {
 
 #piece_form_images {
     margin-top: 10px;
+    margin-bottom: 30px;
 }
 
 #piece_form_images > div {
     margin-top: 20px;
 }
 
+
+
+/* > Add Piece > Videos collection forms add */
+.addFormVideos li {
+    margin-bottom: 20px;
+}
+
 /* > Add Piece > Videos collection forms display */
 .displayFormVideosLabel {
     font-size: 150%;
     font-weight: 700;
+}
+
+#piece_form_videos {
+    margin-top: 10px;
+}
+
+#piece_form_videos > div {
+    margin-top: 20px;
 }

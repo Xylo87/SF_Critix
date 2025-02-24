@@ -1,5 +1,7 @@
 console.log("Hello")
 
+
+
 // > Add Piece > "Add Images" button
 document
   .querySelectorAll('.addFormImagesLink')
@@ -7,7 +9,16 @@ document
       btn.addEventListener("click", addFormToCollection)
   });
 
-// > Add Piece > Pushing images forms in the DOM 
+  // > Add Video > "Add Video" button
+  document
+    .querySelectorAll('.addFormVideosLink')
+    .forEach(btn => {
+        btn.addEventListener("click", addFormToCollection)
+    });
+
+
+    
+// > Add Piece > Pushing images/videos forms in the DOM 
 function addFormToCollection(e) {
 const collectionHolder = document.querySelector('.' + e.currentTarget.dataset.collectionHolderClass);
 
@@ -25,3 +36,4 @@ collectionHolder.appendChild(item);
 
 collectionHolder.dataset.index++;
 };
+

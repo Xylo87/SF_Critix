@@ -21,7 +21,15 @@
         {{ form_row(formAddInfluencer.realName) }}<br>
         {{ form_row(formAddInfluencer.bio) }}<br>
         {{ form_row(formAddInfluencer.photo) }}<br>
-        {{ form_row(formAddInfluencer.validate) }}
+
+        {# > "Add socials" forms prototypes #}
+        <button type="button" class="addFormSocialsLink" data-collection-holder-class="addFormSocials">Add socials</button><br><br>
+        <ul class="addFormSocials"
+        data-index="{{ formAddInfluencer.socials|length > 0 ? formAddInfluencer.socials|last.vars.name + 1 : 0}}"
+        data-prototype="{{ form_widget(formAddInfluencer.socials.vars.prototype)|e('html_attr')}}">
+        </ul>
+
+        {{ form_row(formAddInfluencer.validate) }}<br><br>
 
     {{ form_end(formAddInfluencer) }}
 

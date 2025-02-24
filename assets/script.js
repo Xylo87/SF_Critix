@@ -9,9 +9,16 @@ document
       btn.addEventListener("click", addFormToCollection)
   });
 
-  // > Add Video > "Add Video" button
+  // > Add Piece > "Add Videos" button
   document
     .querySelectorAll('.addFormVideosLink')
+    .forEach(btn => {
+        btn.addEventListener("click", addFormToCollection)
+    });
+
+// > Add Influencer > "Add Socials" button
+  document
+    .querySelectorAll('.addFormSocialsLink')
     .forEach(btn => {
         btn.addEventListener("click", addFormToCollection)
     });

@@ -37,7 +37,7 @@ class Influencer
     /**
      * @var Collection<int, Social>
      */
-    #[ORM\OneToMany(targetEntity: Social::class, mappedBy: 'influencer', orphanRemoval: true)]
+    #[ORM\OneToMany(targetEntity: Social::class, mappedBy: 'influencer', orphanRemoval: true, cascade: ['persist'])]
     private Collection $socials;
 
     /**

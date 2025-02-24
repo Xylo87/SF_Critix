@@ -55,3 +55,24 @@ a {
 #piece_form_videos > div {
     margin-top: 20px;
 }
+
+
+
+/* > Add Influencer > Socials collection forms add */
+.addFormSocials li {
+    margin-bottom: 20px;
+}
+
+/* > Add Influencer > Socials collection forms display */
+.displayFormSocialsLabel {
+    font-size: 150%;
+    font-weight: 700;
+}
+
+#influencer_form_socials {
+    margin-top: 10px;
+}
+
+#influencer_form_socials > div {
+    margin-top: 20px;
+}

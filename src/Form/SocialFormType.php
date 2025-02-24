@@ -25,7 +25,7 @@ class SocialFormType extends AbstractType
             ->add('subNumber', TextType::class, [
                 'label' => 'Subscribers number :',
                 'attr' => [
-                    'size' => 20
+                    'size' => 10
                 ]
             ])
             ->add('link', UrlType::class, [

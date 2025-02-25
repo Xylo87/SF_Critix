@@ -236,6 +236,17 @@ class Piece
         return $this;
     }
 
+    public function getCriticTotalScore(): ?float{
+        
+        // $totalScore = 0;
+
+        // foreach ($this->critics->getCriticScore() as $criticsScore) {
+        //     $totalScore += $criticsScore;
+        // }
+        
+        // return  / count($this->critics);
+    }
+
     /**
      * @return Collection<int, Opinion>
      */

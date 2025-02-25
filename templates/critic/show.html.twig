@@ -9,6 +9,8 @@
     <h2>Critics on →</h2>
     <h1>{{piece}}</h1>
 
+    {# <p>{{piece.criticTotalScore}}</p> #}
+
     {% if piece.isUpcoming %}
         <p><u>Release date</u> : {{piece.releaseDateENG|date("Y") }} (Upcoming)</p>
     {% else %}

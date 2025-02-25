@@ -15,14 +15,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 final class CriticController extends AbstractController
 {
-    #[Route('/critic', name: 'app_critic')]
-    public function index(): Response
-    {
-        return $this->render('critic/index.html.twig', [
-            'controller_name' => 'CriticController',
-        ]);
-    }
-
     // -> Add or edit a Critic
     #[Route('/critic/new', name: 'new_critic')]
     #[Route('/critic/{id}/edit', name: 'edit_critic')]
@@ -46,7 +38,7 @@ final class CriticController extends AbstractController
             $entityManager->flush();
 
             $this->addFlash('crAddEditSuccess', 'Critic on "'.$critic->getPiece()->getTitle().'" by "'.$critic->getInfluencer().'" added/edited !');
-            return $this->redirectToRoute('app_critic');
+            return $this->redirectToRoute('app_home');
         }
 
         // > Return infos to view
@@ -54,6 +46,17 @@ final class CriticController extends AbstractController
             'formAddCritic' => $form,
             'edit' => $critic->getId()
         ]);
+    }
+
+    // -> Delete a Critic
+    #[Route('/critic/{id}/delete', name: 'delete_critic')]
+    public function delete(Critic $critic, EntityManagerInterface $entityManager)
+    {
+        $entityManager->remove($critic);
+        $entityManager->flush();
+
+        $this->addFlash('crDeleteSuccess', 'Critic on "'.$critic->getPiece()->getTitle().'" by "'.$critic->getInfluencer().'" deleted !');
+        return $this->redirectToRoute('app_home');
     }
 
     // > Display critics by Piece

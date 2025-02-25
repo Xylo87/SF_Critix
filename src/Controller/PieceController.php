@@ -90,6 +90,17 @@ final class PieceController extends AbstractController
         ]);
     }
 
+    // -> Delete a Piece
+    #[Route('/piece/{id}/delete', name: 'delete_piece')]
+    public function delete(Piece $piece, EntityManagerInterface $entityManager)
+    {
+        $entityManager->remove($piece);
+        $entityManager->flush();
+
+        $this->addFlash('piDeleteSuccess', ' "'.$piece.'" deleted !');
+        return $this->redirectToRoute('app_home');
+    }
+
     // > Display pieces by Category
     #[Route('/category/{id}', name: 'show_category')]
     public function show(Category $category = null): Response

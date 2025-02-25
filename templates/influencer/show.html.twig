@@ -15,18 +15,15 @@
     <img src="/uploads/photos/influPhotos/{{influencer.photo}}" alt="{{influencer}}" style="width: 265px; height: 360px; object-fit: cover">
     
     {# > Edit and suppression (modal) #}
-
-    {# <a class="btn btn-warning" href="{{ path('edit_stagiaire', {'id': stagiaire.id})}}">Edit</a> #}
-    {# <a class="btn btn-danger" href="{{ path('delete_stagiaire', {'id': stagiaire.id})}}">Delete</a></h2><br> #}
-    {# <a class="btn btn-danger deleteConfirm">Delete</a></h2><br> #}
-        {# <dialog class="openModal">
-            <div>
-                <h4>Êtes-vous sûr.e de vouloir supprimer le stagiaire "{{stagiaire}}" ?</h4>
-                <a class="btn btn-success" href="{{ path('delete_stagiaire', {'id': stagiaire.id})}}">Oui</a>
-                <a class="btn btn-danger closeModal">Non</a>
-            </div>
-        </dialog> #}
-
+    <a href="{{ path('edit_influencer', {'id': influencer.id})}}"><button>Edit</button></a>
+    {# <a href="{{ path('delete_influencer', {'id': influencer.id})}}">Delete</a></h2><br> #}
+    <button class="deleteConfirm">Delete</button><br>
+        <dialog class="openModal">
+            <h3>Are you sure you want to delete "{{influencer}}" ?</h3>
+            <a href="{{ path('delete_influencer', {'id': influencer.id})}}"><button>Yes</button></a>
+            <button class="closeModal">No</button>
+        </dialog>
+            
     <p>{{influencer.bio}}</p>
 
     {% for critic in influencer.critics %}
@@ -35,3 +32,4 @@
     <br>
     <a href="{{path('app_influencer')}}"><i>All content creators by media</i></a>
 {% endblock %}
+            

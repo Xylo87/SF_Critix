@@ -13,6 +13,10 @@ a {
     color: #ff4500;
 }
 
+a, button {
+    cursor: pointer;
+}
+
 
 
 /* > Add Piece > Images collection forms add */
@@ -75,4 +79,35 @@ a {
 
 #influencer_form_socials > div {
     margin-top: 20px;
+}
+
+
+
+/* Delete modal */
+.openModal {
+    width: 33%;
+    margin: auto;
+    padding: 25px;
+    border: none;
+    background: white;
+    text-align: center;
+    border-radius: 10px;
+    user-select: none;
+}
+
+.openModal h3 {
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.openModal a {
+    margin: 0 15px;
+}
+
+/* .openModal:focus {
+    outline: none;
+} */
+
+.openModal::backdrop {
+    background: rgb(0, 0, 0, 0.80);
 }

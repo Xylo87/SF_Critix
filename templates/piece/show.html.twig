@@ -9,6 +9,16 @@
     <h2>Infos on →</h2>
     <h1>{{piece}}</h1>
 
+    {# > Edit and suppression (modal) #}
+    <a href="{{ path('edit_piece', {'id': piece.id})}}"><button>Edit</button></a>
+    {# <a href="{{ path('delete_influencer', {'id': influencer.id})}}">Delete</a></h2><br> #}
+    <button class="deleteConfirm">Delete</button><br>
+        <dialog class="openModal">
+            <h3>Are you sure you want to delete "{{piece}}" ?</h3>
+            <a href="{{ path('delete_piece', {'id': piece.id})}}"><button>Yes</button></a>
+            <button class="closeModal">No</button>
+        </dialog>
+
     {% if piece.isUpcoming %}
         <p><u>Release date</u> : {{piece.releaseDateENG|date("Y") }} (Upcoming)</p>
     {% else %}

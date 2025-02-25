@@ -31,7 +31,7 @@ class Influencer
     /**
      * @var Collection<int, Critic>
      */
-    #[ORM\OneToMany(targetEntity: Critic::class, mappedBy: 'influencer')]
+    #[ORM\OneToMany(targetEntity: Critic::class, mappedBy: 'influencer', orphanRemoval: true)]
     private Collection $critics;
 
     /**

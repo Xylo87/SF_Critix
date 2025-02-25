@@ -44,3 +44,29 @@ collectionHolder.appendChild(item);
 collectionHolder.dataset.index++;
 };
 
+
+
+// Delete modal
+const deleteConfirm = document.querySelectorAll(".deleteConfirm")
+const openModal = document.querySelectorAll(".openModal")
+const closeModal = document.querySelectorAll(".closeModal")
+
+deleteConfirm.forEach((delConf, index) => {
+    delConf.addEventListener("click", function () {
+    openModal[index].showModal()
+    })
+});
+
+closeModal.forEach((cloMo, index) => {
+    cloMo.addEventListener("click", function () {
+    openModal[index].close()
+    })
+});
+
+openModal.forEach(opMo => {
+    window.addEventListener("click", function (event) {
+        if (event.target === opMo) {
+            opMo.close()
+        }
+    })
+});

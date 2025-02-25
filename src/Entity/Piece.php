@@ -48,7 +48,7 @@ class Piece
     /**
      * @var Collection<int, Critic>
      */
-    #[ORM\OneToMany(targetEntity: Critic::class, mappedBy: 'piece')]
+    #[ORM\OneToMany(targetEntity: Critic::class, mappedBy: 'piece', orphanRemoval: true)]
     private Collection $critics;
 
     /**

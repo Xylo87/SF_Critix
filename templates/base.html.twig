@@ -21,6 +21,13 @@
                         </div>
                     {% endfor %}
 
+                    {# > Delete Piece #}
+                    {% for message in app.flashes('piDeleteSuccess') %}
+                        <div class="alert alert-success">
+                            {{message}}
+                        </div>
+                    {% endfor %}
+
                     {# > Add/Edit Critic #}
                     {% for message in app.flashes('crAddEditSuccess') %}
                         <div class="alert alert-success">
@@ -28,8 +35,22 @@
                         </div>
                     {% endfor %}
 
+                    {# > Delete Critic #}
+                    {% for message in app.flashes('crDeleteSuccess') %}
+                        <div class="alert alert-success">
+                            {{message}}
+                        </div>
+                    {% endfor %}
+
                     {# > Add/Edit Influencer #}
                     {% for message in app.flashes('inAddEditSuccess') %}
+                        <div class="alert alert-success">
+                            {{message}}
+                        </div>
+                    {% endfor %}
+
+                    {# > Delete Influencer #}
+                    {% for message in app.flashes('inDeleteSuccess') %}
                         <div class="alert alert-success">
                             {{message}}
                         </div>

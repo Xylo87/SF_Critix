@@ -30,7 +30,7 @@ final class InfluencerController extends AbstractController
         ]);
     }
 
-    // -> Add or edit a Influencer
+    // -> Add or edit an Influencer
     #[Route('/influencer/new', name: 'new_influencer')]
     #[Route('/influencer/{id}/edit', name: 'edit_influencer')]
     public function new_edit(Influencer $influencer = null, 
@@ -91,6 +91,18 @@ final class InfluencerController extends AbstractController
         ]);
     }
 
+    // -> Delete an Influencer
+    #[Route('/influencer/{id}/delete', name: 'delete_influencer')]
+    public function delete(Influencer $influencer, EntityManagerInterface $entityManager)
+    {
+        $entityManager->remove($influencer);
+        $entityManager->flush();
+
+        $this->addFlash('inDeleteSuccess', ' "'.$influencer.'" deleted !');
+        return $this->redirectToRoute('app_influencer');
+    }
+
+    // > Display influencer details
     #[Route('/influencer/{id}', name: 'show_influencer')]
     public function show(Influencer $influencer): Response
     {

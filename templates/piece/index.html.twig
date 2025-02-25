@@ -5,7 +5,7 @@
 {% block body %}
 
 <div>
-    <h1>All {{category}} critics</h1>
+    <h1>All {{category}} critics<sup>({{category.pieces|length}})</sup></h1>
     <a href="{{ path('new_piece')}}">Add a Piece</a><br>
     <a href="{{ path('new_critic')}}">Add a Critic</a>
     <hr>

@@ -83,6 +83,20 @@
                             {{message}}
                         </div>
                     {% endfor %}
+
+                    {# > Register success #}
+                    {% for message in app.flashes('registerSuccess') %}
+                        <div class="alert alert-success">
+                            {{message}}
+                        </div>
+                    {% endfor %}
+
+                    {# > Register success #}
+                    {% for message in app.flashes('verifySuccess') %}
+                        <div class="alert alert-danger">
+                            {{message}}
+                        </div>
+                    {% endfor %}
                 </div>
             </nav>
         {% block body %}{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CritX > Register{% endblock %}
+
+{% block body %}
+    {% for flash_error in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+    {% endfor %}
+
+    <h1>Register</h1>
+
+    {{ form_errors(registrationForm) }}<br>
+
+    {{ form_start(registrationForm) }}
+
+        {{ form_row(registrationForm.nickName) }}
+        {{ form_row(registrationForm.email) }}
+        {# <strong>Your password must contain at least 12 characters, one lowercase letter, one uppercase letter, one number, 
+        and one special character from the following: "!@#$%^&*?_-" ➔</strong> #}
+        {{ form_row(registrationForm.plainPassword) }}<br>
+        {{ form_row(registrationForm.agreeTerms) }}
+        <small><em>The information collected on this form is stored in an electronic file by CritX 
+        for internal and confidential use at CritX.
+        The legal basis for processing is the performance of a contract, as the information provided is necessary 
+        for the use of the platform and participation in the community. 
+        This includes users\' comments and the potential use of personal data (such as email address and, optionally, 
+        a personal photo) to enable interaction within the platform and improve user experience.
+        Your data will not be shared with third parties without your explicit consent, except where required by law.
+        Consent is obtained when you create an account or when you explicitly opt in for specific features.
+        You have the right to access, rectify, erase, restrict processing of your personal data, 
+        and object to processing or withdraw consent at any time.
+        For any queries or requests regarding your personal data or to exercise your rights, please contact us at admin@critx.com
+        or via our Data Protection Officer at xylo@critx.com. Please refer to our Privacy Policy for more details 
+        on how to exercise your rights.</em></small><br><br>
+
+        <button type="submit" class="btn">Register</button>
+        
+    {{ form_end(registrationForm) }}
+{% endblock %}

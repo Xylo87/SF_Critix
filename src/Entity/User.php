@@ -100,6 +100,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->id;
     }
 
+    // public function setId(int $id): static
+    // {
+    //     $this->id = $id;
+
+    //     return $this;
+    // }
+
     public function getEmail(): ?string
     {
         return $this->email;
@@ -228,6 +235,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->accountDate = $accountDate;
 
         return $this;
+    }
+
+    // > English date formatter fonction
+    public function getCreationDateENG(): ?string 
+    {        
+        return $this->accountDate->format('M. jS, Y');
     }
 
     // TO STRING -> User NickName

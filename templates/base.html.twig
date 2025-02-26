@@ -95,8 +95,15 @@
                         </div>
                     {% endfor %}
 
-                    {# > Register success #}
+                    {# > Email verify success #}
                     {% for message in app.flashes('verifySuccess') %}
+                        <div class="alert alert-success">
+                            {{message}}
+                        </div>
+                    {% endfor %}
+
+                    {# > Search User fail #}
+                    {% for message in app.flashes('usSearchFail') %}
                         <div class="alert alert-danger">
                             {{message}}
                         </div>

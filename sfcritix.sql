@@ -126,7 +126,7 @@ CREATE TABLE IF NOT EXISTS `image` (
   PRIMARY KEY (`id`),
   KEY `IDX_C53D045FC40FCFA8` (`piece_id`),
   CONSTRAINT `FK_C53D045FC40FCFA8` FOREIGN KEY (`piece_id`) REFERENCES `piece` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table sfcritix.image : ~0 rows (environ)
 
@@ -203,7 +203,7 @@ CREATE TABLE IF NOT EXISTS `piece` (
   PRIMARY KEY (`id`),
   KEY `IDX_44CA0B2312469DE2` (`category_id`),
   CONSTRAINT `FK_44CA0B2312469DE2` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table sfcritix.piece : ~2 rows (environ)
 INSERT INTO `piece` (`id`, `title`, `about`, `maker`, `release_date`, `category_id`, `is_upcoming`) VALUES
@@ -237,11 +237,15 @@ CREATE TABLE IF NOT EXISTS `user` (
   `account_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `is_verified` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `UNIQ_IDENTIFIER_NICKNAME` (`nick_name`),
-  UNIQUE KEY `UNIQ_IDENTIFIER_EMAIL` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  UNIQUE KEY `UNIQ_8D93D649E7927C74` (`email`),
+  UNIQUE KEY `UNIQ_8D93D649A045A5E9` (`nick_name`)
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table sfcritix.user : ~0 rows (environ)
+INSERT INTO `user` (`id`, `email`, `roles`, `password`, `nick_name`, `profile_picture`, `status`, `bio`, `account_date`, `is_verified`) VALUES
+	(16, 'test@exemple.com', '[]', '$2y$13$3JP6RlXMQmt5AxpcVxfHlesXj0Fq30ev.cd2rO/jDUBbBatZEaI0G', 'Xylo', NULL, NULL, NULL, '2025-02-26 08:50:05', 0),
+	(22, 'test2@exemple.com', '[]', '$2y$13$E./O8UnL966b82Gt5qVPz.yjxLDPjJSw88YDhUwBJDWsFD4Dq7h2W', 'Xylo2', NULL, NULL, NULL, '2025-02-26 09:56:42', 0),
+	(23, 'test3@exemple.com', '[]', '$2y$13$MafLiGCuJ6WFSKfgEACf..xe8utnWuGAC.gh0ZKvovHP6Oc./kp/2', 'Xylo3', NULL, NULL, NULL, '2025-02-26 09:57:29', 0);
 
 -- Listage de la structure de table sfcritix. video
 CREATE TABLE IF NOT EXISTS `video` (

@@ -27,7 +27,7 @@ class ImageFormType extends AbstractType
             ->add('link', FileType::class, [
                 'label' => 'Image :',
                 'required' => false,
-                'mapped' => false,
+                // 'mapped' => false,
                 'constraints' => [
                     new File([
                         'maxSize' => '1024k',

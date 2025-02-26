@@ -12,9 +12,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\File;
 
 final class PieceController extends AbstractController
 {
@@ -42,45 +44,64 @@ final class PieceController extends AbstractController
             // > Fetching datas from the submitted form
             $piece = $form->getData();
 
-            // $images = $form->get('link')->getData();
-
+            $images = $piece->getImages();
+            // dd($images);
             // $images = $form->get('images')->getData();
-            
-            // $images = $piece->getImages();
             // dd($images);
 
-            // foreach ($images as $image) {
-            //     $imageFile = $image->getLink();
-            //     dd($imageFile)
-            // }
+            foreach ($images as $image) {
+                // $imageFile = new UploadedFile($image->getLink());
 
-            // > If a new photo is submitted
-            // if ($imageFile) {
-            //     $originalFileName = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
-            //     $safeFileName = $slugger->slug($originalFileName);
-            //     $newFileName = $safeFileName.'-'.uniqid().'.'.$imageFile->guessExtension();
 
-            //     // > Moving uploaded image to directory
-            //     try {
-            //         $imageFile->move($imagesDirectory, $newFileName);
-            //     } catch (FileException $e) {
-            //         ('An error occured while uploading the file : '.$e->getMessage()); die;
-            //     }
-            // } 
-            // > Else : image stays the same
-            // else {
-            //     $newFileName = $piece->getImages();
-            // }
+                // Si getLink() retourne le nom du fichier ou le chemin relatif
+                $filePath = $image->getLink();
 
-            // > Photo is set with file name in the entity
-            // $influencer->setImage($newFileName);
-            
-            // > 2 steps save in DataBase
-            $entityManager->persist($piece);
-            $entityManager->flush();
-            
-            $this->addFlash('piAddEditSuccess', ' "'.$piece.'" added/edited !');
-            return $this->redirectToRoute('app_home');
+                // Créer un objet File Symfony à partir du chemin
+                // $originalFileName = $imagesDirectory . "." . $filePath->getFilename(); // Nom du fichier
+                $imageFile = new UploadedFile($filePath, "aaa");
+                // dd($imageFile);
+
+                // Maintenant, vous pouvez accéder aux propriétés du fichier, comme son nom, extension, etc.
+                // $extension = $imageFile->getExtension(); // Extension du fichier
+
+                // dd($extension);
+
+
+                // $imageFile = $image->getLink();
+                // dd($imageFile);
+                // }
+                // if ($imageFile instanceof UploadedFile) {
+
+                //> If a new photo is submitted
+                // if ($imageFile) {
+                    $originalFileName = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                    $safeFileName = $slugger->slug($originalFileName);
+                    $newFileName = $safeFileName.'-'.uniqid().'.'.$imageFile->guessExtension();
+
+                    // dd($originalFileName);
+
+                    // > Moving uploaded image to directory
+                    try {
+                        $imageFile->move($imagesDirectory, $newFileName);
+                    } catch (FileException $e) {
+                        ('An error occured while uploading the file : '.$e->getMessage()); die;
+                    }
+                // } 
+                //> Else : image stays the same
+                // else {
+                //     $newFileName = $piece->getImages();
+                // }
+
+                // > Photo is set with file name in the entity
+                $piece->addImage($image);
+                
+                // > 2 steps save in DataBase
+                $entityManager->persist($piece);
+                $entityManager->flush();
+                
+                $this->addFlash('piAddEditSuccess', ' "'.$piece.'" added/edited !');
+                return $this->redirectToRoute('app_home');
+            }
         }
         
         // > Return infos to view

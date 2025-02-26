@@ -112,7 +112,7 @@ CREATE TABLE IF NOT EXISTS `doctrine_migration_versions` (
   PRIMARY KEY (`version`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
--- Listage des données de la table sfcritix.doctrine_migration_versions : ~0 rows (environ)
+-- Listage des données de la table sfcritix.doctrine_migration_versions : ~1 rows (environ)
 INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
 	('DoctrineMigrations\\Version20250218150339', '2025-02-18 16:03:49', 274);
 
@@ -241,9 +241,9 @@ CREATE TABLE IF NOT EXISTS `user` (
   UNIQUE KEY `UNIQ_8D93D649A045A5E9` (`nick_name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfcritix.user : ~0 rows (environ)
+-- Listage des données de la table sfcritix.user : ~3 rows (environ)
 INSERT INTO `user` (`id`, `email`, `roles`, `password`, `nick_name`, `profile_picture`, `status`, `bio`, `account_date`, `is_verified`) VALUES
-	(16, 'test@exemple.com', '[]', '$2y$13$3JP6RlXMQmt5AxpcVxfHlesXj0Fq30ev.cd2rO/jDUBbBatZEaI0G', 'Xylo', NULL, NULL, NULL, '2025-02-26 08:50:05', 0),
+	(16, 'test@exemple.com', '[]', '$2y$13$3JP6RlXMQmt5AxpcVxfHlesXj0Fq30ev.cd2rO/jDUBbBatZEaI0G', 'Xylo', NULL, 'Test', 'Test', '2025-02-26 08:50:05', 0),
 	(22, 'test2@exemple.com', '[]', '$2y$13$E./O8UnL966b82Gt5qVPz.yjxLDPjJSw88YDhUwBJDWsFD4Dq7h2W', 'Xylo2', NULL, NULL, NULL, '2025-02-26 09:56:42', 0),
 	(23, 'test3@exemple.com', '[]', '$2y$13$MafLiGCuJ6WFSKfgEACf..xe8utnWuGAC.gh0ZKvovHP6Oc./kp/2', 'Xylo3', NULL, NULL, NULL, '2025-02-26 09:57:29', 0);
 

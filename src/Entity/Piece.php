@@ -238,13 +238,12 @@ class Piece
 
     public function getCriticTotalScore(): ?float{
         
-        // $totalScore = 0;
+        $totalScore = 0;
 
-        // foreach ($this->critics->getCriticScore() as $criticsScore) {
-        //     $totalScore += $criticsScore;
-        // }
-        
-        // return  / count($this->critics);
+        foreach ($this->critics as $critic) {
+            $totalScore += $critic->getCriticScore();
+        }
+        return $totalScore / count($this->critics);
     }
 
     /**
@@ -275,6 +274,16 @@ class Piece
         }
 
         return $this;
+    }
+
+    public function getUserTotalScore(): ?float{
+        
+        $totalScore = 0;
+
+        foreach ($this->opinions as $opinion) {
+            $totalScore += $opinion->getUserScore();
+        }
+        return $totalScore / count($this->opinions);
     }
 
     public function isUpcoming(): ?bool

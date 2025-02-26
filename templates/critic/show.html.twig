@@ -9,7 +9,8 @@
     <h2>Critics on →</h2>
     <h1>{{piece}}</h1>
 
-    {# <p>{{piece.criticTotalScore}}</p> #}
+    <p>Critic Score : {{piece.criticTotalScore}}</p>
+    {# <p>User Score : {{piece.userTotalScore}}</p> #}
 
     {% if piece.isUpcoming %}
         <p><u>Release date</u> : {{piece.releaseDateENG|date("Y") }} (Upcoming)</p>
@@ -49,6 +50,7 @@
                 <button class="closeModal">No</button>
             </dialog>
     {% endfor %}
+    <a href="{{path('show_category', {'id': piece.category.id})}}"><i>> View all {{piece.category}} critics</i></a>
 </div>
             
 {% endblock %}

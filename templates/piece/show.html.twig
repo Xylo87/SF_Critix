@@ -32,6 +32,7 @@
     {% endfor %} #}
     <h2>Go to critics <br>
     → <a href="{{ path('show_critics', {'id': piece.id})}}">{{piece}}</a></h2>
+    <a href="{{path('show_category', {'id': piece.category.id})}}"><i>> View all {{piece.category}} critics</i></a>
 </div>
    
 {% endblock %}

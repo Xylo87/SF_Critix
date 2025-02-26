@@ -11,7 +11,7 @@
 {% block body %}
 
     {% if app.user and app.user.id == user.id %}
-        <h1>Your profile</h1>
+        <h2>Your profile</h2>
     {% else %}
         <h2>Profile</h2>
     {% endif %}
@@ -27,13 +27,11 @@
     <h1>{{user}}</h1>
 
     {% if app.user and app.user.id == user.id %}
-        <button>Edit your profile</button>
-        {# <a href="{{ path('edit_influencer', {'id': influencer.id})}}"> #}
-        {# </a> #}
+        <a href="{{ path('edit_user')}}"><button>Edit your profile</button></a>
     {% endif %}
     
-    <p>Mood :</p>
-    <p>Bio :</p>
+    <p>Mood : {{user.status}}</p>
+    <p>Bio : {{user.bio}}</p>
     <p>Member since: {{user.creationDateEng}}</p>
     
     {# > Edit and suppression (modal) #}

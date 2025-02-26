@@ -2,11 +2,9 @@
 
 namespace App\Controller;
 
-use App\Entity\Image;
 use App\Entity\Piece;
 use App\Entity\Category;
 use App\Form\PieceFormType;
-use App\Repository\PieceRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,7 +14,6 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\File\File;
 
 final class PieceController extends AbstractController
 {
@@ -35,7 +32,7 @@ final class PieceController extends AbstractController
         if (!$piece) {
             $piece = new Piece();
         }
-        
+        // $piece->setImagesNull();
         $form = $this->createForm(PieceFormType::class, $piece);
         
         $form->handleRequest($request);
@@ -43,65 +40,35 @@ final class PieceController extends AbstractController
             
             // > Fetching datas from the submitted form
             $piece = $form->getData();
-
-            $images = $piece->getImages();
-            // dd($images);
-            // $images = $form->get('images')->getData();
-            // dd($images);
-
+            
+            // > Fetching images datas from the submitted form
+            $images = $form->get('images')->getData();
+            
             foreach ($images as $image) {
-                // $imageFile = new UploadedFile($image->getLink());
-
-
-                // Si getLink() retourne le nom du fichier ou le chemin relatif
-                $filePath = $image->getLink();
-
-                // Créer un objet File Symfony à partir du chemin
-                // $originalFileName = $imagesDirectory . "." . $filePath->getFilename(); // Nom du fichier
-                $imageFile = new UploadedFile($filePath, "aaa");
-                // dd($imageFile);
-
-                // Maintenant, vous pouvez accéder aux propriétés du fichier, comme son nom, extension, etc.
-                // $extension = $imageFile->getExtension(); // Extension du fichier
-
-                // dd($extension);
-
-
-                // $imageFile = $image->getLink();
-                // dd($imageFile);
-                // }
-                // if ($imageFile instanceof UploadedFile) {
-
-                //> If a new photo is submitted
-                // if ($imageFile) {
-                    $originalFileName = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
-                    $safeFileName = $slugger->slug($originalFileName);
-                    $newFileName = $safeFileName.'-'.uniqid().'.'.$imageFile->guessExtension();
-
-                    // dd($originalFileName);
-
-                    // > Moving uploaded image to directory
-                    try {
-                        $imageFile->move($imagesDirectory, $newFileName);
-                    } catch (FileException $e) {
-                        ('An error occured while uploading the file : '.$e->getMessage()); die;
-                    }
-                // } 
-                //> Else : image stays the same
-                // else {
-                //     $newFileName = $piece->getImages();
-                // }
-
-                // > Photo is set with file name in the entity
-                $piece->addImage($image);
                 
-                // > 2 steps save in DataBase
-                $entityManager->persist($piece);
-                $entityManager->flush();
+                $imagePath = $image->getLink(); 
+                $imageTitle = $image->getTitle();
                 
-                $this->addFlash('piAddEditSuccess', ' "'.$piece.'" added/edited !');
-                return $this->redirectToRoute('app_home');
+                $imageFile = new UploadedFile($imagePath, $imageTitle);
+
+                $originalFileName = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFileName = $slugger->slug($originalFileName);
+                $newFileName = $safeFileName.'-'.uniqid().'.'.$imageFile->guessExtension();
+
+                try {
+                    $imageFile->move($imagesDirectory, $newFileName);
+                    $image->setLink($newFileName);
+                    
+                } catch (FileException $e) {
+                    ('An error occured while uploading the file : '.$e->getMessage()); die;
+                }
             }
+            // > 2 steps save in DataBase
+            $entityManager->persist($piece);
+            $entityManager->flush();
+
+            $this->addFlash('piAddEditSuccess', ' "'.$piece.'" added/edited !');
+            return $this->redirectToRoute('app_home');
         }
         
         // > Return infos to view

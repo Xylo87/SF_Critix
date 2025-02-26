@@ -2,11 +2,18 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Form\UserFormType;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bundle\SecurityBundle\Security;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
@@ -29,5 +36,44 @@ class SecurityController extends AbstractController
     public function logout(): void
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
+    }
+
+    // > Edit User's infos
+    #[Route('/user/edit', name: 'edit_user')]
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
+    public function edit(User $user = null,
+    Request $request, 
+    EntityManagerInterface $entityManager,
+    SluggerInterface $slugger,
+    CsrfTokenManagerInterface $csrf,
+    #[Autowire('%kernel.project_dir%/public/uploads/photos/userPhotos')] string $photosDirectory,
+    Security $security
+    ): Response
+    {
+        $user = $security->getUser();
+
+        if (!$user) {
+            $this->addFlash('usEditFail', 'You must be logged in to edit your profile !');
+            return $this->redirectToRoute('app_login');
+        }
+
+        $form = $this->createForm(UserFormType::class, $user);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $user = $form->getData();
+
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            $this->addFlash('usEditSuccess', 'Your profile has been updated !');
+            return $this->redirectToRoute('show_user', ['id' => $user->getId()]);
+        }
+
+        // > Return infos to view
+        return $this->render('user/new.html.twig', [
+            'formAddUser' => $form,
+        ]);
     }
 }

@@ -108,6 +108,22 @@
                             {{message}}
                         </div>
                     {% endfor %}
+
+                    {# > User profile update success #}
+                    {% for message in app.flashes('usEditSuccess') %}
+                        <div class="alert alert-success">
+                            {{message}}
+                        </div>
+                    {% endfor %}
+
+                    {# > User profile update fail #}
+                    {% for message in app.flashes('usEditFail') %}
+                        <div class="alert alert-danger">
+                            {{message}}
+                        </div>
+                    {% endfor %}
+
+
                 </div>
             </nav>
         {% block body %}{% endblock %}

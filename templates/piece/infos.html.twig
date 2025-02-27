@@ -9,6 +9,17 @@
     <h2>Infos on →</h2>
     <h1>{{piece}}</h1>
 
+    {% for video in piece.videos %}
+        <iframe width="560" height="315" src="{{video.link}}" 
+        title="YouTube video player" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+        referrerpolicy="strict-origin-when-cross-origin" 
+        allowfullscreen></iframe>
+    {% endfor %}
+    
+    <img src="/uploads/images/{{piece.poster}}" alt="{{piece}}" style="width: 265px; height: 360px; object-fit: cover">
+
     {# > Edit and suppression (modal) #}
     <a href="{{ path('edit_piece', {'id': piece.id})}}"><button>Edit</button></a>
     {# <a href="{{ path('delete_influencer', {'id': influencer.id})}}">Delete</a></h2><br> #}
@@ -27,11 +38,12 @@
     
     <p><u>Maker</u> : {{piece.maker}}</p>
     <p><u>About</u> : {{piece.about}}</p>
+     <p><u>Critic Score</u> : {{piece.criticTotalScore}}</p><br>
     {# {% for image in piece.images %}
         {{image}}
     {% endfor %} #}
     <h2>Go to critics <br>
-    → <a href="{{ path('show_critics', {'id': piece.id})}}">{{piece}}</a></h2>
+    → <a href="{{ path('show_critics', {'id': piece.id})}}">{{piece}}</a></h2><br>
     <a href="{{path('show_category', {'id': piece.category.id})}}"><i>> View all {{piece.category}} critics</i></a>
 </div>
    

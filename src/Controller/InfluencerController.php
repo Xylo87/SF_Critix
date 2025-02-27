@@ -81,7 +81,7 @@ final class InfluencerController extends AbstractController
             $entityManager->flush();
 
             $this->addFlash('inAddEditSuccess', ' "'.$influencer.'" added/edited !');
-            return $this->redirectToRoute('app_influencer');
+            return $this->redirectToRoute('show_influencer', ['id' => $influencer->getId()]);
         }
 
         // > Return infos to view

@@ -24,10 +24,17 @@
             <button class="closeModal">No</button>
         </dialog>
             
-    <p>{{influencer.bio}}</p>
+    <p>{{influencer.bio}}</p><br>
+
+    <p><u>Socials :</u></p>
+    <ul>
+    {% for social in influencer.socials %}
+        <a href="{{social.link}}" target="_blank"><li>{{social}}</li></a>
+    {% endfor %}
+    </ul><br>
 
     {% for critic in influencer.critics %}
-        <p>Critics : <a href="{{ path('show_critics', {'id': critic.piece.id})}}">{{critic.piece}}</a></p>
+        <p><u>Critics</u> : <a href="{{ path('show_critics', {'id': critic.piece.id})}}">{{critic.piece}}</a></p>
     {% endfor %}
     <br>
     <a href="{{path('app_influencer')}}"><i>> View all content creators by media</i></a>

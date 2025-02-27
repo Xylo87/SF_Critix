@@ -8,6 +8,9 @@
     <i>#{{piece.category}} > Critics</i>
     <h2>Critics on →</h2>
     <h1>{{piece}}</h1>
+
+    <img src="/uploads/images/{{piece.poster}}" alt="{{piece}}" style="width: 265px; height: 360px; object-fit: cover">
+
     {# <a href="{{ path('save_critics', {'id': piece.id})}}"><button>Come back later</button></a> #}
 
     <p><u>Critic Score</u> : {{piece.criticTotalScore}}</p>
@@ -39,7 +42,7 @@
         <h3>Score: {{critic.criticScore}}/5</h3>
         <h4>{{critic.lengthMin}}min</h4>
         <h4>{{critic.datePostENG}}</h4>
-        <h4>Original date post: {{critic.originDatePostENG}}</h4>
+        <h4>First aired: {{critic.originDatePostENG}}</h4>
 
         {# > Edit and suppression (modal) #}
         <a href="{{ path('edit_critic', {'id': critic.id})}}"><button>Edit</button></a>

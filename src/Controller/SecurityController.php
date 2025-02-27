@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Entity\Piece;
 use App\Form\UserFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\SecurityBundle\Security;
@@ -40,6 +41,48 @@ class SecurityController extends AbstractController
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 
+    // > Save a critics page
+    #[Route('/critics/{id}/save', name: 'save_critics')]
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
+    public function saveCritics(Security $security, EntityManagerInterface $entityManager, Piece $piece)
+    {
+        $user = $security->getUser();
+
+        if (!$user) {
+            $this->addFlash('crSaveFail', 'You must be logged in to save a critics page !');
+            return $this->redirectToRoute('app_login');
+        }
+
+        $user->addPiece($piece);
+    
+        $entityManager->persist($user);
+        $entityManager->flush();
+    
+        $this->addFlash('crSaveSuccess', 'Critics on "'.$piece.'" saved on your profile !');
+        return $this->redirectToRoute('show_critics', ['id' => $piece->getId()]);
+    }
+
+    // > Unsave a critics page
+    // #[Route('/critics/{id}/save', name: 'unsave_critics')]
+    // #[IsGranted('IS_AUTHENTICATED_FULLY')]
+    // public function unsaveCritics(Security $security, EntityManagerInterface $entityManager, Piece $piece)
+    // {
+    //     $user = $security->getUser();
+
+    //     if (!$user) {
+    //         $this->addFlash('crUnSaveFail', 'You must be logged in to unsave a critics page !');
+    //         return $this->redirectToRoute('app_login');
+    //     }
+
+    //     $user->removePiece($piece);
+    
+    //     $entityManager->persist($user);
+    //     $entityManager->flush();
+    
+    //     $this->addFlash('crUnSaveSuccess', 'Critics on "'.$piece.'" unsaved ! ');
+    //     return $this->redirectToRoute('show_critics', ['id' => $piece->getId()]);
+    // }
+
     // > Edit User's infos
     #[Route('/user/edit', name: 'edit_user')]
     #[IsGranted('IS_AUTHENTICATED_FULLY')]
@@ -70,6 +113,18 @@ class SecurityController extends AbstractController
 
             // > If a new photo is submitted
             if ($photoFile) {
+
+                // > Delete User's previous custom profile picture
+                $profilePictureName = $user->getProfilePicture();
+
+                if ($profilePictureName) {
+                    $profilePicturePath = $this->getParameter('kernel.project_dir') . '/public/uploads/photos/userPhotos/'.$profilePictureName;
+            
+                    if (file_exists($profilePicturePath)) {
+                        unlink($profilePicturePath);
+                    }
+                }
+
                 $originalFileName = pathinfo($photoFile->getClientOriginalName(), PATHINFO_FILENAME);
                 $safeFileName = $slugger->slug($originalFileName);
                 $newFileName = $safeFileName.'-'.uniqid().'.'.$photoFile->guessExtension();

@@ -112,7 +112,7 @@ CREATE TABLE IF NOT EXISTS `doctrine_migration_versions` (
   PRIMARY KEY (`version`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
--- Listage des données de la table sfcritix.doctrine_migration_versions : ~1 rows (environ)
+-- Listage des données de la table sfcritix.doctrine_migration_versions : ~0 rows (environ)
 INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
 	('DoctrineMigrations\\Version20250218150339', '2025-02-18 16:03:49', 274);
 
@@ -121,12 +121,11 @@ CREATE TABLE IF NOT EXISTS `image` (
   `id` int NOT NULL AUTO_INCREMENT,
   `title` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `link` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `is_poster` tinyint(1) DEFAULT NULL,
   `piece_id` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_C53D045FC40FCFA8` (`piece_id`),
   CONSTRAINT `FK_C53D045FC40FCFA8` FOREIGN KEY (`piece_id`) REFERENCES `piece` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table sfcritix.image : ~0 rows (environ)
 
@@ -200,15 +199,16 @@ CREATE TABLE IF NOT EXISTS `piece` (
   `release_date` datetime NOT NULL,
   `category_id` int NOT NULL,
   `is_upcoming` tinyint(1) DEFAULT NULL,
+  `poster` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_44CA0B2312469DE2` (`category_id`),
   CONSTRAINT `FK_44CA0B2312469DE2` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfcritix.piece : ~2 rows (environ)
-INSERT INTO `piece` (`id`, `title`, `about`, `maker`, `release_date`, `category_id`, `is_upcoming`) VALUES
-	(1, 'Dune: Awakening', 'Dune: Awakening is a massively multiplayer online game where players must survive in the desert of Arrakis. It takes place in an open world.', 'Funcom', '2025-01-01 00:00:00', 1, 1),
-	(19, 'The Brutalist', 'Escaping post-war Europe, visionary architect László Toth arrives in America to rebuild his life, his work, and his marriage to his wife Erzsébet after being forced apart during wartime by shifting borders and regimes. On his own in a strange new country, László settles in Pennsylvania, where an industrialist recognizes his talent for building.', 'Brady Corbet', '2025-02-12 00:00:00', 2, NULL);
+-- Listage des données de la table sfcritix.piece : ~0 rows (environ)
+INSERT INTO `piece` (`id`, `title`, `about`, `maker`, `release_date`, `category_id`, `is_upcoming`, `poster`) VALUES
+	(1, 'Dune: Awakening', 'Dune: Awakening is a massively multiplayer online game where players must survive in the desert of Arrakis. It takes place in an open world.', 'Funcom', '2025-01-01 00:00:00', 1, 1, ''),
+	(19, 'The Brutalist', 'Escaping post-war Europe, visionary architect László Toth arrives in America to rebuild his life, his work, and his marriage to his wife Erzsébet after being forced apart during wartime by shifting borders and regimes. On his own in a strange new country, László settles in Pennsylvania, where an industrialist recognizes his talent for building.', 'Brady Corbet', '2025-02-12 00:00:00', 2, NULL, '');
 
 -- Listage de la structure de table sfcritix. social
 CREATE TABLE IF NOT EXISTS `social` (
@@ -239,13 +239,12 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_8D93D649E7927C74` (`email`),
   UNIQUE KEY `UNIQ_8D93D649A045A5E9` (`nick_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfcritix.user : ~3 rows (environ)
+-- Listage des données de la table sfcritix.user : ~0 rows (environ)
 INSERT INTO `user` (`id`, `email`, `roles`, `password`, `nick_name`, `profile_picture`, `status`, `bio`, `account_date`, `is_verified`) VALUES
-	(16, 'test@exemple.com', '[]', '$2y$13$3JP6RlXMQmt5AxpcVxfHlesXj0Fq30ev.cd2rO/jDUBbBatZEaI0G', 'Xylo', NULL, 'Test', 'Test', '2025-02-26 08:50:05', 0),
-	(22, 'test2@exemple.com', '[]', '$2y$13$E./O8UnL966b82Gt5qVPz.yjxLDPjJSw88YDhUwBJDWsFD4Dq7h2W', 'Xylo2', NULL, NULL, NULL, '2025-02-26 09:56:42', 0),
-	(23, 'test3@exemple.com', '[]', '$2y$13$MafLiGCuJ6WFSKfgEACf..xe8utnWuGAC.gh0ZKvovHP6Oc./kp/2', 'Xylo3', NULL, NULL, NULL, '2025-02-26 09:57:29', 0);
+	(16, 'test@exemple.com', '[]', '$2y$13$3JP6RlXMQmt5AxpcVxfHlesXj0Fq30ev.cd2rO/jDUBbBatZEaI0G', 'Xylo', '', 'Test', 'Test3', '2025-02-26 08:50:05', 0),
+	(34, 'titi@exemple.com', '[]', '$2y$13$gfEN2hZtNCH3N7NxxHsktebrha3JhyW/3V7AAJsrU55KWctPxw14W', 'Toto', 'Sosie-67c085e9c7ef4.png', 'Barbecue + partie de football', 'Sosie officiel de Robert de Niro dans Heat', '2025-02-27 14:15:15', 0);
 
 -- Listage de la structure de table sfcritix. video
 CREATE TABLE IF NOT EXISTS `video` (
@@ -257,7 +256,7 @@ CREATE TABLE IF NOT EXISTS `video` (
   PRIMARY KEY (`id`),
   KEY `IDX_7CC7DA2CC40FCFA8` (`piece_id`),
   CONSTRAINT `FK_7CC7DA2CC40FCFA8` FOREIGN KEY (`piece_id`) REFERENCES `piece` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table sfcritix.video : ~0 rows (environ)
 

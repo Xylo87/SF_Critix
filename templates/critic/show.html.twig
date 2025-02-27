@@ -8,8 +8,9 @@
     <i>#{{piece.category}} > Critics</i>
     <h2>Critics on →</h2>
     <h1>{{piece}}</h1>
+    {# <a href="{{ path('save_critics', {'id': piece.id})}}"><button>Come back later</button></a> #}
 
-    <p>Critic Score : {{piece.criticTotalScore}}</p>
+    <p><u>Critic Score</u> : {{piece.criticTotalScore}}</p>
     {# <p>User Score : {{piece.userTotalScore}}</p> #}
 
     {% if piece.isUpcoming %}

@@ -8,9 +8,11 @@ use App\Form\ImageFormType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -55,6 +57,24 @@ class PieceFormType extends AbstractType
             ->add('isUpcoming', CheckboxType::class, [
                 'label' => 'Upcoming ? :',
                 'required' => false,
+            ])
+            ->add('poster', FileType::class, [
+                'label' => 'Poster :',
+                'mapped' => false,
+                'required' => false,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '1024k',
+                        'mimeTypes' => ['image/png',
+                        'image/jpeg',
+                        'image/jpg',
+                        'image/gif',
+                        'image/webp',
+                        'image/avif'
+                        ],
+                        'mimeTypesMessage' => 'Please upload an image with a valid format (png, jpeg, jpg, gif, webp, avif)'
+                    ])
+                ]
             ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,

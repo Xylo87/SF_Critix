@@ -9,6 +9,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -24,27 +25,30 @@ class ImageFormType extends AbstractType
                     'size' => 35
                 ]
             ])
-            ->add('link', FileType::class, [
-                'label' => 'Image :',
-                'required' => false,
-                // 'mapped' => false,
-                'constraints' => [
-                    new File([
-                        'maxSize' => '1024k',
-                        'mimeTypes' => ['image/png',
-                        'image/jpeg',
-                        'image/jpg',
-                        'image/gif',
-                        'image/webp',
-                        'image/avif'
-                        ],
-                        'mimeTypesMessage' => 'Please upload an image with a valid format (png, jpeg, jpg, gif, webp, avif)'
-                    ])
+            ->add('link', UrlType::class, [
+                'label' => 'Link :',
+                'attr' => [
+                    'size' => 60
                 ]
             ])
-            ->add('isPoster', CheckboxType::class, [
-                'label' => 'Poster ? :'
-            ])
+            // ->add('link', FileType::class, [
+            //     'label' => 'Image :',
+            //     'required' => false,
+            //     // 'mapped' => false,
+            //     'constraints' => [
+            //         new File([
+            //             'maxSize' => '1024k',
+            //             'mimeTypes' => ['image/png',
+            //             'image/jpeg',
+            //             'image/jpg',
+            //             'image/gif',
+            //             'image/webp',
+            //             'image/avif'
+            //             ],
+            //             'mimeTypesMessage' => 'Please upload an image with a valid format (png, jpeg, jpg, gif, webp, avif)'
+            //         ])
+            //     ]
+            // ])
             // ->add('piece', EntityType::class, [
             //     'class' => Piece::class,
             //     'choice_label' => 'id',

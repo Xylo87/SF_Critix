@@ -32,7 +32,6 @@ final class PieceController extends AbstractController
         if (!$piece) {
             $piece = new Piece();
         }
-        // $piece->setImagesNull();
         $form = $this->createForm(PieceFormType::class, $piece);
         
         $form->handleRequest($request);
@@ -40,29 +39,37 @@ final class PieceController extends AbstractController
             
             // > Fetching datas from the submitted form
             $piece = $form->getData();
+            $posterFile = $form->get('poster')->getData();
             
-            // > Fetching images datas from the submitted form
-            $images = $form->get('images')->getData();
-            
-            foreach ($images as $image) {
+            // foreach ($images as $image) {
                 
-                $imagePath = $image->getLink(); 
-                $imageTitle = $image->getTitle();
+            //     $imagePath = $image->getLink(); 
+            //     $imageTitle = $image->getTitle();
                 
-                $imageFile = new UploadedFile($imagePath, $imageTitle);
+            //     $imageFile = new UploadedFile($imagePath, $imageTitle);
 
-                $originalFileName = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+            // > If a new poster is submitted
+            if ($posterFile) {
+                $originalFileName = pathinfo($posterFile->getClientOriginalName(), PATHINFO_FILENAME);
                 $safeFileName = $slugger->slug($originalFileName);
-                $newFileName = $safeFileName.'-'.uniqid().'.'.$imageFile->guessExtension();
-
+                $newFileName = $safeFileName.'-'.uniqid().'.'.$posterFile->guessExtension();
+                
+                // > Moving uploaded poster to directory
                 try {
-                    $imageFile->move($imagesDirectory, $newFileName);
-                    $image->setLink($newFileName);
-                    
+                    $posterFile->move($imagesDirectory, $newFileName);
+                    // $image->setLink($newFileName);
                 } catch (FileException $e) {
                     ('An error occured while uploading the file : '.$e->getMessage()); die;
                 }
+            } 
+            // > Else : photo stays the same
+            else {
+                $newFileName = $piece->getPoster();
             }
+
+            // > Poster is set with file name in the entity
+            $piece->setPoster($newFileName);
+
             // > 2 steps save in DataBase
             $entityManager->persist($piece);
             $entityManager->flush();

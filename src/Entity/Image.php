@@ -19,8 +19,8 @@ class Image
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $link = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?bool $isPoster = null;
+    // #[ORM\Column(nullable: true)]
+    // private ?bool $isPoster = null;
 
     #[ORM\ManyToOne(inversedBy: 'images')]
     #[ORM\JoinColumn(nullable: false)]
@@ -55,17 +55,17 @@ class Image
         return $this;
     }
 
-    public function isPoster(): ?bool
-    {
-        return $this->isPoster;
-    }
+    // public function isPoster(): ?bool
+    // {
+    //     return $this->isPoster;
+    // }
 
-    public function setIsPoster(?bool $isPoster): static
-    {
-        $this->isPoster = $isPoster;
+    // public function setIsPoster(?bool $isPoster): static
+    // {
+    //     $this->isPoster = $isPoster;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     // TO STRING -> Image title
     public function __toString()

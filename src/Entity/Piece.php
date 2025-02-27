@@ -60,6 +60,9 @@ class Piece
     #[ORM\Column(nullable: true)]
     private ?bool $isUpcoming = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $poster = null;
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
@@ -294,6 +297,18 @@ class Piece
     public function setIsUpcoming(?bool $isUpcoming): static
     {
         $this->isUpcoming = $isUpcoming;
+
+        return $this;
+    }
+
+    public function getPoster(): ?string
+    {
+        return $this->poster;
+    }
+
+    public function setPoster(string $poster): static
+    {
+        $this->poster = $poster;
 
         return $this;
     }

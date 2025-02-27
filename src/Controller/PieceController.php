@@ -111,15 +111,15 @@ final class PieceController extends AbstractController
     }
 
     // > Display piece details
-    #[Route('/piece/{id}/show', name: 'show_piece')]
-    public function showPiece(Piece $piece = null): Response
+    #[Route('/piece/{id}/infos', name: 'infos_piece')]
+    public function infosPiece(Piece $piece = null): Response
     {
         if (!$piece) {
             $this->addFlash('piSearchFail', 'The piece you\'re looking for does not exist !');
             return $this->redirectToRoute('app_home');
         }
 
-        return $this->render('piece/show.html.twig', [
+        return $this->render('piece/infos.html.twig', [
             'piece' => $piece
         ]);
     }

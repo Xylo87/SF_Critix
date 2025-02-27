@@ -9,14 +9,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 final class UserController extends AbstractController
 {
-    // #[Route('/user', name: 'app_user')]
-    // public function index(): Response
-    // {
-    //     return $this->render('user/index.html.twig', [
-    //         'controller_name' => 'UserController',
-    //     ]);
-    // }
-
     // > Display a User page
     #[Route('/user/{id}', name: 'show_user')]
     public function showUser(User $user = null): Response

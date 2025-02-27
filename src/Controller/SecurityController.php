@@ -52,6 +52,7 @@ class SecurityController extends AbstractController
     {
         $user = $security->getUser();
 
+        // > If User is not logged, return to Login page
         if (!$user) {
             $this->addFlash('usEditFail', 'You must be logged in to edit your profile !');
             return $this->redirectToRoute('app_login');
@@ -63,6 +64,28 @@ class SecurityController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $user = $form->getData();
+            $photoFile = $form->get('profilePicture')->getData();
+
+            // > If a new photo is submitted
+            if ($photoFile) {
+                $originalFileName = pathinfo($photoFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFileName = $slugger->slug($originalFileName);
+                $newFileName = $safeFileName.'-'.uniqid().'.'.$photoFile->guessExtension();
+
+                // > Moving uploaded photo to directory
+                try {
+                    $photoFile->move($photosDirectory, $newFileName);
+                } catch (FileException $e) {
+                    ('An error occured while uploading the file : '.$e->getMessage()); die;
+                }
+            } 
+            // > Else : photo stays the same
+            else {
+                $newFileName = $user->getProfilePicture();
+            }
+
+            // > Photo is set with file name in the entity
+            $user->setProfilePicture($newFileName);
 
             $entityManager->persist($user);
             $entityManager->flush();
@@ -72,7 +95,7 @@ class SecurityController extends AbstractController
         }
 
         // > Return infos to view
-        return $this->render('user/new.html.twig', [
+        return $this->render('user/edit.html.twig', [
             'formAddUser' => $form,
         ]);
     }

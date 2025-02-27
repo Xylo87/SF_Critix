@@ -28,20 +28,17 @@
 
     {% if app.user and app.user.id == user.id %}
         <a href="{{ path('edit_user')}}"><button>Edit your profile</button></a>
+        <button class="deleteConfirm">Delete your profile</button><br>
+        
+        {# > Suppression (modal) #}
+        <dialog class="openModal">
+            <h3>Are you sure you want to delete your profile ?</h3>
+            <a href="{{ path('delete_user')}}"><button>Yes</button></a>
+            <button class="closeModal">No</button>
+        </dialog>
     {% endif %}
     
     <p>Mood : {{user.status}}</p>
     <p>Bio : {{user.bio}}</p>
     <p>Member since: {{user.creationDateEng}}</p>
-    
-    {# > Edit and suppression (modal) #}
-    {# <a href="{{ path('edit_influencer', {'id': influencer.id})}}"><button>Edit</button></a> #}
-    {# <a href="{{ path('delete_influencer', {'id': influencer.id})}}">Delete</a></h2><br> #}
-    {# <button class="deleteConfirm">Delete</button><br>
-        <dialog class="openModal">
-            <h3>Are you sure you want to delete "{{influencer}}" ?</h3>
-            <a href="{{ path('delete_influencer', {'id': influencer.id})}}"><button>Yes</button></a>
-            <button class="closeModal">No</button>
-        </dialog> #}
-
 {% endblock %}

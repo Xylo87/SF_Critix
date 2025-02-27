@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Form\UserFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\SecurityBundle\Security;
@@ -14,6 +15,7 @@ use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class SecurityController extends AbstractController
 {
@@ -98,5 +100,41 @@ class SecurityController extends AbstractController
         return $this->render('user/edit.html.twig', [
             'formAddUser' => $form,
         ]);
+    }
+
+    // -> Delete User's account
+    #[Route('/user/delete', name: 'delete_user')]
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
+    public function delete(EntityManagerInterface $entityManager, Security $security, TokenStorageInterface $tokenStorage)
+    {
+        $user = $security->getUser();
+
+        // > If User is not logged, return to Login page
+        if (!$user) {
+            $this->addFlash('usDeleteFail', 'You must be logged in to delete your profile !');
+            return $this->redirectToRoute('app_login');
+        }
+
+        // > Delete User's custom profile picture
+        $profilePictureName = $user->getProfilePicture();
+
+        if ($profilePictureName) {
+            $profilePicturePath = $this->getParameter('kernel.project_dir') . '/public/uploads/photos/userPhotos/'.$profilePictureName;
+    
+            if (file_exists($profilePicturePath)) {
+                unlink($profilePicturePath);
+            }
+        }
+
+        $tokenStorage->setToken(null);
+        $request = $this->container->get('request_stack')->getCurrentRequest();
+        $session = $request->getSession();
+        $session->invalidate();
+
+        $entityManager->remove($user);
+        $entityManager->flush();
+
+        $this->addFlash('usDeleteSuccess', 'Your profile has been deleted !');
+        return $this->redirectToRoute('app_home');
     }
 }

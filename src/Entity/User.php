@@ -100,12 +100,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->id;
     }
 
-    // public function setId(int $id): static
-    // {
-    //     $this->id = $id;
+    public function setId(int $id): static
+    {
+        $this->id = $id;
 
-    //     return $this;
-    // }
+        return $this;
+    }
 
     public function getEmail(): ?string
     {

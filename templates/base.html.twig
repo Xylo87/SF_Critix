@@ -123,6 +123,20 @@
                         </div>
                     {% endfor %}
 
+                    {# > User profile delete fail #}
+                    {% for message in app.flashes('usDeleteFail') %}
+                        <div class="alert alert-danger">
+                            {{message}}
+                        </div>
+                    {% endfor %}
+
+                    {# > User profile delete success #}
+                    {% for message in app.flashes('usDeleteSuccess') %}
+                        <div class="alert alert-success">
+                            {{message}}
+                        </div>
+                    {% endfor %}
+
 
                 </div>
             </nav>

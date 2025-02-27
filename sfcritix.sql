@@ -207,7 +207,7 @@ CREATE TABLE IF NOT EXISTS `piece` (
 
 -- Listage des données de la table sfcritix.piece : ~0 rows (environ)
 INSERT INTO `piece` (`id`, `title`, `about`, `maker`, `release_date`, `category_id`, `is_upcoming`, `poster`) VALUES
-	(1, 'Dune: Awakening', 'Dune: Awakening is a massively multiplayer online game where players must survive in the desert of Arrakis. It takes place in an open world.', 'Funcom', '2025-01-01 00:00:00', 1, 1, ''),
+	(1, 'Dune: Awakening', 'Dune: Awakening is a massively multiplayer online game where players must survive in the desert of Arrakis. It takes place in an open world.', 'Funcom', '2025-01-01 00:00:00', 1, 1, 'games-DuneA-poster-67c0af2463993.png'),
 	(19, 'The Brutalist', 'Escaping post-war Europe, visionary architect László Toth arrives in America to rebuild his life, his work, and his marriage to his wife Erzsébet after being forced apart during wartime by shifting borders and regimes. On his own in a strange new country, László settles in Pennsylvania, where an industrialist recognizes his talent for building.', 'Brady Corbet', '2025-02-12 00:00:00', 2, NULL, '');
 
 -- Listage de la structure de table sfcritix. social
@@ -220,9 +220,12 @@ CREATE TABLE IF NOT EXISTS `social` (
   PRIMARY KEY (`id`),
   KEY `IDX_7161E1874AF97FA6` (`influencer_id`),
   CONSTRAINT `FK_7161E1874AF97FA6` FOREIGN KEY (`influencer_id`) REFERENCES `influencer` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table sfcritix.social : ~0 rows (environ)
+INSERT INTO `social` (`id`, `name`, `sub_number`, `link`, `influencer_id`) VALUES
+	(4, 'YouTube', '200k', 'https://www.youtube.com/@ExServ85', 2),
+	(5, 'Bluesky', '9.4k', 'https://bsky.app/profile/exserv.bsky.social', 2);
 
 -- Listage de la structure de table sfcritix. user
 CREATE TABLE IF NOT EXISTS `user` (
@@ -256,9 +259,11 @@ CREATE TABLE IF NOT EXISTS `video` (
   PRIMARY KEY (`id`),
   KEY `IDX_7CC7DA2CC40FCFA8` (`piece_id`),
   CONSTRAINT `FK_7CC7DA2CC40FCFA8` FOREIGN KEY (`piece_id`) REFERENCES `piece` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table sfcritix.video : ~0 rows (environ)
+INSERT INTO `video` (`id`, `title`, `link`, `is_trailer`, `piece_id`) VALUES
+	(6, 'Dune: Awakening - Official Arrakis Trailer', 'https://www.youtube.com/embed/r8lxVDqoHLQ?si=uXlAQDGgLB8umpGr', 1, 1);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

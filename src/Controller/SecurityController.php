@@ -60,7 +60,7 @@ class SecurityController extends AbstractController
 
     // > Save a critics page
     #[Route('/critics/{id}/save', name: 'save_critics')]
-    public function saveCritics(Security $security, EntityManagerInterface $entityManager, Piece $piece)
+    public function saveCritics(Security $security, EntityManagerInterface $entityManager, Piece $piece = null)
     {
         $user = $security->getUser();
 
@@ -80,7 +80,7 @@ class SecurityController extends AbstractController
 
     // > Unsave a critics page
     #[Route('/critics/{id}/unsave', name: 'unsave_critics')]
-    public function unsaveCritics(Security $security, EntityManagerInterface $entityManager, Piece $piece, Request $request)
+    public function unsaveCritics(Security $security, EntityManagerInterface $entityManager, Piece $piece = null, Request $request)
     {
         $user = $security->getUser();
 
@@ -128,7 +128,7 @@ class SecurityController extends AbstractController
 
     // > Edit User's infos
     #[Route('/user/edit', name: 'edit_user')]
-    public function edit(User $user = null,
+    public function edit(
     Request $request, 
     EntityManagerInterface $entityManager,
     SluggerInterface $slugger,

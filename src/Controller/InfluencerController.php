@@ -116,7 +116,7 @@ final class InfluencerController extends AbstractController
 
     // > Display influencer details
     #[Route('/influencer/{id}', name: 'show_influencer')]
-    public function show(Influencer $influencer): Response
+    public function show(Influencer $influencer = null): Response
     {
         if (!$influencer) {
             $this->addFlash('inSearchFail', 'Content creator you\'re looking for does not exist !');

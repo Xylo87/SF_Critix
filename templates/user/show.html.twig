@@ -41,4 +41,12 @@
     <p>Mood : {{user.status}}</p>
     <p>Bio : {{user.bio}}</p>
     <p>Member since: {{user.creationDateEng}}</p>
+
+    {% if app.user and app.user.id == user.id and app.user.pieces is not empty %}
+        <h3>Saved critics page</h3>
+        {% for piece in user.pieces %}
+            {{piece}}
+        {% endfor %}
+    {% endif %}
+    
 {% endblock %}

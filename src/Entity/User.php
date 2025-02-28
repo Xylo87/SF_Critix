@@ -85,6 +85,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private bool $isVerified = false;
 
+    /**
+     * @var Collection<int, Piece>
+     */
+    #[ORM\ManyToMany(targetEntity: Piece::class, inversedBy: 'users')]
+    private Collection $pieces;
+
     public function __construct()
     {
         $this->influencers = new ArrayCollection();
@@ -93,6 +99,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->agreements = new ArrayCollection();
         $this->comments = new ArrayCollection();
         $this->accountDate = new \DateTime();
+        $this->pieces = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -401,6 +408,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsVerified(bool $isVerified): static
     {
         $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Piece>
+     */
+    public function getPieces(): Collection
+    {
+        return $this->pieces;
+    }
+
+    public function addPiece(Piece $piece): static
+    {
+        if (!$this->pieces->contains($piece)) {
+            $this->pieces->add($piece);
+        }
+
+        return $this;
+    }
+
+    public function removePiece(Piece $piece): static
+    {
+        $this->pieces->removeElement($piece);
 
         return $this;
     }

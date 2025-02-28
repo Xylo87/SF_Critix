@@ -43,7 +43,6 @@ class SecurityController extends AbstractController
 
     // > Save a critics page
     #[Route('/critics/{id}/save', name: 'save_critics')]
-    #[IsGranted('IS_AUTHENTICATED_FULLY')]
     public function saveCritics(Security $security, EntityManagerInterface $entityManager, Piece $piece)
     {
         $user = $security->getUser();
@@ -63,29 +62,27 @@ class SecurityController extends AbstractController
     }
 
     // > Unsave a critics page
-    // #[Route('/critics/{id}/save', name: 'unsave_critics')]
-    // #[IsGranted('IS_AUTHENTICATED_FULLY')]
-    // public function unsaveCritics(Security $security, EntityManagerInterface $entityManager, Piece $piece)
-    // {
-    //     $user = $security->getUser();
+    #[Route('/critics/{id}/unsave', name: 'unsave_critics')]
+    public function unsaveCritics(Security $security, EntityManagerInterface $entityManager, Piece $piece)
+    {
+        $user = $security->getUser();
 
-    //     if (!$user) {
-    //         $this->addFlash('crUnSaveFail', 'You must be logged in to unsave a critics page !');
-    //         return $this->redirectToRoute('app_login');
-    //     }
+        if (!$user) {
+            $this->addFlash('crUnSaveFail', 'You must be logged in to unsave a critics page !');
+            return $this->redirectToRoute('app_login');
+        }
 
-    //     $user->removePiece($piece);
+        $user->removePiece($piece);
     
-    //     $entityManager->persist($user);
-    //     $entityManager->flush();
+        $entityManager->persist($user);
+        $entityManager->flush();
     
-    //     $this->addFlash('crUnSaveSuccess', 'Critics on "'.$piece.'" unsaved ! ');
-    //     return $this->redirectToRoute('show_critics', ['id' => $piece->getId()]);
-    // }
+        $this->addFlash('crUnSaveSuccess', 'Critics on "'.$piece.'" unsaved ! ');
+        return $this->redirectToRoute('show_critics', ['id' => $piece->getId()]);
+    }
 
     // > Edit User's infos
     #[Route('/user/edit', name: 'edit_user')]
-    #[IsGranted('IS_AUTHENTICATED_FULLY')]
     public function edit(User $user = null,
     Request $request, 
     EntityManagerInterface $entityManager,
@@ -159,7 +156,6 @@ class SecurityController extends AbstractController
 
     // -> Delete User's account
     #[Route('/user/delete', name: 'delete_user')]
-    #[IsGranted('IS_AUTHENTICATED_FULLY')]
     public function delete(EntityManagerInterface $entityManager, Security $security, TokenStorageInterface $tokenStorage)
     {
         $user = $security->getUser();

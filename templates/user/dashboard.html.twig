@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    CritX > Your dashboard 
+{% endblock %}
+
+{% block body %}
+
+    <h2>Your dashboard</h2>
+    <hr>
+
+    {% if user.profilePicture %}
+        <img src="/uploads/photos/userPhotos/{{user.profilePicture}}" alt="{{user}}-profile-picture" style="width: 180px; height: 180px; object-fit: cover">
+    {% else %}
+        <img src="/uploads/photos/userPhotos/user-default.png" alt="user-default-profile-picture" style="width: 180px; height: 180px;">
+    {% endif %}
+    
+    <h1>{{user}}</h1>
+
+    <a href="{{ path('edit_user')}}"><button>Edit your profile</button></a>
+    <button class="deleteConfirm">Delete your profile</button><br>
+
+    {# > Suppression (modal) #}
+        <dialog class="openModal">
+            <h3>Are you sure you want to delete your profile ?</h3>
+            <a href="{{ path('delete_user')}}"><button>Yes</button></a>
+            <button class="closeModal">No</button>
+        </dialog>
+
+    <p>Mood : {{user.status}}</p>
+    <p>Bio : {{user.bio}}</p>
+    <p>Member since: {{user.creationDateEng}}</p>
+
+    {% if user.pieces is not empty %}
+        <h3>Saved critics page</h3>
+        {% for piece in user.pieces %}
+            {{piece}}
+        {% endfor %}
+    {% endif %}
+    
+{% endblock %}

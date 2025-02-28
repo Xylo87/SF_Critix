@@ -41,6 +41,22 @@ class SecurityController extends AbstractController
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 
+     // > User's dashboard
+     #[Route('/user/dashboard', name: 'dashboard_user')]
+     public function dashboardUser(User $user = null, Security $security): Response
+     {
+        $user = $security->getUser();
+
+         if (!$user) {
+             $this->addFlash('usSearchFail', 'You must be logged in to access dashboard !');
+             return $this->redirectToRoute('app_login');
+         }
+ 
+         return $this->render('user/dashboard.html.twig', [
+             'user' => $user
+         ]);
+     }
+
     // > Save a critics page
     #[Route('/critics/{id}/save', name: 'save_critics')]
     public function saveCritics(Security $security, EntityManagerInterface $entityManager, Piece $piece)
@@ -145,7 +161,7 @@ class SecurityController extends AbstractController
             $entityManager->flush();
 
             $this->addFlash('usEditSuccess', 'Your profile has been updated !');
-            return $this->redirectToRoute('show_user', ['id' => $user->getId()]);
+            return $this->redirectToRoute('dashboard_user');
         }
 
         // > Return infos to view

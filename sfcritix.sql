@@ -199,16 +199,17 @@ CREATE TABLE IF NOT EXISTS `piece` (
   `release_date` datetime NOT NULL,
   `category_id` int NOT NULL,
   `is_upcoming` tinyint(1) DEFAULT NULL,
-  `poster` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `poster` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_44CA0B2312469DE2` (`category_id`),
   CONSTRAINT `FK_44CA0B2312469DE2` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfcritix.piece : ~0 rows (environ)
+-- Listage des données de la table sfcritix.piece : ~2 rows (environ)
 INSERT INTO `piece` (`id`, `title`, `about`, `maker`, `release_date`, `category_id`, `is_upcoming`, `poster`) VALUES
 	(1, 'Dune: Awakening', 'Dune: Awakening is a massively multiplayer online game where players must survive in the desert of Arrakis. It takes place in an open world.', 'Funcom', '2025-01-01 00:00:00', 1, 1, 'games-DuneA-poster-67c0af2463993.png'),
-	(19, 'The Brutalist', 'Escaping post-war Europe, visionary architect László Toth arrives in America to rebuild his life, his work, and his marriage to his wife Erzsébet after being forced apart during wartime by shifting borders and regimes. On his own in a strange new country, László settles in Pennsylvania, where an industrialist recognizes his talent for building.', 'Brady Corbet', '2025-02-12 00:00:00', 2, NULL, '');
+	(19, 'The Brutalist', 'Escaping post-war Europe, visionary architect László Toth arrives in America to rebuild his life, his work, and his marriage to his wife Erzsébet after being forced apart during wartime by shifting borders and regimes. On his own in a strange new country, László settles in Pennsylvania, where an industrialist recognizes his talent for building.', 'Brady Corbet', '2025-02-12 00:00:00', 2, 0, 'movies-TheBrutalist-poster-67c1b34cc833b.jpg'),
+	(62, 'Mr. Morale & The Big Steppers', 'Mr. Morale & the Big Steppers is a concept album that analyzes and reflects on his life experiences during his therapy journey. Its lyrics touch on a variety of personal themes, including childhood and generational trauma, infidelity, and celebrity worship.', 'Kendrick Lamar', '2022-05-13 00:00:00', 4, 0, 'music-Mr-Morale-and-TheBigSteppers-poster-67c1da00466e2.jpg');
 
 -- Listage de la structure de table sfcritix. social
 CREATE TABLE IF NOT EXISTS `social` (
@@ -220,12 +221,18 @@ CREATE TABLE IF NOT EXISTS `social` (
   PRIMARY KEY (`id`),
   KEY `IDX_7161E1874AF97FA6` (`influencer_id`),
   CONSTRAINT `FK_7161E1874AF97FA6` FOREIGN KEY (`influencer_id`) REFERENCES `influencer` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfcritix.social : ~0 rows (environ)
+-- Listage des données de la table sfcritix.social : ~2 rows (environ)
 INSERT INTO `social` (`id`, `name`, `sub_number`, `link`, `influencer_id`) VALUES
 	(4, 'YouTube', '200k', 'https://www.youtube.com/@ExServ85', 2),
-	(5, 'Bluesky', '9.4k', 'https://bsky.app/profile/exserv.bsky.social', 2);
+	(5, 'Bluesky', '9.4k', 'https://bsky.app/profile/exserv.bsky.social', 2),
+	(6, 'YouTube', '229k', 'https://www.youtube.com/channel/UC6yhX3lGeSSRlHycI3rfDqQ', 12),
+	(7, 'Instagram', '57k', 'https://www.instagram.com/carolequintaine/', 12),
+	(8, 'Twitch', '42k', 'https://www.twitch.tv/quintainecarole', 12),
+	(9, 'YouTube', '105k', 'https://www.youtube.com/channel/UCz0yrDEjbd68clSkcWbYXwA', 17),
+	(10, 'Instagram', '12k', 'https://www.instagram.com/clapman_yt/', 17),
+	(11, 'Twitch', '2k', 'https://www.twitch.tv/clapman_yt', 17);
 
 -- Listage de la structure de table sfcritix. user
 CREATE TABLE IF NOT EXISTS `user` (
@@ -244,10 +251,26 @@ CREATE TABLE IF NOT EXISTS `user` (
   UNIQUE KEY `UNIQ_8D93D649A045A5E9` (`nick_name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfcritix.user : ~0 rows (environ)
+-- Listage des données de la table sfcritix.user : ~2 rows (environ)
 INSERT INTO `user` (`id`, `email`, `roles`, `password`, `nick_name`, `profile_picture`, `status`, `bio`, `account_date`, `is_verified`) VALUES
 	(16, 'test@exemple.com', '[]', '$2y$13$3JP6RlXMQmt5AxpcVxfHlesXj0Fq30ev.cd2rO/jDUBbBatZEaI0G', 'Xylo', '', 'Test', 'Test3', '2025-02-26 08:50:05', 0),
-	(34, 'titi@exemple.com', '[]', '$2y$13$gfEN2hZtNCH3N7NxxHsktebrha3JhyW/3V7AAJsrU55KWctPxw14W', 'Toto', 'Sosie-67c085e9c7ef4.png', 'Barbecue + partie de football', 'Sosie officiel de Robert de Niro dans Heat', '2025-02-27 14:15:15', 0);
+	(34, 'titi@exemple.com', '[]', '$2y$13$gfEN2hZtNCH3N7NxxHsktebrha3JhyW/3V7AAJsrU55KWctPxw14W', 'Toto', 'Sosie-67c085e9c7ef4.png', 'La police et la presse', 'Sosie officiel de Robert de Niro dans Heat', '2025-02-27 14:15:15', 0);
+
+-- Listage de la structure de table sfcritix. user_piece
+CREATE TABLE IF NOT EXISTS `user_piece` (
+  `user_id` int NOT NULL,
+  `piece_id` int NOT NULL,
+  PRIMARY KEY (`user_id`,`piece_id`),
+  KEY `IDX_A608F07BA76ED395` (`user_id`),
+  KEY `IDX_A608F07BC40FCFA8` (`piece_id`),
+  CONSTRAINT `FK_A608F07BA76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_A608F07BC40FCFA8` FOREIGN KEY (`piece_id`) REFERENCES `piece` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Listage des données de la table sfcritix.user_piece : ~0 rows (environ)
+INSERT INTO `user_piece` (`user_id`, `piece_id`) VALUES
+	(34, 1),
+	(34, 19);
 
 -- Listage de la structure de table sfcritix. video
 CREATE TABLE IF NOT EXISTS `video` (
@@ -259,11 +282,12 @@ CREATE TABLE IF NOT EXISTS `video` (
   PRIMARY KEY (`id`),
   KEY `IDX_7CC7DA2CC40FCFA8` (`piece_id`),
   CONSTRAINT `FK_7CC7DA2CC40FCFA8` FOREIGN KEY (`piece_id`) REFERENCES `piece` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfcritix.video : ~0 rows (environ)
+-- Listage des données de la table sfcritix.video : ~1 rows (environ)
 INSERT INTO `video` (`id`, `title`, `link`, `is_trailer`, `piece_id`) VALUES
-	(6, 'Dune: Awakening - Official Arrakis Trailer', 'https://www.youtube.com/embed/r8lxVDqoHLQ?si=uXlAQDGgLB8umpGr', 1, 1);
+	(6, 'Dune: Awakening - Official Arrakis Trailer', 'https://www.youtube.com/embed/r8lxVDqoHLQ?si=uXlAQDGgLB8umpGr', 1, 1),
+	(7, 'The Brutalist | Official Trailer HD | A24', 'https://www.youtube.com/embed/GdRXPAHIEW4?si=IZotUvlcBCqftzTd', 1, 19);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

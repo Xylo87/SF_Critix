@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Entity\Piece;
+use App\Entity\Influencer;
 use App\Form\UserFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\SecurityBundle\Security;
@@ -104,6 +105,26 @@ class SecurityController extends AbstractController
             return $this->redirectToRoute('dashboard_user');
         }
     }
+
+    // > Appreciate an influencer
+    // #[Route('/influencer/{id}/appreciate', name: 'appreciate_influencer')]
+    // public function appreciateInfluencer(Security $security, EntityManagerInterface $entityManager, Influencer $influencer)
+    // {
+    //     $user = $security->getUser();
+
+    //     if (!$user) {
+    //         $this->addFlash('crSaveFail', 'You must be logged in to save a critics page !');
+    //         return $this->redirectToRoute('app_login');
+    //     }
+
+    //     $user->addPiece($piece);
+
+    //     $entityManager->persist($user);
+    //     $entityManager->flush();
+
+    //     $this->addFlash('crSaveSuccess', 'Critics on "'.$piece.'" saved on your dashboard !');
+    //     return $this->redirectToRoute('show_critics', ['id' => $piece->getId()]);
+    // }
 
     // > Edit User's infos
     #[Route('/user/edit', name: 'edit_user')]

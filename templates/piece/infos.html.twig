@@ -38,10 +38,15 @@
     
     <p><u>Maker</u> : {{piece.maker}}</p>
     <p><u>About</u> : {{piece.about}}</p>
-     <p><u>Critic Score</u> : {{piece.criticTotalScore}}</p><br>
+
+    {# {% if piece.criticTotalScore %}
+        <p><u>Critic Score</u> : {{piece.criticTotalScore}}</p><br>
+    {% endif %} #}
+
     {# {% for image in piece.images %}
         {{image}}
     {% endfor %} #}
+
     <h2>Go to critics <br>
     → <a href="{{ path('show_critics', {'id': piece.id})}}">{{piece}}</a></h2><br>
     <a href="{{path('show_category', {'id': piece.category.id})}}"><i>> View all {{piece.category}} critics</i></a>

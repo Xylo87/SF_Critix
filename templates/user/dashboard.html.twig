@@ -42,7 +42,14 @@
             <em>#{{piece.category}}</em><br>
             Critic Score : {{piece.criticTotalScore}}<br>
             {# User Score : {{piece.userTotalScore}}<br> #}
-            <a href="{{ path('unsave_critics', {'id': piece.id})}}"><button>Unsave page</button></a><br><br>
+
+            <button class="deleteConfirm">Unsave page</button><br>
+                <dialog class="openModal">
+                <h3>Are you sure you want to unsave critics page on "{{piece}}" ?</h3>
+                <a href="{{ path('unsave_critics', {'id': piece.id})}}"><button>Yes</button></a>
+                <button class="closeModal">No</button>
+            </dialog><br>
+
         {% endfor %}
 
     {% endif %}

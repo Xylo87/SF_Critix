@@ -73,7 +73,7 @@ class SecurityController extends AbstractController
         $entityManager->persist($user);
         $entityManager->flush();
     
-        $this->addFlash('crSaveSuccess', 'Critics on "'.$piece.'" saved on your profile !');
+        $this->addFlash('crSaveSuccess', 'Critics on "'.$piece.'" saved on your dashboard !');
         return $this->redirectToRoute('show_critics', ['id' => $piece->getId()]);
     }
 

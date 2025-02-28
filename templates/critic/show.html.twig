@@ -12,7 +12,7 @@
     <img src="/uploads/images/{{piece.poster}}" alt="{{piece}}" style="width: 265px; height: 360px; object-fit: cover">
 
     {% if app.user in piece.users %}
-        <a href="{{ path('unsave_critics', {'id': piece.id})}}"><button>Unsave page</button></a>
+        <a href="{{ path('unsave_critics', {'id': piece.id, 'origin': 'criticsPage'}) }}"><button>Unsave page</button></a>
         {% else %}
         <a href="{{ path('save_critics', {'id': piece.id})}}"><button>Come back later</button></a>
     {% endif %}

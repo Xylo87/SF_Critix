@@ -18,7 +18,7 @@
     <h1>{{user}}</h1>
 
     <a href="{{ path('edit_user')}}"><button>Edit your profile</button></a>
-    <button class="deleteConfirm">Delete your profile</button><br>
+    <button class="deleteConfirm">Delete your profile</button><br><br>
 
     {# > Suppression (modal) #}
         <dialog class="openModal">
@@ -27,15 +27,24 @@
             <button class="closeModal">No</button>
         </dialog>
 
-    <p>Mood : {{user.status}}</p>
-    <p>Bio : {{user.bio}}</p>
-    <p>Member since: {{user.creationDateEng}}</p>
+    <p><u>Mood</u> : {{user.status}}</p>
+    <p><u>Bio</u> : {{user.bio}}</p>
+    <p><u>Member since</u>: {{user.creationDateEng}}</p><br>
 
     {% if user.pieces is not empty %}
         <h3>Saved critics page</h3>
+
         {% for piece in user.pieces %}
-            {{piece}}
+            <a href="{{ path('show_critics', {'id': piece.id})}}"><img src="/uploads/images/{{piece.poster}}" 
+            alt="{{piece}}" 
+            style="width: 88px; height: 120px; object-fit: cover"></a><br>
+            <a href="{{ path('show_critics', {'id': piece.id})}}">{{piece}}</a><br>
+            <em>#{{piece.category}}</em><br>
+            Critic Score : {{piece.criticTotalScore}}<br>
+            {# User Score : {{piece.userTotalScore}}<br> #}
+            <a href="{{ path('unsave_critics', {'id': piece.id})}}"><button>Unsave page</button></a><br><br>
         {% endfor %}
+
     {% endif %}
     
 {% endblock %}

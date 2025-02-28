@@ -79,7 +79,7 @@ class SecurityController extends AbstractController
 
     // > Unsave a critics page
     #[Route('/critics/{id}/unsave', name: 'unsave_critics')]
-    public function unsaveCritics(Security $security, EntityManagerInterface $entityManager, Piece $piece)
+    public function unsaveCritics(Security $security, EntityManagerInterface $entityManager, Piece $piece, Request $request)
     {
         $user = $security->getUser();
 
@@ -94,7 +94,15 @@ class SecurityController extends AbstractController
         $entityManager->flush();
     
         $this->addFlash('crUnSaveSuccess', 'Critics on "'.$piece.'" unsaved ! ');
-        return $this->redirectToRoute('show_critics', ['id' => $piece->getId()]);
+
+        // > Custom routing from origin page
+        $origin = $request->query->get('origin');
+
+        if ($origin === 'criticsPage' ) {
+            return $this->redirectToRoute('show_critics', ['id' => $piece->getId()]);
+        } else {
+            return $this->redirectToRoute('dashboard_user');
+        }
     }
 
     // > Edit User's infos

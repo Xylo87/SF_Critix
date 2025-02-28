@@ -50,6 +50,18 @@ final class PieceController extends AbstractController
 
             // > If a new poster is submitted
             if ($posterFile) {
+
+                // > Delete Piece's previous poster
+                $posterName = $user->getPoster();
+
+                if ($posterName) {
+                    $posterPath = $this->getParameter('kernel.project_dir') . '/public/uploads/images/'.$posterName;
+            
+                    if (file_exists($posterPath)) {
+                        unlink($posterPath);
+                    }
+                }
+
                 $originalFileName = pathinfo($posterFile->getClientOriginalName(), PATHINFO_FILENAME);
                 $safeFileName = $slugger->slug($originalFileName);
                 $newFileName = $safeFileName.'-'.uniqid().'.'.$posterFile->guessExtension();

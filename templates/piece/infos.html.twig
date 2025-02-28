@@ -30,18 +30,19 @@
             <button class="closeModal">No</button>
         </dialog>
 
+    <p><u>Maker</u> : {{piece.maker}}</p>
+
     {% if piece.isUpcoming %}
         <p><u>Release date</u> : {{piece.releaseDateENG|date("Y") }} (Upcoming)</p>
     {% else %}
         <p><u>Release date</u> : {{piece.releaseDateENG}}</p>
     {% endif %}
     
-    <p><u>Maker</u> : {{piece.maker}}</p>
     <p><u>About</u> : {{piece.about}}</p>
 
-    {# {% if piece.criticTotalScore %}
-        <p><u>Critic Score</u> : {{piece.criticTotalScore}}</p><br>
-    {% endif %} #}
+    {% if piece.critics|length > 0 %}
+            <p><u>Critic score</u> : {{ piece.criticTotalScore }}</p>
+    {% endif %}
 
     {# {% for image in piece.images %}
         {{image}}

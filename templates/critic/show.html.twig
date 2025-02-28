@@ -13,12 +13,16 @@
 
     {% if app.user in piece.users %}
         <a href="{{ path('unsave_critics', {'id': piece.id, 'origin': 'criticsPage'}) }}"><button>Unsave page</button></a>
-        {% else %}
+    {% else %}
         <a href="{{ path('save_critics', {'id': piece.id})}}"><button>Come back later</button></a>
     {% endif %}
 
-    <p><u>Critic Score</u> : {{piece.criticTotalScore}}</p>
+    {% if piece.critics|length > 0 %}
+        <p><u>Critic Score</u> : {{piece.criticTotalScore}}</p>
+    {% endif %}
     {# <p>User Score : {{piece.userTotalScore}}</p> #}
+
+    <p><u>Maker</u> : {{piece.maker}}</p>
 
     {% if piece.isUpcoming %}
         <p><u>Release date</u> : {{piece.releaseDateENG|date("Y") }} (Upcoming)</p>
@@ -26,7 +30,6 @@
         <p><u>Release date</u> : {{piece.releaseDateENG}}</p>
     {% endif %}
     
-    <p><u>Maker</u> : {{piece.maker}}</p>
     <p><u>About</u> : {{piece.about}}</p>
     <h4><a href="{{ path('infos_piece', {'id': piece.id})}}">+ More infos</a></h4>
     <h3>Latest critics</h3>
@@ -51,7 +54,7 @@
         {# > Suppression (modal) #}
         <a href="{{ path('edit_critic', {'id': critic.id})}}"><button>Edit</button></a>
         {# <a href="{{ path('delete_influencer', {'id': influencer.id})}}">Delete</a></h2><br> #}
-         <button class="deleteConfirm">Delete</button><br>
+         <button class="deleteConfirm">Delete</button><br><br>
             <dialog class="openModal">
                 <h3>Are you sure you want to delete critic on "{{critic.piece.title}}" by {{critic.influencer}} ?</h3>
                 <a href="{{ path('delete_critic', {'id': critic.id})}}"><button>Yes</button></a>

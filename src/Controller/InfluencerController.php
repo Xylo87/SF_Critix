@@ -57,6 +57,18 @@ final class InfluencerController extends AbstractController
 
             // > If a new photo is submitted
             if ($photoFile) {
+
+                // > Delete Influencer's previous photo
+                $photoName = $user->getPhoto();
+
+                if ($photoName) {
+                    $photoPath = $this->getParameter('kernel.project_dir') . '/public/uploads/photos/influPhotos/'.$photoName;
+            
+                    if (file_exists($photoPath)) {
+                        unlink($photoPath);
+                    }
+                }
+
                 $originalFileName = pathinfo($photoFile->getClientOriginalName(), PATHINFO_FILENAME);
                 $safeFileName = $slugger->slug($originalFileName);
                 $newFileName = $safeFileName.'-'.uniqid().'.'.$photoFile->guessExtension();

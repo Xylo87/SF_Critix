@@ -53,5 +53,26 @@
         {% endfor %}
 
     {% endif %}
+
+    {% if user.influencers is not empty %}
+        <h3> You appreciate</h3>
+
+        {% for influencer in user.influencers %}
+            <a href="{{ path('show_influencer', {'id': influencer.id})}}"><img src="/uploads/photos/influPhotos/{{influencer.photo}}"
+            alt="{{influencer}}" 
+            style="width: 88px; height: 120px; object-fit: cover"></a><br>
+            <a href="{{ path('show_influencer', {'id': influencer.id})}}">{{influencer}}</a><br>
+
+            <button class="deleteConfirm">Unlike</button><br>
+                <dialog class="openModal">
+                <h3>Are you sure you want to unlike "{{influencer}}" ?</h3>
+                <a href="{{ path('unlike_influencer', {'id': influencer.id})}}"><button>Yes</button></a>
+                <button class="closeModal">No</button>
+            </dialog><br>
+
+        {% endfor %}
+
+
+    {% endif %}
     
 {% endblock %}

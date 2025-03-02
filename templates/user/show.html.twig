@@ -18,6 +18,18 @@
     <h1>{{user}}</h1> 
     <p>Mood : {{user.status}}</p>
     <p>Bio : {{user.bio}}</p>
-    <p>Member since: {{user.creationDateEng}}</p>
+    <p>Member since: {{user.creationDateEng}}</p><br>
+
+    {% if user.influencers is not empty %}
+        <h3> {{user}} appreciates</h3>
+
+        {% for influencer in user.influencers %}
+            <a href="{{ path('show_influencer', {'id': influencer.id})}}"><img src="/uploads/photos/influPhotos/{{influencer.photo}}"
+            alt="{{influencer}}" 
+            style="width: 88px; height: 120px; object-fit: cover"></a><br>
+            <a href="{{ path('show_influencer', {'id': influencer.id})}}">{{influencer}}</a><br><br>
+        {% endfor %}
+
+    {% endif %}
 
 {% endblock %}

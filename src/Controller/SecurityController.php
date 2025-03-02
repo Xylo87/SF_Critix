@@ -106,25 +106,53 @@ class SecurityController extends AbstractController
         }
     }
 
-    // > Appreciate an influencer
-    // #[Route('/influencer/{id}/appreciate', name: 'appreciate_influencer')]
-    // public function appreciateInfluencer(Security $security, EntityManagerInterface $entityManager, Influencer $influencer)
-    // {
-    //     $user = $security->getUser();
+    // > Like an influencer
+    #[Route('/influencer/{id}/like', name: 'like_influencer')]
+    public function likeInfluencer(Security $security, EntityManagerInterface $entityManager, Influencer $influencer = null)
+    {
+        $user = $security->getUser();
 
-    //     if (!$user) {
-    //         $this->addFlash('crSaveFail', 'You must be logged in to save a critics page !');
-    //         return $this->redirectToRoute('app_login');
-    //     }
+        if (!$user) {
+            $this->addFlash('inLikeFail', 'You must be logged in to like a content creator !');
+            return $this->redirectToRoute('app_login');
+        }
 
-    //     $user->addPiece($piece);
+        $user->addInfluencer($influencer);
 
-    //     $entityManager->persist($user);
-    //     $entityManager->flush();
+        $entityManager->persist($user);
+        $entityManager->flush();
 
-    //     $this->addFlash('crSaveSuccess', 'Critics on "'.$piece.'" saved on your dashboard !');
-    //     return $this->redirectToRoute('show_critics', ['id' => $piece->getId()]);
-    // }
+        $this->addFlash('inLikeSuccess', ' "'.$influencer.'" liked !');
+        return $this->redirectToRoute('show_influencer', ['id' => $influencer->getId()]);
+    }
+
+    // > Unlike an influencer
+    #[Route('/influencer/{id}/unlike', name: 'unlike_influencer')]
+    public function unlikeInfluencer(Security $security, EntityManagerInterface $entityManager, Influencer $influencer = null, Request $request)
+    {
+        $user = $security->getUser();
+
+        if (!$user) {
+            $this->addFlash('inUnLikeFail', 'You must be logged in to unlike a content creator !');
+            return $this->redirectToRoute('app_login');
+        }
+
+        $user->removeInfluencer($influencer);
+    
+        $entityManager->persist($user);
+        $entityManager->flush();
+    
+        $this->addFlash('inUnLikeSuccess', ' "'.$influencer.'" unliked ! ');
+
+        // > Custom routing from origin page
+        $origin = $request->query->get('origin');
+
+        if ($origin === 'influencerPage' ) {
+            return $this->redirectToRoute('show_influencer', ['id' => $influencer->getId()]);
+        } else {
+            return $this->redirectToRoute('dashboard_user');
+        }
+    }
 
     // > Edit User's infos
     #[Route('/user/edit', name: 'edit_user')]

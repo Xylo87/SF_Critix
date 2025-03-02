@@ -23,6 +23,12 @@
             <a href="{{ path('delete_influencer', {'id': influencer.id})}}"><button>Yes</button></a>
             <button class="closeModal">No</button>
         </dialog>
+
+    {% if app.user in influencer.users %}
+        <a href="{{ path('unlike_influencer', {'id': influencer.id, 'origin': 'influencerPage'}) }}"><button>Unlike</button></a>
+    {% else %}
+        <a href="{{ path('like_influencer', {'id': influencer.id})}}"><button>Like</button></a>
+    {% endif %}<br><br>
             
     <p>{{influencer.bio}}</p><br>
 

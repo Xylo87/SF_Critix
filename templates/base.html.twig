@@ -165,6 +165,34 @@
                         </div>
                     {% endfor %}
 
+                    {# > Influencer like success #}
+                    {% for message in app.flashes('inLikeSuccess') %}
+                        <div class="alert alert-success">
+                            {{message}}
+                        </div>
+                    {% endfor %}
+
+                    {# > Influencer like fail #}
+                    {% for message in app.flashes('inLikeFail') %}
+                        <div class="alert alert-danger">
+                            {{message}}
+                        </div>
+                    {% endfor %}
+
+                    {# > Influencer unlike success #}
+                    {% for message in app.flashes('inUnLikeSuccess') %}
+                        <div class="alert alert-success">
+                            {{message}}
+                        </div>
+                    {% endfor %}
+
+                    {# > Influencer unlike fail #}
+                    {% for message in app.flashes('inUnLikeFail') %}
+                        <div class="alert alert-danger">
+                            {{message}}
+                        </div>
+                    {% endfor %}
+
                 </div>
             </nav>
         {% block body %}{% endblock %}

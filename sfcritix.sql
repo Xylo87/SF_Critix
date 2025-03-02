@@ -83,13 +83,14 @@ CREATE TABLE IF NOT EXISTS `critic` (
   KEY `IDX_C9E2F7F14AF97FA6` (`influencer_id`),
   CONSTRAINT `FK_C9E2F7F14AF97FA6` FOREIGN KEY (`influencer_id`) REFERENCES `influencer` (`id`),
   CONSTRAINT `FK_C9E2F7F1C40FCFA8` FOREIGN KEY (`piece_id`) REFERENCES `piece` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table sfcritix.critic : ~3 rows (environ)
 INSERT INTO `critic` (`id`, `media`, `summary`, `critic_score`, `length_min`, `date_post`, `origin_date_post`, `piece_id`, `influencer_id`) VALUES
 	(16, 'https://www.youtube.com/embed/93o3a6MWgxA?si=pdujXUWJCD-0ejbl', '"I particularly enjoyed this first \ncontact with Dune: Awakening"', 3.5, 19, '2025-02-19 21:09:58', '2025-01-30 00:00:00', 1, 2),
 	(17, 'https://www.youtube.com/embed/QJjEP0Nnsa0?si=x5IeomulzXxysW_N', '"I let myself be carried away by the atmosphere and the general intention."', 3, 15, '2025-02-20 14:29:52', '2025-01-30 00:00:00', 1, 12),
-	(30, 'https://www.youtube.com/embed/EoeytqKY1-k?si=fLCB3qU0qhzV9ipk', '"Wow, that\'s a dense film!"', 3.5, 11, '2025-02-20 18:39:55', '2025-02-10 00:00:00', 19, 17);
+	(30, 'https://www.youtube.com/embed/EoeytqKY1-k?si=fLCB3qU0qhzV9ipk', '"Wow, that\'s a dense film!"', 3.5, 11, '2025-02-20 18:39:55', '2025-02-10 00:00:00', 19, 17),
+	(39, 'https://www.youtube.com/embed/gHQE7tULx6c?si=9IoukxOyNtJ77JZF', '"I loved this project, and i thought it was a great experience"', 4, 27, '2025-03-02 12:54:47', '2022-05-17 00:00:00', 62, 41);
 
 -- Listage de la structure de table sfcritix. critic_user
 CREATE TABLE IF NOT EXISTS `critic_user` (
@@ -137,13 +138,14 @@ CREATE TABLE IF NOT EXISTS `influencer` (
   `photo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `bio` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table sfcritix.influencer : ~3 rows (environ)
 INSERT INTO `influencer` (`id`, `nick_name`, `real_name`, `photo`, `bio`) VALUES
 	(2, 'ExServ', 'Benoît Reinier', 'influ-ExServ-67b769a27f05d.webp', 'Since 2010, ExServ has been providing \'From Software\' video game guides, tests and news analysis. A former video game journalist, he now works as an independant since 2016 and divides his time between his YouTube channel, the podcast \'Fin du Game\' and writing books for \'Third Editions\'.'),
 	(12, 'Carole Quintaine', 'Carole Quintaine', 'influ-Carole-Quintaine-67b769c9dbc25.jpg', 'Carole is a superhero who wears a cape and a bat mask. And she\'s also on YouTube to talk about video games.'),
-	(17, 'Clapman', NULL, 'influ-Clapman-67b769e3a92ac.jpg', 'Guillaume, Film/TV Series and Video Games video-maker on Youtube.');
+	(17, 'Clapman', NULL, 'influ-Clapman-67b769e3a92ac.jpg', 'Guillaume, Film/TV Series and Video Games video-maker on Youtube.'),
+	(41, 'theneedledrop', 'Anthony Fantano', 'AnthonyFantano2016-67c441ed2fcf8.png', 'The Internet\'s busiest music nerd.');
 
 -- Listage de la structure de table sfcritix. influencer_user
 CREATE TABLE IF NOT EXISTS `influencer_user` (
@@ -157,6 +159,9 @@ CREATE TABLE IF NOT EXISTS `influencer_user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table sfcritix.influencer_user : ~0 rows (environ)
+INSERT INTO `influencer_user` (`influencer_id`, `user_id`) VALUES
+	(2, 34),
+	(12, 34);
 
 -- Listage de la structure de table sfcritix. messenger_messages
 CREATE TABLE IF NOT EXISTS `messenger_messages` (
@@ -221,7 +226,7 @@ CREATE TABLE IF NOT EXISTS `social` (
   PRIMARY KEY (`id`),
   KEY `IDX_7161E1874AF97FA6` (`influencer_id`),
   CONSTRAINT `FK_7161E1874AF97FA6` FOREIGN KEY (`influencer_id`) REFERENCES `influencer` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table sfcritix.social : ~8 rows (environ)
 INSERT INTO `social` (`id`, `name`, `sub_number`, `link`, `influencer_id`) VALUES
@@ -232,7 +237,10 @@ INSERT INTO `social` (`id`, `name`, `sub_number`, `link`, `influencer_id`) VALUE
 	(8, 'Twitch', '42k', 'https://www.twitch.tv/quintainecarole', 12),
 	(9, 'YouTube', '105k', 'https://www.youtube.com/channel/UCz0yrDEjbd68clSkcWbYXwA', 17),
 	(10, 'Instagram', '12k', 'https://www.instagram.com/clapman_yt/', 17),
-	(11, 'Twitch', '2k', 'https://www.twitch.tv/clapman_yt', 17);
+	(11, 'Twitch', '2k', 'https://www.twitch.tv/clapman_yt', 17),
+	(12, 'YouTube', '2.98M', 'https://www.youtube.com/@theneedledrop', 41),
+	(13, 'Instagram', '1.1M', 'https://www.instagram.com/afantano/', 41),
+	(14, 'Twitch', '430k', 'https://www.twitch.tv/theneedledrop/', 41);
 
 -- Listage de la structure de table sfcritix. user
 CREATE TABLE IF NOT EXISTS `user` (
@@ -251,10 +259,10 @@ CREATE TABLE IF NOT EXISTS `user` (
   UNIQUE KEY `UNIQ_8D93D649A045A5E9` (`nick_name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfcritix.user : ~0 rows (environ)
+-- Listage des données de la table sfcritix.user : ~2 rows (environ)
 INSERT INTO `user` (`id`, `email`, `roles`, `password`, `nick_name`, `profile_picture`, `status`, `bio`, `account_date`, `is_verified`) VALUES
 	(16, 'test@exemple.com', '[]', '$2y$13$3JP6RlXMQmt5AxpcVxfHlesXj0Fq30ev.cd2rO/jDUBbBatZEaI0G', 'Xylo', '', 'Test', 'Test3', '2025-02-26 08:50:05', 0),
-	(34, 'titi@exemple.com', '[]', '$2y$13$gfEN2hZtNCH3N7NxxHsktebrha3JhyW/3V7AAJsrU55KWctPxw14W', 'Toto', 'Sosie-67c085e9c7ef4.png', 'La police et la presse', 'Sosie officiel de Robert de Niro dans Heat', '2025-02-27 14:15:15', 0);
+	(34, 'titi@exemple.com', '[]', '$2y$13$gfEN2hZtNCH3N7NxxHsktebrha3JhyW/3V7AAJsrU55KWctPxw14W', 'Toto', 'Sosie-67c085e9c7ef4.png', 'Bande de caves...', 'Sosie officiel de Robert de Niro dans Heat', '2025-02-27 14:15:15', 0);
 
 -- Listage de la structure de table sfcritix. user_piece
 CREATE TABLE IF NOT EXISTS `user_piece` (
@@ -267,7 +275,7 @@ CREATE TABLE IF NOT EXISTS `user_piece` (
   CONSTRAINT `FK_A608F07BC40FCFA8` FOREIGN KEY (`piece_id`) REFERENCES `piece` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfcritix.user_piece : ~0 rows (environ)
+-- Listage des données de la table sfcritix.user_piece : ~2 rows (environ)
 INSERT INTO `user_piece` (`user_id`, `piece_id`) VALUES
 	(34, 1),
 	(34, 19);
@@ -282,7 +290,7 @@ CREATE TABLE IF NOT EXISTS `video` (
   PRIMARY KEY (`id`),
   KEY `IDX_7CC7DA2CC40FCFA8` (`piece_id`),
   CONSTRAINT `FK_7CC7DA2CC40FCFA8` FOREIGN KEY (`piece_id`) REFERENCES `piece` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table sfcritix.video : ~2 rows (environ)
 INSERT INTO `video` (`id`, `title`, `link`, `is_trailer`, `piece_id`) VALUES

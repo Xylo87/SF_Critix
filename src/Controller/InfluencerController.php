@@ -59,7 +59,7 @@ final class InfluencerController extends AbstractController
             if ($photoFile) {
 
                 // > Delete Influencer's previous photo
-                $photoName = $user->getPhoto();
+                $photoName = $influencer->getPhoto();
 
                 if ($photoName) {
                     $photoPath = $this->getParameter('kernel.project_dir') . '/public/uploads/photos/influPhotos/'.$photoName;

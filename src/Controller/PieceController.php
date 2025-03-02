@@ -52,7 +52,7 @@ final class PieceController extends AbstractController
             if ($posterFile) {
 
                 // > Delete Piece's previous poster
-                $posterName = $user->getPoster();
+                $posterName = $piece->getPoster();
 
                 if ($posterName) {
                     $posterPath = $this->getParameter('kernel.project_dir') . '/public/uploads/images/'.$posterName;

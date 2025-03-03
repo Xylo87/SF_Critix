@@ -252,8 +252,9 @@ class Piece
 
         foreach ($this->critics as $critic) {
             $totalScore += $critic->getCriticScore();
+            
         }
-        return $totalScore / count($this->critics);
+        return ($totalScore / count($this->critics))*2;
     }
 
     /**
@@ -293,7 +294,7 @@ class Piece
         foreach ($this->opinions as $opinion) {
             $totalScore += $opinion->getUserScore();
         }
-        return $totalScore / count($this->opinions);
+        return ($totalScore / count($this->opinions))*2;
     }
 
     public function isUpcoming(): ?bool

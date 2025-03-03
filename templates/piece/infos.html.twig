@@ -41,7 +41,7 @@
     <p><u>About</u> : {{piece.about}}</p>
 
     {% if piece.critics|length > 0 %}
-            <p><u>Critic score</u> : {{ piece.criticTotalScore }}</p>
+            <p><u>Critic score</u> : {{ piece.criticTotalScore }}/10</p>
     {% endif %}
 
     {# {% for image in piece.images %}

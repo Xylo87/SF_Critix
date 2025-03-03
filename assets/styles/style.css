@@ -111,3 +111,9 @@ a, button {
 .openModal::backdrop {
     background: rgb(0, 0, 0, 0.80);
 }
+
+
+
+.fa-star, .fa-star-half-stroke {
+    color: #fe8d01;
+}

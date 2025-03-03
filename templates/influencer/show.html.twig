@@ -39,9 +39,29 @@
     {% endfor %}
     </ul><br>
 
+    <p>{{influencer}}'s latest critics :</p>
     {% for critic in influencer.critics %}
-        <p>{{critic.influencer}}'s critics (latest) : <a href="{{ path('show_critics', {'id': critic.piece.id})}}">{{critic.piece}}</a></p>
+        <a href="{{ path('show_critics', {'id': critic.piece.id})}}">{{critic.piece}}</a>
+
+        {# > Star score system #}
+        {% set note = critic.criticScore %}
+        {% set fullStars = note|round(0, 'floor') %}
+        {% set partialStar = (note - fullStars)|round(0, 'ceil') %}
+        {% set emptyStars = 5 - fullStars - (partialStar ? 1 : 0) %}
+        
+        {% for i in range(1, fullStars) %}
+            <i class="fa-solid fa-star"></i>
+        {% endfor %}
+
+        {% if partialStar %}
+            <i class="fa-solid fa-star-half-stroke"></i>
+        {% endif %}
+
+        {% for i in range(1, emptyStars) %}
+            <i class="fa-regular fa-star"></i>
+        {% endfor %}
     {% endfor %}
+    <br>
     <br>
     <a href="{{path('app_influencer')}}"><i>> View all content creators by media</i></a>
 {% endblock %}

@@ -113,7 +113,25 @@ a, button {
 }
 
 
-
-.fa-star, .fa-star-half-stroke {
+/* Star scores */
+.fullstars, .halfstars, .emptystars {
     color: #fe8d01;
 }
+
+
+/* .user-score {
+    border: none;
+    font-size: 150%;
+}
+
+    input {
+        display: none;
+}
+
+    label {
+        cursor: pointer;
+    }
+
+    .halfstars {
+        position: absolute;
+    } */

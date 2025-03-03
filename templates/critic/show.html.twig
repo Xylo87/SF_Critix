@@ -54,15 +54,15 @@
         {% set emptyStars = 5 - fullStars - (partialStar ? 1 : 0) %}
         
         <h3>{% for i in range(1, fullStars) %}
-            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star fullstars"></i>
         {% endfor %}
 
         {% if partialStar %}
-            <i class="fa-solid fa-star-half-stroke"></i>
+            <i class="fa-solid fa-star-half-stroke halfstars"></i>
         {% endif %}
 
         {% for i in range(1, emptyStars) %}
-            <i class="fa-regular fa-star"></i>
+            <i class="fa-regular fa-star emptystars"></i>
         {% endfor %}</h3>
         
 

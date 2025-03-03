@@ -119,19 +119,19 @@ a, button {
 }
 
 
-/* .user-score {
+.user-score {
     border: none;
     font-size: 150%;
 }
 
-    input {
-        display: none;
+.user-score input {
+    display: none;
 }
 
-    label {
-        cursor: pointer;
-    }
+.user-score label {
+    cursor: pointer;
+}
 
-    .halfstars {
-        position: absolute;
-    } */
+.user-score .halfstars {
+    position: absolute;
+}

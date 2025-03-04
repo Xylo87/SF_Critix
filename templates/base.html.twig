@@ -199,6 +199,13 @@
                         </div>
                     {% endfor %}
 
+                    {# > User score vote fail #}
+                    {% for message in app.flashes('scPieceFail') %}
+                        <div class="alert alert-danger">
+                            {{message}}
+                        </div>
+                    {% endfor %}
+
                 </div>
             </nav>
         {% block body %}{% endblock %}

@@ -40,7 +40,35 @@
     
     <p><u>About</u> : {{piece.about}}</p><br>
 
-    <form class="user-score-form" action="">
+    {% if app.user in piece.users %}
+
+        {# {% for user in piece.users %} #}
+        
+            {# > Star score system #}
+            {# {% set note = critic.criticScore %} #}
+            {# {% set fullStars = note|round(0, 'floor') %} #}
+            {# {% set fullStars = note %} #}
+            {# {% set partialStar = (note - fullStars)|round(0, 'ceil') %} #}
+            {# {% set emptyStars = 5 - fullStars %} #}
+            {# {% set emptyStars = 5 - fullStars - (partialStar ? 1 : 0) %} #}
+            
+            {# {% for i in range(1, fullStars) %}
+                <i class="fa-solid fa-star fullstars"></i>
+            {% endfor %} #}
+
+            {# {% if partialStar %}
+                <i class="fa-solid fa-star-half-stroke halfstars"></i>
+            {% endif %} #}
+
+            {# {% for i in range(1, emptyStars) %}
+                <i class="fa-solid fa-star emptystars"></i>
+            {% endfor %} #}
+
+        {# {% endfor %} #}
+        
+    {% else %}
+
+    <form class="user-score-form" method="post" action="{{ path('score_piece', {'id': piece.id})}}">
         <h2>Your Score</h2>
         <fieldset class="user-score">
             <input type="radio" name="rating" id="rating5" value="5">
@@ -54,8 +82,12 @@
             <input type="radio" name="rating" id="rating1" value="1">
             <label class="fa-solid fa-star emptystars" for="rating1"></label>
         </fieldset><br>
-        <input type="submit" class="user-score-submit" value="Vote !">
+        <input type="submit" name="submit" class="user-score-submit" value="Vote !">
     </form><br><br>
+
+    {% endif %}
+    
+    
 
     {% if piece.critics|length > 0 %}
             <p><u>Critic score</u> : {{ piece.criticTotalScore }}/10</p>

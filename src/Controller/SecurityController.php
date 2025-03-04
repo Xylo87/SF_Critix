@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Entity\Piece;
+use App\Entity\Opinion;
 use App\Entity\Influencer;
 use App\Form\UserFormType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -152,6 +153,44 @@ class SecurityController extends AbstractController
         } else {
             return $this->redirectToRoute('dashboard_user');
         }
+    }
+
+    // > User's score vote
+    #[Route('/piece/{id}/score', name: 'score_piece')]
+    public function scorePiece(Security $security, EntityManagerInterface $entityManager, Piece $piece = null, Request $request)
+    {
+        $user = $security->getUser();
+
+        if (!$user) {
+            $this->addFlash('scPieceFail', 'You must be logged in to vote !');
+            return $this->redirectToRoute('app_login');
+        }
+
+        if (isset($_POST["submit"])) {
+            $userScore = filter_input(INPUT_POST, "rating", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+            if ($userScore) {
+
+                $opinion = new Opinion();
+
+                $opinion->setUserScore($userScore);
+                $opinion->setPiece($piece);
+                $opinion->setUser($user);
+
+                $entityManager->persist($opinion);
+                $entityManager->flush();
+
+                return $this->redirectToRoute('app_home');
+            }
+        }
+
+        // $user->addInfluencer($influencer);
+
+        // $entityManager->persist($user);
+        // $entityManager->flush();
+
+        $this->addFlash('inLikeSuccess', ' "'.$influencer.'" liked !');
+        return $this->redirectToRoute('show_influencer', ['id' => $influencer->getId()]);
     }
 
     // > Edit User's infos

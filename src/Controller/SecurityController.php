@@ -180,17 +180,10 @@ class SecurityController extends AbstractController
                 $entityManager->persist($opinion);
                 $entityManager->flush();
 
-                return $this->redirectToRoute('app_home');
+                $this->addFlash('scPieceSuccess', 'Your score on "'.$piece.'" has been set !');
+                return $this->redirectToRoute('infos_piece', ['id' => $piece->getId()]);
             }
         }
-
-        // $user->addInfluencer($influencer);
-
-        // $entityManager->persist($user);
-        // $entityManager->flush();
-
-        $this->addFlash('inLikeSuccess', ' "'.$influencer.'" liked !');
-        return $this->redirectToRoute('show_influencer', ['id' => $influencer->getId()]);
     }
 
     // > Edit User's infos

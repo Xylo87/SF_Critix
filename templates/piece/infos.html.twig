@@ -40,10 +40,10 @@
     
     <p><u>About</u> : {{piece.about}}</p><br>
 
-    {% if app.user in piece.users %}
 
-        {# {% for user in piece.users %} #}
-        
+
+    
+
             {# > Star score system #}
             {# {% set note = critic.criticScore %} #}
             {# {% set fullStars = note|round(0, 'floor') %} #}
@@ -64,10 +64,6 @@
                 <i class="fa-solid fa-star emptystars"></i>
             {% endfor %} #}
 
-        {# {% endfor %} #}
-        
-    {% else %}
-
     <form class="user-score-form" method="post" action="{{ path('score_piece', {'id': piece.id})}}">
         <h2>Your Score</h2>
         <fieldset class="user-score">
@@ -85,10 +81,8 @@
         <input type="submit" name="submit" class="user-score-submit" value="Vote !">
     </form><br><br>
 
-    {% endif %}
     
     
-
     {% if piece.critics|length > 0 %}
             <p><u>Critic score</u> : {{ piece.criticTotalScore }}/10</p>
     {% endif %}

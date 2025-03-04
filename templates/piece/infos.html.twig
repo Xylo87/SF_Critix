@@ -40,23 +40,22 @@
     
     <p><u>About</u> : {{piece.about}}</p><br>
 
-    <form action="">
+    <form class="user-score-form" action="">
+        <h2>Your Score</h2>
         <fieldset class="user-score">
-            <legend class="user-score-title">Your score</legend>
-            <input type="radio" name="rating" id="rating1" value="1">
-            <label class="fa-solid fa-star emptystars" for="rating1"></label>
-            <input type="radio" name="rating" id="rating2" value="2">
-            <label class="fa-solid fa-star emptystars" for="rating2"></label>
-            <input type="radio" name="rating" id="rating3" value="3">
-            <label class="fa-solid fa-star emptystars" for="rating3"></label>
-            <input type="radio" name="rating" id="rating4" value="4">
-            <label class="fa-solid fa-star emptystars" for="rating4"></label>
             <input type="radio" name="rating" id="rating5" value="5">
             <label class="fa-solid fa-star emptystars" for="rating5"></label>
-            <input type="radio" name="rating" id="rating0" value="0">
-            <label class="fa-regular fa-star emptystars" for="rating0"></label>
-        </fieldset>
-    </form><br>
+            <input type="radio" name="rating" id="rating4" value="4">
+            <label class="fa-solid fa-star emptystars" for="rating4"></label>
+            <input type="radio" name="rating" id="rating3" value="3">
+            <label class="fa-solid fa-star emptystars" for="rating3"></label>
+            <input type="radio" name="rating" id="rating2" value="2">
+            <label class="fa-solid fa-star emptystars" for="rating2"></label>
+            <input type="radio" name="rating" id="rating1" value="1">
+            <label class="fa-solid fa-star emptystars" for="rating1"></label>
+        </fieldset><br>
+        <input type="submit" class="user-score-submit" value="Vote !">
+    </form><br><br>
 
     {% if piece.critics|length > 0 %}
             <p><u>Critic score</u> : {{ piece.criticTotalScore }}/10</p>

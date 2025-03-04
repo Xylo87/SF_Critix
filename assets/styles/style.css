@@ -116,33 +116,36 @@ a, button {
 
 /* Star scores */
 .fullstars {
-    color: #fe8d01;
     font-size: 120%;
+    color: #fe8d01;
 }
 
 .emptystars {
-    opacity: 0.33;
     font-size: 120%;
+    opacity: 0.33;
+}
+
+/* User star score */
+.user-score-form {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .user-score {
-    border: none;
     display: flex;
     flex-direction: row-reverse;
-    justify-content: flex-end;
+    border: none;
 }
 
 .user-score input {
     display: none;
 }
 
-.user-score-title {
-    font-size: 175%;
-}
-
 .user-score label {
-    cursor: pointer;
     font-size: 250%;
+    cursor: pointer;
 }
 
 .user-score input:checked + label, 
@@ -155,4 +158,11 @@ a, button {
 .user-score label:hover ~ label {
     color: #fe8c01;
     opacity: 1;
+}
+
+.user-score-submit {
+    margin-top: 0.75em;
+    width: fit-content;
+    padding: 0.1em;
+    cursor: pointer;
 }

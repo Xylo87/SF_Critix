@@ -87,9 +87,9 @@ CREATE TABLE IF NOT EXISTS `critic` (
 
 -- Listage des données de la table sfcritix.critic : ~4 rows (environ)
 INSERT INTO `critic` (`id`, `media`, `summary`, `critic_score`, `length_min`, `date_post`, `origin_date_post`, `piece_id`, `influencer_id`) VALUES
-	(16, 'https://www.youtube.com/embed/93o3a6MWgxA?si=pdujXUWJCD-0ejbl', '"I particularly enjoyed this first \ncontact with Dune: Awakening"', 3.5, 19, '2025-02-19 21:09:58', '2025-01-30 00:00:00', 1, 2),
+	(16, 'https://www.youtube.com/embed/93o3a6MWgxA?si=pdujXUWJCD-0ejbl', '"I particularly enjoyed this first \r\ncontact with Dune: Awakening"', 4, 19, '2025-02-19 21:09:58', '2025-01-30 00:00:00', 1, 2),
 	(17, 'https://www.youtube.com/embed/QJjEP0Nnsa0?si=x5IeomulzXxysW_N', '"I let myself be carried away by the atmosphere and the general intention."', 3, 15, '2025-02-20 14:29:52', '2025-01-30 00:00:00', 1, 12),
-	(30, 'https://www.youtube.com/embed/EoeytqKY1-k?si=fLCB3qU0qhzV9ipk', '"Wow, that\'s a dense film!"', 3.5, 11, '2025-02-20 18:39:55', '2025-02-10 00:00:00', 19, 17),
+	(30, 'https://www.youtube.com/embed/EoeytqKY1-k?si=fLCB3qU0qhzV9ipk', '"Wow, that\'s a dense film!"', 3, 11, '2025-02-20 18:39:55', '2025-02-10 00:00:00', 19, 17),
 	(39, 'https://www.youtube.com/embed/gHQE7tULx6c?si=9IoukxOyNtJ77JZF', '"I loved this project, and i thought it was a great experience"', 4, 27, '2025-03-02 12:54:47', '2022-05-17 00:00:00', 62, 41);
 
 -- Listage de la structure de table sfcritix. critic_user
@@ -191,9 +191,11 @@ CREATE TABLE IF NOT EXISTS `opinion` (
   KEY `IDX_AB02B027A76ED395` (`user_id`),
   CONSTRAINT `FK_AB02B027A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
   CONSTRAINT `FK_AB02B027C40FCFA8` FOREIGN KEY (`piece_id`) REFERENCES `piece` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfcritix.opinion : ~0 rows (environ)
+-- Listage des données de la table sfcritix.opinion : ~1 rows (environ)
+INSERT INTO `opinion` (`id`, `user_score`, `piece_id`, `user_id`) VALUES
+	(1, 4, 19, 34);
 
 -- Listage de la structure de table sfcritix. piece
 CREATE TABLE IF NOT EXISTS `piece` (
@@ -232,10 +234,10 @@ CREATE TABLE IF NOT EXISTS `social` (
 INSERT INTO `social` (`id`, `name`, `sub_number`, `link`, `influencer_id`) VALUES
 	(4, 'YouTube', '200k', 'https://www.youtube.com/@ExServ85', 2),
 	(5, 'Bluesky', '9.4k', 'https://bsky.app/profile/exserv.bsky.social', 2),
-	(6, 'YouTube', '229k', 'https://www.youtube.com/channel/UC6yhX3lGeSSRlHycI3rfDqQ', 12),
+	(6, 'YouTube', '229k', 'https://www.youtube.com/@CaroleQuintaine', 12),
 	(7, 'Instagram', '57k', 'https://www.instagram.com/carolequintaine/', 12),
 	(8, 'Twitch', '42k', 'https://www.twitch.tv/quintainecarole', 12),
-	(9, 'YouTube', '105k', 'https://www.youtube.com/channel/UCz0yrDEjbd68clSkcWbYXwA', 17),
+	(9, 'YouTube', '105k', 'https://www.youtube.com/@CLAPMAN', 17),
 	(10, 'Instagram', '12k', 'https://www.instagram.com/clapman_yt/', 17),
 	(11, 'Twitch', '2k', 'https://www.twitch.tv/clapman_yt', 17),
 	(12, 'YouTube', '2.98M', 'https://www.youtube.com/@theneedledrop', 41),

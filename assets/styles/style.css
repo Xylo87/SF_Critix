@@ -113,25 +113,46 @@ a, button {
 }
 
 
+
 /* Star scores */
-.fullstars, .halfstars, .emptystars {
+.fullstars {
     color: #fe8d01;
+    font-size: 120%;
 }
 
+.emptystars {
+    opacity: 0.33;
+    font-size: 120%;
+}
 
 .user-score {
     border: none;
-    font-size: 150%;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
 }
 
 .user-score input {
     display: none;
 }
 
-.user-score label {
-    cursor: pointer;
+.user-score-title {
+    font-size: 175%;
 }
 
-.user-score .halfstars {
-    position: absolute;
+.user-score label {
+    cursor: pointer;
+    font-size: 250%;
+}
+
+.user-score input:checked + label, 
+.user-score input:checked + label ~ label {
+    color: #fe8d01;
+    opacity: 1;
+}
+
+.user-score label:hover,
+.user-score label:hover ~ label {
+    color: #fe8c01;
+    opacity: 1;
 }

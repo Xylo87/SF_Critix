@@ -32,12 +32,11 @@
             
     <p>{{influencer.bio}}</p><br>
 
-    <p>Socials :</p>
-    <ul>
+    Socials :
     {% for social in influencer.socials %}
         <li><a href="{{social.link}}" target="_blank">{{social}}</a> ({{social.subNumber}} followers)</li>
     {% endfor %}
-    </ul><br>
+    <br>
 
     <p>{{influencer}}'s latest critics :</p>
     {% for critic in influencer.critics %}
@@ -45,20 +44,22 @@
 
         {# > Star score system #}
         {% set note = critic.criticScore %}
-        {% set fullStars = note|round(0, 'floor') %}
-        {% set partialStar = (note - fullStars)|round(0, 'ceil') %}
-        {% set emptyStars = 5 - fullStars - (partialStar ? 1 : 0) %}
+        {# {% set fullStars = note|round(0, 'floor') %} #}
+        {% set fullStars = note %}
+        {# {% set partialStar = (note - fullStars)|round(0, 'ceil') %} #}
+        {% set emptyStars = 5 - fullStars %}
+        {# {% set emptyStars = 5 - fullStars - (partialStar ? 1 : 0) %} #}
         
         {% for i in range(1, fullStars) %}
-            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star fullstars"></i>
         {% endfor %}
 
-        {% if partialStar %}
-            <i class="fa-solid fa-star-half-stroke"></i>
-        {% endif %}
+        {# {% if partialStar %}
+            <i class="fa-solid fa-star-half-stroke halfstars"></i>
+        {% endif %} #}
 
         {% for i in range(1, emptyStars) %}
-            <i class="fa-regular fa-star"></i>
+            <i class="fa-solid fa-star emptystars"></i>
         {% endfor %}
     {% endfor %}
     <br>

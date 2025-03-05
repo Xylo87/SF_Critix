@@ -58,9 +58,11 @@
             <i class="fa-solid fa-star-half-stroke halfstars"></i>
         {% endif %} #}
 
-        {% for i in range(1, emptyStars) %}
-            <i class="fa-solid fa-star emptystars"></i>
-        {% endfor %}
+        {% if emptyStars %}
+            {% for i in range(1, emptyStars) %}
+                <i class="fa-solid fa-star emptystars"></i>
+            {% endfor %}
+        {% endif %}
     {% endfor %}
     <br>
     <br>

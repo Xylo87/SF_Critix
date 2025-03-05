@@ -42,47 +42,69 @@
 
 
 
-    
+    {# > User score fetch #}
+    {% set userScore = null %}
+    {% for opinion in piece.opinions %}
+        {% if app.user.id == opinion.user.id %}
+            {% set userScore = opinion.userScore %}
+        {% endif %}
+    {% endfor %}
 
-            {# > Star score system #}
-            {# {% set note = critic.criticScore %} #}
-            {# {% set fullStars = note|round(0, 'floor') %} #}
-            {# {% set fullStars = note %} #}
-            {# {% set partialStar = (note - fullStars)|round(0, 'ceil') %} #}
-            {# {% set emptyStars = 5 - fullStars %} #}
-            {# {% set emptyStars = 5 - fullStars - (partialStar ? 1 : 0) %} #}
+    {# > Switch > User score vote or User score display #}
+    {% if userScore %}
+
+        {# > Star score system #}
+        <div class="user-score-display-container">
+            <h2>Your Score</h2>
+            <div class="user-score-display">
+                {% set note = userScore %}
+                {# {% set fullStars = note|round(0, 'floor') %} #}
+                {% set fullStars = note %}
+                {# {% set partialStar = (note - fullStars)|round(0, 'ceil') %} #}
+                {% set emptyStars = 5 - fullStars %}
+                {# {% set emptyStars = 5 - fullStars - (partialStar ? 1 : 0) %} #}
             
-            {# {% for i in range(1, fullStars) %}
-                <i class="fa-solid fa-star fullstars"></i>
-            {% endfor %} #}
+                {% for i in range(1, fullStars) %}
+                    <i class="fa-solid fa-star fullstars"></i>
+                {% endfor %}
 
-            {# {% if partialStar %}
-                <i class="fa-solid fa-star-half-stroke halfstars"></i>
-            {% endif %} #}
+                {# {% if partialStar %}
+                    <i class="fa-solid fa-star-half-stroke halfstars"></i>
+                {% endif %} #}
 
-            {# {% for i in range(1, emptyStars) %}
-                <i class="fa-solid fa-star emptystars"></i>
-            {% endfor %} #}
+                {% if emptyStars %}
+                    {% for i in range(1, emptyStars) %}
+                        <i class="fa-solid fa-star emptystars"></i>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <a href=""><button class="user-score-reset">Reset vote</button></a>
+        </div><br>
 
-    <form class="user-score-form" method="post" action="{{ path('score_piece', {'id': piece.id})}}">
-        <h2>Your Score</h2>
-        <fieldset class="user-score">
-            <input type="radio" name="rating" id="rating5" value="5">
-            <label class="fa-solid fa-star emptystars" for="rating5"></label>
-            <input type="radio" name="rating" id="rating4" value="4">
-            <label class="fa-solid fa-star emptystars" for="rating4"></label>
-            <input type="radio" name="rating" id="rating3" value="3">
-            <label class="fa-solid fa-star emptystars" for="rating3"></label>
-            <input type="radio" name="rating" id="rating2" value="2">
-            <label class="fa-solid fa-star emptystars" for="rating2"></label>
-            <input type="radio" name="rating" id="rating1" value="1">
-            <label class="fa-solid fa-star emptystars" for="rating1"></label>
-        </fieldset><br>
-        <input type="submit" name="submit" class="user-score-submit" value="Vote !">
-    </form><br><br>
+    {% else %}
+        
+        <form class="user-score-form" method="post" action="{{ path('score_piece', {'id': piece.id})}}">
+            <h2>Your Score</h2>
+            <fieldset class="user-score">
+                <legend>User score vote</legend>
+                <input type="radio" name="rating" id="rating5" value="5" required>
+                <label class="fa-solid fa-star emptystars" for="rating5"></label>
+                <input type="radio" name="rating" id="rating4" value="4" required>
+                <label class="fa-solid fa-star emptystars" for="rating4"></label>
+                <input type="radio" name="rating" id="rating3" value="3" required>
+                <label class="fa-solid fa-star emptystars" for="rating3"></label>
+                <input type="radio" name="rating" id="rating2" value="2" required>
+                <label class="fa-solid fa-star emptystars" for="rating2"></label>
+                <input type="radio" name="rating" id="rating1" value="1" required>
+                <label class="fa-solid fa-star emptystars" for="rating1"></label>
+            </fieldset><br>
+            <input type="submit" name="submit" class="user-score-submit" value="Vote !">
+        </form><br>
+
+    {% endif %}
 
     
-    
+        
     {% if piece.critics|length > 0 %}
             <p><u>Critic score</u> : {{ piece.criticTotalScore }}/10</p>
     {% endif %}
@@ -97,6 +119,25 @@
 </div>
    
 {% endblock %}
+        
+
+            
+      
+            
+            
+            
+        
+
+
+
+                
+            
+
+
+
+
+    
+    
             
 
             

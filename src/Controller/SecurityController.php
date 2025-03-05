@@ -169,7 +169,7 @@ class SecurityController extends AbstractController
         if (isset($_POST["submit"])) {
             $userScore = filter_input(INPUT_POST, "rating", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-            if ($userScore) {
+            if ($userScore && $userScore >= 1 && $userScore <= 5) {
 
                 $opinion = new Opinion();
 
@@ -182,8 +182,30 @@ class SecurityController extends AbstractController
 
                 $this->addFlash('scPieceSuccess', 'Your score on "'.$piece.'" has been set !');
                 return $this->redirectToRoute('infos_piece', ['id' => $piece->getId()]);
+                    
+            } else {
+                $this->addFlash('scPieceSuccess', 'Please set a score between 1 & 5 !');
+                return $this->redirectToRoute('infos_piece', ['id' => $piece->getId()]);
             }
         }
+    }
+
+    // > User's score reset
+    #[Route('/piece/{piece}/opinion{opinion}/reset', name: 'score_reset')]
+    public function resetScore(Security $security, EntityManagerInterface $entityManager, Piece $piece = null, Opinion $opinion = null) {
+        
+        $user = $security->getUser();
+
+        if (!$user) {
+            $this->addFlash('scResetFail', 'You must be logged in to reset score !');
+            return $this->redirectToRoute('app_login');
+        }
+
+        $entityManager->remove($opinion);
+        $entityManager->flush();
+        
+        $this->addFlash('scResetSuccess', 'Your score on "'.$piece.'" has been reset !');
+        return $this->redirectToRoute('infos_piece', ['id' => $piece->getId()]);
     }
 
     // > Edit User's infos

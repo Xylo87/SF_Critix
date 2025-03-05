@@ -213,6 +213,20 @@
                         </div>
                     {% endfor %}
 
+                    {# > User score reset fail #}
+                    {% for message in app.flashes('scResetFail') %}
+                        <div class="alert alert-danger">
+                            {{message}}
+                        </div>
+                    {% endfor %}
+
+                    {# > User score reset success #}
+                    {% for message in app.flashes('scResetSuccess') %}
+                        <div class="alert alert-success">
+                            {{message}}
+                        </div>
+                    {% endfor %}
+
                 </div>
             </nav>
         {% block body %}{% endblock %}

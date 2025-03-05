@@ -16,9 +16,9 @@
     {% endif %}
     
     <h1>{{user}}</h1> 
-    <p>Mood : {{user.status}}</p>
-    <p>Bio : {{user.bio}}</p>
-    <p>Member since: {{user.creationDateEng}}</p><br>
+    <p><u>Mood</u> : {{user.status}}</p>
+    <p><u>Bio</u> : {{user.bio}}</p>
+    <p><u>Member since</u> : {{user.creationDateEng}}</p><br>
 
     {% if user.influencers is not empty %}
         <h3> {{user}} appreciates</h3>

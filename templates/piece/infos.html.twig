@@ -78,7 +78,11 @@
                     {% endfor %}
                 {% endif %}
             </div>
-            <a href=""><button class="user-score-reset">Reset vote</button></a>
+            {% for opinion in piece.opinions %}
+                {% if app.user.id == opinion.user.id %}
+                    <a href="{{ path('score_reset', {'piece': piece.id, 'opinion': opinion.id})}}"><button class="user-score-reset">Reset vote</button></a>
+                {% endif %}
+            {% endfor %}
         </div><br>
 
     {% else %}
@@ -98,6 +102,7 @@
                 <input type="radio" name="rating" id="rating1" value="1" required>
                 <label class="fa-solid fa-star emptystars" for="rating1"></label>
             </fieldset><br>
+            <small>Please set a score between 1 & 5</small>
             <input type="submit" name="submit" class="user-score-submit" value="Vote !">
         </form><br>
 

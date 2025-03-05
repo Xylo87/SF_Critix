@@ -116,16 +116,16 @@ a, button {
 
 /* Star scores */
 .fullstars {
-    font-size: 120%;
+    font-size: 200%;
     color: #fe8d01;
 }
 
 .emptystars {
-    font-size: 120%;
+    font-size: 200%;
     opacity: 0.33;
 }
 
-/* User star score */
+/* User star score vote */
 .user-score-form {
     width: fit-content;
     display: flex;
@@ -137,6 +137,13 @@ a, button {
     display: flex;
     flex-direction: row-reverse;
     border: none;
+    gap: 4px;
+}
+
+/* > > Accessibility trick */
+.user-score legend {
+    position: absolute;
+    visibility: hidden;
 }
 
 .user-score input {
@@ -144,7 +151,6 @@ a, button {
 }
 
 .user-score label {
-    font-size: 250%;
     cursor: pointer;
 }
 
@@ -161,6 +167,26 @@ a, button {
 }
 
 .user-score-submit {
+    margin-top: 0.75em;
+    width: fit-content;
+    padding: 0.1em;
+    cursor: pointer;
+}
+
+/* User star score display */
+.user-score-display-container { 
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.user-score-display {
+    display: flex;
+    gap: 4px;
+}
+
+.user-score-reset {
     margin-top: 0.75em;
     width: fit-content;
     padding: 0.1em;

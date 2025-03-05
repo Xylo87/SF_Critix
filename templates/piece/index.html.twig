@@ -5,7 +5,7 @@
 {% block body %}
 
 <div>
-    <h1>All {{category}} critics<sup>({{category.pieces|length}})</sup></h1>
+    <h1>All {{category}}<sup>({{category.pieces|length}})</sup></h1>
     <a href="{{ path('new_piece')}}">Add a Piece</a><br>
     <a href="{{ path('new_critic')}}">Add a Critic</a>
     <hr>
@@ -22,6 +22,12 @@
 
         {% if piece.critics|length > 0 %}
             <p><u>Critic score</u> : {{ piece.criticTotalScore }}/10</p>
+        {% endif %}
+
+        {% if piece.opinions|length > 0 %}
+            <p><u>User score</u> : {{ piece.userTotalScore }}/10</p>
+        {% else %}
+            <p><u>User score</u> : Not rated yet</p>
         {% endif %}
     {% endfor %}
 </div>

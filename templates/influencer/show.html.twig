@@ -40,6 +40,9 @@
 
     <p>{{influencer}}'s latest critics :</p>
     {% for critic in influencer.critics %}
+        <a href="{{ path('infos_piece', {'id': critic.piece.id})}}"><img src="/uploads/images/{{critic.piece.poster}}"
+        alt="{{critic.piece}}"
+        style="width: 88px; height: 120px; object-fit: cover"></a><br> 
         <a href="{{ path('show_critics', {'id': critic.piece.id})}}">{{critic.piece}}</a>
 
         {# > Star score system #}

@@ -20,7 +20,12 @@
     {% if piece.critics|length > 0 %}
         <p><u>Critic Score</u> : {{piece.criticTotalScore}}/10</p>
     {% endif %}
-    {# <p>User Score : {{piece.userTotalScore}}</p> #}
+
+    {% if piece.opinions|length > 0 %}
+        <p><u>User score</u> : {{ piece.userTotalScore }}/10</p>
+    {% else %}
+        <p><u>User score</u> : Not rated yet</p>
+    {% endif %}
 
     <p><u>Maker</u> : {{piece.maker}}</p>
 

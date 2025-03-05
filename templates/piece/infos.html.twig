@@ -80,7 +80,12 @@
             </div>
             {% for opinion in piece.opinions %}
                 {% if app.user.id == opinion.user.id %}
-                    <a href="{{ path('score_reset', {'piece': piece.id, 'opinion': opinion.id})}}"><button class="user-score-reset">Reset vote</button></a>
+                    <button class="deleteConfirm user-score-reset">Reset vote</button><br>
+                        <dialog class="openModal">
+                            <h3>Are you sure you want to reset your score on "{{piece}}" ?</h3>
+                            <a href="{{ path('score_reset', {'piece': piece.id, 'opinion': opinion.id})}}"><button>Yes</button></a>
+                            <button class="closeModal">No</button>
+                        </dialog>
                 {% endif %}
             {% endfor %}
         </div><br>
@@ -112,6 +117,12 @@
         
     {% if piece.critics|length > 0 %}
             <p><u>Critic score</u> : {{ piece.criticTotalScore }}/10</p>
+    {% endif %}
+
+    {% if piece.opinions|length > 0 %}
+        <p><u>User score</u> : {{ piece.userTotalScore }}/10</p>
+    {% else %}
+        <p><u>User score</u> : Not rated yet</p>
     {% endif %}
 
     {# {% for image in piece.images %}

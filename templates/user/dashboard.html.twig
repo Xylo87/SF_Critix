@@ -54,6 +54,41 @@
 
     {% endif %}
 
+    {% if user.opinions is not empty %}
+        <h3> Your ratings (latest)</h3>
+
+        {% for opinion in user.opinions %}
+            <a href="{{ path('infos_piece', {'id': opinion.piece.id})}}"><img src="/uploads/images/{{opinion.piece.poster}}"
+            alt="{{opinion.piece}}" 
+            style="width: 88px; height: 120px; object-fit: cover"></a><br>
+            <a href="{{ path('infos_piece', {'id': opinion.piece.id})}}">{{opinion.piece}}</a>
+
+            {# > Star score system #}
+            {% set note = opinion.userScore %}
+            {# {% set fullStars = note|round(0, 'floor') %} #}
+            {% set fullStars = note %}
+            {# {% set partialStar = (note - fullStars)|round(0, 'ceil') %} #}
+            {% set emptyStars = 5 - fullStars %}
+            {# {% set emptyStars = 5 - fullStars - (partialStar ? 1 : 0) %} #}
+
+            {% for i in range(1, fullStars) %}
+                <i class="fa-solid fa-star fullstars"></i>
+            {% endfor %}
+
+            {# {% if partialStar %}
+                <i class="fa-solid fa-star-half-stroke halfstars"></i>
+            {% endif %} #}
+
+            {% if emptyStars %}
+                {% for i in range(1, emptyStars) %}
+                    <i class="fa-solid fa-star emptystars"></i>
+                {% endfor %}
+            {% endif %}<br><br>
+            
+        {% endfor %}
+    
+    {% endif %}
+
     {% if user.influencers is not empty %}
         <h3> You appreciate</h3>
 

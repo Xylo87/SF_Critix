@@ -145,7 +145,7 @@ INSERT INTO `influencer` (`id`, `nick_name`, `real_name`, `photo`, `bio`) VALUES
 	(2, 'ExServ', 'Benoît Reinier', 'influ-ExServ-67b769a27f05d.webp', 'Since 2010, ExServ has been providing \'From Software\' video game guides, tests and news analysis. A former video game journalist, he now works as an independant since 2016 and divides his time between his YouTube channel, the podcast \'Fin du Game\' and writing books for \'Third Editions\'.'),
 	(12, 'Carole Quintaine', 'Carole Quintaine', 'influ-Carole-Quintaine-67b769c9dbc25.jpg', 'Carole is a superhero who wears a cape and a bat mask. And she\'s also on YouTube to talk about video games.'),
 	(17, 'Clapman', NULL, 'influ-Clapman-67b769e3a92ac.jpg', 'Guillaume, Film/TV Series and Video Games video-maker on Youtube.'),
-	(41, 'theneedledrop', 'Anthony Fantano', 'AnthonyFantano2016-67c441ed2fcf8.png', 'The Internet\'s busiest music nerd.');
+	(41, 'theneedledrop', 'Anthony Fantano', 'influ-Anthony-Fantano-67c441ed2fcf8.png', 'The Internet\'s busiest music nerd.');
 
 -- Listage de la structure de table sfcritix. influencer_user
 CREATE TABLE IF NOT EXISTS `influencer_user` (
@@ -158,8 +158,9 @@ CREATE TABLE IF NOT EXISTS `influencer_user` (
   CONSTRAINT `FK_DC19FDE4A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfcritix.influencer_user : ~2 rows (environ)
+-- Listage des données de la table sfcritix.influencer_user : ~3 rows (environ)
 INSERT INTO `influencer_user` (`influencer_id`, `user_id`) VALUES
+	(2, 16),
 	(2, 34),
 	(12, 34);
 
@@ -191,11 +192,12 @@ CREATE TABLE IF NOT EXISTS `opinion` (
   KEY `IDX_AB02B027A76ED395` (`user_id`),
   CONSTRAINT `FK_AB02B027A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
   CONSTRAINT `FK_AB02B027C40FCFA8` FOREIGN KEY (`piece_id`) REFERENCES `piece` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfcritix.opinion : ~1 rows (environ)
+-- Listage des données de la table sfcritix.opinion : ~2 rows (environ)
 INSERT INTO `opinion` (`id`, `user_score`, `piece_id`, `user_id`) VALUES
-	(1, 4, 19, 34);
+	(43, 1, 19, 16),
+	(45, 4, 1, 16);
 
 -- Listage de la structure de table sfcritix. piece
 CREATE TABLE IF NOT EXISTS `piece` (

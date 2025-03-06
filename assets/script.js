@@ -73,15 +73,24 @@ openModal.forEach(opMo => {
 
 
 
-// async function call() {
+// > YouTube API
+const canvaTest = document.querySelector(".APItest")
+
+async function call() {
     
-//     let IDchannel = "UC2FAM-zL-PhH0OkIT95aWJQ"
+    let IDchannel = "UC2FAM-zL-PhH0OkIT95aWJQ"
 
-//     let response = await fetch(
-//         `https://www.googleapis.com/youtube/v3/channels?id=${IDchannel}&key=${API_KEY_YT}&part=statistics&fields=items/statistics/`)
-//     let data = await response.json()
-//     console.log(data)
-// }
+    let response = await fetch(
+        `https://youtube.googleapis.com/youtube/v3/channels?part=statistics&id=${IDchannel}&key=${API_KEY_YT}`)
+    
+    let data = await response.json()
+    // console.log(data)
 
-// call()
+    let subNumber = data.items[0].statistics.subscriberCount
+
+    canvaTest.innerText = subNumber
+}
+
+call()
+
 

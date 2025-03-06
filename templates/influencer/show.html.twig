@@ -38,6 +38,8 @@
     {% endfor %}
     <br>
 
+    <p class="APItest"></p><br>
+
     <p>{{influencer}}'s latest critics :</p>
     {% for critic in influencer.critics %}
         <a href="{{ path('infos_piece', {'id': critic.piece.id})}}"><img src="/uploads/images/{{critic.piece.poster}}"

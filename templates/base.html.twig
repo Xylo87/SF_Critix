@@ -232,6 +232,11 @@
         {% block body %}{% endblock %}
         </div>
         {% block javascripts %}
+            {# > API keys #}
+            {# <script>
+                window.apiKey = "{{ API_YT_key }}";
+            </script> #}
+
             {# > My JavaScript #}
             <script src="{{ asset('script.js') }}"></script>
 

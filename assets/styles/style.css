@@ -154,6 +154,11 @@ a, button {
     cursor: pointer;
 }
 
+.user-score label:active {
+    transform: scale(0.9);
+    transition: 0.1s ease;
+}
+
 .user-score input:checked + label, 
 .user-score input:checked + label ~ label {
     color: #fe8d01;

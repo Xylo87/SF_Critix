@@ -232,14 +232,15 @@
         {% block body %}{% endblock %}
         </div>
         {% block javascripts %}
-            {# > API keys #}
-            {# <script>
-                window.apiKey = "{{ API_YT_key }}";
-            </script> #}
+        
+            {# > API with JS #}
+            {% block javascript_API %}
+
+            {% endblock %}
 
             {# > My JavaScript #}
             <script src="{{ asset('script.js') }}"></script>
-
+            
             {# {% block importmap %}{{ importmap('app') }}{% endblock %} #}
         {% endblock %}
     </body>

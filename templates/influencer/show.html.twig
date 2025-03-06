@@ -71,4 +71,10 @@
     <br>
     <a href="{{path('app_influencer')}}"><i>> View all content creators by media</i></a>
 {% endblock %}
+
+{% block javascript_API %}
+    <script>
+        const API_KEY_YT = "{{ apiKeyYT }}";
+    </script>
+{% endblock %}
             

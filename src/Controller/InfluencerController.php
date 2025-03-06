@@ -124,7 +124,8 @@ final class InfluencerController extends AbstractController
         }
 
         return $this->render('influencer/show.html.twig', [
-            'influencer' => $influencer
+            'influencer' => $influencer,
+            'apiKeyYT' => $this->getParameter('app.api_key_yt')
         ]);
     }
 }

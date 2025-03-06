@@ -73,16 +73,15 @@ openModal.forEach(opMo => {
 
 
 
-// const subNumber = document.createElement("a")
-
 // async function call() {
     
 //     let IDchannel = "UC2FAM-zL-PhH0OkIT95aWJQ"
 
 //     let response = await fetch(
-//         `https://www.googleapis.com/youtube/v3/channels?id=${window.apiKey}&key=${APIkey}&part=statistics&fields=items/statistics`)
+//         `https://www.googleapis.com/youtube/v3/channels?id=${IDchannel}&key=${API_KEY_YT}&part=statistics&fields=items/statistics/`)
 //     let data = await response.json()
 //     console.log(data)
 // }
 
 // call()
+

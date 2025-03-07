@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Influencer;
 use App\Form\InfluencerFormType;
+use App\HttpClient\ApiHttpClient;
 use App\Repository\InfluencerRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -116,16 +117,26 @@ final class InfluencerController extends AbstractController
 
     // > Display influencer details
     #[Route('/influencer/{id}', name: 'show_influencer')]
-    public function show(Influencer $influencer = null): Response
+    public function show(Influencer $influencer = null, ApiHttpClient $apiHttpClient): Response
     {
         if (!$influencer) {
             $this->addFlash('inSearchFail', 'Content creator you\'re looking for does not exist !');
             return $this->redirectToRoute('app_influencer');
         }
 
+        $socials = $influencer->getSocials();
+        $channelId = "";
+        foreach ($socials as $social) {
+            if($social->getName() == "YouTube") {
+                $channelId = $social->getChannelId();
+            }
+        }
+        
+        $YTStats = $apiHttpClient->getYTStats($channelId);
+
         return $this->render('influencer/show.html.twig', [
             'influencer' => $influencer,
-            'apiKeyYT' => $this->getParameter('app.api_key_yt')
+            'YTStats' => $YTStats
         ]);
     }
 }

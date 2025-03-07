@@ -13,6 +13,15 @@ framework:
             enabled: true
             field_name: 'tokenCSRF'
 
+    http_client:
+        scoped_clients:
+            jph:
+                base_uri: https://youtube.googleapis.com/
+            # jph:
+            #     base_uri: 
+            # jph:
+            #     base_uri: 
+
 when@test:
     framework:
         test: true

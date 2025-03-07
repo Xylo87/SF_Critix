@@ -32,9 +32,17 @@
             
     <p>{{influencer.bio}}</p><br>
 
+    
+
     Socials :
     {% for social in influencer.socials %}
-        <li><a href="{{social.link}}" target="_blank">{{social}}</a> ({{social.subNumber}} followers)</li>
+        {% if social == "YouTube" %}
+                {% for item in YTStats.items %}
+                <li><a href="{{social.link}}" target="_blank">{{social}}</a> ({{ item.statistics.subscriberCount }} followers)</li>
+                {% endfor %}
+            {% else %}
+            <li><a href="{{social.link}}" target="_blank">{{social}}</a> ({{social.subNumber}} followers)</li>
+        {% endif %}
     {% endfor %}
     <br>
 
@@ -72,11 +80,6 @@
     <br>
     <br>
     <a href="{{path('app_influencer')}}"><i>> View all content creators by media</i></a>
-{% endblock %}
-
-{% block javascript_API %}
-    <script>
-        const API_KEY_YT = "{{ apiKeyYT }}";
-    </script>
+    
 {% endblock %}
             

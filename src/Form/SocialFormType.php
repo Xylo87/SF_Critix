@@ -34,6 +34,12 @@ class SocialFormType extends AbstractType
                     'size' => 60
                 ]
             ])
+            ->add('channelId', TextType::class, [
+                'label' => 'Channel ID :',
+                'attr' => [
+                    'size' => 30
+                ]
+            ])
             // ->add('influencer', EntityType::class, [
             //     'class' => Influencer::class,
             //     'choice_label' => 'id',

@@ -26,6 +26,9 @@ class Social
     #[ORM\JoinColumn(nullable: false)]
     private ?Influencer $influencer = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $channelId = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -81,6 +84,18 @@ class Social
     public function setInfluencer(?Influencer $influencer): static
     {
         $this->influencer = $influencer;
+
+        return $this;
+    }
+
+    public function getChannelId(): ?string
+    {
+        return $this->channelId;
+    }
+
+    public function setChannelId(?string $channelId): static
+    {
+        $this->channelId = $channelId;
 
         return $this;
     }

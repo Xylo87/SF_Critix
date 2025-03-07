@@ -124,6 +124,7 @@ final class InfluencerController extends AbstractController
             return $this->redirectToRoute('app_influencer');
         }
 
+        // > Getting YouTube channel ID for YT stats + send to view
         $socials = $influencer->getSocials();
         $channelId = "";
         foreach ($socials as $social) {
@@ -132,7 +133,11 @@ final class InfluencerController extends AbstractController
             }
         }
         
-        $YTStats = $apiHttpClient->getYTStats($channelId);
+        if ($channelId != null) {
+            $YTStats = $apiHttpClient->getYTStats($channelId);
+        } else {
+            $YTStats = '';
+        }
 
         return $this->render('influencer/show.html.twig', [
             'influencer' => $influencer,

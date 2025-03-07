@@ -24,21 +24,30 @@
             <button class="closeModal">No</button>
         </dialog>
 
+    {# > Like + dislike button #}
     {% if app.user in influencer.users %}
         <a href="{{ path('unlike_influencer', {'id': influencer.id, 'origin': 'influencerPage'}) }}"><button>Unlike</button></a>
     {% else %}
         <a href="{{ path('like_influencer', {'id': influencer.id})}}"><button>Like</button></a>
     {% endif %}<br><br>
-            
-    <p>{{influencer.bio}}</p><br>
 
+    <p>{{influencer.bio}}</p><br>
     
+
+    {# > Influencer Live #}
+    {% for social in influencer.socials %}
+        {% if social.liveId %}
+            <iframe src="https://player.twitch.tv/?channel={{social.liveId}}&parent=127.0.0.1" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe><br><br>
+        {% endif %}
+    {% endfor %}
+        
+
 
     Socials :
     {% for social in influencer.socials %}
-        {% if social == "YouTube" %}
+        {% if social.channelId is not null and social == "YouTube" %}
                 {% for item in YTStats.items %}
-                <li><a href="{{social.link}}" target="_blank">{{social}}</a> ({{ item.statistics.subscriberCount }} followers)</li>
+                <li><a href="{{social.link}}" target="_blank">{{social}}</a> ({{ item.statistics.subscriberCount|format_short }} followers)</li>
                 {% endfor %}
             {% else %}
             <li><a href="{{social.link}}" target="_blank">{{social}}</a> ({{social.subNumber}} followers)</li>
@@ -46,7 +55,7 @@
     {% endfor %}
     <br>
 
-    <p class="APItest"></p><br>
+
 
     <p>{{influencer}}'s latest critics :</p>
     {% for critic in influencer.critics %}
@@ -82,4 +91,3 @@
     <a href="{{path('app_influencer')}}"><i>> View all content creators by media</i></a>
     
 {% endblock %}
-            

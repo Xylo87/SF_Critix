@@ -29,6 +29,9 @@ class Social
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $channelId = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $liveId = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -96,6 +99,18 @@ class Social
     public function setChannelId(?string $channelId): static
     {
         $this->channelId = $channelId;
+
+        return $this;
+    }
+
+    public function getLiveId(): ?string
+    {
+        return $this->liveId;
+    }
+
+    public function setLiveId(?string $liveId): static
+    {
+        $this->liveId = $liveId;
 
         return $this;
     }

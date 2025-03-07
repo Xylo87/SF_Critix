@@ -17,6 +17,7 @@ class ApiHttpClient extends AbstractController
         $this->httpClient = $jph;
     }
 
+    // > API endpoints + API Key + data
     public function getYTStats(string $channelId){
 
         $response = $this->httpClient->request('GET', "youtube/v3/channels?part=statistics&id=".$channelId."&key=".$_ENV["API_KEY_YT"], [

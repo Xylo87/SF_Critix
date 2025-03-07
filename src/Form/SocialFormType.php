@@ -40,6 +40,12 @@ class SocialFormType extends AbstractType
                     'size' => 30
                 ]
             ])
+            ->add('liveId', TextType::class, [
+                'label' => 'Live ID :',
+                'attr' => [
+                    'size' => 30
+                ]
+            ])
             // ->add('influencer', EntityType::class, [
             //     'class' => Influencer::class,
             //     'choice_label' => 'id',

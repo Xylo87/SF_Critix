@@ -13,6 +13,7 @@ framework:
             enabled: true
             field_name: 'tokenCSRF'
 
+    # > API links
     http_client:
         scoped_clients:
             jph:

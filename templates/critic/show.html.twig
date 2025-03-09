@@ -36,9 +36,11 @@
     {% endif %}
     
     <p><u>About</u> : {{piece.about}}</p>
-    <h4><a href="{{ path('infos_piece', {'id': piece.id})}}">+ More infos</a></h4>
+    <h4><a href="{{ path('infos_piece', {'id': piece.id})}}">+ More infos</a></h4><br>
+
     <h3>Latest critics</h3>
-    <hr>
+    <hr style="width: 66%"><br>
+
     {% for critic in piece.critics %}
         <iframe width="560" height="315" src="{{critic.media}}" 
         title="YouTube video player" 
@@ -91,9 +93,24 @@
                 <a href="{{ path('delete_critic', {'id': critic.id})}}"><button>Yes</button></a>
                 <button class="closeModal">No</button>
             </dialog>
+
+        
+
+        <form action="">
+            <div class="addCommentField">
+                <label class="accessLabel" for="addComment">Add comment</label>
+                <textarea class="addComment" name="addComment" id="addComment" placeholder="Add comment ➕" required></textarea>
+                {# <i class="fa-solid fa-square-plus commentPlus"></i> #}
+                <input type="submit" name="submit" class="add-comment-submit" value="Post !">
+            </div>
+        </form><br>
+
+        <hr style="width: 10%"><br>
     {% endfor %}
+
     <a href="{{path('show_category', {'id': piece.category.id})}}"><i>> View all {{piece.category}} critics</i></a>
 </div>
             
 {% endblock %}
+
             

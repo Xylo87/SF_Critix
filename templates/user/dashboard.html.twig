@@ -40,8 +40,15 @@
             style="width: 88px; height: 120px; object-fit: cover"></a><br>
             <a href="{{ path('show_critics', {'id': piece.id})}}">{{piece}}</a><br>
             <em>#{{piece.category}}</em><br>
-            Critic Score : {{piece.criticTotalScore}}<br>
-            {# User Score : {{piece.userTotalScore}}<br> #}
+
+        {% if piece.critics|length > 0 %}
+            <p>Critic Score : {{piece.criticTotalScore}}/10</p>
+        {% endif %}
+        {% if piece.opinions|length > 0 %}
+            <p>User score : {{ piece.userTotalScore }}/10</p>
+        {% else %}
+            <p>User score : Not rated yet</p>
+        {% endif %}
 
             <button class="deleteConfirm">Unsave page</button><br>
                 <dialog class="openModal">

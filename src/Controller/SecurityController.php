@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Entity\Piece;
+use App\Entity\Critic;
+use App\Entity\Comment;
 use App\Entity\Opinion;
 use App\Entity\Influencer;
 use App\Form\UserFormType;
@@ -184,7 +186,7 @@ class SecurityController extends AbstractController
                 return $this->redirectToRoute('infos_piece', ['id' => $piece->getId()]);
                     
             } else {
-                $this->addFlash('scPieceSuccess', 'Please set a score between 1 & 5 !');
+                $this->addFlash('scPieceFail', 'Please set a score between 1 & 5 !');
                 return $this->redirectToRoute('infos_piece', ['id' => $piece->getId()]);
             }
         }
@@ -208,6 +210,41 @@ class SecurityController extends AbstractController
         return $this->redirectToRoute('infos_piece', ['id' => $piece->getId()]);
     }
 
+    // > User's add comment
+    #[Route('/critic/{id}/comment', name: 'comment_critic')]
+    public function commentCritic(Security $security, EntityManagerInterface $entityManager, Critic $critic = null, Request $request)
+    {
+        $user = $security->getUser();
+
+        if (!$user) {
+            $this->addFlash('coCriticFail', 'You must be logged in to comment !');
+            return $this->redirectToRoute('app_login');
+        }
+
+        if (isset($_POST["submit"])) {
+            $addComment = filter_input(INPUT_POST, "addComment", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+            if (!empty($addComment) && trim($addComment) != '') {
+
+                $comment = new Comment();
+
+                $comment->setText($addComment);
+                $comment->setUser($user);
+                $comment->setCritic($critic);
+
+                $entityManager->persist($comment);
+                $entityManager->flush();
+
+                $this->addFlash('scPieceSuccess', 'Your comment on '.$critic->getInfluencer().'\'s critic has been posted !');
+                return $this->redirectToRoute('show_critics', ['id' => $critic->getPiece()->getId()]);
+                    
+            } else {
+                $this->addFlash('coCriticFail', 'Comment cannot be empty !');
+                return $this->redirectToRoute('show_critics', ['id' => $critic->getPiece()->getId()]);
+            }
+        }
+    }
+    
     // > Edit User's infos
     #[Route('/user/edit', name: 'edit_user')]
     public function edit(

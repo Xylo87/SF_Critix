@@ -74,14 +74,15 @@ openModal.forEach(opMo => {
 
 
 // Add comment field size adjust
-const addComment = document.querySelector(".addComment")
+const addComment = document.querySelectorAll(".addComment")
 
-function adjustHeight() {
-    addComment.style.height = 'auto'
-    addComment.style.height = addComment.scrollHeight + 'px'
+function adjustHeight(addCo) {
+    addCo.style.height = 'auto'
+    addCo.style.height = addCo.scrollHeight + 'px'
 }
 
-addComment.addEventListener('input', adjustHeight)
-
-adjustHeight()
+addComment.forEach((addCo) => {
+    addCo.addEventListener('input', () => adjustHeight(addCo));
+    adjustHeight(addCo)
+});
 

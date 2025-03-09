@@ -227,6 +227,20 @@
                         </div>
                     {% endfor %}
 
+                    {# > User comment success #}
+                    {% for message in app.flashes('coCriticSuccess') %}
+                        <div class="alert alert-success">
+                            {{message}}
+                        </div>
+                    {% endfor %}
+
+                    {# > User comment fail #}
+                    {% for message in app.flashes('coCriticFail') %}
+                        <div class="alert alert-danger">
+                            {{message}}
+                        </div>
+                    {% endfor %}
+
                 </div>
             </nav>
         {% block body %}{% endblock %}

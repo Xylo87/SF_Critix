@@ -96,7 +96,8 @@
 
         
 
-        <form action="">
+        <form method="post" action="{{ path('comment_critic', {'id': critic.id})}}">
+        {# <form method="post" action=""> #}
             <div class="addCommentField">
                 <label class="accessLabel" for="addComment">Add comment</label>
                 <textarea class="addComment" name="addComment" id="addComment" placeholder="Add comment ➕" required></textarea>

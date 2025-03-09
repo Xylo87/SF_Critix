@@ -36,7 +36,7 @@
     {% endif %}
     
     <p><u>About</u> : {{piece.about}}</p>
-    <h4><a href="{{ path('infos_piece', {'id': piece.id})}}">+ More infos</a></h4><br>
+    <h4><a href="{{ path('infos_piece', {'id': piece.id})}}" target="_blank">+ More infos</a></h4><br>
 
     <h3>Latest critics</h3>
     <hr style="width: 66%"><br>
@@ -48,8 +48,8 @@
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
         referrerpolicy="strict-origin-when-cross-origin" 
         allowfullscreen></iframe>
-        <h3>By: <a href="{{ path('show_influencer', {'id': critic.influencer.id})}}">{{critic.influencer}}</a></h3>
-        <a href="{{ path('show_influencer', {'id': critic.influencer.id})}}">
+        <h3>By: <a href="{{ path('show_influencer', {'id': critic.influencer.id})}}" target="_blank">{{critic.influencer}}</a></h3>
+        <a href="{{ path('show_influencer', {'id': critic.influencer.id})}}" target="_blank">
             <img src="/uploads/photos/influPhotos/{{critic.influencer.photo}}" alt="{{critic.influencer}}" style="width: 265px; height: 360px; object-fit: cover">
         </a>
         <blockquote>{{critic.summary}}</blockquote>

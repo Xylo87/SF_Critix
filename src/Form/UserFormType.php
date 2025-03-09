@@ -43,13 +43,13 @@ class UserFormType extends AbstractType
                 'label' => 'Mood :',
                 'attr' => [
                     'size' => 60,
-                    'placeholder' => 'Status may not exceed 50 characters'
+                    'placeholder' => 'Status may not exceed 75 characters'
                 ],
                 'required' => false,
                 'constraints' => [
                     new Length([
-                        'max' => 50,
-                        'maxMessage' => 'Status may not exceed 50 characters'
+                        'max' => 75,
+                        'maxMessage' => 'Status may not exceed 75 characters'
                     ])
                 ]
             ])

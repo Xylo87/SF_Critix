@@ -33,7 +33,6 @@ CREATE TABLE IF NOT EXISTS `agreement` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table sfcritix.agreement : ~0 rows (environ)
-DELETE FROM `agreement`;
 
 -- Listage de la structure de table sfcritix. category
 CREATE TABLE IF NOT EXISTS `category` (
@@ -43,7 +42,6 @@ CREATE TABLE IF NOT EXISTS `category` (
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table sfcritix.category : ~6 rows (environ)
-DELETE FROM `category`;
 INSERT INTO `category` (`id`, `name`) VALUES
 	(1, 'Games'),
 	(2, 'Movies'),
@@ -65,10 +63,11 @@ CREATE TABLE IF NOT EXISTS `comment` (
   KEY `IDX_9474526CA76ED395` (`user_id`),
   CONSTRAINT `FK_9474526CA76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
   CONSTRAINT `FK_9474526CC7BE2830` FOREIGN KEY (`critic_id`) REFERENCES `critic` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table sfcritix.comment : ~0 rows (environ)
-DELETE FROM `comment`;
+INSERT INTO `comment` (`id`, `text`, `date_post`, `is_vip`, `critic_id`, `user_id`) VALUES
+	(1, 'test', '2025-03-09 19:02:18', NULL, 16, 16);
 
 -- Listage de la structure de table sfcritix. critic
 CREATE TABLE IF NOT EXISTS `critic` (
@@ -89,7 +88,6 @@ CREATE TABLE IF NOT EXISTS `critic` (
 ) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table sfcritix.critic : ~4 rows (environ)
-DELETE FROM `critic`;
 INSERT INTO `critic` (`id`, `media`, `summary`, `critic_score`, `length_min`, `date_post`, `origin_date_post`, `piece_id`, `influencer_id`) VALUES
 	(16, 'https://www.youtube.com/embed/93o3a6MWgxA?si=pdujXUWJCD-0ejbl', '"I particularly enjoyed this first \r\ncontact with Dune: Awakening"', 4, 19, '2025-02-19 21:09:58', '2025-01-30 00:00:00', 1, 2),
 	(17, 'https://www.youtube.com/embed/QJjEP0Nnsa0?si=x5IeomulzXxysW_N', '"I let myself be carried away by the atmosphere and the general intention."', 3, 15, '2025-02-20 14:29:52', '2025-01-30 00:00:00', 1, 12),
@@ -108,7 +106,6 @@ CREATE TABLE IF NOT EXISTS `critic_user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table sfcritix.critic_user : ~0 rows (environ)
-DELETE FROM `critic_user`;
 
 -- Listage de la structure de table sfcritix. doctrine_migration_versions
 CREATE TABLE IF NOT EXISTS `doctrine_migration_versions` (
@@ -119,7 +116,6 @@ CREATE TABLE IF NOT EXISTS `doctrine_migration_versions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 -- Listage des données de la table sfcritix.doctrine_migration_versions : ~0 rows (environ)
-DELETE FROM `doctrine_migration_versions`;
 INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
 	('DoctrineMigrations\\Version20250218150339', '2025-02-18 16:03:49', 274);
 
@@ -135,7 +131,6 @@ CREATE TABLE IF NOT EXISTS `image` (
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table sfcritix.image : ~0 rows (environ)
-DELETE FROM `image`;
 
 -- Listage de la structure de table sfcritix. influencer
 CREATE TABLE IF NOT EXISTS `influencer` (
@@ -148,7 +143,6 @@ CREATE TABLE IF NOT EXISTS `influencer` (
 ) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table sfcritix.influencer : ~4 rows (environ)
-DELETE FROM `influencer`;
 INSERT INTO `influencer` (`id`, `nick_name`, `real_name`, `photo`, `bio`) VALUES
 	(2, 'ExServ', 'Benoît Reinier', 'influ-ExServ-67b769a27f05d.webp', 'Since 2010, ExServ has been providing \'From Software\' video game guides, tests and news analysis. A former video game journalist, he now works as an independant since 2016 and divides his time between his YouTube channel, the podcast \'Fin du Game\' and writing books for \'Third Editions\'.'),
 	(12, 'Carole Quintaine', 'Carole Quintaine', 'influ-Carole-Quintaine-67b769c9dbc25.jpg', 'Carole is a superhero who wears a cape and a bat mask. And she\'s also on YouTube to talk about video games.'),
@@ -166,11 +160,12 @@ CREATE TABLE IF NOT EXISTS `influencer_user` (
   CONSTRAINT `FK_DC19FDE4A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfcritix.influencer_user : ~3 rows (environ)
-DELETE FROM `influencer_user`;
+-- Listage des données de la table sfcritix.influencer_user : ~4 rows (environ)
 INSERT INTO `influencer_user` (`influencer_id`, `user_id`) VALUES
 	(2, 16),
 	(2, 34),
+	(2, 35),
+	(12, 16),
 	(12, 34);
 
 -- Listage de la structure de table sfcritix. messenger_messages
@@ -189,7 +184,6 @@ CREATE TABLE IF NOT EXISTS `messenger_messages` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table sfcritix.messenger_messages : ~0 rows (environ)
-DELETE FROM `messenger_messages`;
 
 -- Listage de la structure de table sfcritix. opinion
 CREATE TABLE IF NOT EXISTS `opinion` (
@@ -202,13 +196,12 @@ CREATE TABLE IF NOT EXISTS `opinion` (
   KEY `IDX_AB02B027A76ED395` (`user_id`),
   CONSTRAINT `FK_AB02B027A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
   CONSTRAINT `FK_AB02B027C40FCFA8` FOREIGN KEY (`piece_id`) REFERENCES `piece` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table sfcritix.opinion : ~2 rows (environ)
-DELETE FROM `opinion`;
 INSERT INTO `opinion` (`id`, `user_score`, `piece_id`, `user_id`) VALUES
-	(43, 1, 19, 16),
-	(45, 4, 1, 16);
+	(47, 4, 19, 16),
+	(48, 3, 19, 35);
 
 -- Listage de la structure de table sfcritix. piece
 CREATE TABLE IF NOT EXISTS `piece` (
@@ -226,7 +219,6 @@ CREATE TABLE IF NOT EXISTS `piece` (
 ) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table sfcritix.piece : ~3 rows (environ)
-DELETE FROM `piece`;
 INSERT INTO `piece` (`id`, `title`, `about`, `maker`, `release_date`, `category_id`, `is_upcoming`, `poster`) VALUES
 	(1, 'Dune: Awakening', 'Dune: Awakening is a massively multiplayer online game where players must survive in the desert of Arrakis. It takes place in an open world.', 'Funcom', '2025-01-01 00:00:00', 1, 1, 'games-DuneA-poster-67c0af2463993.png'),
 	(19, 'The Brutalist', 'Escaping post-war Europe, visionary architect László Toth arrives in America to rebuild his life, his work, and his marriage to his wife Erzsébet after being forced apart during wartime by shifting borders and regimes. On his own in a strange new country, László settles in Pennsylvania, where an industrialist recognizes his talent for building.', 'Brady Corbet', '2025-02-12 00:00:00', 2, 0, 'movies-TheBrutalist-poster-67c1b34cc833b.jpg'),
@@ -239,15 +231,14 @@ CREATE TABLE IF NOT EXISTS `social` (
   `sub_number` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `link` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `influencer_id` int NOT NULL,
-  `channel_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `live_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `channel_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `live_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_7161E1874AF97FA6` (`influencer_id`),
   CONSTRAINT `FK_7161E1874AF97FA6` FOREIGN KEY (`influencer_id`) REFERENCES `influencer` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table sfcritix.social : ~11 rows (environ)
-DELETE FROM `social`;
 INSERT INTO `social` (`id`, `name`, `sub_number`, `link`, `influencer_id`, `channel_id`, `live_id`) VALUES
 	(4, 'YouTube', '200k', 'https://www.youtube.com/@ExServ85', 2, 'UC2FAM-zL-PhH0OkIT95aWJQ', NULL),
 	(5, 'Bluesky', '9.4k', 'https://bsky.app/profile/exserv.bsky.social', 2, NULL, NULL),
@@ -276,13 +267,13 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_8D93D649E7927C74` (`email`),
   UNIQUE KEY `UNIQ_8D93D649A045A5E9` (`nick_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfcritix.user : ~0 rows (environ)
-DELETE FROM `user`;
+-- Listage des données de la table sfcritix.user : ~2 rows (environ)
 INSERT INTO `user` (`id`, `email`, `roles`, `password`, `nick_name`, `profile_picture`, `status`, `bio`, `account_date`, `is_verified`) VALUES
 	(16, 'test@exemple.com', '[]', '$2y$13$3JP6RlXMQmt5AxpcVxfHlesXj0Fq30ev.cd2rO/jDUBbBatZEaI0G', 'Xylo', '', 'Test', 'Test3', '2025-02-26 08:50:05', 0),
-	(34, 'titi@exemple.com', '[]', '$2y$13$gfEN2hZtNCH3N7NxxHsktebrha3JhyW/3V7AAJsrU55KWctPxw14W', 'Toto', 'Sosie-67c085e9c7ef4.png', 'Bande de caves...', 'Sosie officiel de Robert de Niro dans Heat', '2025-02-27 14:15:15', 0);
+	(34, 'titi@exemple.com', '[]', '$2y$13$gfEN2hZtNCH3N7NxxHsktebrha3JhyW/3V7AAJsrU55KWctPxw14W', 'Toto', 'Sosie-67c085e9c7ef4.png', 'Bande de caves...', 'Sosie officiel de Robert de Niro dans Heat', '2025-02-27 14:15:15', 0),
+	(35, 'our@gmail.com', '[]', '$2y$13$Xt4Q1F4qrjamc1NT8P7DYeMJSkd06a.CS5kRT7aFNJ/agrCpXlOk6', 'Our', 'Onizuka-grimace-67ce0177cce60.webp', 'Les "Infiltrés" ont tout copié sur "Infernal Affairs"', '"Si tu veux m\'parler envoie moi un...FAX !!"', '2025-03-09 21:54:50', 0);
 
 -- Listage de la structure de table sfcritix. user_piece
 CREATE TABLE IF NOT EXISTS `user_piece` (
@@ -295,11 +286,13 @@ CREATE TABLE IF NOT EXISTS `user_piece` (
   CONSTRAINT `FK_A608F07BC40FCFA8` FOREIGN KEY (`piece_id`) REFERENCES `piece` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfcritix.user_piece : ~0 rows (environ)
-DELETE FROM `user_piece`;
+-- Listage des données de la table sfcritix.user_piece : ~2 rows (environ)
 INSERT INTO `user_piece` (`user_id`, `piece_id`) VALUES
+	(16, 1),
+	(16, 19),
 	(34, 1),
-	(34, 19);
+	(34, 19),
+	(35, 1);
 
 -- Listage de la structure de table sfcritix. video
 CREATE TABLE IF NOT EXISTS `video` (
@@ -314,7 +307,6 @@ CREATE TABLE IF NOT EXISTS `video` (
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table sfcritix.video : ~2 rows (environ)
-DELETE FROM `video`;
 INSERT INTO `video` (`id`, `title`, `link`, `is_trailer`, `piece_id`) VALUES
 	(6, 'Dune: Awakening - Official Arrakis Trailer', 'https://www.youtube.com/embed/r8lxVDqoHLQ?si=uXlAQDGgLB8umpGr', 1, 1),
 	(7, 'The Brutalist | Official Trailer HD | A24', 'https://www.youtube.com/embed/GdRXPAHIEW4?si=IZotUvlcBCqftzTd', 1, 19);

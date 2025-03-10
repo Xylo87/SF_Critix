@@ -63,11 +63,13 @@ CREATE TABLE IF NOT EXISTS `comment` (
   KEY `IDX_9474526CA76ED395` (`user_id`),
   CONSTRAINT `FK_9474526CA76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
   CONSTRAINT `FK_9474526CC7BE2830` FOREIGN KEY (`critic_id`) REFERENCES `critic` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfcritix.comment : ~0 rows (environ)
+-- Listage des données de la table sfcritix.comment : ~3 rows (environ)
 INSERT INTO `comment` (`id`, `text`, `date_post`, `is_vip`, `critic_id`, `user_id`) VALUES
-	(1, 'test', '2025-03-09 19:02:18', NULL, 16, 16);
+	(1, 'Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test', '2025-03-09 19:02:18', NULL, 16, 16),
+	(2, 'Je ne suis pas du tout d\'accord avec toi ExServ...', '2025-03-10 20:31:02', NULL, 16, 35),
+	(3, 'Bande de caves...', '2025-03-10 20:39:02', NULL, 16, 34);
 
 -- Listage de la structure de table sfcritix. critic
 CREATE TABLE IF NOT EXISTS `critic` (
@@ -160,7 +162,7 @@ CREATE TABLE IF NOT EXISTS `influencer_user` (
   CONSTRAINT `FK_DC19FDE4A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfcritix.influencer_user : ~4 rows (environ)
+-- Listage des données de la table sfcritix.influencer_user : ~3 rows (environ)
 INSERT INTO `influencer_user` (`influencer_id`, `user_id`) VALUES
 	(2, 16),
 	(2, 34),
@@ -198,7 +200,7 @@ CREATE TABLE IF NOT EXISTS `opinion` (
   CONSTRAINT `FK_AB02B027C40FCFA8` FOREIGN KEY (`piece_id`) REFERENCES `piece` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfcritix.opinion : ~2 rows (environ)
+-- Listage des données de la table sfcritix.opinion : ~1 rows (environ)
 INSERT INTO `opinion` (`id`, `user_score`, `piece_id`, `user_id`) VALUES
 	(47, 4, 19, 16),
 	(48, 3, 19, 35);
@@ -269,7 +271,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   UNIQUE KEY `UNIQ_8D93D649A045A5E9` (`nick_name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfcritix.user : ~2 rows (environ)
+-- Listage des données de la table sfcritix.user : ~3 rows (environ)
 INSERT INTO `user` (`id`, `email`, `roles`, `password`, `nick_name`, `profile_picture`, `status`, `bio`, `account_date`, `is_verified`) VALUES
 	(16, 'test@exemple.com', '[]', '$2y$13$3JP6RlXMQmt5AxpcVxfHlesXj0Fq30ev.cd2rO/jDUBbBatZEaI0G', 'Xylo', '', 'Test', 'Test3', '2025-02-26 08:50:05', 0),
 	(34, 'titi@exemple.com', '[]', '$2y$13$gfEN2hZtNCH3N7NxxHsktebrha3JhyW/3V7AAJsrU55KWctPxw14W', 'Toto', 'Sosie-67c085e9c7ef4.png', 'Bande de caves...', 'Sosie officiel de Robert de Niro dans Heat', '2025-02-27 14:15:15', 0),
@@ -286,7 +288,7 @@ CREATE TABLE IF NOT EXISTS `user_piece` (
   CONSTRAINT `FK_A608F07BC40FCFA8` FOREIGN KEY (`piece_id`) REFERENCES `piece` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfcritix.user_piece : ~2 rows (environ)
+-- Listage des données de la table sfcritix.user_piece : ~5 rows (environ)
 INSERT INTO `user_piece` (`user_id`, `piece_id`) VALUES
 	(16, 1),
 	(16, 19),

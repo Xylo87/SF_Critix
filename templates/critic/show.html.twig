@@ -116,12 +116,12 @@
         {% for comment in critic.comments|sort((a, b) => b.datePost <=> a.datePost) %}
             <div class="commentDisplay">
                 {% if comment.user.profilePicture %}
-                    <a href="{{ path('show_user', {'id': comment.user.id})}}"><img src="/uploads/photos/userPhotos/{{comment.user.profilePicture}}" alt="{{comment.user}}-profile-picture"></a>
+                    <a href="{{ path('show_user', {'id': comment.user.id})}}" target="_blank"><img src="/uploads/photos/userPhotos/{{comment.user.profilePicture}}" alt="{{comment.user}}-profile-picture"></a>
                 {% else %}
-                    <a href="{{ path('show_user', {'id': comment.user.id})}}"><img src="/uploads/photos/userPhotos/user-default.png" alt="user-default-profile-picture"></a>
+                    <a href="{{ path('show_user', {'id': comment.user.id})}}" target="_blank"><img src="/uploads/photos/userPhotos/user-default.png" alt="user-default-profile-picture"></a>
                 {% endif %}
                 <div class="mainComment">
-                    <a href="{{ path('show_user', {'id': comment.user.id})}}"><strong>{{comment.user}}</a> - </strong>
+                    <a href="{{ path('show_user', {'id': comment.user.id})}}" target="_blank"><strong>{{comment.user}}</a> - </strong>
                     {{comment.datePostENG}}
                     <p>{{comment}}</p>
                 </div>

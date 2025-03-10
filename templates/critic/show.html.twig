@@ -41,7 +41,7 @@
     <h3>Latest critics</h3>
     <hr style="width: 66%"><br>
 
-    {% for critic in piece.critics %}
+    {% for critic in piece.critics|sort((a, b) => b.datePost <=> a.datePost) %}
         <iframe width="560" height="315" src="{{critic.media}}" 
         title="YouTube video player" 
         frameborder="0" 
@@ -97,14 +97,36 @@
         
 
         <form method="post" action="{{ path('comment_critic', {'id': critic.id})}}">
-        {# <form method="post" action=""> #}
-            <div class="addCommentField">
-                <label class="accessLabel" for="addComment">Add comment</label>
-                <textarea class="addComment" name="addComment" id="addComment" placeholder="Add comment ➕" required></textarea>
-                {# <i class="fa-solid fa-square-plus commentPlus"></i> #}
-                <input type="submit" name="submit" class="add-comment-submit" value="Post !">
-            </div>
+            {% if app.user %}
+                <div class="addCommentField">
+                    <label class="accessLabel" for="addComment">Add comment</label>
+                    <textarea class="addComment" name="addComment" id="addComment" placeholder="Add comment ➕" required></textarea>
+                    {# <i class="fa-solid fa-square-plus commentPlus"></i> #}
+                    <input type="submit" name="submit" class="add-comment-submit" value="Post !">
+                </div>
+            {% else %}
+                <div class="addCommentField">
+                    <label class="accessLabel" for="addComment">Add comment</label>
+                    <textarea class="addComment" name="addComment" id="addComment" placeholder="Please log in to comment" disabled></textarea>
+                    {# <i class="fa-solid fa-square-plus commentPlus"></i> #}
+                </div>
+            {% endif %}
         </form><br>
+
+        {% for comment in critic.comments|sort((a, b) => b.datePost <=> a.datePost) %}
+            <div class="commentDisplay">
+                {% if comment.user.profilePicture %}
+                    <a href="{{ path('show_user', {'id': comment.user.id})}}"><img src="/uploads/photos/userPhotos/{{comment.user.profilePicture}}" alt="{{comment.user}}-profile-picture"></a>
+                {% else %}
+                    <a href="{{ path('show_user', {'id': comment.user.id})}}"><img src="/uploads/photos/userPhotos/user-default.png" alt="user-default-profile-picture"></a>
+                {% endif %}
+                <div class="mainComment">
+                    <a href="{{ path('show_user', {'id': comment.user.id})}}"><strong>{{comment.user}}</a> - </strong>
+                    {{comment.datePostENG}}
+                    <p>{{comment}}</p>
+                </div>
+            </div><br>
+        {% endfor %}
 
         <hr style="width: 10%"><br>
     {% endfor %}
@@ -113,5 +135,6 @@
 </div>
             
 {% endblock %}
+                
 
             

@@ -58,6 +58,11 @@ class Comment
         return $this->datePost;
     }
 
+    public function getDatePostENG(): ?string 
+    {        
+        return $this->datePost->format('M. jS, Y \a\t h:i A');
+    }
+
     public function setDatePost(\DateTimeInterface $datePost): static
     {
         $this->datePost = $datePost;

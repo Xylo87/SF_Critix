@@ -222,7 +222,10 @@ class SecurityController extends AbstractController
         }
 
         if (isset($_POST["submit"])) {
-            $addComment = filter_input(INPUT_POST, "addComment", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $addComment = ($_POST["addComment"]);
+
+            // > Filter without escaping spec chars
+            $addComment = strip_tags($addComment);
 
             if (!empty($addComment) && trim($addComment) != '') {
 

@@ -20,6 +20,7 @@ use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class SecurityController extends AbstractController
@@ -193,13 +194,18 @@ class SecurityController extends AbstractController
     }
 
     // > User's score reset
-    #[Route('/piece/{piece}/opinion{opinion}/reset', name: 'score_reset')]
+    #[Route('/piece/{piece}/opinion/{opinion}/reset', name: 'score_reset')]
     public function resetScore(Security $security, EntityManagerInterface $entityManager, Piece $piece = null, Opinion $opinion = null) {
         
         $user = $security->getUser();
 
         if (!$user) {
             $this->addFlash('scResetFail', 'You must be logged in to reset score !');
+            return $this->redirectToRoute('app_login');
+        }
+
+        if ($user->getId() != $opinion->getUser()->getId()) {
+            $this->addFlash('scResetFail', 'You do not have the required authorisation !');
             return $this->redirectToRoute('app_login');
         }
 
@@ -249,13 +255,18 @@ class SecurityController extends AbstractController
     }
     
     // > User's comment delete
-    #[Route('/critic/{critic}/comment{comment}/delete', name: 'comment_delete')]
-    public function deleteComment(Security $security, EntityManagerInterface $entityManager, Critic $piece = null, Comment $comment = null) {
+    #[Route('/critic/{critic}/comment/{comment}/delete', name: 'comment_delete')]
+    public function deleteComment(AuthorizationCheckerInterface $authorizationChecker, Security $security, EntityManagerInterface $entityManager, Critic $critic = null, Comment $comment = null) {
         
         $user = $security->getUser();
 
         if (!$user) {
             $this->addFlash('coDeleteFail', 'You must be logged in to delete a comment !');
+            return $this->redirectToRoute('app_login');
+        }
+
+        if ($user->getId() != $comment->getUser()->getId() && !$authorizationChecker->isGranted('ROLE_MODO')) {
+            $this->addFlash('coDeleteFail', 'You do not have the required authorisation !');
             return $this->redirectToRoute('app_login');
         }
 

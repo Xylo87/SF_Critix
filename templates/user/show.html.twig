@@ -20,6 +20,14 @@
     <p><u>Bio</u> : {{user.bio}}</p>
     <p><u>Member since</u> : {{user.creationDateEng}}</p><br>
 
+    {% if "ROLE_MODO" in user.roles %}
+        <p><u>Role</u> : moderator</p>
+    {% endif %}
+    
+    {% if "ROLE_ADMIN" in user.roles %}
+        <p><u>Role</u> : administrator</p>
+    {% endif %}
+
     {% if user.opinions is not empty %}
         <h3> {{user}}'s ratings (latest)</h3>
 

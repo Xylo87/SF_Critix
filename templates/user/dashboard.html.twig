@@ -31,6 +31,16 @@
     <p><u>Bio</u> : {{user.bio}}</p>
     <p><u>Member since</u>: {{user.creationDateEng}}</p><br>
 
+    {% if "ROLE_MODO" in user.roles %}
+        <p><u>Role</u> : Moderator</p><br>
+    {% endif %}
+    
+    {% if "ROLE_ADMIN" in user.roles %}
+        <p><u>Role</u> : Administrator</p><br>
+    {% endif %}
+
+    
+
     {% if user.pieces is not empty %}
         <h3>Saved critics page</h3>
 

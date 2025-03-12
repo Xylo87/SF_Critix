@@ -272,6 +272,16 @@ a, button {
     margin-top: 0.5em;
 }
 
+.delComBtn { 
+    height: fit-content;
+    margin: 0.35em 0.5em 0 0.75em;
+    padding: 0.25em;
+}
+
+.delComIcon {
+    font-size: 125%;
+}
+
 
 
 /* > > Accessibility trick for labels */

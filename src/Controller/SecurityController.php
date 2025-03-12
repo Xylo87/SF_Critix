@@ -210,7 +210,7 @@ class SecurityController extends AbstractController
         return $this->redirectToRoute('infos_piece', ['id' => $piece->getId()]);
     }
 
-    // > User's add comment
+    // > User's comment add
     #[Route('/critic/{id}/comment', name: 'comment_critic')]
     public function commentCritic(Security $security, EntityManagerInterface $entityManager, Critic $critic = null, Request $request)
     {
@@ -248,6 +248,24 @@ class SecurityController extends AbstractController
         }
     }
     
+    // > User's comment delete
+    #[Route('/critic/{critic}/comment{comment}/delete', name: 'comment_delete')]
+    public function deleteComment(Security $security, EntityManagerInterface $entityManager, Critic $piece = null, Comment $comment = null) {
+        
+        $user = $security->getUser();
+
+        if (!$user) {
+            $this->addFlash('coDeleteFail', 'You must be logged in to delete a comment !');
+            return $this->redirectToRoute('app_login');
+        }
+
+        $entityManager->remove($comment);
+        $entityManager->flush();
+        
+        $this->addFlash('coDeleteSuccess', 'Comment has been deleted !');
+        return $this->redirectToRoute('show_critics', ['id' => $critic->getPiece()->getId()]);
+    }
+
     // > Edit User's infos
     #[Route('/user/edit', name: 'edit_user')]
     public function edit(

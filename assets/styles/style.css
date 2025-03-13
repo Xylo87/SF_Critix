@@ -263,6 +263,10 @@ a, button {
     /* flex-shrink: 0; */
 }
 
+.ppLink {
+    height: fit-content;
+}
+
 .mainComment {
     width: 80%;
     margin: 0.75em 0;
@@ -272,13 +276,27 @@ a, button {
     margin-top: 0.5em;
 }
 
-.delComBtn { 
-    height: fit-content;
-    margin: 0.35em 0.5em 0 0.75em;
-    padding: 0.25em;
+.delComBtn {
+    margin: 0.25em 0.25em 0 0.5em;
+    width: 25px;
+    height: 28px;
 }
 
 .delComIcon {
+    font-size: 125%;
+}
+
+.vipLink {
+    height: fit-content;
+}
+
+.vipBtn {
+    margin-top: 0.25em;
+    width: 25px;
+    height: 28px;
+}
+
+.vipIcon {
     font-size: 125%;
 }
 

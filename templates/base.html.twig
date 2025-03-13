@@ -255,6 +255,20 @@
                         </div>
                     {% endfor %}
 
+                    {# > VIP comment success #}
+                    {% for message in app.flashes('vipSuccess') %}
+                        <div class="alert alert-success">
+                            {{message}}
+                        </div>
+                    {% endfor %}
+
+                    {# > VIP comment fail #}
+                    {% for message in app.flashes('vipFail') %}
+                        <div class="alert alert-danger">
+                            {{message}}
+                        </div>
+                    {% endfor %}
+
                 </div>
             </nav>
         {% block body %}{% endblock %}

@@ -117,16 +117,30 @@
         {# Display comment #}
         {% for comment in critic.comments|sort((a, b) => b.datePost <=> a.datePost) %}
             <div class="commentDisplay">
+
+                {# > User PP display #}
                 {% if comment.user.profilePicture %}
-                    <a href="{{ path('show_user', {'id': comment.user.id})}}" target="_blank"><img src="/uploads/photos/userPhotos/{{comment.user.profilePicture}}" alt="{{comment.user}}-profile-picture"></a>
+                    <a class="ppLink" href="{{ path('show_user', {'id': comment.user.id})}}" target="_blank"><img src="/uploads/photos/userPhotos/{{comment.user.profilePicture}}" alt="{{comment.user}}-profile-picture"></a>
                 {% else %}
-                    <a href="{{ path('show_user', {'id': comment.user.id})}}" target="_blank"><img src="/uploads/photos/userPhotos/user-default.png" alt="user-default-profile-picture"></a>
+                    <a class="ppLink" href="{{ path('show_user', {'id': comment.user.id})}}" target="_blank"><img src="/uploads/photos/userPhotos/user-default.png" alt="user-default-profile-picture"></a>
                 {% endif %}
+
                 <div class="mainComment">
-                    <a href="{{ path('show_user', {'id': comment.user.id})}}" target="_blank"><strong>{{comment.user}}</a> - </strong>
+                    <a class="ppLink" href="{{ path('show_user', {'id': comment.user.id})}}" target="_blank"><strong>{{comment.user}}</a> - </strong>
                     {{comment.datePostENG}}
                     <p>{{comment}}</p>
                 </div>
+
+                {# > VIP button #}
+                {% if app.user and "ROLE_MODO" in app.user.roles %}
+                    {% if comment.isVip == true %}
+                        <a class="vipLink" href="{{ path('comment_vip', {'critic': critic.id, 'comment': comment.id})}}"><button class="vipBtn" style="background: #1E1F25"><i class="fa-solid fa-medal vipIcon" style="color: #fe8d01"></i></button></a>
+                    {% else %}
+                        <a class="vipLink" href="{{ path('comment_vip', {'critic': critic.id, 'comment': comment.id})}}"><button class="vipBtn"><i class="fa-solid fa-medal vipIcon"></i></button></a>
+                    {% endif %}
+                {% endif %}
+
+                {# > Delete button #}
                 {% if (app.user and app.user.id == comment.user.id) or (app.user and "ROLE_MODO" in app.user.roles) %}
                     <button class="delComBtn deleteConfirm"><i class="fa-solid fa-trash delComIcon"></i></button>
                     <dialog class="openModal">

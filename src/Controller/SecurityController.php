@@ -277,6 +277,35 @@ class SecurityController extends AbstractController
         return $this->redirectToRoute('show_critics', ['id' => $critic->getPiece()->getId()]);
     }
 
+    #[Route('/critic/{critic}/comment/{comment}/vip', name: 'comment_vip')]
+    public function vipComment(AuthorizationCheckerInterface $authorizationChecker, Security $security, EntityManagerInterface $entityManager, Critic $critic = null, Comment $comment = null) {
+
+        $user = $security->getUser();
+
+        if (!$user && !$authorizationChecker->isGranted('ROLE_MODO')) {
+            $this->addFlash('vipFail', 'You must be logged and have the right access to VIP a comment !');
+            return $this->redirectToRoute('app_login');
+        }
+
+        $currentValue = $comment->isVip();
+
+        if ($currentValue === null) {
+            $comment->setIsVip(true);
+        } else {
+            $comment->setIsVip(!$currentValue);
+        }
+
+        $entityManager->flush();
+
+        if ($comment->isVip() === true) {
+            $this->addFlash('vipSuccess', 'Comment has been VIPed !');
+        } else {
+            $this->addFlash('vipSuccess', 'VIPed has been unset !');
+        }
+
+        return $this->redirectToRoute('show_critics', ['id' => $critic->getPiece()->getId()]);
+    }
+
     // > Edit User's infos
     #[Route('/user/edit', name: 'edit_user')]
     public function edit(

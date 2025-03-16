@@ -302,6 +302,26 @@ a, button {
 
 
 
+/* > Like/Dislike buttons */
+.likeBtn {
+    width: 75px;
+    height: 45px;
+    font-size: 150%;
+    border-radius: 50% 0 0 50%;
+    border: none;
+    border-right: solid 1px black;
+}
+
+.dislikeBtn {
+    width: 75px;
+    height: 45px;
+    font-size: 150%;
+    border-radius: 0 50% 50% 0;
+    border: none;
+    border-left: solid 1px black;
+}
+
+
 /* > > Accessibility trick for labels */
 .accessLabel {
     position: absolute;

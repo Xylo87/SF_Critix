@@ -7,6 +7,7 @@ use App\Entity\Piece;
 use App\Entity\Critic;
 use App\Entity\Comment;
 use App\Entity\Opinion;
+use App\Entity\Agreement;
 use App\Entity\Influencer;
 use App\Form\UserFormType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -216,9 +217,85 @@ class SecurityController extends AbstractController
         return $this->redirectToRoute('infos_piece', ['id' => $piece->getId()]);
     }
 
+    // User's critic like
+    #[Route('/critic/{id}/like', name: 'like_critic')]
+    public function likeCritic(Security $security, EntityManagerInterface $entityManager, Critic $critic = null, Agreement $agreement = null) {
+
+        $user = $security->getUser();
+
+        if (!$user) {
+            $this->addFlash('likCriticFail', 'You must be logged in to like a critic !');
+            return $this->redirectToRoute('app_login');
+        }
+
+        foreach ($user->getAgreements() as $existingAgreement) {
+            if ($existingAgreement->getCritic()->getId() === $critic->getId()) {
+                $agreement = $existingAgreement;
+            }
+        }
+
+        if ($agreement) {
+            if ($agreement->isOk() === true) {
+                $entityManager->remove($agreement);
+            } else {
+                $agreement->setIsOk(true);
+                $this->addFlash('likCriticSuccess', 'You liked '.$critic->getInfluencer().'\'s critic on "'.$critic->getPiece().'" !');
+            }
+        } else {
+            $agreement = new Agreement ();
+            $agreement->setIsOk(true);
+            $agreement->setCritic($critic);
+            $agreement->setUser($user);
+            $entityManager->persist($agreement);
+            $this->addFlash('likCriticSuccess', 'You liked '.$critic->getInfluencer().'\'s critic on "'.$critic->getPiece().'" !');
+        }
+
+        $entityManager->flush();
+
+        return $this->redirectToRoute('show_critics', ['id' => $critic->getPiece()->getId()]);
+    }
+
+    // User's critic dislike
+    #[Route('/critic/{id}/dislike', name: 'dislike_critic')]
+    public function dislikeCritic(Security $security, EntityManagerInterface $entityManager, Critic $critic = null, Agreement $agreement = null) {
+
+        $user = $security->getUser();
+
+        if (!$user) {
+            $this->addFlash('disCriticFail', 'You must be logged in to dislike a critic !');
+            return $this->redirectToRoute('app_login');
+        }
+
+        foreach ($user->getAgreements() as $existingAgreement) {
+            if ($existingAgreement->getCritic()->getId() === $critic->getId()) {
+                $agreement = $existingAgreement;
+            }
+        }
+
+        if ($agreement) {
+            if ($agreement->isOk() === false) {
+                $entityManager->remove($agreement);
+            } else {
+                $agreement->setIsOk(false);
+                $this->addFlash('disCriticSuccess', 'You disliked '.$critic->getInfluencer().'\'s critic on "'.$critic->getPiece().'" !');
+            }
+        } else {
+            $agreement = new Agreement ();
+            $agreement->setIsOk(false);
+            $agreement->setCritic($critic);
+            $agreement->setUser($user);
+            $entityManager->persist($agreement);
+            $this->addFlash('disCriticSuccess', 'You disliked '.$critic->getInfluencer().'\'s critic on "'.$critic->getPiece().'" !');
+        }
+
+        $entityManager->flush();
+
+        return $this->redirectToRoute('show_critics', ['id' => $critic->getPiece()->getId()]);
+    }
+
     // > User's comment add
     #[Route('/critic/{id}/comment', name: 'comment_critic')]
-    public function commentCritic(Security $security, EntityManagerInterface $entityManager, Critic $critic = null, Request $request)
+    public function commentCritic(Security $security, EntityManagerInterface $entityManager, Critic $critic, Request $request)
     {
         $user = $security->getUser();
 
@@ -277,13 +354,14 @@ class SecurityController extends AbstractController
         return $this->redirectToRoute('show_critics', ['id' => $critic->getPiece()->getId()]);
     }
 
+    // > VIP a comment
     #[Route('/critic/{critic}/comment/{comment}/vip', name: 'comment_vip')]
     public function vipComment(AuthorizationCheckerInterface $authorizationChecker, Security $security, EntityManagerInterface $entityManager, Critic $critic = null, Comment $comment = null) {
 
         $user = $security->getUser();
 
         if (!$user && !$authorizationChecker->isGranted('ROLE_MODO')) {
-            $this->addFlash('vipFail', 'You must be logged and have the right access to VIP a comment !');
+            $this->addFlash('vipFail', 'You must be logged in and have the right access to VIP a comment !');
             return $this->redirectToRoute('app_login');
         }
 

@@ -94,8 +94,27 @@
                 <button class="closeModal">No</button>
             </dialog>
 
+
+        
+        {# > Like/Dislike buttons #}
+        {% if critic.agreements is not empty %}
+            {% for agreement in critic.agreements %}
+                {% if app.user and app.user.id == agreement.user.id %}
+                    {% if agreement.isOk == true %}
+                        <a href="{{ path('like_critic', {'id': critic.id})}}"><button style="background: green; color: white" class="likeBtn"><i class="fa-solid fa-check"></i></button></a><a href="{{ path('dislike_critic', {'id': critic.id})}}"><button class="dislikeBtn"><i class="fa-solid fa-xmark"></i></button></a><br><br>
+                    {% else %}
+                        <a href="{{ path('like_critic', {'id': critic.id})}}"><button class="likeBtn"><i class="fa-solid fa-check"></i></button></a><a href="{{ path('dislike_critic', {'id': critic.id})}}"><button class="dislikeBtn" style="background: red; color: white"><i class="fa-solid fa-xmark"></i></button></a><br><br>
+                    {% endif %}
+                {% else %}
+                    <a href="{{ path('like_critic', {'id': critic.id})}}"><button class="likeBtn"><i class="fa-solid fa-check"></i></button></a><a href="{{ path('dislike_critic', {'id': critic.id})}}"><button class="dislikeBtn"><i class="fa-solid fa-xmark"></i></button></a><br><br>
+                {% endif %}   
+            {% endfor %}
+        {% else %}
+            <a href="{{ path('like_critic', {'id': critic.id})}}"><button class="likeBtn"><i class="fa-solid fa-check"></i></button></a><a href="{{ path('dislike_critic', {'id': critic.id})}}"><button class="dislikeBtn"><i class="fa-solid fa-xmark"></i></button></a><br><br>
+        {% endif %}
         
 
+        
         {# Adding comment #}
         <form method="post" action="{{ path('comment_critic', {'id': critic.id})}}">
             {% if app.user %}
@@ -160,4 +179,7 @@
             
 {% endblock %}           
 
+
             
+
+

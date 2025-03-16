@@ -269,6 +269,34 @@
                         </div>
                     {% endfor %}
 
+                    {# > Like critic success #}
+                    {% for message in app.flashes('likCriticSuccess') %}
+                        <div class="alert alert-success">
+                            {{message}}
+                        </div>
+                    {% endfor %}
+
+                    {# > Like critic fail #}
+                    {% for message in app.flashes('likCriticFail') %}
+                        <div class="alert alert-danger">
+                            {{message}}
+                        </div>
+                    {% endfor %}
+
+                    {# > Dislike critic success #}
+                    {% for message in app.flashes('disCriticSuccess') %}
+                        <div class="alert alert-success">
+                            {{message}}
+                        </div>
+                    {% endfor %}
+
+                    {# > Dislike critic fail #}
+                    {% for message in app.flashes('disCriticFail') %}
+                        <div class="alert alert-danger">
+                            {{message}}
+                        </div>
+                    {% endfor %}
+
                 </div>
             </nav>
         {% block body %}{% endblock %}

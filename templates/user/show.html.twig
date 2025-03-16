@@ -21,11 +21,11 @@
     <p><u>Member since</u> : {{user.creationDateEng}}</p><br>
 
     {% if "ROLE_MODO" in user.roles %}
-        <p><u>Role</u> : moderator</p><br>
+        <p><u>Role</u> : Moderator</p><br>
     {% endif %}
     
     {% if "ROLE_ADMIN" in user.roles %}
-        <p><u>Role</u> : administrator</p><br>
+        <p><u>Role</u> : Administrator</p><br>
     {% endif %}
 
     {% if user.opinions is not empty %}

@@ -30,11 +30,16 @@ CREATE TABLE IF NOT EXISTS `agreement` (
   KEY `IDX_2E655A24A76ED395` (`user_id`),
   CONSTRAINT `FK_2E655A24A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
   CONSTRAINT `FK_2E655A24C7BE2830` FOREIGN KEY (`critic_id`) REFERENCES `critic` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfcritix.agreement : ~1 rows (environ)
+-- Listage des données de la table sfcritix.agreement : ~6 rows (environ)
 INSERT INTO `agreement` (`id`, `is_ok`, `critic_id`, `user_id`) VALUES
-	(35, 1, 17, 36);
+	(51, 0, 16, 36),
+	(52, 1, 17, 36),
+	(53, 1, 17, 35),
+	(54, 0, 16, 35),
+	(55, 0, 17, 16),
+	(56, 1, 16, 16);
 
 -- Listage de la structure de table sfcritix. category
 CREATE TABLE IF NOT EXISTS `category` (
@@ -65,13 +70,14 @@ CREATE TABLE IF NOT EXISTS `comment` (
   KEY `IDX_9474526CA76ED395` (`user_id`),
   CONSTRAINT `FK_9474526CA76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
   CONSTRAINT `FK_9474526CC7BE2830` FOREIGN KEY (`critic_id`) REFERENCES `critic` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table sfcritix.comment : ~3 rows (environ)
 INSERT INTO `comment` (`id`, `text`, `date_post`, `is_vip`, `critic_id`, `user_id`) VALUES
 	(1, 'Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test', '2025-03-09 19:02:18', NULL, 16, 16),
 	(2, 'Je ne suis pas du tout d\'accord avec toi ExServ...', '2025-03-10 20:31:02', 0, 16, 35),
-	(3, 'Bande de caves...', '2025-03-10 20:39:02', 1, 16, 34);
+	(3, 'Bande de caves...', '2025-03-10 20:39:02', 1, 16, 34),
+	(21, 'Pardon ExServ...', '2025-03-16 23:54:24', 0, 16, 36);
 
 -- Listage de la structure de table sfcritix. critic
 CREATE TABLE IF NOT EXISTS `critic` (
@@ -119,7 +125,7 @@ CREATE TABLE IF NOT EXISTS `doctrine_migration_versions` (
   PRIMARY KEY (`version`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
--- Listage des données de la table sfcritix.doctrine_migration_versions : ~1 rows (environ)
+-- Listage des données de la table sfcritix.doctrine_migration_versions : ~0 rows (environ)
 INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
 	('DoctrineMigrations\\Version20250218150339', '2025-02-18 16:03:49', 274);
 
@@ -164,7 +170,7 @@ CREATE TABLE IF NOT EXISTS `influencer_user` (
   CONSTRAINT `FK_DC19FDE4A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfcritix.influencer_user : ~6 rows (environ)
+-- Listage des données de la table sfcritix.influencer_user : ~5 rows (environ)
 INSERT INTO `influencer_user` (`influencer_id`, `user_id`) VALUES
 	(2, 16),
 	(2, 34),

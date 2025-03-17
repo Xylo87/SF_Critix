@@ -17,6 +17,7 @@
         <a href="{{ path('save_critics', {'id': piece.id})}}"><button>Come back later</button></a>
     {% endif %}
 
+    {# > Avoid division by zero error #}
     {% if piece.critics|length > 0 %}
         <p><u>Critic Score</u> : {{piece.criticTotalScore}}/10</p>
     {% endif %}
@@ -97,23 +98,52 @@
 
         
         {# > Like/Dislike buttons #}
-        {% if critic.agreements is not empty %}
+        {% if app.user %}
+            {% set hasVoted = false %}
+
             {% for agreement in critic.agreements %}
-                {% if app.user and app.user.id == agreement.user.id %}
+                {% if app.user.id == agreement.user.id %}
+                    {% set hasVoted = true %}
+
                     {% if agreement.isOk == true %}
                         <a href="{{ path('like_critic', {'id': critic.id})}}"><button style="background: green; color: white" class="likeBtn"><i class="fa-solid fa-check"></i></button></a><a href="{{ path('dislike_critic', {'id': critic.id})}}"><button class="dislikeBtn"><i class="fa-solid fa-xmark"></i></button></a><br><br>
                     {% else %}
                         <a href="{{ path('like_critic', {'id': critic.id})}}"><button class="likeBtn"><i class="fa-solid fa-check"></i></button></a><a href="{{ path('dislike_critic', {'id': critic.id})}}"><button class="dislikeBtn" style="background: red; color: white"><i class="fa-solid fa-xmark"></i></button></a><br><br>
                     {% endif %}
-                {% else %}
-                    <a href="{{ path('like_critic', {'id': critic.id})}}"><button class="likeBtn"><i class="fa-solid fa-check"></i></button></a><a href="{{ path('dislike_critic', {'id': critic.id})}}"><button class="dislikeBtn"><i class="fa-solid fa-xmark"></i></button></a><br><br>
+
                 {% endif %}   
             {% endfor %}
+
+            {% if not hasVoted %}
+                <a href="{{ path('like_critic', {'id': critic.id})}}"><button class="likeBtn"><i class="fa-solid fa-check"></i></button></a><a href="{{ path('dislike_critic', {'id': critic.id})}}"><button class="dislikeBtn"><i class="fa-solid fa-xmark"></i></button></a><br><br>
+            {% endif %}
+
         {% else %}
             <a href="{{ path('like_critic', {'id': critic.id})}}"><button class="likeBtn"><i class="fa-solid fa-check"></i></button></a><a href="{{ path('dislike_critic', {'id': critic.id})}}"><button class="dislikeBtn"><i class="fa-solid fa-xmark"></i></button></a><br><br>
         {% endif %}
-        
 
+
+
+        {# > Like/Dislike bar #}
+
+        {# > Avoid division by zero error #}
+        {% if critic.agreements|length > 0 %}
+            <div class="likdisBarContainer">
+                <small>Agree</small>
+                <div class="dislikeBar">
+                    <div class="likeBar" style="width: {{critic.totalAgreements}}%"></div>
+                </div>
+                <small>Disagree</small>
+            </div><br>
+        {% else %}
+            <div class="likdisBarContainer">
+                <small>Agree</small>
+                    <div class="emptyBar"></div>
+                <small>Disagree</small>
+            </div><br>
+        {% endif %}
+
+        
         
         {# Adding comment #}
         <form method="post" action="{{ path('comment_critic', {'id': critic.id})}}">
@@ -178,6 +208,7 @@
 </div>
             
 {% endblock %}           
+
 
 
             

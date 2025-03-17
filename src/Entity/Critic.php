@@ -243,6 +243,16 @@ class Critic
         return $this;
     }
 
+    public function getTotalAgreements(): ?float{
+        
+        $totalAgreements = 0;
+
+        foreach ($this->agreements as $agreement) {
+            $totalAgreements += $agreement->isOk();
+        }
+        return ($totalAgreements / count($this->agreements))*100;
+    }
+
     /**
      * @return Collection<int, Comment>
      */

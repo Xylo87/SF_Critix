@@ -322,8 +322,46 @@ a, button {
 }
 
 
+
+/* > Like/Dislike bars */
+.likdisBarContainer {
+    width: 560px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.likdisBarContainer small:first-child {
+    margin-right: 15px;
+}
+
+.likdisBarContainer small:last-child {
+    margin-left: 15px;
+}
+
+.dislikeBar {
+    width: 350px;
+    height: 5px;
+    background: #CF2020;
+}
+
+.likeBar {
+    height: 5px;
+    background: green;
+}
+
+.emptyBar {
+    width: 350px;
+    height: 5px;
+    background: #F2F2F2;
+}
+
+
+
 /* > > Accessibility trick for labels */
 .accessLabel {
     position: absolute;
     visibility: hidden;
 }
+
+

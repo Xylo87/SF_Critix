@@ -250,6 +250,7 @@ a, button {
     background: #F2F2F2;
     color: #1E1F25;
     display: flex;
+    position: relative;
     /* gap: 15px; */
 }
 
@@ -269,12 +270,26 @@ a, button {
 
 .mainComment {
     width: 80%;
-    margin: 0.75em 0;
+    margin: 0.75em 0 0.9em 0;
+    overflow: hidden;
 }
 
 .mainComment p {
     margin-top: 0.5em;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    line-clamp: 3;
 }
+
+.commentDisplay.expanded {
+    height: auto;
+}
+
+.commentDisplay.expanded p {
+    -webkit-line-clamp: initial;
+    line-clamp: initial;
+  }
 
 .delComBtn {
     margin: 0.25em 0.25em 0 0.5em;
@@ -300,7 +315,19 @@ a, button {
     font-size: 125%;
 }
 
+.moreBtn {
+    width: 25px;
+    height: 28px;
+    position: absolute;
+    bottom: 1.1em;
+    right: 10px;
+    border: none;
+    background: #F2F2F2;
+}
 
+.moreIcon {
+    font-size: 150%;
+}
 
 /* > Like/Dislike buttons */
 .likeBtn {

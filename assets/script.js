@@ -86,3 +86,23 @@ addComment.forEach((addCo) => {
     adjustHeight(addCo)
 });
 
+
+// > Display more comment content
+const comments = document.querySelectorAll(".commentDisplay")
+
+comments.forEach(comment => {
+    const paragraph = comment.querySelector("p")
+    const expandBtn = comment.querySelector(".moreBtn")
+
+    if (paragraph.scrollHeight <= paragraph.clientHeight) {
+        expandBtn.style.display = "none"
+    }
+
+    expandBtn.addEventListener("click", function () {
+        if (comment.classList.contains("expanded")) {
+            comment.classList.remove("expanded")
+        } else {
+            comment.classList.add("expanded")
+        }
+    })
+})

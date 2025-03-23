@@ -309,8 +309,9 @@ class SecurityController extends AbstractController
 
             // > Filter without escaping spec chars
             $addComment = strip_tags($addComment);
+            var_dump($addComment);
 
-            if (!empty($addComment) && trim($addComment) != '') {
+            if (!empty($addComment) && trim($addComment) != '' && strlen($addComment) <= 3500 ) {
 
                 $comment = new Comment();
 
@@ -325,7 +326,7 @@ class SecurityController extends AbstractController
                 return $this->redirectToRoute('show_critics', ['id' => $critic->getPiece()->getId()]);
                     
             } else {
-                $this->addFlash('coCriticFail', 'Comment cannot be empty !');
+                $this->addFlash('coCriticFail', 'Comment empty or too long !');
                 return $this->redirectToRoute('show_critics', ['id' => $critic->getPiece()->getId()]);
             }
         }

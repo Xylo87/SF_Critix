@@ -319,10 +319,16 @@ a, button {
     width: 25px;
     height: 28px;
     position: absolute;
-    bottom: 1.1em;
-    right: 10px;
+    bottom: 0.5em;
+    right: 7.5px;
     border: none;
+    border-radius: 2.5px;
     background: #F2F2F2;
+    transition: background 0.1s ease-in;
+}
+
+.moreBtn:hover {
+    background: #aaaaaa;
 }
 
 .moreIcon {

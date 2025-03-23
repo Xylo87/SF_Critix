@@ -150,7 +150,7 @@
             {% if app.user %}
                 <div class="addCommentField">
                     <label class="accessLabel" for="addComment">Add comment</label>
-                    <textarea class="addComment" name="addComment" id="addComment" placeholder="Add comment ➕" required></textarea>
+                    <textarea class="addComment" name="addComment" id="addComment" maxlength="3500" placeholder="➕ Add comment (max. 3500 characters)" required></textarea>
                     {# <i class="fa-solid fa-square-plus commentPlus"></i> #}
                     <input type="submit" name="submit" class="add-comment-submit" value="Post !">
                 </div>

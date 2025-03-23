@@ -93,6 +93,7 @@ const comments = document.querySelectorAll(".commentDisplay")
 comments.forEach(comment => {
     const paragraph = comment.querySelector("p")
     const expandBtn = comment.querySelector(".moreBtn")
+    const expandIcon = comment.querySelector(".moreIcon")
 
     if (paragraph.scrollHeight <= paragraph.clientHeight) {
         expandBtn.style.display = "none"
@@ -101,8 +102,10 @@ comments.forEach(comment => {
     expandBtn.addEventListener("click", function () {
         if (comment.classList.contains("expanded")) {
             comment.classList.remove("expanded")
+            expandIcon.classList.replace("fa-minus", "fa-plus")
         } else {
             comment.classList.add("expanded")
+            expandIcon.classList.replace("fa-plus", "fa-minus")
         }
     })
 })

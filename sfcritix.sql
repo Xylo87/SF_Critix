@@ -30,13 +30,13 @@ CREATE TABLE IF NOT EXISTS `agreement` (
   KEY `IDX_2E655A24A76ED395` (`user_id`),
   CONSTRAINT `FK_2E655A24A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
   CONSTRAINT `FK_2E655A24C7BE2830` FOREIGN KEY (`critic_id`) REFERENCES `critic` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table sfcritix.agreement : ~6 rows (environ)
 INSERT INTO `agreement` (`id`, `is_ok`, `critic_id`, `user_id`) VALUES
 	(51, 0, 16, 36),
 	(52, 1, 17, 36),
-	(53, 1, 17, 35),
+	(53, 0, 17, 35),
 	(54, 0, 16, 35),
 	(55, 0, 17, 16),
 	(56, 1, 16, 16);
@@ -70,14 +70,15 @@ CREATE TABLE IF NOT EXISTS `comment` (
   KEY `IDX_9474526CA76ED395` (`user_id`),
   CONSTRAINT `FK_9474526CA76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
   CONSTRAINT `FK_9474526CC7BE2830` FOREIGN KEY (`critic_id`) REFERENCES `critic` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfcritix.comment : ~3 rows (environ)
+-- Listage des données de la table sfcritix.comment : ~5 rows (environ)
 INSERT INTO `comment` (`id`, `text`, `date_post`, `is_vip`, `critic_id`, `user_id`) VALUES
 	(1, 'Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test', '2025-03-09 19:02:18', NULL, 16, 16),
 	(2, 'Je ne suis pas du tout d\'accord avec toi ExServ...', '2025-03-10 20:31:02', 0, 16, 35),
 	(3, 'Bande de caves...', '2025-03-10 20:39:02', 1, 16, 34),
-	(21, 'Pardon ExServ...', '2025-03-16 23:54:24', 0, 16, 36);
+	(21, 'Pardon ExServ...', '2025-03-16 23:54:24', 0, 16, 36),
+	(22, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '2025-03-20 18:27:27', 0, 17, 36);
 
 -- Listage de la structure de table sfcritix. critic
 CREATE TABLE IF NOT EXISTS `critic` (
@@ -99,10 +100,10 @@ CREATE TABLE IF NOT EXISTS `critic` (
 
 -- Listage des données de la table sfcritix.critic : ~4 rows (environ)
 INSERT INTO `critic` (`id`, `media`, `summary`, `critic_score`, `length_min`, `date_post`, `origin_date_post`, `piece_id`, `influencer_id`) VALUES
-	(16, 'https://www.youtube.com/embed/93o3a6MWgxA?si=pdujXUWJCD-0ejbl', '"I particularly enjoyed this first \r\ncontact with Dune: Awakening"', 4, 19, '2025-02-19 21:09:58', '2025-01-30 00:00:00', 1, 2),
-	(17, 'https://www.youtube.com/embed/QJjEP0Nnsa0?si=x5IeomulzXxysW_N', '"I let myself be carried away by the atmosphere and the general intention."', 3, 15, '2025-02-20 14:29:52', '2025-01-30 00:00:00', 1, 12),
-	(30, 'https://www.youtube.com/embed/EoeytqKY1-k?si=fLCB3qU0qhzV9ipk', '"Wow, that\'s a dense film!"', 3, 11, '2025-02-20 18:39:55', '2025-02-10 00:00:00', 19, 17),
-	(39, 'https://www.youtube.com/embed/gHQE7tULx6c?si=9IoukxOyNtJ77JZF', '"I loved this project, and i thought it was a great experience"', 4, 27, '2025-03-02 12:54:47', '2022-05-17 00:00:00', 62, 41);
+	(16, '93o3a6MWgxA', '"I particularly enjoyed this first \r\ncontact with Dune: Awakening"', 4, 19, '2025-02-19 21:09:58', '2025-01-30 00:00:00', 1, 2),
+	(17, 'QJjEP0Nnsa0', '"I let myself be carried away by the atmosphere and the general intention."', 3, 15, '2025-02-20 14:29:52', '2025-01-30 00:00:00', 1, 12),
+	(30, 'EoeytqKY1-k', '"Wow, that\'s a dense film!"', 3, 11, '2025-02-20 18:39:55', '2025-02-10 00:00:00', 19, 17),
+	(39, 'gHQE7tULx6c', '"I loved this project, and i thought it was a great experience"', 4, 27, '2025-03-02 12:54:47', '2022-05-17 00:00:00', 62, 41);
 
 -- Listage de la structure de table sfcritix. critic_user
 CREATE TABLE IF NOT EXISTS `critic_user` (
@@ -207,14 +208,15 @@ CREATE TABLE IF NOT EXISTS `opinion` (
   KEY `IDX_AB02B027A76ED395` (`user_id`),
   CONSTRAINT `FK_AB02B027A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
   CONSTRAINT `FK_AB02B027C40FCFA8` FOREIGN KEY (`piece_id`) REFERENCES `piece` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table sfcritix.opinion : ~4 rows (environ)
 INSERT INTO `opinion` (`id`, `user_score`, `piece_id`, `user_id`) VALUES
 	(47, 4, 19, 16),
 	(48, 3, 19, 35),
 	(51, 5, 1, 34),
-	(53, 4, 1, 36);
+	(53, 4, 1, 36),
+	(54, 4, 1, 35);
 
 -- Listage de la structure de table sfcritix. piece
 CREATE TABLE IF NOT EXISTS `piece` (
@@ -282,7 +284,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   UNIQUE KEY `UNIQ_8D93D649A045A5E9` (`nick_name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfcritix.user : ~4 rows (environ)
+-- Listage des données de la table sfcritix.user : ~3 rows (environ)
 INSERT INTO `user` (`id`, `email`, `roles`, `password`, `nick_name`, `profile_picture`, `status`, `bio`, `account_date`, `is_verified`) VALUES
 	(16, 'test@exemple.com', '[]', '$2y$13$3JP6RlXMQmt5AxpcVxfHlesXj0Fq30ev.cd2rO/jDUBbBatZEaI0G', 'Test', '', 'Test2', 'Test3', '2025-02-26 08:50:05', 0),
 	(34, 'titi@exemple.com', '[]', '$2y$13$gfEN2hZtNCH3N7NxxHsktebrha3JhyW/3V7AAJsrU55KWctPxw14W', 'Toto', 'Sosie-67c085e9c7ef4.png', 'Barbecue + Partie de football', 'Sosie officiel de Robert de Niro dans Heat', '2025-02-27 14:15:15', 0),

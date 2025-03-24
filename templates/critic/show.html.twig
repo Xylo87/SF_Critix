@@ -43,12 +43,26 @@
     <hr style="width: 66%"><br>
 
     {% for critic in piece.critics|sort((a, b) => b.datePost <=> a.datePost) %}
-        <iframe width="560" height="315" src="{{critic.media}}" 
+        {# <iframe width="560" height="315" src="{{critic.media}}" 
         title="YouTube video player" 
         frameborder="0" 
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
         referrerpolicy="strict-origin-when-cross-origin" 
-        allowfullscreen></iframe>
+        allowfullscreen></iframe> #}
+        <div class="youtube_player" 
+        videoID="{{critic.media}}" 
+        width="560" 
+        height="315" 
+        theme="theme (dark | light)" 
+        rel="rel (1 | 0)" 
+        controls="controls (1 | 0)" 
+        showinfo="showinfo (1 | 0)" 
+        autoplay="autoplay (0 | 1)" 
+        mute="mute (0 | 1)" 
+        loop="loop (0 | 1)" 
+        loading="loading (0 | 1)" 
+        data-start="start" 
+        data-end="end"></div>
         <h3>By: <a href="{{ path('show_influencer', {'id': critic.influencer.id})}}" target="_blank">{{critic.influencer}}</a></h3>
         <a href="{{ path('show_influencer', {'id': critic.influencer.id})}}" target="_blank">
             <img src="/uploads/photos/influPhotos/{{critic.influencer.photo}}" alt="{{critic.influencer}}" style="width: 265px; height: 360px; object-fit: cover">

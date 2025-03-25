@@ -284,7 +284,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   UNIQUE KEY `UNIQ_8D93D649A045A5E9` (`nick_name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfcritix.user : ~3 rows (environ)
+-- Listage des données de la table sfcritix.user : ~4 rows (environ)
 INSERT INTO `user` (`id`, `email`, `roles`, `password`, `nick_name`, `profile_picture`, `status`, `bio`, `account_date`, `is_verified`) VALUES
 	(16, 'test@exemple.com', '[]', '$2y$13$3JP6RlXMQmt5AxpcVxfHlesXj0Fq30ev.cd2rO/jDUBbBatZEaI0G', 'Test', '', 'Test2', 'Test3', '2025-02-26 08:50:05', 0),
 	(34, 'titi@exemple.com', '[]', '$2y$13$gfEN2hZtNCH3N7NxxHsktebrha3JhyW/3V7AAJsrU55KWctPxw14W', 'Toto', 'Sosie-67c085e9c7ef4.png', 'Barbecue + Partie de football', 'Sosie officiel de Robert de Niro dans Heat', '2025-02-27 14:15:15', 0),

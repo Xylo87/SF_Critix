@@ -15,6 +15,7 @@ use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
@@ -64,23 +65,51 @@ class SecurityController extends AbstractController
      }
 
     // > Save a critics page
-    #[Route('/critics/{id}/save', name: 'save_critics')]
-    public function saveCritics(Security $security, EntityManagerInterface $entityManager, Piece $piece = null)
+    // #[Route('/critics/{id}/save', name: 'save_critics')]
+    // public function saveCritics(Security $security, EntityManagerInterface $entityManager, Piece $piece = null)
+    // {
+    //     $user = $security->getUser();
+
+    //     if (!$user) {
+    //         $this->addFlash('crSaveFail', 'You must be logged in to save a critics page !');
+    //         return $this->redirectToRoute('app_login');
+    //     }
+
+    //     $user->addPiece($piece);
+    
+    //     $entityManager->persist($user);
+    //     $entityManager->flush();
+    
+    //     $this->addFlash('crSaveSuccess', 'Critics on "'.$piece.'" saved on your dashboard !');
+    //     return $this->redirectToRoute('show_critics', ['id' => $piece->getId()]);
+    // }
+
+    // > Save a critics page (AJAX ver.)
+    #[Route('/critics/{id}/save', name: 'save_critics', methods: ['POST'])]
+    public function saveCritics(Security $security, EntityManagerInterface $entityManager, Piece $piece = null, Request $request)
     {
         $user = $security->getUser();
 
         if (!$user) {
-            $this->addFlash('crSaveFail', 'You must be logged in to save a critics page !');
-            return $this->redirectToRoute('app_login');
+            return new JsonReponse([
+                'success' => false,
+                'message' => 'You must be logged in to save a critics page !'
+            ], 401);
+            // $this->addFlash('crSaveFail', 'You must be logged in to save a critics page !');
+            // return $this->redirectToRoute('app_login');
         }
 
         $user->addPiece($piece);
     
         $entityManager->persist($user);
         $entityManager->flush();
-    
-        $this->addFlash('crSaveSuccess', 'Critics on "'.$piece.'" saved on your dashboard !');
-        return $this->redirectToRoute('show_critics', ['id' => $piece->getId()]);
+        
+        // $this->addFlash('crSaveSuccess', 'Critics on "'.$piece.'" saved on your dashboard !');
+        return new JsonResponse([
+            'success' => true,
+            'message' => 'Critics on "'.$piece.'" saved on your dashboard !',
+            'isSaved' => true,
+        ]);
     }
 
     // > Unsave a critics page

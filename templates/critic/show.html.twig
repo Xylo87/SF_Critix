@@ -11,10 +11,21 @@
 
     <img src="/uploads/images/{{piece.poster}}" alt="{{piece}}" style="width: 265px; height: 360px; object-fit: cover">
 
-    {% if app.user in piece.users %}
+    {# {% if app.user in piece.users %}
         <a href="{{ path('unsave_critics', {'id': piece.id, 'origin': 'criticsPage'}) }}"><button>Unsave page</button></a>
     {% else %}
         <a href="{{ path('save_critics', {'id': piece.id})}}"><button>Come back later</button></a>
+    {% endif %} #}
+
+    {# > Save/Unsave critics button (AJAX ver.) #}
+    {% if app.user in piece.users %}
+        <button class="save-critics-btn"
+                data-piece-id="{{ piece.id }}"
+                data-action="unsave">Unsave page</button>
+    {% else %}
+        <button class="save-critics-btn"
+                data-piece-id="{{ piece.id }}"
+                data-action="save">Come back later</button>
     {% endif %}
 
     {# > Avoid division by zero error #}

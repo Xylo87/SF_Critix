@@ -109,3 +109,38 @@ comments.forEach(comment => {
         }
     })
 })
+
+
+
+// > AJAX for Critics Save button
+const saveButtons = document.querySelectorAll('.save-critics-btn')
+
+saveButtons.forEach(button => {
+    button.addEventListener('click', async() => {
+
+        const pieceId = button.dataset.pieceId
+        const action = button.dataset.action
+
+        const response = await fetch(`/critics/${pieceId}/save`, {
+            method: 'POST',
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                'Content-Type': 'application/json'
+            }
+        })
+
+        const data = await response.json()
+
+        if (data.success) {
+            if (action === 'save') {
+                button.textContent = 'Unsave page'
+                button.dataset.action = 'unsave'
+            } else {
+                button.textContent = 'Come back later'
+                button.dataset.action = 'save'
+            }
+        } else {
+            alert(data.message)
+        }
+    })
+});

@@ -112,6 +112,11 @@ comments.forEach(comment => {
 
 
 
+// > AJAX flash messages setup
+const flashMessageContainer = document.getElementById('flashMessages')
+const flashMessage = document.createElement('strong')
+
+
 // > AJAX for Critics Save button
 const saveButtons = document.querySelectorAll('.save-critics-btn')
 
@@ -121,26 +126,44 @@ saveButtons.forEach(button => {
         const pieceId = button.dataset.pieceId
         const action = button.dataset.action
 
-        const response = await fetch(`/critics/${pieceId}/save`, {
-            method: 'POST',
-            headers: {
-                'X-Requested-With': 'XMLHttpRequest',
-                'Content-Type': 'application/json'
-            }
-        })
+        try {
+            const response = await fetch(`/critics/${pieceId}/${action}`, {
+                method: 'POST',
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'Content-Type': 'application/json'
+                }
+            })
+        
+            const data = await response.json()
 
-        const data = await response.json()
-
-        if (data.success) {
-            if (action === 'save') {
-                button.textContent = 'Unsave page'
-                button.dataset.action = 'unsave'
+            if (data.success) {
+                if (action === 'save') {
+                    button.textContent = 'Unsave page'
+                    button.dataset.action = 'unsave'
+                    flashMessage.textContent = data.message
+                } else {
+                    button.textContent = 'Come back later'
+                    button.dataset.action = 'save'
+                    flashMessage.textContent = data.message
+                }
             } else {
-                button.textContent = 'Come back later'
-                button.dataset.action = 'save'
+                flashMessage.textContent = data.message
             }
-        } else {
-            alert(data.message)
+    
+            flashMessageContainer.appendChild(flashMessage)
+            setTimeout(() => {
+                flashMessage.remove();
+            }, 5000);
+
+        } catch (error) {
+            console.error('Error', error)
+            alert('Internal server error has occured')
         }
     })
 });
+    
+
+
+
+

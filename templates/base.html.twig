@@ -218,18 +218,18 @@
                     {% endfor %}
 
                     {# > Critic save success #}
-                    {% for message in app.flashes('crSaveSuccess') %}
+                    {# {% for message in app.flashes('crSaveSuccess') %}
                         <div class="alert alert-success">
                             {{message}}
                         </div>
-                    {% endfor %}
+                    {% endfor %} #}
 
                     {# > Critic save fail #}
-                    {% for message in app.flashes('crSaveFail') %}
+                    {# {% for message in app.flashes('crSaveFail') %}
                         <div class="alert alert-danger">
                             {{message}}
                         </div>
-                    {% endfor %}
+                    {% endfor %} #}
 
                     {# > Critic unsave success #}
                     {% for message in app.flashes('crUnSaveSuccess') %}

@@ -91,12 +91,10 @@ class SecurityController extends AbstractController
         $user = $security->getUser();
 
         if (!$user) {
-            return new JsonReponse([
+            return new JsonResponse([
                 'success' => false,
                 'message' => 'You must be logged in to save a critics page !'
             ], 401);
-            // $this->addFlash('crSaveFail', 'You must be logged in to save a critics page !');
-            // return $this->redirectToRoute('app_login');
         }
 
         $user->addPiece($piece);
@@ -104,40 +102,65 @@ class SecurityController extends AbstractController
         $entityManager->persist($user);
         $entityManager->flush();
         
-        // $this->addFlash('crSaveSuccess', 'Critics on "'.$piece.'" saved on your dashboard !');
         return new JsonResponse([
             'success' => true,
             'message' => 'Critics on "'.$piece.'" saved on your dashboard !',
-            'isSaved' => true,
+            // 'isSaved' => true,
         ]);
     }
 
     // > Unsave a critics page
-    #[Route('/critics/{id}/unsave', name: 'unsave_critics')]
+    // #[Route('/critics/{id}/unsave', name: 'unsave_critics')]
+    // public function unsaveCritics(Security $security, EntityManagerInterface $entityManager, Piece $piece = null, Request $request)
+    // {
+    //     $user = $security->getUser();
+
+    //     if (!$user) {
+    //         $this->addFlash('crUnSaveFail', 'You must be logged in to unsave a critics page !');
+    //         return $this->redirectToRoute('app_login');
+    //     }
+
+    //     $user->removePiece($piece);
+    
+    //     $entityManager->persist($user);
+    //     $entityManager->flush();
+    
+    //     $this->addFlash('crUnSaveSuccess', 'Critics on "'.$piece.'" unsaved ! ');
+
+    //     // > Custom routing from origin page
+    //     $origin = $request->query->get('origin');
+
+    //     if ($origin === 'criticsPage' ) {
+    //         return $this->redirectToRoute('show_critics', ['id' => $piece->getId()]);
+    //     } else {
+    //         return $this->redirectToRoute('dashboard_user');
+    //     }
+    // }
+
+    // > Unsave a critics page (AJAX ver.)
+    #[Route('/critics/{id}/unsave', name: 'unsave_critics', methods: ['POST'])]
     public function unsaveCritics(Security $security, EntityManagerInterface $entityManager, Piece $piece = null, Request $request)
     {
         $user = $security->getUser();
 
         if (!$user) {
-            $this->addFlash('crUnSaveFail', 'You must be logged in to unsave a critics page !');
-            return $this->redirectToRoute('app_login');
+            return new JsonResponse([
+                'success' => false,
+                'message' => 'You must be logged in to unsave a critics page !'
+            ], 401);
         }
 
         $user->removePiece($piece);
     
         $entityManager->persist($user);
         $entityManager->flush();
-    
-        $this->addFlash('crUnSaveSuccess', 'Critics on "'.$piece.'" unsaved ! ');
-
-        // > Custom routing from origin page
-        $origin = $request->query->get('origin');
-
-        if ($origin === 'criticsPage' ) {
-            return $this->redirectToRoute('show_critics', ['id' => $piece->getId()]);
-        } else {
-            return $this->redirectToRoute('dashboard_user');
-        }
+        
+        return new JsonResponse([
+            'success' => true,
+            'message' => 'Critics on "'.$piece.'" unsaved !',
+            // 'isSaved' => false,
+            // 'isUnSaved => true'
+        ]);
     }
 
     // > Like an influencer

@@ -162,6 +162,52 @@ saveButtons.forEach(button => {
         }
     })
 });
+
+// > AJAX for Influencer Like button
+const likeButtons = document.querySelectorAll('.like-influencer-btn')
+
+likeButtons.forEach(button => {
+    button.addEventListener('click', async() => {
+
+        const influencerId = button.dataset.influencerId
+        const action = button.dataset.action
+
+        try {
+            const response = await fetch(`/influencer/${influencerId}/${action}`, {
+                method: 'POST',
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'Content-Type': 'application/json'
+                }
+            })
+        
+            const data = await response.json()
+
+            if (data.success) {
+                if (action === 'like') {
+                    button.textContent = 'Unlike'
+                    button.dataset.action = 'unlike'
+                    flashMessage.textContent = data.message
+                } else {
+                    button.textContent = 'Like'
+                    button.dataset.action = 'like'
+                    flashMessage.textContent = data.message
+                }
+            } else {
+                flashMessage.textContent = data.message
+            }
+    
+            flashMessageContainer.appendChild(flashMessage)
+            setTimeout(() => {
+                flashMessage.remove();
+            }, 5000);
+
+        } catch (error) {
+            console.error('Error', error)
+            alert('Internal server error has occured')
+        }
+    })
+});
     
 
 

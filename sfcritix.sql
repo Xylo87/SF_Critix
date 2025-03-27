@@ -30,16 +30,18 @@ CREATE TABLE IF NOT EXISTS `agreement` (
   KEY `IDX_2E655A24A76ED395` (`user_id`),
   CONSTRAINT `FK_2E655A24A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
   CONSTRAINT `FK_2E655A24C7BE2830` FOREIGN KEY (`critic_id`) REFERENCES `critic` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfcritix.agreement : ~6 rows (environ)
+-- Listage des données de la table sfcritix.agreement : ~8 rows (environ)
 INSERT INTO `agreement` (`id`, `is_ok`, `critic_id`, `user_id`) VALUES
-	(51, 0, 16, 36),
-	(52, 1, 17, 36),
-	(53, 0, 17, 35),
-	(54, 0, 16, 35),
+	(51, 1, 16, 36),
+	(52, 0, 17, 36),
+	(53, 1, 17, 35),
+	(54, 1, 16, 35),
 	(55, 0, 17, 16),
-	(56, 1, 16, 16);
+	(56, 1, 16, 16),
+	(58, 0, 30, 36),
+	(59, 1, 30, 35);
 
 -- Listage de la structure de table sfcritix. category
 CREATE TABLE IF NOT EXISTS `category` (
@@ -70,15 +72,17 @@ CREATE TABLE IF NOT EXISTS `comment` (
   KEY `IDX_9474526CA76ED395` (`user_id`),
   CONSTRAINT `FK_9474526CA76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
   CONSTRAINT `FK_9474526CC7BE2830` FOREIGN KEY (`critic_id`) REFERENCES `critic` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfcritix.comment : ~5 rows (environ)
+-- Listage des données de la table sfcritix.comment : ~7 rows (environ)
 INSERT INTO `comment` (`id`, `text`, `date_post`, `is_vip`, `critic_id`, `user_id`) VALUES
 	(1, 'Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test', '2025-03-09 19:02:18', NULL, 16, 16),
 	(2, 'Je ne suis pas du tout d\'accord avec toi ExServ...', '2025-03-10 20:31:02', 0, 16, 35),
 	(3, 'Bande de caves...', '2025-03-10 20:39:02', 1, 16, 34),
 	(21, 'Pardon ExServ...', '2025-03-16 23:54:24', 0, 16, 36),
-	(22, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '2025-03-20 18:27:27', 0, 17, 36);
+	(22, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '2025-03-20 18:27:27', 0, 17, 36),
+	(26, 'Yep', '2025-03-27 17:55:07', NULL, 17, 36),
+	(27, 'Nope', '2025-03-27 18:00:23', NULL, 17, 35);
 
 -- Listage de la structure de table sfcritix. critic
 CREATE TABLE IF NOT EXISTS `critic` (
@@ -171,14 +175,14 @@ CREATE TABLE IF NOT EXISTS `influencer_user` (
   CONSTRAINT `FK_DC19FDE4A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfcritix.influencer_user : ~5 rows (environ)
+-- Listage des données de la table sfcritix.influencer_user : ~6 rows (environ)
 INSERT INTO `influencer_user` (`influencer_id`, `user_id`) VALUES
 	(2, 16),
 	(2, 34),
-	(2, 35),
 	(12, 16),
 	(12, 34),
-	(12, 36);
+	(12, 36),
+	(17, 35);
 
 -- Listage de la structure de table sfcritix. messenger_messages
 CREATE TABLE IF NOT EXISTS `messenger_messages` (
@@ -208,15 +212,15 @@ CREATE TABLE IF NOT EXISTS `opinion` (
   KEY `IDX_AB02B027A76ED395` (`user_id`),
   CONSTRAINT `FK_AB02B027A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
   CONSTRAINT `FK_AB02B027C40FCFA8` FOREIGN KEY (`piece_id`) REFERENCES `piece` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfcritix.opinion : ~4 rows (environ)
+-- Listage des données de la table sfcritix.opinion : ~5 rows (environ)
 INSERT INTO `opinion` (`id`, `user_score`, `piece_id`, `user_id`) VALUES
 	(47, 4, 19, 16),
-	(48, 3, 19, 35),
 	(51, 5, 1, 34),
-	(53, 4, 1, 36),
-	(54, 4, 1, 35);
+	(58, 2, 1, 35),
+	(59, 3, 19, 35),
+	(60, 3, 1, 36);
 
 -- Listage de la structure de table sfcritix. piece
 CREATE TABLE IF NOT EXISTS `piece` (
@@ -289,7 +293,7 @@ INSERT INTO `user` (`id`, `email`, `roles`, `password`, `nick_name`, `profile_pi
 	(16, 'test@exemple.com', '[]', '$2y$13$3JP6RlXMQmt5AxpcVxfHlesXj0Fq30ev.cd2rO/jDUBbBatZEaI0G', 'Test', '', 'Test2', 'Test3', '2025-02-26 08:50:05', 0),
 	(34, 'titi@exemple.com', '[]', '$2y$13$gfEN2hZtNCH3N7NxxHsktebrha3JhyW/3V7AAJsrU55KWctPxw14W', 'Toto', 'Sosie-67c085e9c7ef4.png', 'Barbecue + Partie de football', 'Sosie officiel de Robert de Niro dans Heat', '2025-02-27 14:15:15', 0),
 	(35, 'our@exemple.com', '[]', '$2y$13$Xt4Q1F4qrjamc1NT8P7DYeMJSkd06a.CS5kRT7aFNJ/agrCpXlOk6', 'Our', 'Onizuka-grimace-67ce0177cce60.webp', 'Les "Infiltrés" ont tout copié sur "Infernal Affairs"', '"Si tu veux m\'parler envoie moi un...FAX !!"', '2025-03-09 21:54:50', 0),
-	(36, 'sparkster@exemple.com', '["ROLE_MODO"]', '$2y$13$JLkesG6lVl2qcDnSjJ0FPOVkIcMWzGDvlmDa2XdCoRgNj4oXSpRZi', 'Sparkster', 'Sparkster-67d090a1a590d.jpg', 'Parti manger', 'Survivant', '2025-03-11 20:33:05', 0);
+	(36, 'sparkster@exemple.com', '["ROLE_MODO"]', '$2y$13$JLkesG6lVl2qcDnSjJ0FPOVkIcMWzGDvlmDa2XdCoRgNj4oXSpRZi', 'Sparkster', 'Sparkster-67d090a1a590d.jpg', 'Parti manger (je reviens...)', 'Survivant', '2025-03-11 20:33:05', 0);
 
 -- Listage de la structure de table sfcritix. user_piece
 CREATE TABLE IF NOT EXISTS `user_piece` (
@@ -302,13 +306,14 @@ CREATE TABLE IF NOT EXISTS `user_piece` (
   CONSTRAINT `FK_A608F07BC40FCFA8` FOREIGN KEY (`piece_id`) REFERENCES `piece` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfcritix.user_piece : ~5 rows (environ)
+-- Listage des données de la table sfcritix.user_piece : ~6 rows (environ)
 INSERT INTO `user_piece` (`user_id`, `piece_id`) VALUES
 	(16, 1),
 	(16, 19),
 	(34, 1),
 	(34, 19),
-	(35, 1);
+	(36, 1),
+	(36, 19);
 
 -- Listage de la structure de table sfcritix. video
 CREATE TABLE IF NOT EXISTS `video` (

@@ -84,103 +84,112 @@ class SecurityController extends AbstractController
     //     return $this->redirectToRoute('show_critics', ['id' => $piece->getId()]);
     // }
 
-    // > Save a critics page (AJAX ver.)
-    #[Route('/critics/{id}/save', name: 'save_critics', methods: ['POST'])]
-    public function saveCritics(Security $security, EntityManagerInterface $entityManager, Piece $piece = null, Request $request)
+    // > Save/Unsave a critics page (AJAX ver.)
+    #[Route('/critics/{id}/{action}', name: 'save_critics', methods: ['POST'])]
+    public function saveCritics(Security $security, EntityManagerInterface $entityManager, Piece $piece = null, Request $request, string $action)
     {
         $user = $security->getUser();
 
         if (!$user) {
             return new JsonResponse([
                 'success' => false,
-                'message' => 'You must be logged in to save a critics page !'
+                'message' => 'You must be logged in to ' . ($action === 'save' ? 'save' : 'unsave') . ' a critics page !'
             ], 401);
         }
 
-        $user->addPiece($piece);
+        if ($action === 'save') {
+            $user->addPiece($piece);
+            $message = 'Critics on "'.$piece.'" saved on your dashboard !';
+        } else {
+            $user->removePiece($piece);
+            $message = 'Critics on "'.$piece.'" unsaved !';
+        }
     
         $entityManager->persist($user);
         $entityManager->flush();
         
         return new JsonResponse([
             'success' => true,
-            'message' => 'Critics on "'.$piece.'" saved on your dashboard !',
-            // 'isSaved' => true,
+            'message' => $message
         ]);
     }
 
     // > Unsave a critics page
-    // #[Route('/critics/{id}/unsave', name: 'unsave_critics')]
-    // public function unsaveCritics(Security $security, EntityManagerInterface $entityManager, Piece $piece = null, Request $request)
-    // {
-    //     $user = $security->getUser();
-
-    //     if (!$user) {
-    //         $this->addFlash('crUnSaveFail', 'You must be logged in to unsave a critics page !');
-    //         return $this->redirectToRoute('app_login');
-    //     }
-
-    //     $user->removePiece($piece);
-    
-    //     $entityManager->persist($user);
-    //     $entityManager->flush();
-    
-    //     $this->addFlash('crUnSaveSuccess', 'Critics on "'.$piece.'" unsaved ! ');
-
-    //     // > Custom routing from origin page
-    //     $origin = $request->query->get('origin');
-
-    //     if ($origin === 'criticsPage' ) {
-    //         return $this->redirectToRoute('show_critics', ['id' => $piece->getId()]);
-    //     } else {
-    //         return $this->redirectToRoute('dashboard_user');
-    //     }
-    // }
-
-    // > Unsave a critics page (AJAX ver.)
-    #[Route('/critics/{id}/unsave', name: 'unsave_critics', methods: ['POST'])]
+    #[Route('/critics/{id}/unsave', name: 'unsave_critics')]
     public function unsaveCritics(Security $security, EntityManagerInterface $entityManager, Piece $piece = null, Request $request)
     {
         $user = $security->getUser();
 
         if (!$user) {
-            return new JsonResponse([
-                'success' => false,
-                'message' => 'You must be logged in to unsave a critics page !'
-            ], 401);
+            $this->addFlash('crUnSaveFail', 'You must be logged in to unsave a critics page !');
+            return $this->redirectToRoute('app_login');
         }
 
         $user->removePiece($piece);
     
         $entityManager->persist($user);
         $entityManager->flush();
-        
-        return new JsonResponse([
-            'success' => true,
-            'message' => 'Critics on "'.$piece.'" unsaved !',
-            // 'isSaved' => false,
-            // 'isUnSaved => true'
-        ]);
+    
+        $this->addFlash('crUnSaveSuccess', 'Critics on "'.$piece.'" unsaved ! ');
+
+        // > Custom routing from origin page
+        $origin = $request->query->get('origin');
+
+        if ($origin === 'criticsPage' ) {
+            return $this->redirectToRoute('show_critics', ['id' => $piece->getId()]);
+        } else {
+            return $this->redirectToRoute('dashboard_user');
+        }
     }
 
-    // > Like an influencer
-    #[Route('/influencer/{id}/like', name: 'like_influencer')]
-    public function likeInfluencer(Security $security, EntityManagerInterface $entityManager, Influencer $influencer = null)
+    // // > Like an influencer
+    // #[Route('/influencer/{id}/like', name: 'like_influencer')]
+    // public function likeInfluencer(Security $security, EntityManagerInterface $entityManager, Influencer $influencer = null)
+    // {
+    //     $user = $security->getUser();
+
+    //     if (!$user) {
+    //         $this->addFlash('inLikeFail', 'You must be logged in to like a content creator !');
+    //         return $this->redirectToRoute('app_login');
+    //     }
+
+    //     $user->addInfluencer($influencer);
+
+    //     $entityManager->persist($user);
+    //     $entityManager->flush();
+
+    //     $this->addFlash('inLikeSuccess', ' "'.$influencer.'" liked !');
+    //     return $this->redirectToRoute('show_influencer', ['id' => $influencer->getId()]);
+    // }
+
+    // > Like/Unlike an influencer (AJAX ver.)
+    #[Route('/influencer/{id}/{action}', name: 'like_influencer', methods: ['POST'])]
+    public function saveInfluencer(Security $security, EntityManagerInterface $entityManager, Influencer $influencer = null, Request $request, string $action)
     {
         $user = $security->getUser();
 
         if (!$user) {
-            $this->addFlash('inLikeFail', 'You must be logged in to like a content creator !');
-            return $this->redirectToRoute('app_login');
+            return new JsonResponse([
+                'success' => false,
+                'message' => 'You must be logged in to ' . ($action === 'like' ? 'like' : 'unlike') . ' a content creator !'
+            ], 401);
         }
 
-        $user->addInfluencer($influencer);
-
+        if ($action === 'like') {
+            $user->addInfluencer($influencer);
+            $message = ' "'.$influencer.'" liked !';
+        } else {
+            $user->removeInfluencer($influencer);
+            $message = ' "'.$influencer.'" unliked !';
+        }
+    
         $entityManager->persist($user);
         $entityManager->flush();
-
-        $this->addFlash('inLikeSuccess', ' "'.$influencer.'" liked !');
-        return $this->redirectToRoute('show_influencer', ['id' => $influencer->getId()]);
+        
+        return new JsonResponse([
+            'success' => true,
+            'message' => $message
+        ]);
     }
 
     // > Unlike an influencer

@@ -100,8 +100,8 @@ a, button {
     font-weight: 700;
 }
 
-.openModal a {
-    margin: 0 15px;
+.openModal button {
+    margin: 0 5px;
 }
 
 /* .openModal:focus {

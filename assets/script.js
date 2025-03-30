@@ -59,7 +59,9 @@ deleteConfirm.forEach((delConf, index) => {
 
 closeModal.forEach((cloMo, index) => {
     cloMo.addEventListener("click", function () {
-    openModal[index].close()
+    // openModal[index].close()
+    const parentModal = this.closest('.openModal')
+    parentModal.close()
     })
 });
 
@@ -116,15 +118,16 @@ comments.forEach(comment => {
 const flashMessageContainer = document.getElementById('flashMessages')
 const flashMessage = document.createElement('strong')
 
-
 // > AJAX for Critics Save button
 const saveButtons = document.querySelectorAll('.save-critics-btn')
+const criticDashTitle = document.getElementById('criticDashTitle')
 
 saveButtons.forEach(button => {
     button.addEventListener('click', async() => {
 
         const pieceId = button.dataset.pieceId
         const action = button.dataset.action
+        const savedCriticDash = document.getElementById(`savedCriticDash${pieceId}`)
 
         try {
             const response = await fetch(`/critics/${pieceId}/${action}`, {
@@ -146,6 +149,18 @@ saveButtons.forEach(button => {
                     button.textContent = 'Come back later'
                     button.dataset.action = 'save'
                     flashMessage.textContent = data.message
+
+                    if (savedCriticDash) {
+                        savedCriticDash.remove()
+                    }
+
+                    if (criticDashTitle) {
+                        if (criticDashTitle.nextElementSibling != document.querySelector('[id^="savedCriticDash"]') || 
+                        criticDashTitle.nextElementSibling === null) {
+
+                            criticDashTitle.remove()
+                        }
+                    }
                 }
             } else {
                 flashMessage.textContent = data.message
@@ -165,12 +180,14 @@ saveButtons.forEach(button => {
 
 // > AJAX for Influencer Like button
 const likeButtons = document.querySelectorAll('.like-influencer-btn')
+const influencerDashTitle = document.getElementById('influencerDashTitle')
 
 likeButtons.forEach(button => {
     button.addEventListener('click', async() => {
 
         const influencerId = button.dataset.influencerId
         const action = button.dataset.action
+        const likedInfluencerDash = document.getElementById(`likedInfluencerDash${influencerId}`)
 
         try {
             const response = await fetch(`/influencer/${influencerId}/${action}`, {
@@ -192,6 +209,18 @@ likeButtons.forEach(button => {
                     button.textContent = 'Like'
                     button.dataset.action = 'like'
                     flashMessage.textContent = data.message
+
+                    if (likedInfluencerDash) {
+                        likedInfluencerDash.remove()
+                    }
+
+                    if (influencerDashTitle) {
+                        if (influencerDashTitle.nextElementSibling != document.querySelector('[id^="likedInfluencerDash"]') ||
+                        influencerDashTitle.nextElementSibling === null ) {
+                            
+                            influencerDashTitle.remove()
+                        }  
+                    }
                 }
             } else {
                 flashMessage.textContent = data.message

@@ -115,32 +115,32 @@ class SecurityController extends AbstractController
     }
 
     // > Unsave a critics page
-    #[Route('/critics/{id}/unsave', name: 'unsave_critics')]
-    public function unsaveCritics(Security $security, EntityManagerInterface $entityManager, Piece $piece = null, Request $request)
-    {
-        $user = $security->getUser();
+    // #[Route('/critics/{id}/unsave', name: 'unsave_critics')]
+    // public function unsaveCritics(Security $security, EntityManagerInterface $entityManager, Piece $piece = null, Request $request)
+    // {
+    //     $user = $security->getUser();
 
-        if (!$user) {
-            $this->addFlash('crUnSaveFail', 'You must be logged in to unsave a critics page !');
-            return $this->redirectToRoute('app_login');
-        }
+    //     if (!$user) {
+    //         $this->addFlash('crUnSaveFail', 'You must be logged in to unsave a critics page !');
+    //         return $this->redirectToRoute('app_login');
+    //     }
 
-        $user->removePiece($piece);
+    //     $user->removePiece($piece);
     
-        $entityManager->persist($user);
-        $entityManager->flush();
+    //     $entityManager->persist($user);
+    //     $entityManager->flush();
     
-        $this->addFlash('crUnSaveSuccess', 'Critics on "'.$piece.'" unsaved ! ');
+    //     $this->addFlash('crUnSaveSuccess', 'Critics on "'.$piece.'" unsaved ! ');
 
-        // > Custom routing from origin page
-        $origin = $request->query->get('origin');
+    //     // > Custom routing from origin page
+    //     $origin = $request->query->get('origin');
 
-        if ($origin === 'criticsPage' ) {
-            return $this->redirectToRoute('show_critics', ['id' => $piece->getId()]);
-        } else {
-            return $this->redirectToRoute('dashboard_user');
-        }
-    }
+    //     if ($origin === 'criticsPage' ) {
+    //         return $this->redirectToRoute('show_critics', ['id' => $piece->getId()]);
+    //     } else {
+    //         return $this->redirectToRoute('dashboard_user');
+    //     }
+    // }
 
     // // > Like an influencer
     // #[Route('/influencer/{id}/like', name: 'like_influencer')]
@@ -193,32 +193,32 @@ class SecurityController extends AbstractController
     }
 
     // > Unlike an influencer
-    #[Route('/influencer/{id}/unlike', name: 'unlike_influencer')]
-    public function unlikeInfluencer(Security $security, EntityManagerInterface $entityManager, Influencer $influencer = null, Request $request)
-    {
-        $user = $security->getUser();
+    // #[Route('/influencer/{id}/unlike', name: 'unlike_influencer')]
+    // public function unlikeInfluencer(Security $security, EntityManagerInterface $entityManager, Influencer $influencer = null, Request $request)
+    // {
+    //     $user = $security->getUser();
 
-        if (!$user) {
-            $this->addFlash('inUnLikeFail', 'You must be logged in to unlike a content creator !');
-            return $this->redirectToRoute('app_login');
-        }
+    //     if (!$user) {
+    //         $this->addFlash('inUnLikeFail', 'You must be logged in to unlike a content creator !');
+    //         return $this->redirectToRoute('app_login');
+    //     }
 
-        $user->removeInfluencer($influencer);
+    //     $user->removeInfluencer($influencer);
     
-        $entityManager->persist($user);
-        $entityManager->flush();
+    //     $entityManager->persist($user);
+    //     $entityManager->flush();
     
-        $this->addFlash('inUnLikeSuccess', ' "'.$influencer.'" unliked ! ');
+    //     $this->addFlash('inUnLikeSuccess', ' "'.$influencer.'" unliked ! ');
 
-        // > Custom routing from origin page
-        $origin = $request->query->get('origin');
+    //     // > Custom routing from origin page
+    //     $origin = $request->query->get('origin');
 
-        if ($origin === 'influencerPage' ) {
-            return $this->redirectToRoute('show_influencer', ['id' => $influencer->getId()]);
-        } else {
-            return $this->redirectToRoute('dashboard_user');
-        }
-    }
+    //     if ($origin === 'influencerPage' ) {
+    //         return $this->redirectToRoute('show_influencer', ['id' => $influencer->getId()]);
+    //     } else {
+    //         return $this->redirectToRoute('dashboard_user');
+    //     }
+    // }
 
     // > User's score vote
     #[Route('/piece/{id}/score', name: 'score_piece')]

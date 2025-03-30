@@ -42,30 +42,44 @@
     
 
     {% if user.pieces is not empty %}
-        <h3>Saved critics page</h3>
+        <h3 id="criticDashTitle">Saved critics page</h3>
 
         {% for piece in user.pieces %}
-            <a href="{{ path('show_critics', {'id': piece.id})}}"><img src="/uploads/images/{{piece.poster}}" 
-            alt="{{piece}}" 
-            style="width: 88px; height: 120px; object-fit: cover"></a><br>
-            <a href="{{ path('show_critics', {'id': piece.id})}}">{{piece}}</a><br>
-            <em>#{{piece.category}}</em><br>
+            
+            <div id="savedCriticDash{{piece.id}}">
 
-        {% if piece.critics|length > 0 %}
-            <p>Critic Score : {{piece.criticTotalScore}}/10</p>
-        {% endif %}
-        {% if piece.opinions|length > 0 %}
-            <p>User score : {{ piece.userTotalScore }}/10</p>
-        {% else %}
-            <p>User score : Not rated yet</p>
-        {% endif %}
+                <a href="{{ path('show_critics', {'id': piece.id})}}"><img src="/uploads/images/{{piece.poster}}" 
+                alt="{{piece}}" 
+                style="width: 88px; height: 120px; object-fit: cover"></a><br>
+                <a href="{{ path('show_critics', {'id': piece.id})}}">{{piece}}</a><br>
+                <em>#{{piece.category}}</em><br>
 
-            <button class="deleteConfirm">Unsave page</button><br>
-                <dialog class="openModal">
-                <h3>Are you sure you want to unsave critics page on "{{piece}}" ?</h3>
-                <a href="{{ path('unsave_critics', {'id': piece.id})}}"><button>Yes</button></a>
-                <button class="closeModal">No</button>
-            </dialog><br>
+            {% if piece.critics|length > 0 %}
+                <p>Critic Score : {{piece.criticTotalScore}}/10</p>
+            {% endif %}
+            {% if piece.opinions|length > 0 %}
+                <p>User score : {{ piece.userTotalScore }}/10</p>
+            {% else %}
+                <p>User score : Not rated yet</p>
+            {% endif %}
+
+                {# <button class="deleteConfirm">Unsave page</button><br>
+                    <dialog class="openModal">
+                    <h3>Are you sure you want to unsave critics page on "{{piece}}" ?</h3>
+                    <a href="{{ path('unsave_critics', {'id': piece.id})}}"><button>Yes</button></a>
+                    <button class="closeModal">No</button>
+                </dialog><br> #}
+
+                <button class="deleteConfirm">Unsave page</button><br>
+                    <dialog class="openModal">
+                    <h3>Are you sure you want to unsave critics page on "{{piece}}" ?</h3>
+                    <button class="save-critics-btn closeModal"
+                        data-piece-id="{{ piece.id }}"
+                        data-action="unsave">Yes</button>
+                    <button class="closeModal">No</button>
+                </dialog><br>
+
+            </div>
 
         {% endfor %}
 
@@ -107,20 +121,34 @@
     {% endif %}
 
     {% if user.influencers is not empty %}
-        <h3> You appreciate</h3>
+        <h3 id="influencerDashTitle">You appreciate</h3>
 
         {% for influencer in user.influencers %}
-            <a href="{{ path('show_influencer', {'id': influencer.id})}}"><img src="/uploads/photos/influPhotos/{{influencer.photo}}"
-            alt="{{influencer}}" 
-            style="width: 88px; height: 120px; object-fit: cover"></a><br>
-            <a href="{{ path('show_influencer', {'id': influencer.id})}}">{{influencer}}</a><br>
 
-            <button class="deleteConfirm">Unlike</button><br>
-                <dialog class="openModal">
-                <h3>Are you sure you want to unlike "{{influencer}}" ?</h3>
-                <a href="{{ path('unlike_influencer', {'id': influencer.id})}}"><button>Yes</button></a>
-                <button class="closeModal">No</button>
-            </dialog><br>
+            <div id="likedInfluencerDash{{influencer.id}}">
+
+                <a href="{{ path('show_influencer', {'id': influencer.id})}}"><img src="/uploads/photos/influPhotos/{{influencer.photo}}"
+                alt="{{influencer}}" 
+                style="width: 88px; height: 120px; object-fit: cover"></a><br>
+                <a href="{{ path('show_influencer', {'id': influencer.id})}}">{{influencer}}</a><br>
+
+                {# <button class="deleteConfirm">Unlike</button><br>
+                    <dialog class="openModal">
+                    <h3>Are you sure you want to unlike "{{influencer}}" ?</h3>
+                    <a href="{{ path('unlike_influencer', {'id': influencer.id})}}"><button>Yes</button></a>
+                    <button class="closeModal">No</button>
+                </dialog><br> #}
+
+                <button class="deleteConfirm">Unlike</button><br>
+                    <dialog class="openModal">
+                    <h3>Are you sure you want to unlike "{{ influencer }}" ?</h3>
+                    <button class="like-influencer-btn closeModal"
+                        data-influencer-id="{{ influencer.id }}"
+                        data-action="unlike">Yes</button>
+                    <button class="closeModal">No</button>
+                </dialog><br>
+
+            </div>
 
         {% endfor %}
 

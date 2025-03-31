@@ -24,6 +24,7 @@
             <button class="closeModal">No</button>
         </dialog>
 
+    <p>{{influencer.totalLikes}} Hearts</p>
     {# > Like + dislike button #}
     {# {% if app.user in influencer.users %}
         <a href="{{ path('unlike_influencer', {'id': influencer.id, 'origin': 'influencerPage'}) }}"><button>Unlike</button></a>
@@ -35,12 +36,13 @@
     {% if app.user in influencer.users %}
         <button class="like-influencer-btn"
                 data-influencer-id="{{ influencer.id }}"
-                data-action="unlike">Unlike</button>
+                data-action="unlike">Unlike</button><br><br>
     {% else %}
         <button class="like-influencer-btn"
                 data-influencer-id="{{ influencer.id }}"
-                data-action="like">Like</button>
+                data-action="like">Like</button><br><br>
     {% endif %}
+
 
     <p>{{influencer.bio}}</p><br>
     
@@ -97,7 +99,12 @@
                 <i class="fa-solid fa-star emptystars"></i>
             {% endfor %}
         {% endif %}
+
+        <br>
+
+        <i>#{{critic.piece.category}}</i>
     {% endfor %}
+    
     <br>
     <br>
     <a href="{{path('app_influencer')}}"><i>> View all content creators by media</i></a>

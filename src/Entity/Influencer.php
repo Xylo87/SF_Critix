@@ -195,4 +195,10 @@ class Influencer
 
         return $this;
     }
+
+    public function getTotalLikes(): ?int{
+
+        $totalLikes = count($this->users);
+        return $totalLikes;
+    }
 }

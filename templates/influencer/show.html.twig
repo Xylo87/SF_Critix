@@ -74,14 +74,15 @@
         {% endif %}
     {% endfor %}
     <br>
+    <br>
 
 
 
-    <p>{{influencer}}'s latest critics :</p>
+    <p>{{influencer}}'s latest critics :</p><br>
     {% for critic in influencer.critics|sort((a, b) => b.datePost <=> a.datePost) %}
         <a href="{{ path('show_critics', {'id': critic.piece.id})}}"><img src="/uploads/images/{{critic.piece.poster}}"
         alt="{{critic.piece}}"
-        style="width: 88px; height: 120px; object-fit: cover"></a><br> 
+        style="width: 88px; height: 120px; object-fit: cover"></a><br>
         <a href="{{ path('show_critics', {'id': critic.piece.id})}}">{{critic.piece}}</a>
 
         {# > Star score system #}
@@ -107,8 +108,7 @@
         {% endif %}
 
         <br>
-
-        <i>#{{critic.piece.category}}</i>
+        <i>#{{critic.piece.category}}</i><br><br><br>
     {% endfor %}
     
     <br>

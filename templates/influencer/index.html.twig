@@ -11,14 +11,14 @@
     <hr>
     
     {% for influencer in influencers %}
-        <h2>{{influencer}}</h2>
+        <a href="{{ path('show_influencer', {'id': influencer.id})}}"><h2>{{influencer}}</h2></a>
 
         {# > If Influencer's real name is known #}
         {% if influencer.realName and influencer != influencer.realName %}
             <h3>({{influencer.realname}})</h3>
         {% endif %}
         
-        <a href="{{ path('show_influencer', {'id': influencer.id})}}">
+        <a href="{{ path('show_influencer', {'id': influencer.id})}}" style="text-decoration: none">
 
         {% if influencer.photo %}
             <img src="/uploads/photos/influPhotos/{{influencer.photo}}" alt="{{influencer}}" style="width: 265px; height: 360px; object-fit: cover">

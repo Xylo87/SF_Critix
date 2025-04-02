@@ -29,9 +29,9 @@
     {% endif %}
 
     {% if user.opinions is not empty %}
-        <h3> {{user}}'s ratings (latest)</h3>
+        <h3> {{user}}'s ratings</h3>
 
-        {% for opinion in user.opinions %}
+        {% for opinion in user.opinions|sort((a, b) => b.piece.releaseDate <=> a.piece.releaseDate) %}
             <a href="{{ path('infos_piece', {'id': opinion.piece.id})}}"><img src="/uploads/images/{{opinion.piece.poster}}"
             alt="{{opinion.piece}}" 
             style="width: 88px; height: 120px; object-fit: cover"></a><br>
@@ -68,9 +68,19 @@
         <h3> {{user}} appreciates</h3>
 
         {% for influencer in user.influencers %}
-            <a href="{{ path('show_influencer', {'id': influencer.id})}}"><img src="/uploads/photos/influPhotos/{{influencer.photo}}"
-            alt="{{influencer}}" 
-            style="width: 88px; height: 120px; object-fit: cover"></a><br>
+            <a href="{{ path('show_influencer', {'id': influencer.id})}}">
+            
+            {% if influencer.photo %}
+                <img src="/uploads/photos/influPhotos/{{influencer.photo}}"
+                alt="{{influencer}}" 
+                style="width: 88px; height: 120px; object-fit: cover">
+            {% else %}
+                <img src="/uploads/photos/influPhotos/influencer-default.png" 
+                alt="influencer-default-profile-picture" 
+                style="width: 88px; height: 120px; object-fit: cover">
+            {% endif %}
+
+            </a><br>
             <a href="{{ path('show_influencer', {'id': influencer.id})}}">{{influencer}}</a><br><br>
         {% endfor %}
 

@@ -19,7 +19,14 @@
         {% endif %}
         
         <a href="{{ path('show_influencer', {'id': influencer.id})}}">
-            <img src="/uploads/photos/influPhotos/{{influencer.photo}}" alt="{{influencer}}" style="width: 265px; height: 360px; object-fit: cover"></a>
+
+        {% if influencer.photo %}
+            <img src="/uploads/photos/influPhotos/{{influencer.photo}}" alt="{{influencer}}" style="width: 265px; height: 360px; object-fit: cover">
+        {% else %}
+            <img src="/uploads/photos/influPhotos/influencer-default.png" alt="influencer-default-profile-picture" style="width: 265px; height: 360px; object-fit: cover">
+        {% endif %}
+
+        </a>
 
     {# > Edit and suppression (modal) #}
     <a href="{{ path('edit_influencer', {'id': influencer.id})}}"><button>Edit</button></a>

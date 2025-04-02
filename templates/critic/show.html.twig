@@ -48,7 +48,7 @@
     {% endif %}
     
     <p><u>About</u> : {{piece.about}}</p>
-    <h4><a href="{{ path('infos_piece', {'id': piece.id})}}" target="_blank">+ More infos</a></h4><br>
+    <h4><a href="{{ path('infos_piece', {'id': piece.id})}}">+ More infos</a></h4><br>
 
     <h3>Latest critics</h3>
     <hr style="width: 66%"><br>
@@ -74,10 +74,16 @@
         loading="loading (0 | 1)" 
         data-start="start" 
         data-end="end"></div>
-        <h3>By: <a href="{{ path('show_influencer', {'id': critic.influencer.id})}}" target="_blank">{{critic.influencer}}</a></h3>
-        <a href="{{ path('show_influencer', {'id': critic.influencer.id})}}" target="_blank">
+        <h3>By: <a href="{{ path('show_influencer', {'id': critic.influencer.id})}}">{{critic.influencer}}</a></h3>
+
+        <a href="{{ path('show_influencer', {'id': critic.influencer.id})}}">
+        {% if critic.influencer.photo %}
             <img src="/uploads/photos/influPhotos/{{critic.influencer.photo}}" alt="{{critic.influencer}}" style="width: 265px; height: 360px; object-fit: cover">
+        {% else %}
+            <img src="/uploads/photos/influPhotos/influencer-default.png" alt="influencer-default-profile-picture" style="width: 265px; height: 360px; object-fit: cover">
+        {% endif %}
         </a>
+
         <blockquote>{{critic.summary}}</blockquote>
 
 

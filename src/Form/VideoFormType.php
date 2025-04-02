@@ -23,10 +23,10 @@ class VideoFormType extends AbstractType
                     'size' => 35
                 ]
             ])
-            ->add('link', UrlType::class, [
+            ->add('link', TextType::class, [
                 'label' => 'Link :',
                 'attr' => [
-                    'size' => 60
+                    'size' => 30
                 ]
             ])
             ->add('isTrailer', CheckboxType::class, [

@@ -23,7 +23,7 @@ class SocialFormType extends AbstractType
                 ]
             ])
             ->add('subNumber', TextType::class, [
-                'label' => 'Subscribers number :',
+                'label' => 'Followers number :',
                 'attr' => [
                     'size' => 10
                 ]

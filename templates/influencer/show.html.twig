@@ -12,7 +12,11 @@
         <h3>({{influencer.realname}})</h3>
     {% endif %}
     
-    <img src="/uploads/photos/influPhotos/{{influencer.photo}}" alt="{{influencer}}" style="width: 265px; height: 360px; object-fit: cover">
+    {% if influencer.photo %}
+        <img src="/uploads/photos/influPhotos/{{influencer.photo}}" alt="{{influencer}}" style="width: 265px; height: 360px; object-fit: cover">
+    {% else %}
+        <img src="/uploads/photos/influPhotos/influencer-default.png" alt="influencer-default-profile-picture" style="width: 265px; height: 360px; object-fit: cover">
+    {% endif %}
     
     {# > Edit and suppression (modal) #}
     <a href="{{ path('edit_influencer', {'id': influencer.id})}}"><button>Edit</button></a>
@@ -74,7 +78,7 @@
 
 
     <p>{{influencer}}'s latest critics :</p>
-    {% for critic in influencer.critics %}
+    {% for critic in influencer.critics|sort((a, b) => b.datePost <=> a.datePost) %}
         <a href="{{ path('show_critics', {'id': critic.piece.id})}}"><img src="/uploads/images/{{critic.piece.poster}}"
         alt="{{critic.piece}}"
         style="width: 88px; height: 120px; object-fit: cover"></a><br> 

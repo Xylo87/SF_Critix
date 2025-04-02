@@ -9,8 +9,12 @@
     <a href="{{ path('new_piece')}}">Add a Piece</a><br>
     <a href="{{ path('new_critic')}}">Add a Critic</a>
     <hr>
-    {% for piece in category.pieces %}
+    {% for piece in category.pieces|sort((a, b) => a.title <=> b.title) %}
         <h2><a href="{{ path('show_critics', {'id': piece.id})}}">{{piece}}</a></h2>
+
+        <a href="{{ path('show_critics', {'id': piece.id})}}">
+            <img src="/uploads/images/{{piece.poster}}" alt="{{piece.poster}}" style="width: 265px; height: 360px; object-fit: cover">
+        </a>
 
         <p><u>Maker</u> : {{piece.maker}}</p>
         
@@ -25,9 +29,9 @@
         {% endif %}
 
         {% if piece.opinions|length > 0 %}
-            <p><u>User score</u> : {{ piece.userTotalScore }}/10</p>
+            <p><u>User score</u> : {{ piece.userTotalScore }}/10</p><br>
         {% else %}
-            <p><u>User score</u> : Not rated yet</p>
+            <p><u>User score</u> : Not rated yet</p><br>
         {% endif %}
     {% endfor %}
 </div>

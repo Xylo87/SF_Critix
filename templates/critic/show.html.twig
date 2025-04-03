@@ -9,7 +9,13 @@
     <h2>Critics on →</h2>
     <h1>{{piece}}</h1>
 
-    <img src="/uploads/images/{{piece.poster}}" alt="{{piece}}" style="width: 265px; height: 360px; object-fit: cover">
+
+    {% if piece.category == "Music" %}
+        <img src="/uploads/images/{{piece.poster}}" alt="{{piece}}" style="width: 265px; height: 265px; object-fit: cover">
+    {% else %}
+        <img src="/uploads/images/{{piece.poster}}" alt="{{piece}}" style="width: 265px; height: 360px; object-fit: cover">
+    {% endif %}
+    
 
     {# {% if app.user in piece.users %}
         <a href="{{ path('unsave_critics', {'id': piece.id, 'origin': 'criticsPage'}) }}"><button>Unsave page</button></a>

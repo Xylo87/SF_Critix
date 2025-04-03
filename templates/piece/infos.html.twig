@@ -32,7 +32,13 @@
         data-end="end"></div>
     {% endfor %}
     
-    <img src="/uploads/images/{{piece.poster}}" alt="{{piece}}" style="width: 265px; height: 360px; object-fit: cover">
+
+    {% if piece.category == "Music" %}
+        <img src="/uploads/images/{{piece.poster}}" alt="{{piece}}" style="width: 265px; height: 265px; object-fit: cover">
+    {% else %}
+        <img src="/uploads/images/{{piece.poster}}" alt="{{piece}}" style="width: 265px; height: 360px; object-fit: cover">
+    {% endif %}
+
 
     {# > Edit and suppression (modal) #}
     <a href="{{ path('edit_piece', {'id': piece.id})}}"><button>Edit</button></a>

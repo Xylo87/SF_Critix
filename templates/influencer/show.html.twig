@@ -80,9 +80,23 @@
 
     <p>{{influencer}}'s latest critics :</p><br>
     {% for critic in influencer.critics|sort((a, b) => b.datePost <=> a.datePost) %}
+
+
+        {% if critic.piece.category == "Music" %}
+        
+        <a href="{{ path('show_critics', {'id': critic.piece.id})}}"><img src="/uploads/images/{{critic.piece.poster}}"
+        alt="{{critic.piece}}"
+        style="width: 88px; height: 88px; object-fit: cover"></a><br>
+
+        {% else %}
+            
         <a href="{{ path('show_critics', {'id': critic.piece.id})}}"><img src="/uploads/images/{{critic.piece.poster}}"
         alt="{{critic.piece}}"
         style="width: 88px; height: 120px; object-fit: cover"></a><br>
+
+        {% endif %}
+
+
         <a href="{{ path('show_critics', {'id': critic.piece.id})}}">{{critic.piece}}</a>
 
         {# > Star score system #}

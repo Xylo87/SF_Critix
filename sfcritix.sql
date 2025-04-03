@@ -100,9 +100,9 @@ CREATE TABLE IF NOT EXISTS `critic` (
   KEY `IDX_C9E2F7F14AF97FA6` (`influencer_id`),
   CONSTRAINT `FK_C9E2F7F14AF97FA6` FOREIGN KEY (`influencer_id`) REFERENCES `influencer` (`id`),
   CONSTRAINT `FK_C9E2F7F1C40FCFA8` FOREIGN KEY (`piece_id`) REFERENCES `piece` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfcritix.critic : ~4 rows (environ)
+-- Listage des données de la table sfcritix.critic : ~20 rows (environ)
 INSERT INTO `critic` (`id`, `media`, `summary`, `critic_score`, `length_min`, `date_post`, `origin_date_post`, `piece_id`, `influencer_id`) VALUES
 	(16, '93o3a6MWgxA', '"I particularly enjoyed this first \r\ncontact with Dune: Awakening."', 4, 19, '2025-02-19 21:09:58', '2025-01-30 00:00:00', 1, 2),
 	(17, 'QJjEP0Nnsa0', '"I let myself be carried away by the atmosphere and the general intention."', 3, 15, '2025-02-20 14:29:52', '2025-01-30 00:00:00', 1, 12),
@@ -119,7 +119,12 @@ INSERT INTO `critic` (`id`, `media`, `summary`, `critic_score`, `length_min`, `d
 	(48, 'IztXNqasmQ0', '"I loved The Brutalist, I think it\'s a great film."', 4, 27, '2025-04-02 19:30:21', '2025-02-09 00:00:00', 19, 49),
 	(49, 'jEAGyROITQI', '"To sum it up : we needed this."', 4, 10, '2025-04-02 20:30:28', '2025-03-08 00:00:00', 66, 50),
 	(50, 'CzhjiQW6H4E', '"A story that many people will find hard to like."', 2, 9, '2025-04-02 20:40:31', '2025-03-04 00:00:00', 66, 17),
-	(51, 'rKIDIg-VaUA', '"An interesting work in every aspect, even if the director is capable of much better."', 3, 17, '2025-04-02 21:05:47', '2025-03-06 00:00:00', 66, 51);
+	(51, 'rKIDIg-VaUA', '"An interesting work in every aspect, even if the director is capable of much better."', 3, 17, '2025-04-02 21:05:47', '2025-03-06 00:00:00', 66, 51),
+	(53, 'RRTvIdB8Qkg', '"This album flawed me : this is one of the greatest this year, no doubt."', 4, 11, '2025-04-03 20:31:24', '2016-09-13 00:00:00', 69, 53),
+	(54, '4OPV_np5Zks', '"This album is the perfect combination of what Kendrick has made so far."', 4, 18, '2025-04-03 20:47:59', '2022-05-18 00:00:00', 62, 54),
+	(55, 'V9345rBzdWQ', '"I can\'t imagine a piece that fulfill its mission quite like this."', 5, 13, '2025-04-03 21:20:35', '2016-09-15 00:00:00', 69, 56),
+	(56, 'Vz2YokGxlT4', '"I was really impressed with this record : it is beautifully sad."', 4, 9, '2025-04-03 21:26:04', '2016-09-19 00:00:00', 69, 41),
+	(57, '0F9p_d7Pfxg', '"It is pretty mediocre, but there are a few good songs."', 3, 9, '2025-04-03 21:55:37', '2017-08-29 00:00:00', 70, 57);
 
 -- Listage de la structure de table sfcritix. critic_user
 CREATE TABLE IF NOT EXISTS `critic_user` (
@@ -167,9 +172,9 @@ CREATE TABLE IF NOT EXISTS `influencer` (
   `photo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `bio` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfcritix.influencer : ~4 rows (environ)
+-- Listage des données de la table sfcritix.influencer : ~17 rows (environ)
 INSERT INTO `influencer` (`id`, `nick_name`, `real_name`, `photo`, `bio`) VALUES
 	(2, 'ExServ', 'Benoît Reinier', 'influ-ExServ-67b769a27f05d.webp', 'Since 2010, ExServ has been providing \'From Software\' video game guides, tests and news analysis. A former video game journalist, he now works as an independant since 2016 and divides his time between his YouTube channel, the podcast \'Fin du Game\' and writing books for \'Third Editions\'.'),
 	(12, 'Carole Quintaine', 'Carole Quintaine', 'influ-Carole-Quintaine-67b769c9dbc25.jpg', 'Carole is a superhero who wears a cape and a bat mask. And she\'s also on YouTube to talk about video games.'),
@@ -180,11 +185,15 @@ INSERT INTO `influencer` (`id`, `nick_name`, `real_name`, `photo`, `bio`) VALUES
 	(44, 'Loudic', NULL, 'influ-Loudic-67ed0ab2d4200.png', '"Touch the withered arm and travel to the Realm of Shadow, i will not be far behind."'),
 	(45, 'Playmoo', NULL, NULL, '"Helping hands on Souls-Like and reviews!"'),
 	(46, 'ACG  / Angry Centaur Gaming', 'Jeremy Penter', NULL, '"I buy every game I review."'),
-	(47, 'Le Fossoyeur de Films', 'François Theurel', 'influ-LeFossoyeurDeFilms-67ed811365bef.png', '"Le Fossoyeur" likes to explore the mysteries of cinema and enjoy a good cup of coffee along the way.'),
-	(48, 'Merej', NULL, 'influ-Merej-67ed6db70c9d5.png', '"The film-loving neighbour."'),
+	(47, 'Le Fossoyeur de Films', 'François Theurel', 'movies-LeFossoyeurDeFilms-67eeaf96981bf.jpg', '"Le Fossoyeur" likes to explore the mysteries of cinema and enjoy a good cup of coffee along the way.'),
+	(48, 'Merej', NULL, 'movies-Merej-67eeafb278fa9.jpg', '"The film-loving neighbour."'),
 	(49, 'Regelegorila', NULL, 'influ-Regelegorila-67eda8115faf6.jpg', 'Youtuber with a passion for cinema and TV series.'),
 	(50, 'Karsten Runquist', NULL, 'influ-KarstenRunquist-67eda6de0a79e.jpg', '"Talking about the movies • Los Angeles"'),
-	(51, 'Captain Popcorn', NULL, 'influ-CaptainPopCorn-67eda41575c9d.jpg', 'Captain Popcorn is a channel of reviews, theories, analyses and opinions on films and series.');
+	(51, 'Captain Popcorn', NULL, 'influ-CaptainPopCorn-67eda41575c9d.jpg', 'Captain Popcorn is a channel of reviews, theories, analyses and opinions on films and series.'),
+	(53, 'deep cuts', 'Oliver Kemp', 'music-OliverKemp-67eed26a48f84.jpg', 'A channel dedicated to music, for lovers of music! Discussions on genres, guides to band discographies and commenting on the  ever-changing landscape of modern music.'),
+	(54, 'Volksgeist', 'Philip D’amico', 'music-Volksgeist-67eed68633209.jpg', '"I’m Philip and this is volksgeist. I’m here to share my love of music and talk about all the ways music can change the world."'),
+	(56, 'Spectrum Pulse', 'Mark Grondin', 'music-movies-SpectrumPulse-67eede4998478.webp', '"Where we talk about music, movies, art, and culture."'),
+	(57, 'Lie Likes Music', 'Christian Haug Lie', 'influ-LieLikesMusic-67eee67c69618.jpg', '"Fretboard flyer mentor - Oslo, Norway"');
 
 -- Listage de la structure de table sfcritix. influencer_user
 CREATE TABLE IF NOT EXISTS `influencer_user` (
@@ -235,7 +244,7 @@ CREATE TABLE IF NOT EXISTS `opinion` (
   CONSTRAINT `FK_AB02B027C40FCFA8` FOREIGN KEY (`piece_id`) REFERENCES `piece` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfcritix.opinion : ~5 rows (environ)
+-- Listage des données de la table sfcritix.opinion : ~2 rows (environ)
 INSERT INTO `opinion` (`id`, `user_score`, `piece_id`, `user_id`) VALUES
 	(47, 4, 19, 16),
 	(59, 3, 19, 35);
@@ -253,9 +262,9 @@ CREATE TABLE IF NOT EXISTS `piece` (
   PRIMARY KEY (`id`),
   KEY `IDX_44CA0B2312469DE2` (`category_id`),
   CONSTRAINT `FK_44CA0B2312469DE2` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfcritix.piece : ~3 rows (environ)
+-- Listage des données de la table sfcritix.piece : ~8 rows (environ)
 INSERT INTO `piece` (`id`, `title`, `about`, `maker`, `release_date`, `category_id`, `is_upcoming`, `poster`) VALUES
 	(1, 'Dune: Awakening', 'Dune: Awakening is a massively multiplayer online game where players must survive in the desert of Arrakis. It takes place in an open world.', 'Funcom', '2025-01-01 00:00:00', 1, 1, 'games-DuneA-poster-67c0af2463993.png'),
 	(19, 'The Brutalist', 'Escaping post-war Europe, visionary architect László Toth arrives in America to rebuild his life, his work, and his marriage to his wife Erzsébet after being forced apart during wartime by shifting borders and regimes. On his own in a strange new country, László settles in Pennsylvania, where an industrialist recognizes his talent for building.', 'Brady Corbet', '2025-02-12 00:00:00', 2, 0, 'movies-TheBrutalist-67edabfff0677.jpg'),
@@ -263,7 +272,9 @@ INSERT INTO `piece` (`id`, `title`, `about`, `maker`, `release_date`, `category_
 	(63, 'Lies of P', 'Lies of P is a thrilling soulslike that takes the story of Pinocchio, turns it on its head, and sets it against the darkly elegant backdrop of the Belle Epoque era.', 'Neowiz', '2023-09-18 00:00:00', 1, 0, 'games-LiesOfP-poster-67ed99c1ef49d.avif'),
 	(64, 'Monster Hunter Wilds', 'As with other Monster Hunter games, Wilds has the player control a hunter that is part of a guild assigned to explore the Forbidden Lands, a nearly uninhabitable area with multiple biomes and dangerous storms. During their exploration, the hunters are assigned quests to fight large monsters that threaten their group, either by killing or capturing them.', 'Capcom', '2025-02-28 00:00:00', 1, 0, 'games-MHWilds-poster-67ed9b46a88b9.jpg'),
 	(65, 'The Man Who Killed Don Quixote', 'Toby Grummett, a director, is in rural Spain, struggling with the production of a commercial featuring Don Quixote. After an unsuccessful day of shooting, Toby\'s superior, the Boss, introduces him to a Romani street merchant who sells him an old DVD of The Man Who Killed Don Quixote, a film he wrote and directed ten years earlier as a student.', 'Terry Gilliam', '2018-05-19 00:00:00', 2, 0, 'movies-TheManWhoKilledDonQuixote-poster-67eda28b9f4b0.jpg'),
-	(66, 'Mickey 17', 'In the year 2054, Mickey Barnes and his friend Timo join a spaceship crew heading to colonize the ice-planet Niflheim, in order to escape a murderous loan shark.', 'Bong Joon Ho', '2025-02-13 00:00:00', 2, 0, 'movies-Mickey17-poster-67eda19756f56.jpg');
+	(66, 'Mickey 17', 'In the year 2054, Mickey Barnes and his friend Timo join a spaceship crew heading to colonize the ice-planet Niflheim, in order to escape a murderous loan shark.', 'Bong Joon Ho', '2025-02-13 00:00:00', 2, 0, 'movies-Mickey17-poster-67eda19756f56.jpg'),
+	(69, 'Skeleton Tree', 'Skeleton Tree is the sixteenth studio album by Australian rock band Nick Cave and the Bad Seeds. Skeleton Tree\'s minimal production and "less polished" sound incorporates elements of electronica and ambient music and, like Push the Sky Away, features extensive use of synthesizers, drum machines and loops.', 'Nick Cave & the Bad Seeds', '2016-09-09 00:00:00', 4, 0, 'music-Skeleton-Tree-67eecc6d559ea.jpg'),
+	(70, 'Villains', 'Villains is the seventh studio album by American rock band Queens of the Stone Age. The album was announced with a teaser trailer taking the form of a comedy skit featuring the band performing a polygraph test with Liam Lynch.', 'Queens of the Stone Age', '2017-08-25 00:00:00', 4, 0, 'music-Villains-67eee4c95e5b4.jpg');
 
 -- Listage de la structure de table sfcritix. social
 CREATE TABLE IF NOT EXISTS `social` (
@@ -277,9 +288,9 @@ CREATE TABLE IF NOT EXISTS `social` (
   PRIMARY KEY (`id`),
   KEY `IDX_7161E1874AF97FA6` (`influencer_id`),
   CONSTRAINT `FK_7161E1874AF97FA6` FOREIGN KEY (`influencer_id`) REFERENCES `influencer` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfcritix.social : ~11 rows (environ)
+-- Listage des données de la table sfcritix.social : ~37 rows (environ)
 INSERT INTO `social` (`id`, `name`, `sub_number`, `link`, `influencer_id`, `channel_id`, `live_id`) VALUES
 	(4, 'YouTube', '200k', 'https://www.youtube.com/@ExServ85', 2, 'UC2FAM-zL-PhH0OkIT95aWJQ', NULL),
 	(5, 'Bluesky', '9.4k', 'https://bsky.app/profile/exserv.bsky.social', 2, NULL, NULL),
@@ -309,7 +320,15 @@ INSERT INTO `social` (`id`, `name`, `sub_number`, `link`, `influencer_id`, `chan
 	(31, 'Instagram', '29k', 'https://www.instagram.com/karstenrunquist', 50, NULL, NULL),
 	(32, 'YouTube', '518k', 'https://www.youtube.com/@CaptainPopcorn', 51, 'UCZeyUZmGAyRLDfM2ir3q-OQ', NULL),
 	(33, 'Instagram', '13.5k', 'https://www.instagram.com/le_captain_popcorn/', 51, NULL, NULL),
-	(34, 'Facebook', '12k', 'https://www.facebook.com/CaptainSylvain/', 51, NULL, NULL);
+	(34, 'Facebook', '12k', 'https://www.facebook.com/CaptainSylvain/', 51, NULL, NULL),
+	(38, 'YouTube', '192k', 'https://www.youtube.com/@deepcuts', 53, 'UCRYhCg0DHloE9gn-PAiAYNg', NULL),
+	(39, 'Instagram', '6220', 'https://www.instagram.com/oliverjkemp/', 53, NULL, NULL),
+	(40, 'YouTube', '499k', 'https://www.youtube.com/@Volksgeist', 54, 'UCikpumVCosztN-ZUthleRug', NULL),
+	(41, 'Instagram', '6300', 'https://www.instagram.com/volks.geist/', 54, NULL, NULL),
+	(43, 'YouTube', '46.6k', 'https://www.youtube.com/@SpectrumPulse', 56, NULL, NULL),
+	(44, 'Instagram', '2270', 'https://www.instagram.com/spectrumpulse', 56, NULL, NULL),
+	(45, 'YouTube', '323k', 'https://www.youtube.com/@LieLikesMusic', 57, 'UCgIlmfJhLLBwTYvL4r-2hhg', NULL),
+	(46, 'Instagram', '2230', 'https://www.instagram.com/christianhlie/', 57, NULL, NULL);
 
 -- Listage de la structure de table sfcritix. user
 CREATE TABLE IF NOT EXISTS `user` (
@@ -328,7 +347,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   UNIQUE KEY `UNIQ_8D93D649A045A5E9` (`nick_name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfcritix.user : ~3 rows (environ)
+-- Listage des données de la table sfcritix.user : ~4 rows (environ)
 INSERT INTO `user` (`id`, `email`, `roles`, `password`, `nick_name`, `profile_picture`, `status`, `bio`, `account_date`, `is_verified`) VALUES
 	(16, 'test@exemple.com', '[]', '$2y$13$3JP6RlXMQmt5AxpcVxfHlesXj0Fq30ev.cd2rO/jDUBbBatZEaI0G', 'Test', '', 'Test2', 'Test3', '2025-02-26 08:50:05', 0),
 	(34, 'titi@exemple.com', '[]', '$2y$13$gfEN2hZtNCH3N7NxxHsktebrha3JhyW/3V7AAJsrU55KWctPxw14W', 'Toto', 'Sosie-67c085e9c7ef4.png', 'Barbecue + Partie de football', 'Sosie officiel de Robert de Niro dans Heat', '2025-02-27 14:15:15', 0),
@@ -346,7 +365,7 @@ CREATE TABLE IF NOT EXISTS `user_piece` (
   CONSTRAINT `FK_A608F07BC40FCFA8` FOREIGN KEY (`piece_id`) REFERENCES `piece` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfcritix.user_piece : ~4 rows (environ)
+-- Listage des données de la table sfcritix.user_piece : ~2 rows (environ)
 INSERT INTO `user_piece` (`user_id`, `piece_id`) VALUES
 	(16, 19),
 	(34, 19);
@@ -361,16 +380,17 @@ CREATE TABLE IF NOT EXISTS `video` (
   PRIMARY KEY (`id`),
   KEY `IDX_7CC7DA2CC40FCFA8` (`piece_id`),
   CONSTRAINT `FK_7CC7DA2CC40FCFA8` FOREIGN KEY (`piece_id`) REFERENCES `piece` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfcritix.video : ~2 rows (environ)
+-- Listage des données de la table sfcritix.video : ~7 rows (environ)
 INSERT INTO `video` (`id`, `title`, `link`, `is_trailer`, `piece_id`) VALUES
 	(6, 'Dune: Awakening - Official Arrakis Trailer', 'r8lxVDqoHLQ?', 1, 1),
 	(7, 'The Brutalist | Official Trailer HD | A24', 'GdRXPAHIEW4', 1, 19),
 	(11, 'Lies of P - Official Launch Trailer', 'kXZoKdr-xeo', 1, 63),
 	(12, 'Monster Hunter Wilds - Launch Trailer', 'a_wNFT4j6qI', 1, 64),
 	(13, 'THE MAN WHO KILLED DON QUIXOTE Official Trailer', 'yiiRZJUTT2k', 1, 65),
-	(14, 'Mickey 17 | Official Trailer', 'osYpGSz_0i4', 1, 66);
+	(14, 'Mickey 17 | Official Trailer', 'osYpGSz_0i4', 1, 66),
+	(16, 'Skeleton Tree (Official Audio)', 'O7tfTBtpR0E', 1, 69);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

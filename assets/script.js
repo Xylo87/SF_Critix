@@ -237,8 +237,17 @@ likeButtons.forEach(button => {
         }
     })
 });
-    
+   
 
 
 
 
+// > Waiting loaded DOM for hash scroll
+window.onload = function() {
+    setTimeout(function() {
+        if (window.location.hash) {
+            let targetElement = document.querySelector(window.location.hash)
+            targetElement.scrollIntoView({ behavior: 'smooth' })
+        }
+    }, 100); // Ajustez le délai si nécessaire
+};

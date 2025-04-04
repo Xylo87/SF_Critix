@@ -9,7 +9,7 @@
     <a href="{{ path('new_piece')}}">Add a Piece</a><br>
     <a href="{{ path('new_critic')}}">Add a Critic</a>
     <hr>
-    {% for piece in category.pieces|sort((a, b) => a.title <=> b.title) %}
+    {% for piece in category.pieces|sort((a, b) => b.releaseDate <=> a.releaseDate) %}
         <h2><a href="{{ path('show_critics', {'id': piece.id})}}">{{piece}}</a></h2>
 
 

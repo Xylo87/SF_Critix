@@ -42,7 +42,7 @@ class RegistrationFormType extends AbstractType
                         The legal basis for processing is the performance of a contract, as the information provided is necessary 
                         for the use of the platform and participation in the community. 
                         This includes users\' comments and the potential use of personal data (such as email address and, optionally, 
-                        a personal photo) to enable interaction within the platform and improve user experience.
+                        a personal photo) for authentication, contact, to enable interaction within the platform and to improve user experience.
                         Your data will not be shared with third parties without your explicit consent, except where required by law.
                         Consent is obtained when you create an account or when you explicitly opt in for specific features.
                         You have the right to access, rectify, erase, restrict processing of your personal data, 

@@ -292,6 +292,7 @@ class SecurityController extends AbstractController
         foreach ($user->getAgreements() as $existingAgreement) {
             if ($existingAgreement->getCritic()->getId() === $critic->getId()) {
                 $agreement = $existingAgreement;
+                break;
             }
         }
 
@@ -316,6 +317,50 @@ class SecurityController extends AbstractController
         return $this->redirectToRoute('show_critics', ['id' => $critic->getPiece()->getId()]);
     }
 
+    // User's critic like (AJAX ver.)
+    // #[Route('/critic/{id}/like', name: 'like_critic', methods: ['POST'])]
+    // public function likeCriticAJAX(Security $security, EntityManagerInterface $entityManager, Critic $critic = null, Agreement $agreement = null, Request $request) 
+    // {
+    //     $user = $security->getUser();
+
+    //     if (!$user) {
+    //         return new JsonResponse([
+    //             'success' => false,
+    //             'message' => 'You must be logged in to like a critic !'
+    //         ], 401);
+    //     }
+
+    //     foreach ($user->getAgreements() as $existingAgreement) {
+    //         if ($existingAgreement->getCritic()->getId() === $critic->getId()) {
+    //             $agreement = $existingAgreement;
+    //             break;
+    //         }
+    //     }
+
+    //     if ($agreement) {
+    //         if ($agreement->isOk() === true) {
+    //             $entityManager->remove($agreement);
+    //         } else {
+    //             $agreement->setIsOk(true);
+    //             $message = 'You liked '.$critic->getInfluencer().'\'s critic on "'.$critic->getPiece().'" !';
+    //         }
+    //     } else {
+    //         $agreement = new Agreement ();
+    //         $agreement->setIsOk(true);
+    //         $agreement->setCritic($critic);
+    //         $agreement->setUser($user);
+    //         $entityManager->persist($agreement);
+    //         $message = 'You liked '.$critic->getInfluencer().'\'s critic on "'.$critic->getPiece().'" !';
+    //     }
+
+    //     $entityManager->flush();
+        
+    //     return new JsonResponse([
+    //         'success' => true,
+    //         'message' => $message
+    //     ]);
+    // }
+
     // User's critic dislike
     #[Route('/critic/{id}/dislike', name: 'dislike_critic')]
     public function dislikeCritic(Security $security, EntityManagerInterface $entityManager, Critic $critic = null, Agreement $agreement = null) {
@@ -330,6 +375,7 @@ class SecurityController extends AbstractController
         foreach ($user->getAgreements() as $existingAgreement) {
             if ($existingAgreement->getCritic()->getId() === $critic->getId()) {
                 $agreement = $existingAgreement;
+                break;
             }
         }
 

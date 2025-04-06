@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `agreement` (
   KEY `IDX_2E655A24A76ED395` (`user_id`),
   CONSTRAINT `FK_2E655A24A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
   CONSTRAINT `FK_2E655A24C7BE2830` FOREIGN KEY (`critic_id`) REFERENCES `critic` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table sfcritix.agreement : ~8 rows (environ)
 INSERT INTO `agreement` (`id`, `is_ok`, `critic_id`, `user_id`) VALUES
@@ -41,7 +41,11 @@ INSERT INTO `agreement` (`id`, `is_ok`, `critic_id`, `user_id`) VALUES
 	(55, 0, 17, 16),
 	(56, 1, 16, 16),
 	(58, 0, 30, 36),
-	(59, 1, 30, 35);
+	(59, 1, 30, 35),
+	(61, 1, 45, 36),
+	(62, 0, 44, 36),
+	(63, 0, 45, 35),
+	(64, 1, 44, 35);
 
 -- Listage de la structure de table sfcritix. category
 CREATE TABLE IF NOT EXISTS `category` (
@@ -100,9 +104,9 @@ CREATE TABLE IF NOT EXISTS `critic` (
   KEY `IDX_C9E2F7F14AF97FA6` (`influencer_id`),
   CONSTRAINT `FK_C9E2F7F14AF97FA6` FOREIGN KEY (`influencer_id`) REFERENCES `influencer` (`id`),
   CONSTRAINT `FK_C9E2F7F1C40FCFA8` FOREIGN KEY (`piece_id`) REFERENCES `piece` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfcritix.critic : ~21 rows (environ)
+-- Listage des données de la table sfcritix.critic : ~22 rows (environ)
 INSERT INTO `critic` (`id`, `media`, `summary`, `critic_score`, `length_min`, `date_post`, `origin_date_post`, `piece_id`, `influencer_id`) VALUES
 	(16, '93o3a6MWgxA', '"I particularly enjoyed this first \r\ncontact with Dune: Awakening."', 4, 19, '2025-02-19 21:09:58', '2025-01-30 00:00:00', 1, 2),
 	(17, 'QJjEP0Nnsa0', '"I let myself be carried away by the atmosphere and the general intention."', 3, 15, '2025-02-20 14:29:52', '2025-01-30 00:00:00', 1, 12),
@@ -124,7 +128,10 @@ INSERT INTO `critic` (`id`, `media`, `summary`, `critic_score`, `length_min`, `d
 	(54, '4OPV_np5Zks', '"This album is the perfect combination of what Kendrick has made so far."', 4, 18, '2025-04-03 20:47:59', '2022-05-18 00:00:00', 62, 54),
 	(55, 'V9345rBzdWQ', '"I can\'t imagine a piece that fulfill its mission quite like this."', 5, 13, '2025-04-03 21:20:35', '2016-09-15 00:00:00', 69, 56),
 	(56, 'Vz2YokGxlT4', '"I was really impressed with this record : it is beautifully sad."', 4, 9, '2025-04-03 21:26:04', '2016-09-19 00:00:00', 69, 41),
-	(57, '0F9p_d7Pfxg', '"It is pretty mediocre, but there are a few good songs."', 3, 9, '2025-04-03 21:55:37', '2017-08-29 00:00:00', 70, 57);
+	(57, '0F9p_d7Pfxg', '"It is pretty mediocre, but there are a few good songs."', 3, 9, '2025-04-03 21:55:37', '2017-08-29 00:00:00', 70, 57),
+	(58, 'QMNvNt5HKng', '"A very good story, you can feel the author\'s experience behind the lines."', 4, 16, '2025-04-06 11:39:51', '2021-09-29 00:00:00', 71, 58),
+	(59, 'LZMIYP-Iu4g', '"It\'s a great book. The book contains some very important messages."', 4, 7, '2025-04-06 12:21:47', '2016-06-22 00:00:00', 72, 59),
+	(60, 'DQlmjGioECM', '"I enjoyed every page of this novel."', 5, 10, '2025-04-06 12:56:07', '2018-10-21 00:00:00', 73, 60);
 
 -- Listage de la structure de table sfcritix. critic_user
 CREATE TABLE IF NOT EXISTS `critic_user` (
@@ -147,7 +154,7 @@ CREATE TABLE IF NOT EXISTS `doctrine_migration_versions` (
   PRIMARY KEY (`version`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
--- Listage des données de la table sfcritix.doctrine_migration_versions : ~1 rows (environ)
+-- Listage des données de la table sfcritix.doctrine_migration_versions : ~0 rows (environ)
 INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
 	('DoctrineMigrations\\Version20250218150339', '2025-02-18 16:03:49', 274);
 
@@ -172,9 +179,9 @@ CREATE TABLE IF NOT EXISTS `influencer` (
   `photo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `bio` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfcritix.influencer : ~18 rows (environ)
+-- Listage des données de la table sfcritix.influencer : ~19 rows (environ)
 INSERT INTO `influencer` (`id`, `nick_name`, `real_name`, `photo`, `bio`) VALUES
 	(2, 'ExServ', 'Benoît Reinier', 'influ-ExServ-67b769a27f05d.webp', 'Since 2010, ExServ has been providing \'From Software\' video game guides, tests and news analysis. A former video game journalist, he now works as an independant since 2016 and divides his time between his YouTube channel, the podcast \'Fin du Game\' and writing books for \'Third Editions\'.'),
 	(12, 'Carole Quintaine', 'Carole Quintaine', 'influ-Carole-Quintaine-67b769c9dbc25.jpg', 'Carole is a superhero who wears a cape and a bat mask. And she\'s also on YouTube to talk about video games.'),
@@ -193,7 +200,10 @@ INSERT INTO `influencer` (`id`, `nick_name`, `real_name`, `photo`, `bio`) VALUES
 	(53, 'deep cuts', 'Oliver Kemp', 'influ-OliverKemp-67eed26a48f84.jpg', 'A channel dedicated to music, for lovers of music! Discussions on genres, guides to band discographies and commenting on the  ever-changing landscape of modern music.'),
 	(54, 'Volksgeist', 'Philip D’amico', 'influ-Volksgeist-67eed68633209.jpg', '"I’m Philip and this is volksgeist. I’m here to share my love of music and talk about all the ways music can change the world."'),
 	(56, 'Spectrum Pulse', 'Mark Grondin', 'influ-SpectrumPulse-67eede4998478.webp', '"Where we talk about music, movies, art, and culture."'),
-	(57, 'Lie Likes Music', 'Christian Haug Lie', 'influ-LieLikesMusic-67eee67c69618.jpg', '"Fretboard flyer mentor - Oslo, Norway"');
+	(57, 'Lie Likes Music', 'Christian Haug Lie', 'influ-LieLikesMusic-67eee67c69618.jpg', '"Fretboard flyer mentor - Oslo, Norway"'),
+	(58, 'Canal Franzo', NULL, 'influ-CanalFranzo-67f24aee2f790.jpg', 'My name is Franzo, and I\'m a writer published by self-publishing houses.'),
+	(59, 'Margaud Liseuse', 'Margaud Quartenoud', 'influ-MargaudQuartenoud-67f254936b13a.jpg', 'Margaud talks mainly about books, and everything that revolves around this universe. There\'s something for everyone. She chats in the comments and it\'s always a nice, relaxing moment.'),
+	(60, 'PeruseProject', NULL, 'influ-PeruseProject-67f25c510203f.jpg', '"I am Regan I like to talk about books."');
 
 -- Listage de la structure de table sfcritix. influencer_user
 CREATE TABLE IF NOT EXISTS `influencer_user` (
@@ -262,9 +272,9 @@ CREATE TABLE IF NOT EXISTS `piece` (
   PRIMARY KEY (`id`),
   KEY `IDX_44CA0B2312469DE2` (`category_id`),
   CONSTRAINT `FK_44CA0B2312469DE2` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfcritix.piece : ~9 rows (environ)
+-- Listage des données de la table sfcritix.piece : ~10 rows (environ)
 INSERT INTO `piece` (`id`, `title`, `about`, `maker`, `release_date`, `category_id`, `is_upcoming`, `poster`) VALUES
 	(1, 'Dune: Awakening', 'Dune: Awakening is a massively multiplayer online game where players must survive in the desert of Arrakis. It takes place in an open world.', 'Funcom', '2025-01-01 00:00:00', 1, 1, 'games-DuneA-poster-67c0af2463993.png'),
 	(19, 'The Brutalist', 'Escaping post-war Europe, visionary architect László Toth arrives in America to rebuild his life, his work, and his marriage to his wife Erzsébet after being forced apart during wartime by shifting borders and regimes. On his own in a strange new country, László settles in Pennsylvania, where an industrialist recognizes his talent for building.', 'Brady Corbet', '2025-02-12 00:00:00', 2, 0, 'movies-TheBrutalist-67edabfff0677.jpg'),
@@ -274,7 +284,10 @@ INSERT INTO `piece` (`id`, `title`, `about`, `maker`, `release_date`, `category_
 	(65, 'The Man Who Killed Don Quixote', 'Toby Grummett, a director, is in rural Spain, struggling with the production of a commercial featuring Don Quixote. After an unsuccessful day of shooting, Toby\'s superior, the Boss, introduces him to a Romani street merchant who sells him an old DVD of The Man Who Killed Don Quixote, a film he wrote and directed ten years earlier as a student.', 'Terry Gilliam', '2018-05-19 00:00:00', 2, 0, 'movies-TheManWhoKilledDonQuixote-poster-67eda28b9f4b0.jpg'),
 	(66, 'Mickey 17', 'In the year 2054, Mickey Barnes and his friend Timo join a spaceship crew heading to colonize the ice-planet Niflheim, in order to escape a murderous loan shark.', 'Bong Joon Ho', '2025-02-13 00:00:00', 2, 0, 'movies-Mickey17-poster-67eda19756f56.jpg'),
 	(69, 'Skeleton Tree', 'Skeleton Tree is the sixteenth studio album by Australian rock band Nick Cave and the Bad Seeds. Skeleton Tree\'s minimal production and "less polished" sound incorporates elements of electronica and ambient music and, like Push the Sky Away, features extensive use of synthesizers, drum machines and loops.', 'Nick Cave & the Bad Seeds', '2016-09-09 00:00:00', 4, 0, 'music-Skeleton-Tree-67eecc6d559ea.jpg'),
-	(70, 'Villains', 'Villains is the seventh studio album by American rock band Queens of the Stone Age. The album was announced with a teaser trailer taking the form of a comedy skit featuring the band performing a polygraph test with Liam Lynch.', 'Queens of the Stone Age', '2017-08-25 00:00:00', 4, 0, 'music-Villains-67eee4c95e5b4.jpg');
+	(70, 'Villains', 'Villains is the seventh studio album by American rock band Queens of the Stone Age. The album was announced with a teaser trailer taking the form of a comedy skit featuring the band performing a polygraph test with Liam Lynch.', 'Queens of the Stone Age', '2017-08-25 00:00:00', 4, 0, 'music-Villains-67eee4c95e5b4.jpg'),
+	(71, 'Les impatientes', 'Three women, three stories, three linked destinies. This polyphonic novel traces the fate of young Ramla, who is torn from her love to be married to Safira\'s husband, while Hindou, her sister, is forced to marry her cousin.', 'Djaïli Amadou Amal', '2020-09-04 00:00:00', 5, 0, 'books-LesImpatientes-67f249862398f.jpg'),
+	(72, 'Le coeur des louves', 'Célia and her mother, a successful writer with a writer\'s block, return to live in their grandmother\'s house, dead for years, in the heart of a village lost in the mountains. Their return is resented by some, as if it revives old buried stories.', 'Stéphane Servant', '2013-08-17 00:00:00', 5, 0, 'books-LeCoeurDesLouves-67f2520937230.jpg'),
+	(73, 'Warbreaker', 'Warbreaker tells the story of two Idrian princesses, Vivenna and Siri. Vivenna was contracted through a treaty written before she was born to marry the God King of rival nation Hallandren. However, King Dedelin sends his other daughter Siri to meet the treaty instead.', 'Brandon Sanderson', '2016-06-09 00:00:00', 5, 0, 'books-Warbreaker-67f2571169c75.jpg');
 
 -- Listage de la structure de table sfcritix. social
 CREATE TABLE IF NOT EXISTS `social` (
@@ -288,9 +301,9 @@ CREATE TABLE IF NOT EXISTS `social` (
   PRIMARY KEY (`id`),
   KEY `IDX_7161E1874AF97FA6` (`influencer_id`),
   CONSTRAINT `FK_7161E1874AF97FA6` FOREIGN KEY (`influencer_id`) REFERENCES `influencer` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfcritix.social : ~37 rows (environ)
+-- Listage des données de la table sfcritix.social : ~39 rows (environ)
 INSERT INTO `social` (`id`, `name`, `sub_number`, `link`, `influencer_id`, `channel_id`, `live_id`) VALUES
 	(4, 'YouTube', '200k', 'https://www.youtube.com/@ExServ85', 2, 'UC2FAM-zL-PhH0OkIT95aWJQ', NULL),
 	(5, 'Bluesky', '9.4k', 'https://bsky.app/profile/exserv.bsky.social', 2, NULL, NULL),
@@ -328,7 +341,13 @@ INSERT INTO `social` (`id`, `name`, `sub_number`, `link`, `influencer_id`, `chan
 	(43, 'YouTube', '46.6k', 'https://www.youtube.com/@SpectrumPulse', 56, NULL, NULL),
 	(44, 'Instagram', '2270', 'https://www.instagram.com/spectrumpulse', 56, NULL, NULL),
 	(45, 'YouTube', '323k', 'https://www.youtube.com/@LieLikesMusic', 57, 'UCgIlmfJhLLBwTYvL4r-2hhg', NULL),
-	(46, 'Instagram', '2230', 'https://www.instagram.com/christianhlie/', 57, NULL, NULL);
+	(46, 'Instagram', '2230', 'https://www.instagram.com/christianhlie/', 57, NULL, NULL),
+	(47, 'YouTube', '2.4k', 'https://www.youtube.com/@canalfranzo', 58, 'UCvCOAuSXP_9VoTUmJkASgpg', NULL),
+	(48, 'Instagram', '2670', 'https://www.instagram.com/canal_franzo', 58, NULL, NULL),
+	(49, 'YouTube', '74.6k', 'https://www.youtube.com/@MargaudLiseuse', 59, 'UCP2X3cVGXP0r56gOGhiRDlA', NULL),
+	(50, 'Instagram', '34.1k', 'https://www.instagram.com/margaudliseuse/', 59, NULL, NULL),
+	(51, 'YouTube', '385k', 'https://www.youtube.com/@PeruseProject', 60, 'UCy6Qlkv2hif7KPtmMmNUGUw', NULL),
+	(52, 'Instagram', '220k', 'https://www.instagram.com/peruseproject', 60, NULL, NULL);
 
 -- Listage de la structure de table sfcritix. user
 CREATE TABLE IF NOT EXISTS `user` (

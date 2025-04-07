@@ -397,6 +397,7 @@
                 <div id="menu">
                     <a href="{{ path('show_category', {'id': 1})}}">Games</a>
                     <a href="{{ path('show_category', {'id': 2})}}">Movies</a>
+                    <a href="{{ path('show_category', {'id': 3})}}">TV Shows</a>
                     <a href="{{ path('show_category', {'id': 4})}}">Music</a>
                     <a href="{{ path('show_category', {'id': 5})}}">Books</a>
 
@@ -405,10 +406,27 @@
                     <a href="{{path('app_influencer')}}">Content creators</a>
                 </div>
                 
+                {% if app.user %}
                 <div id="logs">
-                    <a href="{{ path('app_login')}}">Login</a>
-                    <a href="{{ path('app_register')}}">Register</a>
+                    <a id="nickName" href="{{ path('dashboard_user')}}">{{app.user}}</a>
+
+                    {% if app.user.profilePicture %}
+                        <img src="/uploads/photos/userPhotos/{{app.user.profilePicture}}" alt="{{app.user}}-profile-picture">
+                    {% else %}
+                        <img src="/uploads/photos/userPhotos/user-default.png" alt="user-default-profile-picture">
+                    {% endif %}
+    
+                    {# <a href="{{ path('dashboard_user')}}">Profile</a> #}
+                    <a class="logsBtn" href="{{ path('app_logout')}}">Logout</a>
                 </div>
+                
+                {% else %}    
+                <div id="logs">
+                    <a class="logsBtn" href="{{ path('app_login')}}">Login</a>
+                    <a class="logsBtn" href="{{ path('app_register')}}">Register</a>
+                </div>
+                {% endif %}
+
             </nav>
         </header>
         <hr>

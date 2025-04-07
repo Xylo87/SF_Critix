@@ -1,6 +1,8 @@
 
 #flashMessages {
     position: absolute;
+    top: 0;
+    left: 0;
     color: var(--white);
 }
 
@@ -42,6 +44,7 @@ nav {
 #menu {
     height: 100%;
     display: flex;
+    margin: 0 35px;
     flex-grow: 1;
     align-items: center;
     justify-content: space-evenly;
@@ -51,6 +54,7 @@ nav {
     padding: 10px;
     text-decoration: none;
     border-radius: 4px;
+    font-weight: 600;
     color: var(--white);
     transition: all 0.1s;
 }
@@ -65,11 +69,21 @@ nav {
 }
 
 #logs {
+    max-width: 550px;
+    height: 100%;
     display: flex;
+    align-items: center;
     gap: 15px;
 }
 
-#logs a {
+#logs img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.logsBtn {
     width: 82px;
     height: 40px;
     padding: 10px;
@@ -79,22 +93,29 @@ nav {
     transition: all 0.1s;
 }
 
-#logs a:first-of-type {
+.logsBtn:first-of-type {
     color: var(--black);
     background: var(--white);
 }
 
-#logs a:first-of-type:hover {
+.logsBtn:first-of-type:hover {
     background: rgb(201, 201, 201);
 }
 
-#logs a:last-of-type {
+.logsBtn:last-of-type {
     color: var(--white);
     background: var(--orange);
 }
 
-#logs a:last-of-type:hover {
+.logsBtn:last-of-type:hover {
     background: rgb(210, 65, 11);
+}
+
+#nickName {
+    color: var(--white);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 header + hr {

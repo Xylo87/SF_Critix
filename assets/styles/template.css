@@ -1,0 +1,102 @@
+
+#flashMessages {
+    position: absolute;
+    color: var(--white);
+}
+
+
+
+header {
+    height: 64px;
+    display: flex;
+    justify-content: center;
+    background: var(--black);
+}
+
+nav {
+    width: 75vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#homeLink {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+#homeLink h1 {
+    font-size: 300%;
+    letter-spacing: 1px;
+    color: var(--white);
+}
+
+#homeLink img {
+    height: 75%;
+    margin-top: 2.5px;
+    margin-left: -10px;
+}
+
+#menu {
+    height: 100%;
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#menu a {
+    padding: 10px;
+    text-decoration: none;
+    border-radius: 4px;
+    color: var(--white);
+    transition: all 0.1s;
+}
+
+#menu a:hover {
+    background: var(--white);
+    color: var(--black);
+}
+
+#menu hr {
+    height: 75%;
+}
+
+#logs {
+    display: flex;
+    gap: 15px;
+}
+
+#logs a {
+    width: 82px;
+    height: 40px;
+    padding: 10px;
+    text-decoration: none;
+    border-radius: 25px;
+    text-align: center;
+    transition: all 0.1s;
+}
+
+#logs a:first-of-type {
+    color: var(--black);
+    background: var(--white);
+}
+
+#logs a:first-of-type:hover {
+    background: rgb(201, 201, 201);
+}
+
+#logs a:last-of-type {
+    color: var(--white);
+    background: var(--orange);
+}
+
+#logs a:last-of-type:hover {
+    background: rgb(210, 65, 11);
+}
+
+header + hr {
+    color: var(--white);
+}

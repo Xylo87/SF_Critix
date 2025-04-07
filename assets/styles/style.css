@@ -1,3 +1,10 @@
+:root {
+    --white: #F2F2F2;
+    --black: #1E1F25;
+    --orange: #ff4500;
+    --red: #CF2020;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -6,11 +13,12 @@
 
 body {
     background: #0d1d45;
-    color: #F2F2F2;
+    color: var(--white);
+    font-family: "Inter", sans-serif;
 }
 
 a {
-    color: #ff4500;
+    color: var(--orange);
 }
 
 a, button {

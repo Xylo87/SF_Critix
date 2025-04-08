@@ -238,7 +238,7 @@ footer section {
     width: 33vw;
 }
 
-.footInfos h1, h2 {
+.footInfos h1, .footInfos h2 {
     text-align: center;
 }
 
@@ -265,12 +265,12 @@ footer section {
     margin-left: 33px;
 }
 
-.footInfos p, li, blockquote {
+.footInfos p, .footInfos li, .footInfos blockquote {
     line-height: 1.4;
     text-align: justify;
 }
 
-#legalInfos, #privacyInfos h1 {
+#legalInfos h1, #privacyInfos h1 {
     margin-bottom: 33px;
 }
 
@@ -286,11 +286,11 @@ footer section {
     margin-bottom: 0;
 }
 
-#legalInfos, #privacyInfos a {
+#legalInfos a, #privacyInfos a {
     text-decoration: none;
     color: var(--orange);
 }
 
-#legalInfos, #privacyInfos a:hover {
+#legalInfos a:hover, #privacyInfos a:hover {
     text-decoration: underline;
 }

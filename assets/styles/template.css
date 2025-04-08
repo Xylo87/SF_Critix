@@ -8,7 +8,7 @@
 
 
 
-.container {
+#container {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -35,18 +35,18 @@ nav {
     display: flex;
     align-items: center;
     text-decoration: none;
-}
 
-#homeLink h1 {
-    font-size: 300%;
-    letter-spacing: 1px;
-    color: var(--white);
-}
+    & h1 {
+        font-size: 300%;
+        letter-spacing: 1px;
+        color: var(--white);
+    }
 
-#homeLink img {
-    height: 75%;
-    margin-top: 2.5px;
-    margin-left: -10px;
+    & img {
+        height: 75%;
+        margin-top: 2.5px;
+        margin-left: -10px;
+    }
 }
 
 #menu {
@@ -56,39 +56,39 @@ nav {
     flex-grow: 1;
     align-items: center;
     justify-content: space-evenly;
-}
 
-#menu a {
-    padding: 10px;
-    text-decoration: none;
-    border-radius: 4px;
-    font-weight: 600;
-    color: var(--white);
-    transition: all 0.1s;
-}
+    & a {
+        padding: 10px;
+        text-decoration: none;
+        border-radius: 4px;
+        font-weight: 600;
+        color: var(--white);
+        transition: all 0.1s;
+    }
 
-#menu a:hover {
-    background: var(--white);
-    color: var(--black);
+    & a:hover {
+        background: var(--white);
+        color: var(--black);
+    }
 }
 
 #menu hr {
     height: 75%;
 }
-
+ 
 #logs {
     max-width: 550px;
     height: 100%;
     display: flex;
     align-items: center;
     gap: 15px;
-}
 
-#logs img {
-    width: 40px;
-    height: 40px;
-    object-fit: cover;
-    border-radius: 50%;
+    & img {
+        width: 40px;
+        height: 40px;
+        object-fit: cover;
+        border-radius: 50%;
+    }
 }
 
 .logsBtn {
@@ -99,24 +99,24 @@ nav {
     border-radius: 25px;
     text-align: center;
     transition: all 0.1s;
-}
+    
+    &:first-of-type {
+        color: var(--black);
+        background: var(--white);
+    }
 
-.logsBtn:first-of-type {
-    color: var(--black);
-    background: var(--white);
-}
+    &:first-of-type:hover {
+        background: rgb(201, 201, 201);
+    }
 
-.logsBtn:first-of-type:hover {
-    background: rgb(201, 201, 201);
-}
-
-.logsBtn:last-of-type {
-    color: var(--white);
-    background: var(--orange);
-}
-
-.logsBtn:last-of-type:hover {
-    background: rgb(210, 65, 11);
+    &:last-of-type {
+        color: var(--white);
+        background: var(--orange);
+    }
+    
+    &:last-of-type:hover {
+        background: rgb(210, 65, 11);
+    }
 }
 
 #nickName {
@@ -131,10 +131,10 @@ header + hr {
 }
 
 
-
+  
 main {
     width: 66vw;
-    margin: 50px 0;
+    margin: 33px 0;
     align-self: center;
     flex-grow: 1;
 }
@@ -152,62 +152,62 @@ footer {
     display: flex;
     justify-content: space-evenly;
     background: var(--grey);
-}
 
-footer h2 {
-    font-size: 100%;
-    font-weight: 600;
-}
+    & h2 {
+        font-size: 100%;
+        font-weight: 600;
+    }
 
-footer section {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 15px 0;
+    & section {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 15px 0;
+    }
 }
 
 #overview {
     justify-content: space-between;
-}
 
-#overview a {
-    font-size: 80%;
-    font-weight: 300;
-    color: var(--white);
-    text-decoration: none;
-}
+    & a {
+        font-size: 80%;
+        font-weight: 300;
+        color: var(--white);
+        text-decoration: none;
+    }
 
-#overview a:hover {
-    text-decoration: underline;
+    & a:hover {
+        text-decoration: underline;
+    }
 }
 
 #socials {
     justify-content: space-between;
-}
 
-#socials a {
-    color: var(--white);
-    text-decoration: none;
-}
+    & a {
+        color: var(--white);
+        text-decoration: none;
+    }
 
-#socials a:last-of-type:hover {
-    text-decoration: underline;
-}
+    & a:last-of-type:hover {
+        text-decoration: underline;
+    }
 
-#socials i {
-    padding: 0 5px;
-    margin-bottom: 20px;
-    font-size: 150%;
-    opacity: 0.5;
-}
+    & i {
+        padding: 0 5px;
+        margin-bottom: 20px;
+        font-size: 150%;
+        opacity: 0.5;
+    }
+    
+    & i:hover {
+        opacity: 1;
+    }
 
-#socials i:hover {
-    opacity: 1;
-}
-
-#socials small {
-    font-weight: 300;
+    & small {
+        font-weight: 300;
+    }
 }
 
 #contact a {
@@ -242,6 +242,11 @@ footer section {
     text-align: center;
 }
 
+.footInfos p, .footInfos li, .footInfos blockquote {
+    line-height: 1.4;
+    text-align: justify;
+}
+
 #aboutInfos h2 {
     margin-bottom: 33px;
     font-size: 125%;
@@ -263,11 +268,6 @@ footer section {
 #aboutInfos li {
     margin-top: 10px;
     margin-left: 33px;
-}
-
-.footInfos p, .footInfos li, .footInfos blockquote {
-    line-height: 1.4;
-    text-align: justify;
 }
 
 #legalInfos h1, #privacyInfos h1 {

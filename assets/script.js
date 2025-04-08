@@ -79,8 +79,15 @@ openModal.forEach(opMo => {
 const addComment = document.querySelectorAll(".addComment")
 
 function adjustHeight(addCo) {
+    const scrollPos = window.scrollY;
+
     addCo.style.height = 'auto'
     addCo.style.height = addCo.scrollHeight + 'px'
+
+    window.scrollTo({
+        top: scrollPos,
+        behavior: "instant" // "auto" sur les navigateurs plus anciens
+    });
 }
 
 addComment.forEach((addCo) => {

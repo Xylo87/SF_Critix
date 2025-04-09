@@ -294,3 +294,65 @@ footer {
 #legalInfos a:hover, #privacyInfos a:hover {
     text-decoration: underline;
 }
+
+
+
+.logsForm a {
+    text-decoration: none;
+    color: var(--orange);
+}
+
+.logsForm a:hover {
+    text-decoration: underline;
+}
+
+.logsForm h1 {
+    margin-bottom: 25px;
+}
+
+.logsForm label {
+    font-size: 90%;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.logsForm input {
+    margin-top: 5px;
+    margin-bottom: 15px;
+    padding: 5px;
+    font-size: 100%;
+}
+
+.logsForm button {
+    width: 100%;
+    padding: 7.5px 0;
+    font-weight: 700;
+}
+
+#loginForm {
+    width: fit-content;
+}
+
+#registerForm {
+    width: 33vw;
+}
+
+#registerForm input:nth-of-type(2) {
+    margin-bottom: 45px;
+}
+
+#registerForm input:nth-of-type(4) {
+    margin-bottom: 35px;
+}
+
+#registerForm strong, #registerForm small {
+    display: inline-block;
+    line-height: 1.4;
+    text-align: justify;
+}
+
+#registerForm small {
+    margin-bottom: 15px;
+}
+
+

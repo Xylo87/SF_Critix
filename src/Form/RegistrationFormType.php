@@ -21,20 +21,20 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('nickName', TextType::class, [
-                'label' => 'Nickname :',
+                'label' => 'Nickname',
                 'attr' => [
-                    'size' => 30
+                    'size' => 40
                 ]
             ])
             ->add('email', EmailType::class, [
-                'label' => 'Email :',
+                'label' => 'Email',
                 'attr' => [
                     'size' => 40
                 ]
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
-                'label' => 'Legal terms :',
+                'label' => 'Legal terms',
                 'constraints' => [
                     new IsTrue([
                         'message' => 'The information collected on this form is stored in an electronic file by CritX 
@@ -76,13 +76,13 @@ class RegistrationFormType extends AbstractType
                 'type' => PasswordType::class,
                 'invalid_message' => 'Passwords must match',
                 'required' => true,
-                'first_options' => ['label' => 'Password :', 
+                'first_options' => ['label' => 'Password', 
                     'attr' => [
-                        'size' => 30
+                        'size' => 40
                 ]],
-                'second_options' => ['label' => 'Confirm password :', 
+                'second_options' => ['label' => 'Confirm password', 
                 'attr' => [
-                    'size' => 30
+                    'size' => 40
                 ]],
             ])
         ;

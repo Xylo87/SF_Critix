@@ -3,40 +3,46 @@
 {% block title %}CritX > Login{% endblock %}
 
 {% block body %}
-    <form method="post">
+    <form class="logsForm" method="post">
         {% if error %}
             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
         {% endif %}
 
         {% if app.user %}
             <div>
-                <small>You are already logged in as "{{ app.user }}"</small><br> 
-                ➔ <a href="{{ path('app_logout') }}">Logout</a><br><br>
+                <h2>You are already logged in as "{{ app.user }}"</h2>
+                <br>
+                ➔ <a href="{{ path('app_logout') }}">Logout</a>
             </div>
-        {% endif %}
+        
+        {% else %}
 
-        <h1>Please sign in</h1><br>
-        <label for="username">Email :</label>
-        <input type="email" name="_username" id="username" autocomplete="email" size="30" required autofocus><br>
-        <label for="password">Password :</label>
-        <input type="password" name="_password" id="password" autocomplete="current-password" size="30" required><br><br>
+        <div id="loginForm">
+            <h1>Please sign in</h1>
+            <label for="username">Email</label><br>
+            <input type="email" name="_username" id="username" autocomplete="email" size="40" required autofocus><br>
+            <label for="password">Password</label><br>
+            <input type="password" name="_password" id="password" autocomplete="current-password" size="40" required><br><br>
 
-        <input type="hidden" name="_csrf_token"
-               value="{{ csrf_token('authenticate') }}"
-        >
+            <input type="hidden" name="_csrf_token"
+                value="{{ csrf_token('authenticate') }}"
+            >
 
         {#
             Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
             See https://symfony.com/doc/current/security/remember_me.html
+        #}
 
             <div class="checkbox mb-3">
                 <input type="checkbox" name="_remember_me" id="_remember_me">
                 <label for="_remember_me">Remember me</label>
             </div>
-        #}
+        
 
-        <button type="submit">
-            Sign in
-        </button>
+            <button type="submit">
+                Login
+            </button>
+        </div>
+        {% endif %}
     </form>
 {% endblock %}

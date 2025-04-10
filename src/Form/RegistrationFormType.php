@@ -34,7 +34,7 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
-                'label' => 'Legal terms',
+                'label' => 'I agree',
                 'constraints' => [
                     new IsTrue([
                         'message' => 'The information collected on this form is stored in an electronic file by CritX 

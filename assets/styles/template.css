@@ -297,6 +297,15 @@ footer {
 
 
 
+.logsFormContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.logsForm {
+    max-width: 378px;
+}
+
 .logsForm a {
     text-decoration: none;
     color: var(--orange);
@@ -308,6 +317,7 @@ footer {
 
 .logsForm h1 {
     margin-bottom: 25px;
+    text-align: center;
 }
 
 .logsForm label {
@@ -329,30 +339,30 @@ footer {
     font-weight: 700;
 }
 
-#loginForm {
-    width: fit-content;
+#registerForm .logsFormGroup:nth-of-type(2) {
+    margin-bottom: 30px;
 }
 
-#registerForm {
-    width: 33vw;
+#registerForm .logsFormGroup:nth-of-type(4) {
+    margin-bottom: 30px;
 }
 
-#registerForm input:nth-of-type(2) {
-    margin-bottom: 45px;
-}
-
-#registerForm input:nth-of-type(4) {
-    margin-bottom: 35px;
+#registerForm strong {
+    font-weight: 500;
 }
 
 #registerForm strong, #registerForm small {
     display: inline-block;
     line-height: 1.4;
-    text-align: justify;
 }
 
 #registerForm small {
     margin-bottom: 15px;
 }
+
+
+
+
+
 
 

@@ -122,8 +122,7 @@ comments.forEach(comment => {
 
 
 // > AJAX flash messages setup
-const flashMessageContainer = document.getElementById('flashMessages')
-const flashMessage = document.createElement('strong')
+const flashMessageContainer = document.querySelector('nav')
 
 // > AJAX for Critics Save button
 const saveButtons = document.querySelectorAll('.save-critics-btn')
@@ -147,15 +146,21 @@ saveButtons.forEach(button => {
         
             const data = await response.json()
 
+            const flashMessage = document.createElement('div')
+
             if (data.success) {
                 if (action === 'save') {
                     button.textContent = 'Unsave page'
                     button.dataset.action = 'unsave'
                     flashMessage.textContent = data.message
+                    flashMessage.classList.add('alert')
+                    flashMessage.classList.add('alert-success')
                 } else {
                     button.textContent = 'Come back later'
                     button.dataset.action = 'save'
                     flashMessage.textContent = data.message
+                    flashMessage.classList.add('alert')
+                    flashMessage.classList.add('alert-success')
 
                     if (savedCriticDash) {
                         savedCriticDash.remove()
@@ -168,15 +173,19 @@ saveButtons.forEach(button => {
                             criticDashTitle.remove()
                         }
                     }
-                }
+                } 
             } else {
                 flashMessage.textContent = data.message
+                flashMessage.classList.add('alert')
+                flashMessage.classList.add('alert-danger')
             }
-    
+
             flashMessageContainer.appendChild(flashMessage)
             setTimeout(() => {
-                flashMessage.remove();
-            }, 5000);
+                flashMessage.classList.add('fade-out')
+                setTimeout(() => 
+                    flashMessage.remove(), 500)
+            }, 3000);
 
         } catch (error) {
             console.error('Error', error)
@@ -207,15 +216,21 @@ likeButtons.forEach(button => {
         
             const data = await response.json()
 
+            const flashMessage = document.createElement('div')
+
             if (data.success) {
                 if (action === 'like') {
                     button.textContent = 'Unlike'
                     button.dataset.action = 'unlike'
                     flashMessage.textContent = data.message
+                    flashMessage.classList.add('alert')
+                    flashMessage.classList.add('alert-success')
                 } else {
                     button.textContent = 'Like'
                     button.dataset.action = 'like'
                     flashMessage.textContent = data.message
+                    flashMessage.classList.add('alert')
+                    flashMessage.classList.add('alert-success')
 
                     if (likedInfluencerDash) {
                         likedInfluencerDash.remove()
@@ -231,12 +246,16 @@ likeButtons.forEach(button => {
                 }
             } else {
                 flashMessage.textContent = data.message
+                flashMessage.classList.add('alert')
+                flashMessage.classList.add('alert-danger')
             }
     
             flashMessageContainer.appendChild(flashMessage)
             setTimeout(() => {
-                flashMessage.remove();
-            }, 5000);
+                flashMessage.classList.add('fade-out')
+                setTimeout(() => 
+                    flashMessage.remove(), 500)
+            }, 3000);
 
         } catch (error) {
             console.error('Error', error)
@@ -244,8 +263,18 @@ likeButtons.forEach(button => {
         }
     })
 });
-   
+  
 
+
+// > Flash Messages vanish
+const flashVanish = document.querySelectorAll(".alert")
+flashVanish.forEach(flash => {
+    setTimeout(() => {
+        flash.classList.add('fade-out')
+        setTimeout(() => 
+            flash.remove(), 500)
+    }, 3000);
+});
 
 
 
@@ -258,3 +287,4 @@ window.onload = function() {
         }
     }, 100); // Ajustez le délai si nécessaire
 };
+

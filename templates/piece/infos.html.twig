@@ -65,7 +65,7 @@
     {# > User score fetch #}
     {% set userScore = null %}
     {% for opinion in piece.opinions %}
-        {% if app.user and app.user.id == opinion.user.id %}
+        {% if app.user and app.user.id == opinion.user.id and opinion.piece.id == piece.id %}
             {% set userScore = opinion.userScore %}
         {% endif %}
     {% endfor %}

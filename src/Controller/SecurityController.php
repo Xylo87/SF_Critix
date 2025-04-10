@@ -10,6 +10,7 @@ use App\Entity\Opinion;
 use App\Entity\Agreement;
 use App\Entity\Influencer;
 use App\Form\UserFormType;
+use App\Repository\AgreementRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
@@ -280,7 +281,7 @@ class SecurityController extends AbstractController
 
     // User's critic like
     #[Route('/critic/{id}/like', name: 'like_critic')]
-    public function likeCritic(Security $security, EntityManagerInterface $entityManager, Critic $critic = null, Agreement $agreement = null) {
+    public function likeCritic(Security $security, EntityManagerInterface $entityManager, Critic $critic = null, AgreementRepository $agreementRepository) {
 
         $user = $security->getUser();
 
@@ -289,11 +290,16 @@ class SecurityController extends AbstractController
             return $this->redirectToRoute('app_login');
         }
 
-        foreach ($user->getAgreements() as $existingAgreement) {
-            if ($existingAgreement->getCritic()->getId() === $critic->getId()) {
-                $agreement = $existingAgreement;
-            }
-        }
+        $agreement = $agreementRepository->findOneBy([
+            'user' => $user,
+            'critic' => $critic
+        ]);
+
+        // foreach ($user->getAgreements() as $existingAgreement) {
+        //     if ($existingAgreement->getCritic()->getId() === $critic->getId()) {
+        //         $agreement = $existingAgreement;
+        //     }
+        // }
 
         if ($agreement) {
             if ($agreement->isOk() === true) {
@@ -361,7 +367,7 @@ class SecurityController extends AbstractController
 
     // User's critic dislike
     #[Route('/critic/{id}/dislike', name: 'dislike_critic')]
-    public function dislikeCritic(Security $security, EntityManagerInterface $entityManager, Critic $critic = null, Agreement $agreement = null) {
+    public function dislikeCritic(Security $security, EntityManagerInterface $entityManager, Critic $critic = null, AgreementRepository $agreementRepository) {
 
         $user = $security->getUser();
 
@@ -370,11 +376,16 @@ class SecurityController extends AbstractController
             return $this->redirectToRoute('app_login');
         }
 
-        foreach ($user->getAgreements() as $existingAgreement) {
-            if ($existingAgreement->getCritic()->getId() === $critic->getId()) {
-                $agreement = $existingAgreement;
-            }
-        }
+        $agreement = $agreementRepository->findOneBy([
+            'user' => $user,
+            'critic' => $critic
+        ]);
+
+        // foreach ($user->getAgreements() as $existingAgreement) {
+        //     if ($existingAgreement->getCritic()->getId() === $critic->getId()) {
+        //         $agreement = $existingAgreement;
+        //     }
+        // }
 
         if ($agreement) {
             if ($agreement->isOk() === false) {

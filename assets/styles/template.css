@@ -28,6 +28,7 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
 }
 
 #homeLink {
@@ -304,39 +305,39 @@ footer {
 
 .logsForm {
     max-width: 378px;
-}
 
-.logsForm a {
-    text-decoration: none;
-    color: var(--orange);
+    & a {
+        text-decoration: none;
+        color: var(--orange);
+    }
+
+    & h1 {
+        margin-bottom: 25px;
+        text-align: center;
+    }
+
+    & label {
+        font-size: 90%;
+        font-weight: 500;
+        margin-bottom: 10px;
+    }
+    
+    & input {
+        margin-top: 5px;
+        margin-bottom: 15px;
+        padding: 5px;
+        font-size: 100%;
+    }
+    
+    & button {
+        width: 100%;
+        padding: 7.5px 0;
+        font-weight: 700;
+    }
 }
 
 .logsForm a:hover {
     text-decoration: underline;
-}
-
-.logsForm h1 {
-    margin-bottom: 25px;
-    text-align: center;
-}
-
-.logsForm label {
-    font-size: 90%;
-    font-weight: 500;
-    margin-bottom: 10px;
-}
-
-.logsForm input {
-    margin-top: 5px;
-    margin-bottom: 15px;
-    padding: 5px;
-    font-size: 100%;
-}
-
-.logsForm button {
-    width: 100%;
-    padding: 7.5px 0;
-    font-weight: 700;
 }
 
 #registerForm .logsFormGroup:nth-of-type(2) {
@@ -358,6 +359,34 @@ footer {
 
 #registerForm small {
     margin-bottom: 15px;
+}
+
+
+
+.alert {
+    position: fixed;
+    width: 66vw;
+    height: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--white);
+    font-size: 110%;
+    font-weight: 600;
+    border-radius: 0 0 15px 15px;
+    transition: all 0.5s;
+}
+
+.alert.fade-out {
+    opacity: 0;
+}
+
+.alert-success {
+    background: var(--deepGreen);
+}
+
+.alert-danger {
+    background: var(--red);
 }
 
 

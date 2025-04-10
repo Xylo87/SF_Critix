@@ -112,282 +112,293 @@
     <div id="container">
         <header>
             <nav>
-                <div id="flashMessages">
+            
+                {# > Add/Edit Piece #}
+                {% for message in app.flashes('piAddEditSuccess') %}
+                    <div class="alert alert-success">
+                        {{message}}
+                    </div>
+                {% endfor %}
 
-                    {# > Add/Edit Piece #}
-                    {% for message in app.flashes('piAddEditSuccess') %}
-                        <div class="alert alert-success">
-                            {{message}}
-                        </div>
-                    {% endfor %}
+                {# > Delete Piece #}
+                {% for message in app.flashes('piDeleteSuccess') %}
+                    <div class="alert alert-success">
+                        {{message}}
+                    </div>
+                {% endfor %}
 
-                    {# > Delete Piece #}
-                    {% for message in app.flashes('piDeleteSuccess') %}
-                        <div class="alert alert-success">
-                            {{message}}
-                        </div>
-                    {% endfor %}
+                {# > Add/Edit Critic #}
+                {% for message in app.flashes('crAddEditSuccess') %}
+                    <div class="alert alert-success">
+                        {{message}}
+                    </div>
+                {% endfor %}
 
-                    {# > Add/Edit Critic #}
-                    {% for message in app.flashes('crAddEditSuccess') %}
-                        <div class="alert alert-success">
-                            {{message}}
-                        </div>
-                    {% endfor %}
+                {# > Delete Critic #}
+                {% for message in app.flashes('crDeleteSuccess') %}
+                    <div class="alert alert-success">
+                        {{message}}
+                    </div>
+                {% endfor %}
 
-                    {# > Delete Critic #}
-                    {% for message in app.flashes('crDeleteSuccess') %}
-                        <div class="alert alert-success">
-                            {{message}}
-                        </div>
-                    {% endfor %}
+                {# > Add/Edit Influencer #}
+                {% for message in app.flashes('inAddEditSuccess') %}
+                    <div class="alert alert-success">
+                        {{message}}
+                    </div>
+                {% endfor %}
 
-                    {# > Add/Edit Influencer #}
-                    {% for message in app.flashes('inAddEditSuccess') %}
-                        <div class="alert alert-success">
-                            {{message}}
-                        </div>
-                    {% endfor %}
+                {# > Delete Influencer #}
+                {% for message in app.flashes('inDeleteSuccess') %}
+                    <div class="alert alert-success">
+                        {{message}}
+                    </div>
+                {% endfor %}
 
-                    {# > Delete Influencer #}
-                    {% for message in app.flashes('inDeleteSuccess') %}
-                        <div class="alert alert-success">
-                            {{message}}
-                        </div>
-                    {% endfor %}
+                {# > Search Influencer fail #}
+                {% for message in app.flashes('inSearchFail') %}
+                    <div class="alert alert-danger">
+                        {{message}}
+                    </div>
+                {% endfor %}
 
-                    {# > Search Influencer fail #}
-                    {% for message in app.flashes('inSearchFail') %}
-                        <div class="alert alert-danger">
-                            {{message}}
-                        </div>
-                    {% endfor %}
+                {# > Search Category fail #}
+                {% for message in app.flashes('caSearchFail') %}
+                    <div class="alert alert-danger">
+                        {{message}}
+                    </div>
+                {% endfor %}
 
-                    {# > Search Category fail #}
-                    {% for message in app.flashes('caSearchFail') %}
-                        <div class="alert alert-danger">
-                            {{message}}
-                        </div>
-                    {% endfor %}
+                {# > Search Critics fail #}
+                {% for message in app.flashes('crSearchFail') %}
+                    <div class="alert alert-danger">
+                        {{message}}
+                    </div>
+                {% endfor %}
 
-                    {# > Search Critics fail #}
-                    {% for message in app.flashes('crSearchFail') %}
-                        <div class="alert alert-danger">
-                            {{message}}
-                        </div>
-                    {% endfor %}
+                {# > Search Piece fail #}
+                {% for message in app.flashes('piSearchFail') %}
+                    <div class="alert alert-danger">
+                        {{message}}
+                    </div>
+                {% endfor %}
 
-                    {# > Search Piece fail #}
-                    {% for message in app.flashes('piSearchFail') %}
-                        <div class="alert alert-danger">
-                            {{message}}
-                        </div>
-                    {% endfor %}
+                {# > Register success #}
+                {% for message in app.flashes('registerSuccess') %}
+                    <div class="alert alert-success">
+                        {{message}}
+                    </div>
+                {% endfor %}
 
-                    {# > Register success #}
-                    {% for message in app.flashes('registerSuccess') %}
-                        <div class="alert alert-success">
-                            {{message}}
-                        </div>
-                    {% endfor %}
+                {# > Email verify success #}
+                {% for message in app.flashes('verifySuccess') %}
+                    <div class="alert alert-success">
+                        {{message}}
+                    </div>
+                {% endfor %}
 
-                    {# > Email verify success #}
-                    {% for message in app.flashes('verifySuccess') %}
-                        <div class="alert alert-success">
-                            {{message}}
-                        </div>
-                    {% endfor %}
+                {# > Search User fail #}
+                {% for message in app.flashes('usSearchFail') %}
+                    <div class="alert alert-danger">
+                        {{message}}
+                    </div>
+                {% endfor %}
 
-                    {# > Search User fail #}
-                    {% for message in app.flashes('usSearchFail') %}
-                        <div class="alert alert-danger">
-                            {{message}}
-                        </div>
-                    {% endfor %}
+                {# > User profile update success #}
+                {% for message in app.flashes('usEditSuccess') %}
+                    <div class="alert alert-success">
+                        {{message}}
+                    </div>
+                {% endfor %}
 
-                    {# > User profile update success #}
-                    {% for message in app.flashes('usEditSuccess') %}
-                        <div class="alert alert-success">
-                            {{message}}
-                        </div>
-                    {% endfor %}
+                {# > User profile update fail #}
+                {% for message in app.flashes('usEditFail') %}
+                    <div class="alert alert-danger">
+                        {{message}}
+                    </div>
+                {% endfor %}
 
-                    {# > User profile update fail #}
-                    {% for message in app.flashes('usEditFail') %}
-                        <div class="alert alert-danger">
-                            {{message}}
-                        </div>
-                    {% endfor %}
+                {# > User profile delete success #}
+                {% for message in app.flashes('usDeleteSuccess') %}
+                    <div class="alert alert-success">
+                        {{message}}
+                    </div>
+                {% endfor %}
 
-                    {# > User profile delete success #}
-                    {% for message in app.flashes('usDeleteSuccess') %}
-                        <div class="alert alert-success">
-                            {{message}}
-                        </div>
-                    {% endfor %}
+                {# > User profile delete fail #}
+                {% for message in app.flashes('usDeleteFail') %}
+                    <div class="alert alert-danger">
+                        {{message}}
+                    </div>
+                {% endfor %}
 
-                    {# > User profile delete fail #}
-                    {% for message in app.flashes('usDeleteFail') %}
-                        <div class="alert alert-danger">
-                            {{message}}
-                        </div>
-                    {% endfor %}
+                {# > Critic save success #}
+                {# {% for message in app.flashes('crSaveSuccess') %}
+                    <div class="alert alert-success">
+                        {{message}}
+                    </div>
+                {% endfor %} #}
 
-                    {# > Critic save success #}
-                    {# {% for message in app.flashes('crSaveSuccess') %}
-                        <div class="alert alert-success">
-                            {{message}}
-                        </div>
-                    {% endfor %} #}
+                {# > Critic save fail #}
+                {# {% for message in app.flashes('crSaveFail') %}
+                    <div class="alert alert-danger">
+                        {{message}}
+                    </div>
+                {% endfor %} #}
 
-                    {# > Critic save fail #}
-                    {# {% for message in app.flashes('crSaveFail') %}
-                        <div class="alert alert-danger">
-                            {{message}}
-                        </div>
-                    {% endfor %} #}
+                {# > Critic unsave success #}
+                {# {% for message in app.flashes('crUnSaveSuccess') %}
+                    <div class="alert alert-success">
+                        {{message}}
+                    </div>
+                {% endfor %} #}
 
-                    {# > Critic unsave success #}
-                    {# {% for message in app.flashes('crUnSaveSuccess') %}
-                        <div class="alert alert-success">
-                            {{message}}
-                        </div>
-                    {% endfor %} #}
+                {# > Critic unsave fail #}
+                {# {% for message in app.flashes('crUnSaveFail') %}
+                    <div class="alert alert-danger">
+                        {{message}}
+                    </div>
+                {% endfor %} #}
 
-                    {# > Critic unsave fail #}
-                    {# {% for message in app.flashes('crUnSaveFail') %}
-                        <div class="alert alert-danger">
-                            {{message}}
-                        </div>
-                    {% endfor %} #}
+                {# > Influencer like success #}
+                {# {% for message in app.flashes('inLikeSuccess') %}
+                    <div class="alert alert-success">
+                        {{message}}
+                    </div>
+                {% endfor %} #}
 
-                    {# > Influencer like success #}
-                    {# {% for message in app.flashes('inLikeSuccess') %}
-                        <div class="alert alert-success">
-                            {{message}}
-                        </div>
-                    {% endfor %} #}
+                {# > Influencer like fail #}
+                {# {% for message in app.flashes('inLikeFail') %}
+                    <div class="alert alert-danger">
+                        {{message}}
+                    </div>
+                {% endfor %} #}
 
-                    {# > Influencer like fail #}
-                    {# {% for message in app.flashes('inLikeFail') %}
-                        <div class="alert alert-danger">
-                            {{message}}
-                        </div>
-                    {% endfor %} #}
+                {# > Influencer unlike success #}
+                {# {% for message in app.flashes('inUnLikeSuccess') %}
+                    <div class="alert alert-success">
+                        {{message}}
+                    </div>
+                {% endfor %} #}
 
-                    {# > Influencer unlike success #}
-                    {# {% for message in app.flashes('inUnLikeSuccess') %}
-                        <div class="alert alert-success">
-                            {{message}}
-                        </div>
-                    {% endfor %} #}
+                {# > Influencer unlike fail #}
+                {# {% for message in app.flashes('inUnLikeFail') %}
+                    <div class="alert alert-danger">
+                        {{message}}
+                    </div>
+                {% endfor %} #}
 
-                    {# > Influencer unlike fail #}
-                    {# {% for message in app.flashes('inUnLikeFail') %}
-                        <div class="alert alert-danger">
-                            {{message}}
-                        </div>
-                    {% endfor %} #}
+                {# > User score vote success #}
+                {% for message in app.flashes('scPieceSuccess') %}
+                    <div class="alert alert-success">
+                        {{message}}
+                    </div>
+                {% endfor %}
 
-                    {# > User score vote success #}
-                    {% for message in app.flashes('scPieceSuccess') %}
-                        <div class="alert alert-success">
-                            {{message}}
-                        </div>
-                    {% endfor %}
+                {# > User score vote fail #}
+                {% for message in app.flashes('scPieceFail') %}
+                    <div class="alert alert-danger">
+                        {{message}}
+                    </div>
+                {% endfor %}
 
-                    {# > User score vote fail #}
-                    {% for message in app.flashes('scPieceFail') %}
-                        <div class="alert alert-danger">
-                            {{message}}
-                        </div>
-                    {% endfor %}
+                {# > User score reset fail #}
+                {% for message in app.flashes('scResetFail') %}
+                    <div class="alert alert-danger">
+                        {{message}}
+                    </div>
+                {% endfor %}
 
-                    {# > User score reset fail #}
-                    {% for message in app.flashes('scResetFail') %}
-                        <div class="alert alert-danger">
-                            {{message}}
-                        </div>
-                    {% endfor %}
+                {# > User score reset success #}
+                {% for message in app.flashes('scResetSuccess') %}
+                    <div class="alert alert-success">
+                        {{message}}
+                    </div>
+                {% endfor %}
 
-                    {# > User score reset success #}
-                    {% for message in app.flashes('scResetSuccess') %}
-                        <div class="alert alert-success">
-                            {{message}}
-                        </div>
-                    {% endfor %}
+                {# > User comment success #}
+                {% for message in app.flashes('coCriticSuccess') %}
+                    <div class="alert alert-success">
+                        {{message}}
+                    </div>
+                {% endfor %}
 
-                    {# > User comment success #}
-                    {% for message in app.flashes('coCriticSuccess') %}
-                        <div class="alert alert-success">
-                            {{message}}
-                        </div>
-                    {% endfor %}
+                {# > User comment fail #}
+                {% for message in app.flashes('coCriticFail') %}
+                    <div class="alert alert-danger">
+                        {{message}}
+                    </div>
+                {% endfor %}
 
-                    {# > User comment fail #}
-                    {% for message in app.flashes('coCriticFail') %}
-                        <div class="alert alert-danger">
-                            {{message}}
-                        </div>
-                    {% endfor %}
+                {# > User comment delete success #}
+                {% for message in app.flashes('coDeleteSuccess') %}
+                    <div class="alert alert-success">
+                        {{message}}
+                    </div>
+                {% endfor %}
 
-                    {# > User comment delete success #}
-                    {% for message in app.flashes('coDeleteSuccess') %}
-                        <div class="alert alert-success">
-                            {{message}}
-                        </div>
-                    {% endfor %}
+                {# > User comment delete fail #}
+                {% for message in app.flashes('coDeleteFail') %}
+                    <div class="alert alert-danger">
+                        {{message}}
+                    </div>
+                {% endfor %}
 
-                    {# > User comment delete fail #}
-                    {% for message in app.flashes('coDeleteFail') %}
-                        <div class="alert alert-danger">
-                            {{message}}
-                        </div>
-                    {% endfor %}
+                {# > VIP comment success #}
+                {% for message in app.flashes('vipSuccess') %}
+                    <div class="alert alert-success">
+                        {{message}}
+                    </div>
+                {% endfor %}
 
-                    {# > VIP comment success #}
-                    {% for message in app.flashes('vipSuccess') %}
-                        <div class="alert alert-success">
-                            {{message}}
-                        </div>
-                    {% endfor %}
+                {# > VIP comment fail #}
+                {% for message in app.flashes('vipFail') %}
+                    <div class="alert alert-danger">
+                        {{message}}
+                    </div>
+                {% endfor %}
 
-                    {# > VIP comment fail #}
-                    {% for message in app.flashes('vipFail') %}
-                        <div class="alert alert-danger">
-                            {{message}}
-                        </div>
-                    {% endfor %}
+                {# > Like critic success #}
+                {% for message in app.flashes('likCriticSuccess') %}
+                    <div class="alert alert-success">
+                        {{message}}
+                    </div>
+                {% endfor %}
 
-                    {# > Like critic success #}
-                    {% for message in app.flashes('likCriticSuccess') %}
-                        <div class="alert alert-success">
-                            {{message}}
-                        </div>
-                    {% endfor %}
+                {# > Like critic fail #}
+                {% for message in app.flashes('likCriticFail') %}
+                    <div class="alert alert-danger">
+                        {{message}}
+                    </div>
+                {% endfor %}
 
-                    {# > Like critic fail #}
-                    {% for message in app.flashes('likCriticFail') %}
-                        <div class="alert alert-danger">
-                            {{message}}
-                        </div>
-                    {% endfor %}
+                {# > Dislike critic success #}
+                {% for message in app.flashes('disCriticSuccess') %}
+                    <div class="alert alert-success">
+                        {{message}}
+                    </div>
+                {% endfor %}
 
-                    {# > Dislike critic success #}
-                    {% for message in app.flashes('disCriticSuccess') %}
-                        <div class="alert alert-success">
-                            {{message}}
-                        </div>
-                    {% endfor %}
+                {# > Dislike critic fail #}
+                {% for message in app.flashes('disCriticFail') %}
+                    <div class="alert alert-danger">
+                        {{message}}
+                    </div>
+                {% endfor %}
 
-                    {# > Dislike critic fail #}
-                    {% for message in app.flashes('disCriticFail') %}
-                        <div class="alert alert-danger">
-                            {{message}}
-                        </div>
-                    {% endfor %}
+                {% for message in app.flashes('registerSuccess') %}
+                    <div class="alert alert-success">
+                        {{message}}
+                    </div>
+                {% endfor %}
 
-                </div>
+                {% for message in app.flashes('verifySuccess') %}
+                    <div class="alert alert-success">
+                        {{message}}
+                    </div>
+                {% endfor %}
+
+                
 
                 <a id="homeLink" href="{{ path('app_home')}}">
                     <h1>Crit</h1>

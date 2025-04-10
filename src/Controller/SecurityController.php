@@ -292,7 +292,6 @@ class SecurityController extends AbstractController
         foreach ($user->getAgreements() as $existingAgreement) {
             if ($existingAgreement->getCritic()->getId() === $critic->getId()) {
                 $agreement = $existingAgreement;
-                break;
             }
         }
 
@@ -333,7 +332,6 @@ class SecurityController extends AbstractController
     //     foreach ($user->getAgreements() as $existingAgreement) {
     //         if ($existingAgreement->getCritic()->getId() === $critic->getId()) {
     //             $agreement = $existingAgreement;
-    //             break;
     //         }
     //     }
 
@@ -375,7 +373,6 @@ class SecurityController extends AbstractController
         foreach ($user->getAgreements() as $existingAgreement) {
             if ($existingAgreement->getCritic()->getId() === $critic->getId()) {
                 $agreement = $existingAgreement;
-                break;
             }
         }
 

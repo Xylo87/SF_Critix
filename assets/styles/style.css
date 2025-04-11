@@ -1,10 +1,11 @@
 :root {
     --white: #F2F2F2;
     --black: #1E1F25;
+    --deepBlue: #0d1d45;
     --orange: #ff4500;
+    --deepGreen: #008000;
     --red: #CF2020;
     --grey: #606060;
-    --deepGreen: #008000;
 }
 
 * {
@@ -14,7 +15,7 @@
 }
 
 body {
-    background: #0d1d45;
+    background: var(--deepBlue);
     color: var(--white);
     font-family: "Inter", sans-serif;
 }

@@ -21,9 +21,9 @@
         <a href="{{ path('show_influencer', {'id': influencer.id})}}" style="text-decoration: none">
 
         {% if influencer.photo %}
-            <img src="/uploads/photos/influPhotos/{{influencer.photo}}" alt="{{influencer}}" style="width: 265px; height: 360px; object-fit: cover">
+            <img src="/uploads/photos/influPhotos/{{influencer.photo}}" alt="{{influencer}}-picture" style="width: 265px; height: 360px; object-fit: cover">
         {% else %}
-            <img src="/uploads/photos/influPhotos/influencer-default.png" alt="influencer-default-profile-picture" style="width: 265px; height: 360px; object-fit: cover">
+            <img src="/uploads/photos/influPhotos/influencer-default.png" alt="influencer-default-picture" style="width: 265px; height: 360px; object-fit: cover">
         {% endif %}
 
         </a>

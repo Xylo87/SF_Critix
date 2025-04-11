@@ -11,9 +11,9 @@
 
 
     {% if piece.category == "Music" %}
-        <img src="/uploads/images/{{piece.poster}}" alt="{{piece}}" style="width: 265px; height: 265px; object-fit: cover">
+        <img src="/uploads/images/{{piece.poster}}" alt="{{piece}}-poster" style="width: 265px; height: 265px; object-fit: cover">
     {% else %}
-        <img src="/uploads/images/{{piece.poster}}" alt="{{piece}}" style="width: 265px; height: 360px; object-fit: cover">
+        <img src="/uploads/images/{{piece.poster}}" alt="{{piece}}-poster" style="width: 265px; height: 360px; object-fit: cover">
     {% endif %}
     
 
@@ -86,9 +86,9 @@
 
             <a href="{{ path('show_influencer', {'id': critic.influencer.id})}}">
             {% if critic.influencer.photo %}
-                <img src="/uploads/photos/influPhotos/{{critic.influencer.photo}}" alt="{{critic.influencer}}" style="width: 265px; height: 360px; object-fit: cover">
+                <img src="/uploads/photos/influPhotos/{{critic.influencer.photo}}" alt="{{critic.influencer}}-picture" style="width: 265px; height: 360px; object-fit: cover">
             {% else %}
-                <img src="/uploads/photos/influPhotos/influencer-default.png" alt="influencer-default-profile-picture" style="width: 265px; height: 360px; object-fit: cover">
+                <img src="/uploads/photos/influPhotos/influencer-default.png" alt="influencer-default-picture" style="width: 265px; height: 360px; object-fit: cover">
             {% endif %}
             </a>
 
@@ -145,20 +145,20 @@
                         {% set hasVoted = true %}
 
                         {% if agreement.isOk == true %}
-                            <a href="{{ path('like_critic', {'id': critic.id})}}"><button style="background: green; color: white" class="likeBtn"><i class="fa-solid fa-check"></i></button></a><a href="{{ path('dislike_critic', {'id': critic.id})}}"><button class="dislikeBtn"><i class="fa-solid fa-xmark"></i></button></a><br><br>
+                            <a href="{{ path('like_critic', {'id': critic.id})}}"><button style="background: green; color: white" class="likeBtn" aria-label="Like Critic Button"><i class="fa-solid fa-check"></i></button></a><a href="{{ path('dislike_critic', {'id': critic.id})}}"><button class="dislikeBtn" aria-label="Dislike Critic Button"><i class="fa-solid fa-xmark"></i></button></a><br><br>
                         {% else %}
-                            <a href="{{ path('like_critic', {'id': critic.id})}}"><button class="likeBtn"><i class="fa-solid fa-check"></i></button></a><a href="{{ path('dislike_critic', {'id': critic.id})}}"><button class="dislikeBtn" style="background: red; color: white"><i class="fa-solid fa-xmark"></i></button></a><br><br>
+                            <a href="{{ path('like_critic', {'id': critic.id})}}"><button class="likeBtn" aria-label="Like Critic Button"><i class="fa-solid fa-check"></i></button></a><a href="{{ path('dislike_critic', {'id': critic.id})}}"><button class="dislikeBtn" style="background: red; color: white" aria-label="Dislike Critic Button"><i class="fa-solid fa-xmark"></i></button></a><br><br>
                         {% endif %}
 
                     {% endif %}   
                 {% endfor %}
 
                 {% if not hasVoted %}
-                    <a href="{{ path('like_critic', {'id': critic.id})}}"><button class="likeBtn"><i class="fa-solid fa-check"></i></button></a><a href="{{ path('dislike_critic', {'id': critic.id})}}"><button class="dislikeBtn"><i class="fa-solid fa-xmark"></i></button></a><br><br>
+                    <a href="{{ path('like_critic', {'id': critic.id})}}"><button class="likeBtn" aria-label="Like Critic Button"><i class="fa-solid fa-check"></i></button></a><a href="{{ path('dislike_critic', {'id': critic.id})}}"><button class="dislikeBtn" aria-label="Dislike Critic Button"><i class="fa-solid fa-xmark"></i></button></a><br><br>
                 {% endif %}
 
             {% else %}
-                <a href="{{ path('like_critic', {'id': critic.id})}}"><button class="likeBtn"><i class="fa-solid fa-check"></i></button></a><a href="{{ path('dislike_critic', {'id': critic.id})}}"><button class="dislikeBtn"><i class="fa-solid fa-xmark"></i></button></a><br><br>
+                <a href="{{ path('like_critic', {'id': critic.id})}}"><button class="likeBtn" aria-label="Like Critic Button"><i class="fa-solid fa-check"></i></button></a><a href="{{ path('dislike_critic', {'id': critic.id})}}"><button class="dislikeBtn" aria-label="Dislike Critic Button"><i class="fa-solid fa-xmark"></i></button></a><br><br>
             {% endif %}
 
 

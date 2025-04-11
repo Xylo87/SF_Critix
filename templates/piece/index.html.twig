@@ -15,12 +15,12 @@
 
         {% if piece.category == "Music" %}
         <a href="{{ path('show_critics', {'id': piece.id})}}">
-            <img src="/uploads/images/{{piece.poster}}" alt="{{piece}}" style="width: 265px; height: 265px; object-fit: cover">
+            <img src="/uploads/images/{{piece.poster}}" alt="{{piece}}-poster" style="width: 265px; height: 265px; object-fit: cover">
         </a>
 
         {% else %}
         <a href="{{ path('show_critics', {'id': piece.id})}}">
-            <img src="/uploads/images/{{piece.poster}}" alt="{{piece}}" style="width: 265px; height: 360px; object-fit: cover">
+            <img src="/uploads/images/{{piece.poster}}" alt="{{piece}}-poster" style="width: 265px; height: 360px; object-fit: cover">
         </a>
 
         {% endif %}

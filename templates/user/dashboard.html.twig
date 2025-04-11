@@ -52,13 +52,13 @@
             {% if piece.category == "Music" %}
             
                 <a href="{{ path('show_critics', {'id': piece.id})}}"><img src="/uploads/images/{{piece.poster}}" 
-                alt="{{piece}}" 
+                alt="{{piece}}-poster" 
                 style="width: 88px; height: 88px; object-fit: cover"></a><br>
 
             {% else %}
                 
                 <a href="{{ path('show_critics', {'id': piece.id})}}"><img src="/uploads/images/{{piece.poster}}" 
-                alt="{{piece}}" 
+                alt="{{piece}}-poster" 
                 style="width: 88px; height: 120px; object-fit: cover"></a><br>
 
             {% endif %}
@@ -107,13 +107,13 @@
             {% if opinion.piece.category == "Music" %}
             
                 <a href="{{ path('infos_piece', {'id': opinion.piece.id})}}"><img src="/uploads/images/{{opinion.piece.poster}}"
-                alt="{{opinion.piece}}" 
+                alt="{{opinion.piece}}-poster" 
                 style="width: 88px; height: 88px; object-fit: cover"></a><br>
             
             {% else %}
                 
                 <a href="{{ path('infos_piece', {'id': opinion.piece.id})}}"><img src="/uploads/images/{{opinion.piece.poster}}"
-                alt="{{opinion.piece}}" 
+                alt="{{opinion.piece}}-poster" 
                 style="width: 88px; height: 120px; object-fit: cover"></a><br>
             
             {% endif %}
@@ -159,11 +159,11 @@
 
                 {% if influencer.photo %}
                     <img src="/uploads/photos/influPhotos/{{influencer.photo}}"
-                    alt="{{influencer}}" 
+                    alt="{{influencer}}-picture" 
                     style="width: 88px; height: 120px; object-fit: cover">
                 {% else %}
                     <img src="/uploads/photos/influPhotos/influencer-default.png" 
-                    alt="influencer-default-profile-picture" 
+                    alt="influencer-default-picture" 
                     style="width: 88px; height: 120px; object-fit: cover">
                 {% endif %}
 

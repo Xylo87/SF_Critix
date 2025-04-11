@@ -13,9 +13,9 @@
     {% endif %}
     
     {% if influencer.photo %}
-        <img src="/uploads/photos/influPhotos/{{influencer.photo}}" alt="{{influencer}}" style="width: 265px; height: 360px; object-fit: cover">
+        <img src="/uploads/photos/influPhotos/{{influencer.photo}}" alt="{{influencer}}-picture" style="width: 265px; height: 360px; object-fit: cover">
     {% else %}
-        <img src="/uploads/photos/influPhotos/influencer-default.png" alt="influencer-default-profile-picture" style="width: 265px; height: 360px; object-fit: cover">
+        <img src="/uploads/photos/influPhotos/influencer-default.png" alt="influencer-default-picture" style="width: 265px; height: 360px; object-fit: cover">
     {% endif %}
     
     {# > Edit and suppression (modal) #}
@@ -64,6 +64,7 @@
 
 
     Socials :
+    <ul>
     {% for social in influencer.socials %}
         {% if social.channelId is not null and social == "YouTube" %}
                 {% for item in YTStats.items %}
@@ -73,6 +74,7 @@
             <li><a href="{{social.link}}" target="_blank">{{social}}</a> ({{social.subNumber}} followers)</li>
         {% endif %}
     {% endfor %}
+    </ul>
     <br>
     <br>
 
@@ -85,13 +87,13 @@
         {% if critic.piece.category == "Music" %}
         
         <a href="{{ path('show_critics', {'id': critic.piece.id})}}#critic-{{critic.id}}"><img src="/uploads/images/{{critic.piece.poster}}"
-        alt="{{critic.piece}}"
+        alt="{{critic.piece}}-poster"
         style="width: 88px; height: 88px; object-fit: cover"></a><br>
 
         {% else %}
             
         <a href="{{ path('show_critics', {'id': critic.piece.id})}}#critic-{{critic.id}}"><img src="/uploads/images/{{critic.piece.poster}}"
-        alt="{{critic.piece}}"
+        alt="{{critic.piece}}-poster"
         style="width: 88px; height: 120px; object-fit: cover"></a><br>
 
         {% endif %}

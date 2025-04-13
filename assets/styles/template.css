@@ -1,13 +1,4 @@
 
-#flashMessages {
-    position: absolute;
-    top: 0;
-    left: 0;
-    color: var(--white);
-}
-
-
-
 #container {
     min-height: 100vh;
     display: flex;
@@ -135,7 +126,7 @@ header + hr {
   
 main {
     width: 66vw;
-    margin: 33px 0;
+    margin: 45px 0;
     align-self: center;
     flex-grow: 1;
 }

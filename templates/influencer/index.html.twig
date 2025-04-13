@@ -5,40 +5,44 @@
 {% block body %}
 <div>
 
-    <h1>All content creators by media</h1>
+    <h1>All content creators</h1>
 
-    <a href="{{ path('new_influencer')}}">Add an Influencer</a>
+    {# <a href="{{ path('new_influencer')}}">Add an Influencer</a> #}
     <hr>
     
-    {% for influencer in influencers %}
-        <a href="{{ path('show_influencer', {'id': influencer.id})}}"><h2>{{influencer}}</h2></a>
+    <div id="influencerList">
+        {% for influencer in influencers %}
+            <section id="oneInfluencerList">
+                
+                <h2><a href="{{ path('show_influencer', {'id': influencer.id})}}">{{influencer}}</a></h2>
 
-        {# > If Influencer's real name is known #}
-        {% if influencer.realName and influencer != influencer.realName %}
-            <h3>({{influencer.realname}})</h3>
-        {% endif %}
-        
-        <a href="{{ path('show_influencer', {'id': influencer.id})}}" style="text-decoration: none">
+                {# > If Influencer's real name is known #}
+                {% if influencer.realName and influencer != influencer.realName %}
+                    <h3>({{influencer.realname}})</h3>
+                {% endif %}
+               
+                <a href="{{ path('show_influencer', {'id': influencer.id})}}">
 
-        {% if influencer.photo %}
-            <img src="/uploads/photos/influPhotos/{{influencer.photo}}" alt="{{influencer}}-picture" style="width: 265px; height: 360px; object-fit: cover">
-        {% else %}
-            <img src="/uploads/photos/influPhotos/influencer-default.png" alt="influencer-default-picture" style="width: 265px; height: 360px; object-fit: cover">
-        {% endif %}
+                {% if influencer.photo %}
+                    <img src="/uploads/photos/influPhotos/{{influencer.photo}}" alt="{{influencer}}-picture">
+                {% else %}
+                    <img src="/uploads/photos/influPhotos/influencer-default.png" alt="influencer-default-picture">
+                {% endif %}
 
-        </a>
-
-    {# > Edit and suppression (modal) #}
-    <a href="{{ path('edit_influencer', {'id': influencer.id})}}"><button>Edit</button></a>
-    {# <a href="{{ path('delete_influencer', {'id': influencer.id})}}">Delete</a></h2><br> #}
-    <button class="deleteConfirm">Delete</button><br>
-        <dialog class="openModal">
-            <h3>Are you sure you want to delete "{{influencer}}" ?</h3>
-            <a href="{{ path('delete_influencer', {'id': influencer.id})}}"><button>Yes</button></a>
-            <button class="closeModal">No</button>
-        </dialog>
-
-    {% endfor %}
+                </a>
+                
+                {# > Edit and suppression (modal) #}
+                {# <a href="{{ path('edit_influencer', {'id': influencer.id})}}"><button>Edit</button></a> #}
+                {# <a href="{{ path('delete_influencer', {'id': influencer.id})}}">Delete</a></h2><br> #}
+                {# <button class="deleteConfirm">Delete</button><br> #}
+                {# <dialog class="openModal">
+                    <h3>Are you sure you want to delete "{{influencer}}" ?</h3>
+                    <a href="{{ path('delete_influencer', {'id': influencer.id})}}"><button>Yes</button></a>
+                    <button class="closeModal">No</button>
+                </dialog> #}
+            </section>
+        {% endfor %}
+    </div>
 </div>
 
 {% endblock %}

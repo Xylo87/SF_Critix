@@ -3,9 +3,12 @@
     --black: #1E1F25;
     --deepBlue: #0d1d45;
     --orange: #ff4500;
+    --lightOrange:#fe8d01;
     --deepGreen: #008000;
+    --green: #00CE7A;
     --red: #CF2020;
     --grey: #606060;
+    --lightGrey: #757575;
 }
 
 * {

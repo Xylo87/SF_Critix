@@ -37,13 +37,13 @@
             {% if opinion.piece.category == "Music" %}
             
                 <a href="{{ path('infos_piece', {'id': opinion.piece.id})}}"><img src="/uploads/images/{{opinion.piece.poster}}"
-                alt="{{opinion.piece}}-poster" 
+                alt="{{opinion.piece}}-visual" 
                 style="width: 88px; height: 88px; object-fit: cover"></a><br>
             
             {% else %}
                 
                 <a href="{{ path('infos_piece', {'id': opinion.piece.id})}}"><img src="/uploads/images/{{opinion.piece.poster}}"
-                alt="{{opinion.piece}}-poster" 
+                alt="{{opinion.piece}}-visual" 
                 style="width: 88px; height: 120px; object-fit: cover"></a><br>
             
             {% endif %}

@@ -4,46 +4,90 @@
 
 {% block body %}
 
-<div>
+<div id="pieceListContainer">
     <h1>All {{category}}<sup>({{category.pieces|length}})</sup></h1>
-    <a href="{{ path('new_piece')}}">Add a Piece</a><br>
-    <a href="{{ path('new_critic')}}">Add a Critic</a>
+    {# <a href="{{ path('new_piece')}}">Add a Piece</a><br>
+    <a href="{{ path('new_critic')}}">Add a Critic</a> #}
     <hr>
-    {% for piece in category.pieces|sort((a, b) => b.releaseDate <=> a.releaseDate) %}
-        <h2><a href="{{ path('show_critics', {'id': piece.id})}}">{{piece}}</a></h2>
 
+    <div id="pieceList">
+        {% for piece in category.pieces|sort((a, b) => b.releaseDate <=> a.releaseDate) %}
 
-        {% if piece.category == "Music" %}
-        <a href="{{ path('show_critics', {'id': piece.id})}}">
-            <img src="/uploads/images/{{piece.poster}}" alt="{{piece}}-poster" style="width: 265px; height: 265px; object-fit: cover">
-        </a>
+            <section id="onePieceList">
+                <h2><a href="{{ path('show_critics', {'id': piece.id})}}">{{piece}}</a></h2>
 
-        {% else %}
-        <a href="{{ path('show_critics', {'id': piece.id})}}">
-            <img src="/uploads/images/{{piece.poster}}" alt="{{piece}}-poster" style="width: 265px; height: 360px; object-fit: cover">
-        </a>
+                {% if piece.category == "Music" %}
+                <a href="{{ path('show_critics', {'id': piece.id})}}">
+                    <img id="musicPiece" src="/uploads/images/{{piece.poster}}" alt="{{piece}}-visual">
+                </a>
 
-        {% endif %}
+                {% else %}
+                <a href="{{ path('show_critics', {'id': piece.id})}}">
+                    <img src="/uploads/images/{{piece.poster}}" alt="{{piece}}-visual">
+                </a>
 
+                {% endif %}
 
-        <p><u>Maker</u> : {{piece.maker}}</p>
-        
-        {% if piece.isUpcoming %}
-            <p><u>Release date</u> : {{piece.releaseDateENG|date("Y") }} (Upcoming)</p>
-        {% else %}
-            <p><u>Release date</u> : {{piece.releaseDateENG}}</p>
-        {% endif %}
+                <div id="onePieceListScoreContainer">
+                    {% if piece.critics|length > 0 %}
+                        <div id="onePieceListScore">
+                            <strong>Critic score</strong>
 
-        {% if piece.critics|length > 0 %}
-            <p><u>Critic score</u> : {{ piece.criticTotalScore }}/10</p>
-        {% endif %}
+                            {% if piece.criticTotalScore >= 6.6 %}
+                                <div id="onePieceListScoreToken" class="goodScore">
+                            {% elseif piece.criticTotalScore <= 6.6 and piece.criticTotalScore >= 3.3 %}
+                                <div id="onePieceListScoreToken" class="averageScore">
+                            {% else %}
+                                <div id="onePieceListScoreToken" class="badScore">
+                            {% endif %}
+                            
+                                {{ piece.criticTotalScore }}
+                                <hr>
+                                10
+                            </div>
+                        </div>
+                    {% endif %}
 
-        {% if piece.opinions|length > 0 %}
-            <p><u>User score</u> : {{ piece.userTotalScore }}/10</p><br>
-        {% else %}
-            <p><u>User score</u> : Not rated yet</p><br>
-        {% endif %}
-    {% endfor %}
+                    {% if piece.opinions|length > 0 %}
+                        <div id="onePieceListScore">
+                            <strong>User score</strong>
+
+                            {% if piece.userTotalScore >= 6.6 %}
+                                <div id="onePieceListScoreToken" class="goodScore">
+                            {% elseif piece.userTotalScore <= 6.6 and piece.userTotalScore >= 3.3 %}
+                                <div id="onePieceListScoreToken" class="averageScore">
+                            {% else %}
+                                <div id="onePieceListScoreToken" class="badScore">
+                            {% endif %}
+
+                                {{ piece.userTotalScore }}
+                                <hr>
+                                10
+                            </div>
+                        </div>
+                    {% else %}
+                        <div id="onePieceListScore">
+                            <strong>User score</strong>
+                            <div id="onePieceListScoreToken" class="noScore">
+                                -
+                                <hr>
+                                10
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+                <div id="onePieceListText">
+                    <strong>Maker : </strong>{{piece.maker}}<br>
+                    
+                    {% if piece.isUpcoming %}
+                        <strong>Release date : </strong>{{piece.releaseDateENG|date("Y") }} (Upcoming)
+                    {% else %}
+                        <strong>Release date : </strong>{{piece.releaseDateENG}}
+                    {% endif %}
+                </div>
+            </section>
+        {% endfor %}
+    </div>
 </div>
             
 {% endblock %}

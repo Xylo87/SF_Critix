@@ -1,0 +1,137 @@
+
+#pieceListContainer h1 sup {
+    font-size: 66%;
+}
+
+#pieceList, #influencerList {
+    margin-top: 33px;
+    display: flex;
+    justify-content: space-evenly;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+#onePieceList, #oneInfluencerList {
+    max-width: 265px;
+
+    & h2 {
+        margin-bottom: 15px;
+        text-align: center;
+        font-weight: 600;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        text-decoration-color: rgba(255, 255, 255, 0.5);
+    }
+
+    & h2 a {
+        text-decoration: none;
+        color: var(--white);
+    }
+
+    & img {
+        width: 265px;
+        height: 360px;
+        object-fit: cover;
+        transition: all 0.2s;
+        border-radius: 5px;
+    }
+
+    & #musicPiece {
+        height: 265px;
+    }
+}
+
+#onePieceList img:hover, #oneInfluencerList img:hover {
+    /* transform: scale(1.02); */
+    /* box-shadow: 5px 5px 8px var(--orange); */
+    box-shadow: 0px 0px 25px var(--orange);
+}
+
+#onePieceListText {
+    margin-top: 15px;
+    line-height: 1.4;
+    font-weight: 200;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#onePieceListScoreContainer {
+    display: flex;
+    margin-top: 15px;
+    justify-content: space-evenly;
+}
+
+#onePieceListScore {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & strong {
+        margin-bottom: 7.5px;
+        font-weight: 500;
+    }
+}
+
+#onePieceListScoreToken {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 66px;
+    height: 66px;
+    color: black;
+    font-size: 110%;
+    font-weight: 700;
+    border-radius: 50%;
+
+    & hr {
+        border: none;
+        width: 25%;
+        height: 2px;
+        background: black;
+    }
+}
+
+#onePieceListScoreToken.goodScore {
+    background: var(--green);
+}
+
+#onePieceListScoreToken.averageScore {
+    background: var(--lightOrange);
+}
+
+#onePieceListScoreToken.badScore {
+    background: var(--red);
+}
+
+#onePieceListScoreToken.noScore {
+    background: var(--lightGrey);
+}
+
+
+
+#influencerList {
+    justify-content: space-between;
+}
+
+#oneInfluencerList {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin-bottom: 25px;
+
+    & h3 {
+        margin-bottom: 15px;
+        text-align: center;
+        font-weight: 300;
+    }
+}
+
+#oneInfluencerList h2:has(+ h3) {
+    margin-bottom: 5px;
+}
+

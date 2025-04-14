@@ -126,7 +126,6 @@ const flashMessageContainer = document.querySelector('nav')
 
 // > AJAX for Critics Save button
 const saveButtons = document.querySelectorAll('.save-critics-btn')
-const saveIcon = document.querySelectorAll('.fa-bookmark')
 const criticDashTitle = document.getElementById('criticDashTitle')
 
 saveButtons.forEach(button => {
@@ -135,6 +134,8 @@ saveButtons.forEach(button => {
         const pieceId = button.dataset.pieceId
         const action = button.dataset.action
         const savedCriticDash = document.getElementById(`savedCriticDash${pieceId}`)
+
+        const saveIcon = button.querySelector('i.fa-bookmark')
 
         try {
             const response = await fetch(`/critics/${pieceId}/${action}`, {
@@ -151,11 +152,13 @@ saveButtons.forEach(button => {
 
             if (data.success) {
                 if (action === 'save') {
-                    // .classList.replace('fa-solid', 'fa-regular')
+                    saveIcon.classList.replace('fa-regular', 'fa-solid')
                     button.dataset.action = 'unsave'
+                    button.nextElementSibling.textContent = "Saved on your dashboard !"
                 } else {
-                    // .classList.replace('fa-regular', 'fa-solid')
+                    saveIcon.classList.replace('fa-solid', 'fa-regular')
                     button.dataset.action = 'save'
+                    button.nextElementSibling.textContent = "Come back later"
 
                     if (savedCriticDash) {
                         savedCriticDash.remove()

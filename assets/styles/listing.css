@@ -1,4 +1,8 @@
 
+#pieceListContainer h1 {
+    letter-spacing: 0.5px;
+}
+
 #pieceListContainer h1 sup {
     font-size: 66%;
 }
@@ -85,8 +89,8 @@
     width: 66px;
     height: 66px;
     color: black;
-    font-size: 110%;
-    font-weight: 700;
+    font-size: 125%;
+    font-weight: 800;
     border-radius: 50%;
 
     & hr {

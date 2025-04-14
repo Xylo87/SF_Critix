@@ -47,13 +47,14 @@
     flex-direction: column;
     
     & i {
-        margin-bottom: 15px;
+        margin-bottom: 20px;
         font-size: 90%;
         font-weight: 300;
     }
 
     & h1 {
         font-weight: 600;
+        letter-spacing: 0.5px;
     }
 
     & h2 {
@@ -91,8 +92,8 @@
     width: 66px;
     height: 66px;
     color: black;
-    font-size: 110%;
-    font-weight: 700;
+    font-size: 125%;
+    font-weight: 800;
     border-radius: 50%;
 
     & hr {
@@ -125,12 +126,44 @@
     margin-top: 25px;
     line-height: 1.4;
     font-weight: 200;
+    overflow: hidden;
 }
 
 #criticsInfosTextPara strong {
     font-weight: 500;
 }
 
+#criticsInfosTextPara p {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    line-clamp: 3;
+}
+
+#moreInfosLink {
+    align-self: flex-end;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 5px;
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-weight: 600;
+    color: var(--white);
+    text-decoration: none;
+    transition: all 0.1s;
+}
+
+#moreInfosLink .fa-plus {
+    margin-bottom: 0;
+    font-weight: 900;
+    font-size: 175%;
+}
+
+#moreInfosLink:hover {
+    background: var(--orange);
+    color: black;
+}
 
 
 

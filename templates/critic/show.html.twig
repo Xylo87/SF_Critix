@@ -25,13 +25,14 @@
                     <button class="save-critics-btn"
                             data-piece-id="{{ piece.id }}"
                             data-action="unsave"><i class="fa-solid fa-bookmark"></i></button>
+                    <small>Saved on your dashboard !</small>
                 {% else %}
                     <button class="save-critics-btn"
                             data-piece-id="{{ piece.id }}"
                             data-action="save"><i class="fa-regular fa-bookmark"></i></button>
+                    <small>Come back later</small>
                 {% endif %}
-
-                <small>Come back later</small>
+                
             </div>
         </div>
 
@@ -65,9 +66,9 @@
                     <div id="oneCriticScore">
                         <strong>User score</strong>
                         
-                        {% if piece.criticTotalScore >= 6.6 %}
+                        {% if piece.userTotalScore >= 6.6 %}
                             <div id="oneCriticScoreToken" class="goodScore">
-                        {% elseif piece.criticTotalScore <= 6.6 and piece.criticTotalScore >= 3.3 %}
+                        {% elseif piece.userTotalScore <= 6.6 and piece.userTotalScore >= 3.3 %}
                             <div id="oneCriticScoreToken" class="averageScore">
                         {% else %}
                             <div id="oneCriticScoreToken" class="badScore">
@@ -98,9 +99,11 @@
                     <strong>Release date : </strong>{{piece.releaseDateENG}}<br>
                 {% endif %}
             
-                <strong>About : </strong>{{piece.about}}
+                <p><strong>About : </strong>{{piece.about}}</p>
             </div>
-            <h4><a href="{{ path('infos_piece', {'id': piece.id})}}">+ More infos</a></h4>
+            <a id="moreInfosLink" href="{{ path('infos_piece', {'id': piece.id})}}">
+                <i class="fa-solid fa-plus"></i>More infos
+            </a>
         </div>
     </div>
 

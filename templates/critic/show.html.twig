@@ -5,56 +5,104 @@
 {% block body %}
 
 <div>
-    <i>#{{piece.category}} > Critics</i>
-    <h2>Critics on →</h2>
-    <h1>{{piece}}</h1>
+    <div id="criticsInfos">
+        <div id="criticsInfosImage">
+            {% if piece.category == "Music" %}
+                <img id="musicCriticsInfos" src="/uploads/images/{{piece.poster}}" alt="{{piece}}-visual">
+            {% else %}
+                <img src="/uploads/images/{{piece.poster}}" alt="{{piece}}-visual">
+            {% endif %}
 
+            {# {% if app.user in piece.users %}
+                <a href="{{ path('unsave_critics', {'id': piece.id, 'origin': 'criticsPage'}) }}"><button>Unsave page</button></a>
+            {% else %}
+                <a href="{{ path('save_critics', {'id': piece.id})}}"><button>Come back later</button></a>
+            {% endif %} #}
 
-    {% if piece.category == "Music" %}
-        <img src="/uploads/images/{{piece.poster}}" alt="{{piece}}-visual" style="width: 265px; height: 265px; object-fit: cover">
-    {% else %}
-        <img src="/uploads/images/{{piece.poster}}" alt="{{piece}}-visual" style="width: 265px; height: 360px; object-fit: cover">
-    {% endif %}
-    
+            <div id="bookMark">
+                {# > Save/Unsave critics button (AJAX ver.) #}
+                {% if app.user in piece.users %}
+                    <button class="save-critics-btn"
+                            data-piece-id="{{ piece.id }}"
+                            data-action="unsave"><i class="fa-solid fa-bookmark"></i></button>
+                {% else %}
+                    <button class="save-critics-btn"
+                            data-piece-id="{{ piece.id }}"
+                            data-action="save"><i class="fa-regular fa-bookmark"></i></button>
+                {% endif %}
 
-    {# {% if app.user in piece.users %}
-        <a href="{{ path('unsave_critics', {'id': piece.id, 'origin': 'criticsPage'}) }}"><button>Unsave page</button></a>
-    {% else %}
-        <a href="{{ path('save_critics', {'id': piece.id})}}"><button>Come back later</button></a>
-    {% endif %} #}
+                <small>Come back later</small>
+            </div>
+        </div>
 
-    {# > Save/Unsave critics button (AJAX ver.) #}
-    {% if app.user in piece.users %}
-        <button class="save-critics-btn"
-                data-piece-id="{{ piece.id }}"
-                data-action="unsave">Unsave page</button>
-    {% else %}
-        <button class="save-critics-btn"
-                data-piece-id="{{ piece.id }}"
-                data-action="save">Come back later</button>
-    {% endif %}
+        <div id="criticsInfosText">
+            <i>#{{piece.category}} > Critics</i>
+            <h2>Critics on →</h2>
+            <h1>{{piece}}</h1>
 
-    {# > Avoid division by zero error #}
-    {% if piece.critics|length > 0 %}
-        <p><u>Critic Score</u> : {{piece.criticTotalScore}}/10</p>
-    {% endif %}
+            <div id="scoreContainer">
+                {# > Avoid division by zero error #}
+                {% if piece.critics|length > 0 %}
+                    <div id="oneCriticScore">
+                        <strong>Critic Score</strong> 
 
-    {% if piece.opinions|length > 0 %}
-        <p><u>User score</u> : {{ piece.userTotalScore }}/10</p>
-    {% else %}
-        <p><u>User score</u> : Not rated yet</p>
-    {% endif %}
+                        {% if piece.criticTotalScore >= 6.6 %}
+                            <div id="oneCriticScoreToken" class="goodScore">
+                        {% elseif piece.criticTotalScore <= 6.6 and piece.criticTotalScore >= 3.3 %}
+                            <div id="oneCriticScoreToken" class="averageScore">
+                        {% else %}
+                            <div id="oneCriticScoreToken" class="badScore">
+                        {% endif %}
+                        
+                            {{piece.criticTotalScore}}
+                            <hr>
+                            10
+                        </div>
+                    </div>
+                {% endif %}
 
-    <p><u>Maker</u> : {{piece.maker}}</p>
+                {% if piece.opinions|length > 0 %}
+                    <div id="oneCriticScore">
+                        <strong>User score</strong>
+                        
+                        {% if piece.criticTotalScore >= 6.6 %}
+                            <div id="oneCriticScoreToken" class="goodScore">
+                        {% elseif piece.criticTotalScore <= 6.6 and piece.criticTotalScore >= 3.3 %}
+                            <div id="oneCriticScoreToken" class="averageScore">
+                        {% else %}
+                            <div id="oneCriticScoreToken" class="badScore">
+                        {% endif %}
 
-    {% if piece.isUpcoming %}
-        <p><u>Release date</u> : {{piece.releaseDateENG|date("Y") }} (Upcoming)</p>
-    {% else %}
-        <p><u>Release date</u> : {{piece.releaseDateENG}}</p>
-    {% endif %}
-    
-    <p><u>About</u> : {{piece.about}}</p>
-    <h4><a href="{{ path('infos_piece', {'id': piece.id})}}">+ More infos</a></h4><br>
+                            {{ piece.userTotalScore }}
+                            <hr>
+                            10
+                        </div>
+                    </div>
+                {% else %}
+                    <div id="oneCriticScore">
+                    <strong>User score</strong>
+                        <div id="oneCriticScoreToken" class="noScore">
+                            -
+                            <hr>
+                            10
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+            <div id="criticsInfosTextPara">
+                <strong>Maker : </strong>{{piece.maker}}<br>
+
+                {% if piece.isUpcoming %}
+                    <strong>Release date : </strong>{{piece.releaseDateENG|date("Y") }} (Upcoming)<br>
+                {% else %}
+                    <strong>Release date : </strong>{{piece.releaseDateENG}}<br>
+                {% endif %}
+            
+                <strong>About : </strong>{{piece.about}}
+            </div>
+            <h4><a href="{{ path('infos_piece', {'id': piece.id})}}">+ More infos</a></h4>
+        </div>
+    </div>
 
     <h3>Latest critics</h3>
     <hr style="width: 66%"><br>

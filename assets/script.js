@@ -126,6 +126,7 @@ const flashMessageContainer = document.querySelector('nav')
 
 // > AJAX for Critics Save button
 const saveButtons = document.querySelectorAll('.save-critics-btn')
+const saveIcon = document.querySelectorAll('.fa-bookmark')
 const criticDashTitle = document.getElementById('criticDashTitle')
 
 saveButtons.forEach(button => {
@@ -150,17 +151,11 @@ saveButtons.forEach(button => {
 
             if (data.success) {
                 if (action === 'save') {
-                    button.textContent = 'Unsave page'
+                    // .classList.replace('fa-solid', 'fa-regular')
                     button.dataset.action = 'unsave'
-                    flashMessage.textContent = data.message
-                    flashMessage.classList.add('alert')
-                    flashMessage.classList.add('alert-success')
                 } else {
-                    button.textContent = 'Come back later'
+                    // .classList.replace('fa-regular', 'fa-solid')
                     button.dataset.action = 'save'
-                    flashMessage.textContent = data.message
-                    flashMessage.classList.add('alert')
-                    flashMessage.classList.add('alert-success')
 
                     if (savedCriticDash) {
                         savedCriticDash.remove()
@@ -173,7 +168,10 @@ saveButtons.forEach(button => {
                             criticDashTitle.remove()
                         }
                     }
-                } 
+                }
+                flashMessage.textContent = data.message
+                flashMessage.classList.add('alert')
+                flashMessage.classList.add('alert-success')
             } else {
                 flashMessage.textContent = data.message
                 flashMessage.classList.add('alert')

@@ -1,0 +1,136 @@
+
+#criticsInfos {
+    display: flex;
+    max-width: 66%;
+    gap: 20px;
+    margin-bottom: 50px;
+}
+
+#criticsInfosImage {
+    display: flex;
+    flex-direction: column;
+
+    & img {
+        width: 265px;
+        height: 360px;
+        object-fit: cover;
+        border-radius: 5px;
+    }
+
+    & button {
+        background: none;
+        border: none;
+        width: fit-content;
+        color: var(--white);
+        font-size: 150%;
+    }
+
+    & #bookMark {
+        margin-top: 15px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    & #bookMark small {
+        font-size: 85%;
+        font-weight: 200;
+    }
+
+    & #musicCriticsInfos {
+        height: 265px;
+    }
+}
+
+#criticsInfosText {
+    display: flex;
+    flex-direction: column;
+    
+    & i {
+        margin-bottom: 15px;
+        font-size: 90%;
+        font-weight: 300;
+    }
+
+    & h1 {
+        font-weight: 600;
+    }
+
+    & h2 {
+        font-weight: 200;
+        letter-spacing: 0.5px;
+    }
+}
+
+
+
+#scoreContainer {
+    margin-top: 25px;
+    display: flex;
+    justify-content: flex-start;
+    gap: 35px;
+}
+
+#oneCriticScore {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & strong {
+        margin-bottom: 7.5px;
+        font-size: 125%;
+        font-weight: 500;
+    }
+}
+
+#oneCriticScoreToken {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 66px;
+    height: 66px;
+    color: black;
+    font-size: 110%;
+    font-weight: 700;
+    border-radius: 50%;
+
+    & hr {
+        border: none;
+        width: 25%;
+        height: 2px;
+        background: black;
+    }
+}
+
+#oneCriticScoreToken.goodScore {
+    background: var(--green);
+}
+
+#oneCriticScoreToken.averageScore {
+    background: var(--lightOrange);
+}
+
+#oneCriticScoreToken.badScore {
+    background: var(--red);
+}
+
+#oneCriticScoreToken.noScore {
+    background: var(--lightGrey);
+}
+
+
+
+#criticsInfosTextPara {
+    margin-top: 25px;
+    line-height: 1.4;
+    font-weight: 200;
+}
+
+#criticsInfosTextPara strong {
+    font-weight: 500;
+}
+
+
+
+

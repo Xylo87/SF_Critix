@@ -116,6 +116,7 @@ a, button {
 
 .openModal button {
     margin: 0 5px;
+    padding: 2.5px 5px;
 }
 
 /* .openModal:focus {
@@ -347,60 +348,6 @@ a, button {
 
 .moreIcon {
     font-size: 150%;
-}
-
-/* > Like/Dislike buttons */
-.likeBtn {
-    width: 75px;
-    height: 45px;
-    font-size: 150%;
-    border-radius: 50% 0 0 50%;
-    border: none;
-    border-right: solid 1px black;
-}
-
-.dislikeBtn {
-    width: 75px;
-    height: 45px;
-    font-size: 150%;
-    border-radius: 0 50% 50% 0;
-    border: none;
-    border-left: solid 1px black;
-}
-
-
-
-/* > Like/Dislike bars */
-.likdisBarContainer {
-    width: 560px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.likdisBarContainer small:first-child {
-    margin-right: 15px;
-}
-
-.likdisBarContainer small:last-child {
-    margin-left: 15px;
-}
-
-.dislikeBar {
-    width: 350px;
-    height: 5px;
-    background: #CF2020;
-}
-
-.likeBar {
-    height: 5px;
-    background: green;
-}
-
-.emptyBar {
-    width: 350px;
-    height: 5px;
-    background: #F2F2F2;
 }
 
 

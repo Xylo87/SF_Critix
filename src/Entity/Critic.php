@@ -250,7 +250,7 @@ class Critic
         foreach ($this->agreements as $agreement) {
             $totalAgreements += $agreement->isOk();
         }
-        return ($totalAgreements / count($this->agreements))*100;
+        return round(($totalAgreements / count($this->agreements))*100, 1);
     }
 
     /**

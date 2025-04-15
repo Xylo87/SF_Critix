@@ -1,7 +1,7 @@
 
 #criticsInfos {
     display: flex;
-    max-width: 66%;
+    max-width: 60%;
     gap: 20px;
     margin-bottom: 50px;
 }
@@ -164,6 +164,127 @@
     background: var(--orange);
     color: black;
 }
+
+
+
+#criticsContainer h3 {
+    margin-bottom: 7.5px;
+    font-size: 150%;
+    font-weight: 500;
+}
+
+#criticsContainer hr {
+    width: 60%;
+    margin-bottom: 25px;
+    color: var(--white);
+}
+
+
+
+#oneCriticContainer {
+    display: flex;
+}
+
+#criticVideo {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+
+    & .youtube_player {
+        width: 100%;
+    }
+
+    & .youtube_player iframe {
+        aspect-ratio: 16 / 9;
+        width: 100%;
+    }
+}
+
+#likeDislikeButtons {
+    margin-top: 25px;
+}
+
+/* > Like/Dislike buttons */
+.likeBtn, .dislikeBtn {
+    width: 75px;
+    height: 40px;
+    font-size: 150%;
+    font-weight: 900;
+    border: none;
+}
+
+.likeBtn {
+    border-right: solid 1px black;
+    border-radius: 25px 0 0 25px;
+}
+
+.dislikeBtn {
+    border-left: solid 1px black;
+    border-radius: 0 25px 25px 0;
+}
+
+
+/* > Like/Dislike bars */
+.likdisBarContainer {
+    margin-top: 15px;
+    margin-bottom: 35px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+    position: relative;
+}
+
+.likdisBarContainer small {
+    position: absolute;
+    font-size: 100%;
+    font-weight: 200;
+}
+
+.likdisBarContainer small:first-child {
+    top: -7.5px;
+    left: -57.5px;
+}
+
+.likdisBarContainer small:nth-of-type(2) {
+    top: 12.5px;
+    font-size: 110%;
+    font-weight: 300;
+}
+
+.likdisBarContainer small:last-of-type {
+    top: -7.5px;
+    right: -80px;
+}
+
+.dislikeBar {
+    width: 100%;
+    height: 4px;
+    background: var(--red);
+}
+
+.likeBar {
+    height: 4px;
+    background: var(--deepGreen);
+}
+
+.emptyBar {
+    width: 100%;
+    height: 4px;
+    background: var(--white);
+}
+
+
+
+/* #criticVideoInfos {
+    width: 40%;
+} */
+
+
+
 
 
 

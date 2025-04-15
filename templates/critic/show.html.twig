@@ -24,12 +24,12 @@
                 {% if app.user in piece.users %}
                     <button class="save-critics-btn"
                             data-piece-id="{{ piece.id }}"
-                            data-action="unsave"><i class="fa-solid fa-bookmark"></i></button>
+                            data-action="unsave" aria-label="Save Page Button"><i class="fa-solid fa-bookmark"></i></button>
                     <small>Saved on your dashboard !</small>
                 {% else %}
                     <button class="save-critics-btn"
                             data-piece-id="{{ piece.id }}"
-                            data-action="save"><i class="fa-regular fa-bookmark"></i></button>
+                            data-action="save" aria-label="Save Page Button"><i class="fa-regular fa-bookmark"></i></button>
                     <small>Come back later</small>
                 {% endif %}
                 
@@ -188,20 +188,22 @@
                     </div>
 
                     <div id="criticVideoInfos">
-                        <h3>By: <a href="{{ path('show_influencer', {'id': critic.influencer.id})}}">{{critic.influencer}}</a></h3>
+                        <div id="criticVideoName">
+                            <h3><span>By : </span><a href="{{ path('show_influencer', {'id': critic.influencer.id})}}">{{critic.influencer}}</a></h3>
 
-                        <a href="{{ path('show_influencer', {'id': critic.influencer.id})}}">
-                        {% if critic.influencer.photo %}
-                            <img src="/uploads/photos/influPhotos/{{critic.influencer.photo}}" alt="{{critic.influencer}}-picture" style="width: 265px; height: 360px; object-fit: cover">
-                        {% else %}
-                            <img src="/uploads/photos/influPhotos/influencer-default.png" alt="influencer-default-picture" style="width: 265px; height: 360px; object-fit: cover">
-                        {% endif %}
-                        </a>
+                            <a class="portraitLink" href="{{ path('show_influencer', {'id': critic.influencer.id})}}">
+                            {% if critic.influencer.photo %}
+                                <img src="/uploads/photos/influPhotos/{{critic.influencer.photo}}" alt="{{critic.influencer}}-picture">
+                            {% else %}
+                                <img src="/uploads/photos/influPhotos/influencer-default.png" alt="influencer-default-picture">
+                            {% endif %}
+                            </a>
+                        </div>
 
-                        <blockquote>{{critic.summary}}</blockquote>
+                        <blockquote><em>{{critic.summary}}</em></blockquote>
 
 
-
+                        <h4>Score</h4>
                         {# > Star score system #}
                         {% set note = critic.criticScore %}
                         {# {% set fullStars = note|round(0, 'floor') %} #}
@@ -225,15 +227,16 @@
                         {% endif %}
                         
 
-
-                        <h4>{{critic.lengthMin}}min</h4>
-                        <h4>{{critic.datePostENG}}</h4>
-                        <h4>First aired: {{critic.originDatePostENG}}</h4>
+                        <div class="criticVideoInfos">
+                            <strong>{{critic.lengthMin}}min</strong>
+                            <strong>{{critic.datePostENG}}</strong>
+                            <p><strong>First aired : </strong>{{critic.originDatePostENG}}</p>
+                        </div>
 
                         {# > Suppression (modal) #}
-                        <a href="{{ path('edit_critic', {'id': critic.id})}}"><button>Edit</button></a>
+                        {# <a href="{{ path('edit_critic', {'id': critic.id})}}"><button>Edit</button></a> #}
                         {# <a href="{{ path('delete_influencer', {'id': influencer.id})}}">Delete</a></h2><br> #}
-                        <button class="deleteConfirm">Delete</button><br><br>
+                        {# <button class="deleteConfirm">Delete</button><br><br> #}
                             <dialog class="openModal">
                                 <h3>Are you sure you want to delete critic on "{{critic.piece.title}}" by {{critic.influencer}} ?</h3>
                                 <a href="{{ path('delete_critic', {'id': critic.id})}}"><button>Yes</button></a>
@@ -243,6 +246,7 @@
 
                     </div>
                 </div>
+
                 {# Adding comment #}
                 <form method="post" action="{{ path('comment_critic', {'id': critic.id})}}">
                     {% if app.user %}

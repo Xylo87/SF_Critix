@@ -148,7 +148,7 @@
     margin-top: 5px;
     padding: 4px 8px;
     border-radius: 5px;
-    font-weight: 600;
+    font-weight: 500;
     color: var(--white);
     text-decoration: none;
     transition: all 0.1s;
@@ -167,7 +167,7 @@
 
 
 
-#criticsContainer h3 {
+#criticsContainer h3:not(.openModal *) {
     margin-bottom: 7.5px;
     font-size: 150%;
     font-weight: 500;
@@ -251,7 +251,7 @@
 
 .likdisBarContainer small:nth-of-type(2) {
     top: 12.5px;
-    font-size: 100%;
+    font-size: 90%;
     font-weight: 300;
 }
 
@@ -277,11 +277,76 @@
     background: var(--white);
 }
 
+#criticVideoInfos {
+    margin-left: 20px;
+
+    & h3:not(.openModal *) {
+        font-size: 150%;
+    }
+    
+    & h3 a {
+        text-decoration: none;
+        color: var(--white);
+    }
+    
+    & h3 a:hover {
+        text-decoration: underline;
+    }
+    
+    & span {
+        font-weight: 300;
+    }
+
+    & .portraitLink {
+        display: block;
+        width: 75px;
+        height: 75px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-left: 25px;
+    }
+
+    & .portraitLink img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    & #criticVideoName {
+        display: flex;
+        align-items: center;
+    }
+
+    & blockquote {
+        margin-top: 15px;
+        margin-bottom: 35px;
+        font-size: 115%;
+        font-weight: 500;
+    }
+
+    & h4 {
+        font-size: 150%;
+        font-weight: 500;
+        margin-bottom: 5px;
+    }
+    
+    .criticVideoInfos {
+        margin-top: 35px;
+        display: flex;
+        flex-direction: column;
+        font-weight: 200;
+        font-size: 110%;
+        line-height: 1.75;
+
+        & strong {
+            font-weight: 500;
+        }
+    }
+}
 
 
-/* #criticVideoInfos {
-    width: 40%;
-} */
+
+
 
 
 

@@ -234,88 +234,98 @@
                         </div>
 
                         {# > Suppression (modal) #}
-                        {# <a href="{{ path('edit_critic', {'id': critic.id})}}"><button>Edit</button></a> #}
+                        {# <a href="{{ path('edit_critic', {'id': critic.id})}}"><button style="width: 50px; padding: 2.5px;">Edit</button></a> #}
                         {# <a href="{{ path('delete_influencer', {'id': influencer.id})}}">Delete</a></h2><br> #}
-                        {# <button class="deleteConfirm">Delete</button><br><br> #}
-                            <dialog class="openModal">
+                        {# <button class="deleteConfirm" style="width: 50px; padding: 2.5px;">Delete</button> #}
+                            {# <dialog class="openModal">
                                 <h3>Are you sure you want to delete critic on "{{critic.piece.title}}" by {{critic.influencer}} ?</h3>
                                 <a href="{{ path('delete_critic', {'id': critic.id})}}"><button>Yes</button></a>
                                 <button class="closeModal">No</button>
-                            </dialog>
+                            </dialog> #}
 
 
                     </div>
                 </div>
 
-                {# Adding comment #}
-                <form method="post" action="{{ path('comment_critic', {'id': critic.id})}}">
-                    {% if app.user %}
-                        <div class="addCommentField">
-                            <label class="accessLabel" for="addComment">Add comment</label>
-                            <textarea class="addComment" name="addComment" id="addComment" maxlength="3500" placeholder="➕ Add comment (3500 characters max. )" required></textarea>
-                            {# <i class="fa-solid fa-square-plus commentPlus"></i> #}
-                            <input type="submit" name="submit" class="add-comment-submit" value="Post !">
-                        </div>
-                    {% else %}
-                        <div class="addCommentField">
-                            <label class="accessLabel" for="addComment">Add comment</label>
-                            <textarea class="addComment" name="addComment" id="addComment" placeholder="Please log in to comment" disabled></textarea>
-                            {# <i class="fa-solid fa-square-plus commentPlus"></i> #}
-                        </div>
-                    {% endif %}
-                </form><br>
-
-                {# Display comment #}
-                {% for comment in critic.comments|sort((a, b) => b.datePost <=> a.datePost) %}
-                    <div class="commentDisplay">
-
-                        {# > User PP display #}
-                        {% if comment.user.profilePicture %}
-                            <a class="ppLink" href="{{ path('show_user', {'id': comment.user.id})}}"><img src="/uploads/photos/userPhotos/{{comment.user.profilePicture}}" alt="{{comment.user}}-profile-picture"></a>
+                <div id="criticComments">
+                    {# Adding comment #}
+                    <form method="post" action="{{ path('comment_critic', {'id': critic.id})}}">
+                        {% if app.user %}
+                            <div class="addCommentField">
+                                <label class="accessLabel" for="addComment">Add comment</label>
+                                <textarea class="addComment" name="addComment" id="addComment" maxlength="3500" placeholder="➕ Add comment (3500 characters max. )" required></textarea>
+                                {# <i class="fa-solid fa-square-plus commentPlus"></i> #}
+                                <input type="submit" name="submit" class="add-comment-submit" value="Post !">
+                            </div>
                         {% else %}
-                            <a class="ppLink" href="{{ path('show_user', {'id': comment.user.id})}}"><img src="/uploads/photos/userPhotos/user-default.png" alt="user-default-profile-picture"></a>
+                            <div class="addCommentField">
+                                <label class="accessLabel" for="addComment">Add comment</label>
+                                <textarea class="addComment" name="addComment" id="addComment" placeholder="Please log in to comment" disabled></textarea>
+                                {# <i class="fa-solid fa-square-plus commentPlus"></i> #}
+                            </div>
                         {% endif %}
+                    </form><br>
 
-                        <div class="mainComment">
-                            <a class="ppLink" href="{{ path('show_user', {'id': comment.user.id})}}"><strong>{{comment.user}}</a> - </strong>
-                            {{comment.datePostENG}}
-                            <p>{{comment}}</p>
-                        </div>
+                    {# Display comment #}
+                    {% for comment in critic.comments|sort((a, b) => b.datePost <=> a.datePost) %}
+                        {% if comment.isVIP == 0 %}
+                        
+                            <div class="commentDisplay">
 
-                        {# > VIP button #}
-                        {% if app.user and "ROLE_MODO" in app.user.roles %}
-                            {% if comment.isVip == true %}
-                                <a class="vipLink" href="{{ path('comment_vip', {'critic': critic.id, 'comment': comment.id})}}"><button class="vipBtn" style="background: #1E1F25"><i class="fa-solid fa-medal vipIcon" style="color: #fe8d01"></i></button></a>
-                            {% else %}
-                                <a class="vipLink" href="{{ path('comment_vip', {'critic': critic.id, 'comment': comment.id})}}"><button class="vipBtn"><i class="fa-solid fa-medal vipIcon"></i></button></a>
-                            {% endif %}
+                                {# > User PP display #}
+                                {% if comment.user.profilePicture %}
+                                    <a class="ppLink" href="{{ path('show_user', {'id': comment.user.id})}}"><img src="/uploads/photos/userPhotos/{{comment.user.profilePicture}}" alt="{{comment.user}}-profile-picture"></a>
+                                {% else %}
+                                    <a class="ppLink" href="{{ path('show_user', {'id': comment.user.id})}}"><img src="/uploads/photos/userPhotos/user-default.png" alt="user-default-profile-picture"></a>
+                                {% endif %}
+
+                                <div class="mainComment">
+                                    <a href="{{ path('show_user', {'id': comment.user.id})}}"><strong>{{comment.user}}</a> - </strong>
+                                    <span>{{comment.datePostENG}}</span>
+                                    <p>{{comment}}</p>
+                                </div>
+
+
+                                {# > VIP button #}
+
+                                {# > User score fetch #}
+                                {% set userScore = null %}
+                                {% for opinion in comment.user.opinions %}
+                                    {% if opinion.piece.id == critic.piece.id %}
+                                        {% set userScore = true %}
+                                    {% endif %}
+                                {% endfor %}
+
+                                {% if app.user and "ROLE_MODO" in app.user.roles and critic.comments|filter(comment => comment.isVip)|length == 0 and userScore %}
+                                    <a class="vipLink" href="{{ path('comment_vip', {'critic': critic.id, 'comment': comment.id})}}"><button class="vipBtn"><i class="fa-solid fa-medal vipIcon"></i></button></a>
+                                {% endif %}
+                                {# <a class="vipLink" href="{{ path('comment_vip', {'critic': critic.id, 'comment': comment.id})}}"><button class="vipBtn" style="background: #1E1F25"><i class="fa-solid fa-medal vipIcon" style="color: #fe8d01"></i></button></a> #}
+
+
+                                {# > Delete button #}
+                                {% if (app.user and app.user.id == comment.user.id) or (app.user and "ROLE_MODO" in app.user.roles) %}
+                                    <button class="delComBtn deleteConfirm"><i class="fa-solid fa-trash delComIcon"></i></button>
+                                    <dialog class="openModal">
+                                        <h3>Are you sure you want to delete this comment ?</h3>
+                                        <a href="{{ path('comment_delete', {'critic': critic.id, 'comment': comment.id})}}"><button>Yes</button></a>
+                                        <button class="closeModal">No</button>
+                                    </dialog>
+                                {% endif %}
+
+                                {# > Show more button #}
+                                <button class="moreBtn" aria-label="Display More Button"><i class="fa-solid fa-plus moreIcon"></i></button>
+                            </div>
                         {% endif %}
-
-                        {# > Delete button #}
-                        {% if (app.user and app.user.id == comment.user.id) or (app.user and "ROLE_MODO" in app.user.roles) %}
-                            <button class="delComBtn deleteConfirm"><i class="fa-solid fa-trash delComIcon"></i></button>
-                            <dialog class="openModal">
-                                <h3>Are you sure you want to delete this comment ?</h3>
-                                <a href="{{ path('comment_delete', {'critic': critic.id, 'comment': comment.id})}}"><button>Yes</button></a>
-                                <button class="closeModal">No</button>
-                            </dialog>
-                        {% endif %}
-
-                        {# > Show more button #}
-                        <button class="moreBtn"><i class="fa-solid fa-plus moreIcon"></i></button>
-                    </div><br>
-                {% endfor %}
-
-                <hr style="width: 10%"><br>
+                    {% endfor %}
+                </div>
             </div>
+            <hr>
         {% endfor %}
-        
         <a href="{{path('show_category', {'id': piece.category.id})}}"><i>> View all {{piece.category}} critics</i></a>
     </div>
 </div>
             
-{% endblock %}           
-
+{% endblock %}    
 
 
             

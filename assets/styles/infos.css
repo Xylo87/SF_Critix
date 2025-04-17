@@ -1,3 +1,8 @@
+#pieceContainer {
+    display: flex;
+    flex-direction: column;
+}
+
 #pieceSubContainer {
     display: flex;
 }
@@ -148,6 +153,7 @@
 
 #pieceVideo .youtube_player {
     width: 60%;
+    margin-bottom: 50px;
 
     &  iframe {
         aspect-ratio: 16 / 9;
@@ -157,12 +163,12 @@
 
 
 
-/* h3:last-of-type:not(.openModal *) {
+#pieceContainer h3:last-of-type:not(.openModal *) {
     font-size: 150%;
     font-weight: 500;
-} */
+}
 
-#trailerSep {
+#pieceContainer hr:last-of-type:not(#onePieceScoreToken hr) {
     margin: 7.5px 0 25px 0;
     width: 20%;
     color: var(--white);

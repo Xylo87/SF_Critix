@@ -212,7 +212,7 @@ a, button {
     text-decoration: none;
     font-size: 133%;
     font-weight: 500;
-    align-self: center;
+    align-self: flex-start;
     color: var(--white);
 }
 

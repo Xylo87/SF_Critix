@@ -1,157 +1,214 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Critix > {{piece.category}} > Infos > {{piece}}{% endblock %}
+{% block title %}CritX > {{piece.category}} > Infos > {{piece}}{% endblock %}
 
 {% block body %}
 
 <div>
-    <i>#{{piece.category}} > Infos</i>
-    <h2>Infos on →</h2>
-    <h1>{{piece}}</h1>
-
-    {% for video in piece.videos %}
-        {# <iframe width="560" height="315" src="{{video.link}}" 
-        title="YouTube video player" 
-        frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-        referrerpolicy="strict-origin-when-cross-origin" 
-        allowfullscreen></iframe> #}
-        <div class="youtube_player" 
-        videoID="{{video.link}}" 
-        width="560" 
-        height="315" 
-        theme="theme (dark | light)" 
-        rel="rel (1 | 0)" 
-        controls="controls (1 | 0)" 
-        showinfo="showinfo (1 | 0)" 
-        autoplay="autoplay (0 | 1)" 
-        mute="mute (0 | 1)" 
-        loop="loop (0 | 1)" 
-        loading="loading (0 | 1)" 
-        data-start="start" 
-        data-end="end"></div>
-    {% endfor %}
-    
-
-    {% if piece.category == "Music" %}
-        <img src="/uploads/images/{{piece.poster}}" alt="{{piece}}-visual" style="width: 265px; height: 265px; object-fit: cover">
-    {% else %}
-        <img src="/uploads/images/{{piece.poster}}" alt="{{piece}}-visual" style="width: 265px; height: 360px; object-fit: cover">
-    {% endif %}
-
-
-    {# > Edit and suppression (modal) #}
-    <a href="{{ path('edit_piece', {'id': piece.id})}}"><button>Edit</button></a>
-    {# <a href="{{ path('delete_influencer', {'id': influencer.id})}}">Delete</a></h2><br> #}
-    <button class="deleteConfirm">Delete</button><br>
-        <dialog class="openModal">
-            <h3>Are you sure you want to delete "{{piece}}" ?</h3>
-            <a href="{{ path('delete_piece', {'id': piece.id})}}"><button>Yes</button></a>
-            <button class="closeModal">No</button>
-        </dialog>
-
-    <p><u>Maker</u> : {{piece.maker}}</p>
-
-    {% if piece.isUpcoming %}
-        <p><u>Release date</u> : {{piece.releaseDateENG|date("Y") }} (Upcoming)</p>
-    {% else %}
-        <p><u>Release date</u> : {{piece.releaseDateENG}}</p>
-    {% endif %}
-    
-    <p><u>About</u> : {{piece.about}}</p><br>
-
-
-
-    {# > User score fetch #}
-    {% set userScore = null %}
-    {% for opinion in piece.opinions %}
-        {% if app.user and app.user.id == opinion.user.id and opinion.piece.id == piece.id %}
-            {% set userScore = opinion.userScore %}
-        {% endif %}
-    {% endfor %}
-
-    {# > Switch > User score vote or User score display #}
-    {% if userScore %}
-
-        {# > Star score system #}
-        <div class="user-score-display-container">
-            <h2>Your Score</h2>
-            <div class="user-score-display">
-                {% set note = userScore %}
-                {# {% set fullStars = note|round(0, 'floor') %} #}
-                {% set fullStars = note %}
-                {# {% set partialStar = (note - fullStars)|round(0, 'ceil') %} #}
-                {% set emptyStars = 5 - fullStars %}
-                {# {% set emptyStars = 5 - fullStars - (partialStar ? 1 : 0) %} #}
-            
-                {% for i in range(1, fullStars) %}
-                    <i class="fa-solid fa-star fullstars"></i>
-                {% endfor %}
-
-                {# {% if partialStar %}
-                    <i class="fa-solid fa-star-half-stroke halfstars"></i>
-                {% endif %} #}
-
-                {% if emptyStars %}
-                    {% for i in range(1, emptyStars) %}
-                        <i class="fa-solid fa-star emptystars"></i>
-                    {% endfor %}
+    <div id="pieceSubContainer">
+        <div id="pieceInfos">
+            <div id="pieceInfosImage">
+                {% if piece.category == "Music" %}
+                    <img id="musicPieceInfos" src="/uploads/images/{{piece.poster}}" alt="{{piece}}-visual">
+                {% else %}
+                    <img src="/uploads/images/{{piece.poster}}" alt="{{piece}}-visual">
                 {% endif %}
             </div>
-            {% for opinion in piece.opinions %}
-                {% if app.user.id == opinion.user.id %}
-                    <button class="deleteConfirm user-score-reset">Reset vote</button><br>
+
+            <div id="pieceInfosText">
+                <i>#{{piece.category}} > Infos</i>
+                <h2>Infos on →</h2>
+                <h1>{{piece}}</h1>
+
+                <div id="pieceInfosTextPara">
+                    <strong>Maker : </strong>{{piece.maker}}<br>
+
+                    {% if piece.isUpcoming %}
+                        <strong>Release date : </strong>{{piece.releaseDateENG|date("Y") }} (Upcoming)<br>
+                    {% else %}
+                        <strong>Release date : </strong>{{piece.releaseDateENG}}
+                    {% endif %}
+                    
+                    <p><strong>About : </strong>{{piece.about}}</p>
+
+                    {# > Edit and suppression (modal) #}
+                    {# <a href="{{ path('edit_piece', {'id': piece.id})}}"><button style="width: 50px; padding: 2.5px;">Edit</button></a> #}
+                    {# <a href="{{ path('delete_influencer', {'id': influencer.id})}}">Delete</a></h2><br> #}
+                    {# <button class="deleteConfirm" style="width: 50px; padding: 2.5px;">Delete</button><br>
                         <dialog class="openModal">
-                            <h3>Are you sure you want to reset your score on "{{piece}}" ?</h3>
-                            <a href="{{ path('score_reset', {'piece': piece.id, 'opinion': opinion.id})}}"><button>Yes</button></a>
+                            <h3>Are you sure you want to delete "{{piece}}" ?</h3>
+                            <a href="{{ path('delete_piece', {'id': piece.id})}}"><button>Yes</button></a>
                             <button class="closeModal">No</button>
-                        </dialog>
+                        </dialog> #}
+                </div>
+            </div>
+        </div>
+
+        <div id="pieceScores">
+
+            {# > User score fetch #}
+            {% set userScore = null %}
+            {% for opinion in piece.opinions %}
+                {% if app.user and app.user.id == opinion.user.id and opinion.piece.id == piece.id %}
+                    {% set userScore = opinion.userScore %}
                 {% endif %}
             {% endfor %}
-        </div><br>
 
-    {% else %}
-        
-        <form class="user-score-form" method="post" action="{{ path('score_piece', {'id': piece.id})}}">
-            <h2>Your Score</h2>
-            <fieldset class="user-score">
-                <legend class="accessLabel">User score vote</legend>
-                <input type="radio" name="rating" id="rating5" value="5" required>
-                <label class="fa-solid fa-star emptystars" for="rating5"></label>
-                <input type="radio" name="rating" id="rating4" value="4" required>
-                <label class="fa-solid fa-star emptystars" for="rating4"></label>
-                <input type="radio" name="rating" id="rating3" value="3" required>
-                <label class="fa-solid fa-star emptystars" for="rating3"></label>
-                <input type="radio" name="rating" id="rating2" value="2" required>
-                <label class="fa-solid fa-star emptystars" for="rating2"></label>
-                <input type="radio" name="rating" id="rating1" value="1" required>
-                <label class="fa-solid fa-star emptystars" for="rating1"></label>
-            </fieldset><br>
-            <small>Please set a score between 1 & 5</small>
-            <input type="submit" name="submit" class="user-score-submit" value="Vote !">
-        </form><br>
+            {# > Switch > User score vote or User score display #}
+            {% if userScore %}
+
+                {# > Star score system #}
+                <div class="user-score-display-container">
+                    <h2>Your Score</h2>
+                    <div class="user-score-display">
+                        {% set note = userScore %}
+                        {# {% set fullStars = note|round(0, 'floor') %} #}
+                        {% set fullStars = note %}
+                        {# {% set partialStar = (note - fullStars)|round(0, 'ceil') %} #}
+                        {% set emptyStars = 5 - fullStars %}
+                        {# {% set emptyStars = 5 - fullStars - (partialStar ? 1 : 0) %} #}
+                    
+                        {% for i in range(1, fullStars) %}
+                            <i class="fa-solid fa-star fullstars"></i>
+                        {% endfor %}
+
+                        {# {% if partialStar %}
+                            <i class="fa-solid fa-star-half-stroke halfstars"></i>
+                        {% endif %} #}
+
+                        {% if emptyStars %}
+                            {% for i in range(1, emptyStars) %}
+                                <i class="fa-solid fa-star emptystars"></i>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    <small>Your score has been set !</small>
+                    {% for opinion in piece.opinions %}
+                        {% if app.user.id == opinion.user.id %}
+                            <button class="deleteConfirm user-score-reset">Reset vote</button><br>
+                                <dialog class="openModal">
+                                    <h3>Are you sure you want to reset your score on "{{piece}}" ?</h3>
+                                    <a href="{{ path('score_reset', {'piece': piece.id, 'opinion': opinion.id})}}"><button>Yes</button></a>
+                                    <button class="closeModal">No</button>
+                                </dialog>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+
+            {% else %}
+                
+                <form class="user-score-form" method="post" action="{{ path('score_piece', {'id': piece.id})}}">
+                    <h2>Your Score</h2>
+                    <fieldset class="user-score">
+                        <legend class="accessLabel">User score vote</legend>
+                        <input type="radio" name="rating" id="rating5" value="5" required>
+                        <label class="fa-solid fa-star emptystars" for="rating5"></label>
+                        <input type="radio" name="rating" id="rating4" value="4" required>
+                        <label class="fa-solid fa-star emptystars" for="rating4"></label>
+                        <input type="radio" name="rating" id="rating3" value="3" required>
+                        <label class="fa-solid fa-star emptystars" for="rating3"></label>
+                        <input type="radio" name="rating" id="rating2" value="2" required>
+                        <label class="fa-solid fa-star emptystars" for="rating2"></label>
+                        <input type="radio" name="rating" id="rating1" value="1" required>
+                        <label class="fa-solid fa-star emptystars" for="rating1"></label>
+                    </fieldset><br>
+                    <small>Please set a score between 1 & 5</small>
+                    <input type="submit" name="submit" class="user-score-submit" value="Vote !">
+                </form>
+
+            {% endif %}
+
+            <div id="infosScoreContainer">
+                {% if piece.critics|length > 0 %}
+                    <div id="onePieceScore">
+                        <strong>Critic score</strong>
+
+                        {% if piece.criticTotalScore >= 6.6 %}
+                            <div id="onePieceScoreToken" class="goodScore">
+                        {% elseif piece.criticTotalScore <= 6.6 and piece.criticTotalScore >= 3.3 %}
+                            <div id="onePieceScoreToken" class="averageScore">
+                        {% else %}
+                            <div id="onePieceScoreToken" class="badScore">
+                        {% endif %}
+
+                            {{piece.criticTotalScore}}
+                            <hr>
+                            10
+                        </div>
+                    </div>
+                {% endif %}
+
+                {% if piece.opinions|length > 0 %}
+                    <div id="onePieceScore">
+                        <strong>User score</strong>
+
+                        {% if piece.userTotalScore >= 6.6 %}
+                            <div id="onePieceScoreToken" class="goodScore">
+                        {% elseif piece.userTotalScore <= 6.6 and piece.userTotalScore >= 3.3 %}
+                            <div id="onePieceScoreToken" class="averageScore">
+                        {% else %}
+                            <div id="onePieceScoreToken" class="badScore">
+                        {% endif %}
+                
+                            {{ piece.userTotalScore }}
+                            <hr>
+                            10
+                        </div>
+                    </div>
+            {% else %}
+                <div id="onePieceScore">
+                <strong>User score</strong>
+                    <div id="onePieceScoreToken" class="noScore">
+                        -
+                        <hr>
+                        10
+                    </div>
+                </div>
+            {% endif %}
+
+            {# {% for image in piece.images %}
+                {{image}}
+            {% endfor %} #}
+
+            </div>
+
+            <h2>Go to critics →</h2>
+            <a href="{{ path('show_critics', {'id': piece.id})}}">{{piece}}</a>
+        </div>
+    </div>
+
+    {% if piece.videos|length > 0 %}
+
+        <h3>Trailer</h3>
+        <hr id="trailerSep">
+
+        {% for video in piece.videos %}
+            <div id="pieceVideo">
+                {# <iframe width="560" height="315" src="{{video.link}}" 
+                title="YouTube video player" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                referrerpolicy="strict-origin-when-cross-origin" 
+                allowfullscreen></iframe> #}
+                <div class="youtube_player" 
+                videoID="{{video.link}}" 
+                theme="theme (dark | light)" 
+                rel="rel (1 | 0)" 
+                controls="controls (1 | 0)" 
+                showinfo="showinfo (1 | 0)" 
+                autoplay="autoplay (0 | 1)" 
+                mute="mute (0 | 1)" 
+                loop="loop (0 | 1)" 
+                loading="loading (0 | 1)" 
+                data-start="start" 
+                data-end="end"></div>
+            </div>
+        {% endfor %}
 
     {% endif %}
 
     
-        
-    {% if piece.critics|length > 0 %}
-            <p><u>Critic score</u> : {{ piece.criticTotalScore }}/10</p>
-    {% endif %}
-
-    {% if piece.opinions|length > 0 %}
-        <p><u>User score</u> : {{ piece.userTotalScore }}/10</p><br>
-    {% else %}
-        <p><u>User score</u> : Not rated yet</p><br>
-    {% endif %}
-
-    {# {% for image in piece.images %}
-        {{image}}
-    {% endfor %} #}
-
-    <h2>Go to critics <br>
-    → <a href="{{ path('show_critics', {'id': piece.id})}}">{{piece}}</a></h2><br>
-    <a href="{{path('show_category', {'id': piece.category.id})}}"><i>> View all {{piece.category}} critics</i></a>
+    <a class="nextLink" href="{{path('show_category', {'id': piece.category.id})}}"><i>> View all {{piece.category}} critics</i></a>
 </div>
    
 {% endblock %}

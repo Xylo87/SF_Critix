@@ -132,7 +132,7 @@ a, button {
 /* Star scores */
 .fullstars {
     font-size: 200%;
-    color: #fe8d01;
+    color: var(--lightOrange);
 }
 
 .emptystars {
@@ -170,22 +170,16 @@ a, button {
 
 .user-score input:checked + label, 
 .user-score input:checked + label ~ label {
-    color: #fe8d01;
+    color: var(--lightOrange);
     opacity: 1;
 }
 
 .user-score label:hover,
 .user-score label:hover ~ label {
-    color: #fe8c01;
+    color: var(--lightOrange);
     opacity: 1;
 }
 
-.user-score-submit {
-    margin-top: 0.75em;
-    width: fit-content;
-    padding: 0.1em;
-    cursor: pointer;
-}
 
 /* User star score display */
 .user-score-display-container { 
@@ -195,16 +189,35 @@ a, button {
     align-items: center;
 }
 
+.user-score-display-container h2, .user-score-form h2 {
+    margin-bottom: 7.5px;
+}
+
 .user-score-display {
     display: flex;
     gap: 4px;
 }
 
-.user-score-reset {
+.user-score-submit, .user-score-reset {
     margin-top: 0.75em;
     width: fit-content;
-    padding: 0.1em;
+    padding: 0.1em 0.2em;
     cursor: pointer;
+}
+
+
+
+/* Next links */
+.nextLink {
+    text-decoration: none;
+    font-size: 133%;
+    font-weight: 500;
+    align-self: center;
+    color: var(--white);
+}
+
+.nextLink i:hover {
+    text-decoration: underline;
 }
 
 

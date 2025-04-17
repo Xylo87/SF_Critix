@@ -175,7 +175,6 @@
 }
 
 #criticsContainer h3:not(.openModal *) {
-    /* margin-bottom: 7.5px; */
     font-size: 150%;
     font-weight: 500;
 }
@@ -522,20 +521,6 @@
 
 .moreIcon {
     font-size: 150%;
-}
-
-
-
-.nextLink {
-    text-decoration: none;
-    font-size: 150%;
-    font-weight: 600;
-    align-self: center;
-    color: var(--white);
-}
-
-.nextLink i:hover {
-    text-decoration: underline;
 }
 
 

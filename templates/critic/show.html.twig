@@ -112,7 +112,7 @@
         <hr>
 
         {% for critic in piece.critics|sort((a, b) => b.datePost <=> a.datePost) %}
-            <div id="critic-{{critic.id}}">
+            <section id="critic-{{critic.id}}">
                 <div id="oneCriticContainer">
                     <div id="criticVideo">
 
@@ -187,7 +187,7 @@
 
                     </div>
 
-                    <div id="criticVideoInfos">
+                    <aside id="criticVideoInfos">
                         <div id="criticVideoName">
                             <h3><span>By : </span><a href="{{ path('show_influencer', {'id': critic.influencer.id})}}">{{critic.influencer}}</a></h3>
 
@@ -244,7 +244,7 @@
                             </dialog>
 
 
-                    </div>
+                    </aside>
                 </div>
 
                 <div id="criticComments">
@@ -318,7 +318,7 @@
                         {% endif %}
                     {% endfor %}
                 </div>
-            </div>
+            </section>
             <hr>
         {% endfor %}
         <a class="nextLink" href="{{path('show_category', {'id': piece.category.id})}}"><i>> View all {{piece.category}}</i></a>

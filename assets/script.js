@@ -86,7 +86,7 @@ function adjustHeight(addCo) {
 
     window.scrollTo({
         top: scrollPos,
-        behavior: "instant" // "auto" sur les navigateurs plus anciens
+        behavior: "instant"
     });
 }
 
@@ -197,6 +197,7 @@ saveButtons.forEach(button => {
 
 // > AJAX for Influencer Like button
 const likeButtons = document.querySelectorAll('.like-influencer-btn')
+const likeCounter = document.getElementById('likeCounter')
 const influencerDashTitle = document.getElementById('influencerDashTitle')
 
 likeButtons.forEach(button => {
@@ -205,6 +206,8 @@ likeButtons.forEach(button => {
         const influencerId = button.dataset.influencerId
         const action = button.dataset.action
         const likedInfluencerDash = document.getElementById(`likedInfluencerDash${influencerId}`)
+
+        const likeIcon = button.querySelector('i.fa-heart')
 
         try {
             const response = await fetch(`/influencer/${influencerId}/${action}`, {
@@ -220,18 +223,19 @@ likeButtons.forEach(button => {
             const flashMessage = document.createElement('div')
 
             if (data.success) {
-                if (action === 'like') {
-                    button.textContent = 'Unlike'
-                    button.dataset.action = 'unlike'
-                    flashMessage.textContent = data.message
-                    flashMessage.classList.add('alert')
-                    flashMessage.classList.add('alert-success')
+
+                if (data.totalLikes <= 1 ) {
+                    likeCounter.textContent = data.totalLikes + ' Heart'
                 } else {
-                    button.textContent = 'Like'
+                    likeCounter.textContent = data.totalLikes + ' Hearts'
+                }
+
+                if (action === 'like') {
+                    likeIcon.classList.replace('far', 'fas')
+                    button.dataset.action = 'unlike'
+                } else {
+                    likeIcon.classList.replace('fas', 'far')
                     button.dataset.action = 'like'
-                    flashMessage.textContent = data.message
-                    flashMessage.classList.add('alert')
-                    flashMessage.classList.add('alert-success')
 
                     if (likedInfluencerDash) {
                         likedInfluencerDash.remove()
@@ -245,6 +249,9 @@ likeButtons.forEach(button => {
                         }  
                     }
                 }
+                flashMessage.textContent = data.message
+                flashMessage.classList.add('alert')
+                flashMessage.classList.add('alert-success')
             } else {
                 flashMessage.textContent = data.message
                 flashMessage.classList.add('alert')

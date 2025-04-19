@@ -32,14 +32,14 @@
                     <p><strong>About : </strong>{{piece.about}}</p>
 
                     {# > Edit and suppression (modal) #}
-                    <a href="{{ path('edit_piece', {'id': piece.id})}}"><button style="width: 50px; padding: 2.5px;">Edit</button></a>
+                    {# <a href="{{ path('edit_piece', {'id': piece.id})}}"><button style="width: 50px; padding: 2.5px;">Edit</button></a> #}
                     {# <a href="{{ path('delete_influencer', {'id': influencer.id})}}">Delete</a></h2><br> #}
-                    <button class="deleteConfirm" style="width: 50px; padding: 2.5px;">Delete</button><br>
+                    {# <button class="deleteConfirm" style="width: 50px; padding: 2.5px;">Delete</button><br>
                         <dialog class="openModal">
                             <h3>Are you sure you want to delete "{{piece}}" ?</h3>
                             <a href="{{ path('delete_piece', {'id': piece.id})}}"><button>Yes</button></a>
                             <button class="closeModal">No</button>
-                        </dialog>
+                        </dialog> #}
                 </div>
             </div>
         </div>

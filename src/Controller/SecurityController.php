@@ -189,7 +189,8 @@ class SecurityController extends AbstractController
         
         return new JsonResponse([
             'success' => true,
-            'message' => $message
+            'message' => $message,
+            'totalLikes' => $influencer->getTotalLikes()
         ]);
     }
 

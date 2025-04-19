@@ -1,0 +1,182 @@
+#influContainer h2 {
+    font-size: 175%;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+#influContainer > h3 {
+    font-size: 150%;
+    font-weight: 500;
+}
+
+#influContainer hr {
+    width: 60%;
+    margin-bottom: 25px;
+    color: var(--white);
+}
+
+#influSubContainer {
+    display: flex;
+}
+
+#influContainer hr:last-of-type {
+    width: 20%;
+    margin-top: 7.5px;
+    margin-bottom: 25px;
+}
+
+#influInfos {
+    margin-right: 75px;
+    display: flex;
+    width: 60%;
+    gap: 20px;
+    flex-shrink: 0;
+}
+
+#influInfosImage img {
+    width: 265px; 
+    height: 360px; 
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+#influInfosText h1 {
+    font-weight: 600;
+}
+
+#influInfosText h3:not(.openModal *) {
+    font-weight: 300;
+}
+
+#influInfosText p {
+    margin: 25px 0;
+    font-weight: 200;
+}
+
+#influInfosText strong {
+    font-weight: 500;
+}
+
+#influInfosText > strong {
+    font-size: 115%;
+}
+
+#influInfosText button.like-influencer-btn {
+    width: 75px;
+    height: 40px;
+    border-radius: 25px;
+    border: none;
+    margin-left: 10px;
+}
+
+#influInfosText button i {
+    font-size: 150%;
+}
+
+#influLive {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+
+    & h4 {
+        margin-bottom: 5px;
+        font-weight: 500;
+    }
+
+    & hr {
+        margin-bottom: 15px;
+        width: 33%;
+    }
+
+    & iframe {
+        width: 100%;
+        aspect-ratio: 16/9;
+    }
+}
+
+#influSocials {
+    margin-top: 20px;
+    margin-bottom: 50px;
+
+    & strong {
+        font-weight: 500;
+        font-size: 125%;
+    }
+
+    & ul {
+        margin-top: 10px;
+    }
+
+    & li {
+        margin-bottom: 10px;
+        color: var(--white);
+        font-size: 175%;
+        display: flex;
+        align-items: center;
+        height: 30px;
+    }
+
+    & a {
+        color: var(--white);
+    }
+
+    & span {
+        font-size: 55%;
+        font-weight: 200;
+        margin-left: 7.5px;
+    }
+}
+
+#influSocials li::before {
+    margin-right: 15px;
+    content: "→";
+}
+
+#influCriticsList {
+    display: flex;
+    gap: 150px;
+    margin-bottom: 50px;
+}
+
+#oneInfluCritic {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & img {
+        width: 132.5px;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 5px;
+    }
+
+    & #musicCriticsInflu {
+        height: 132.5px;
+    }
+}
+
+#oneInfluCritic a:last-of-type {
+    color: var(--white);
+    margin-top: 7.5px;
+    text-decoration: none;
+    font-size: 110%;
+    font-weight: 600;
+}
+
+#oneInfluCritic a:last-of-type:hover {
+    text-decoration: underline;
+}
+
+#oneInfluCritic > i {
+    font-size: 85%;
+    font-weight: 300;
+    margin-bottom: 15px;
+}
+
+
+
+
+
+
+

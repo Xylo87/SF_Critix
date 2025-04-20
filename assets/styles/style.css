@@ -210,7 +210,7 @@ a, button {
 /* Next links */
 .nextLink {
     text-decoration: none;
-    font-size: 133%;
+    font-size: 125%;
     font-weight: 500;
     align-self: flex-start;
     color: var(--white);
@@ -218,6 +218,13 @@ a, button {
 
 .nextLink i:hover {
     text-decoration: underline;
+}
+
+
+
+/* Icon colors */
+.fas {
+    color: var(--red);
 }
 
 

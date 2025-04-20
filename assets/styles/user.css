@@ -1,0 +1,42 @@
+#userContainer h2 {
+    font-size: 175%;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+#userContainer hr {
+    width: 60%;
+    margin-bottom: 25px;
+    color: var(--white);
+}
+
+#userInfos {
+    display: flex;
+    width: 60%;
+    gap: 20px;
+}
+
+#userImage img {
+    width: 180px; 
+    height: 180px; 
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+#userInfosText h1 {
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+#userInfosText p {
+    margin: 25px 0 5px 0;
+    font-weight: 200;
+}
+
+#userInfosText strong {
+    font-weight: 500;
+}
+
+#userInfosText span {
+    font-weight: 200;
+}

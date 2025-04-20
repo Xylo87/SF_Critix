@@ -5,28 +5,34 @@
 {% endblock %}
 
 {% block body %}
-
+<div id="userContainer">
     <h2>Profile</h2>
     <hr>
 
-    {% if user.profilePicture %}
-        <img src="/uploads/photos/userPhotos/{{user.profilePicture}}" alt="{{user}}-profile-picture" style="width: 180px; height: 180px; object-fit: cover">
-    {% else %}
-        <img src="/uploads/photos/userPhotos/user-default.png" alt="user-default-profile-picture" style="width: 180px; height: 180px;">
-    {% endif %}
-    
-    <h1>{{user}}</h1> 
-    <p><u>Mood</u> : {{user.status}}</p>
-    <p><u>Bio</u> : {{user.bio}}</p>
-    <p><u>Member since</u> : {{user.creationDateEng}}</p><br>
+    <div id="userInfos">
+        <div id="userImage">
+            {% if user.profilePicture %}
+                <img src="/uploads/photos/userPhotos/{{user.profilePicture}}" alt="{{user}}-profile-picture">
+            {% else %}
+                <img src="/uploads/photos/userPhotos/user-default.png" alt="user-default-profile-picture">
+            {% endif %}
+        </div>
+        
+        <div id="userInfosText">
+            <h1>{{user}}</h1> 
+            <strong>Mood : </strong><span>{{user.status}}</span><br>
+            <p><strong>Bio : </strong>{{user.bio}}</p>
+            <strong>Member since : </strong><span>{{user.creationDateEng}}</span><br>
 
-    {% if "ROLE_MODO" in user.roles %}
-        <p><u>Role</u> : Moderator</p><br>
-    {% endif %}
-    
-    {% if "ROLE_ADMIN" in user.roles %}
-        <p><u>Role</u> : Administrator</p><br>
-    {% endif %}
+            {% if "ROLE_MODO" in user.roles %}
+                <strong>Role : </strong><span>Moderator</span>
+            {% endif %}
+            
+            {% if "ROLE_ADMIN" in user.roles %}
+                <strong>Role : </strong><span>Administrator</span>
+            {% endif %}
+        </div>
+    </div>
 
     {% if user.opinions is not empty %}
         <h3> {{user}}'s ratings</h3>
@@ -99,5 +105,5 @@
         {% endfor %}
 
     {% endif %}
-
+</div>
 {% endblock %}

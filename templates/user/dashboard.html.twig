@@ -5,40 +5,45 @@
 {% endblock %}
 
 {% block body %}
-
+<div id="userDashContainer">
     <h2>Your dashboard</h2>
     <hr>
 
-    {% if user.profilePicture %}
-        <img src="/uploads/photos/userPhotos/{{user.profilePicture}}" alt="{{user}}-profile-picture" style="width: 180px; height: 180px; object-fit: cover">
-    {% else %}
-        <img src="/uploads/photos/userPhotos/user-default.png" alt="user-default-profile-picture" style="width: 180px; height: 180px;">
-    {% endif %}
+    <div id="userDashInfos">
+        <div id="userDashImage">
+            {% if user.profilePicture %}
+                <img src="/uploads/photos/userPhotos/{{user.profilePicture}}" alt="{{user}}-profile-picture">
+            {% else %}
+                <img src="/uploads/photos/userPhotos/user-default.png" alt="user-default-profile-picture">
+            {% endif %}
+        </div>
     
-    <h1>{{user}}</h1>
+        <div id="userDashInfosText">
+            <h1>{{user}}</h1>
 
-    <a href="{{ path('edit_user')}}"><button>Edit your profile</button></a>
-    <button class="deleteConfirm">Delete your profile</button><br><br>
+            <a href="{{ path('edit_user')}}"><button style="padding: 0.1em 0.2em;">Edit your profile</button></a>
+            <button class="deleteConfirm" style="padding: 0.1em 0.2em;">Delete your profile</button><br>
 
-    {# > Suppression (modal) #}
-        <dialog class="openModal">
-            <h3>Are you sure you want to delete your profile ?</h3>
-            <a href="{{ path('delete_user')}}"><button>Yes</button></a>
-            <button class="closeModal">No</button>
-        </dialog>
+            {# > Suppression (modal) #}
+            <dialog class="openModal">
+                <h3>Are you sure you want to delete your profile ?</h3>
+                <a href="{{ path('delete_user')}}"><button>Yes</button></a>
+                <button class="closeModal">No</button>
+            </dialog>
 
-    <p><u>Mood</u> : {{user.status}}</p>
-    <p><u>Bio</u> : {{user.bio}}</p>
-    <p><u>Member since</u>: {{user.creationDateEng}}</p><br>
+            <strong>Mood : </strong><span>{{user.status}}</span><br>
+            <p><strong>Bio : </strong>{{user.bio}}</p>
+            <strong>Member since : </strong><span>{{user.creationDateEng}}</span><br>
 
-    {% if "ROLE_MODO" in user.roles %}
-        <p><u>Role</u> : Moderator</p><br>
-    {% endif %}
+            {% if "ROLE_MODO" in user.roles %}
+                <strong>Role : </strong><span>Moderator</span>
+            {% endif %}
     
-    {% if "ROLE_ADMIN" in user.roles %}
-        <p><u>Role</u> : Administrator</p><br>
-    {% endif %}
-
+            {% if "ROLE_ADMIN" in user.roles %}
+                <strong>Role</u> : </strong><span>Administrator</span>
+            {% endif %}
+        </div>
+    </div>
     
 
     {% if user.pieces is not empty %}
@@ -99,28 +104,32 @@
     {% endif %}
 
     {% if user.opinions is not empty %}
-        <h3> Your ratings</h3>
+        <h3>Your ratings (latest)</h3>
+        <hr>
 
+        <div id="userCriticsListDash">
         {% for opinion in user.opinions|sort((a, b) => b.piece.releaseDate <=> a.piece.releaseDate) %}
-            
+
+            <div id="oneUserCriticDash">
 
             {% if opinion.piece.category == "Music" %}
             
-                <a href="{{ path('infos_piece', {'id': opinion.piece.id})}}"><img src="/uploads/images/{{opinion.piece.poster}}"
-                alt="{{opinion.piece}}-visual" 
-                style="width: 88px; height: 88px; object-fit: cover"></a><br>
+                <a href="{{ path('infos_piece', {'id': opinion.piece.id})}}"><img id="musicCriticsUserDash" src="/uploads/images/{{opinion.piece.poster}}"
+                alt="{{opinion.piece}}-visual"></a>
             
             {% else %}
                 
                 <a href="{{ path('infos_piece', {'id': opinion.piece.id})}}"><img src="/uploads/images/{{opinion.piece.poster}}"
-                alt="{{opinion.piece}}-visual" 
-                style="width: 88px; height: 120px; object-fit: cover"></a><br>
+                alt="{{opinion.piece}}-visual"></a>
             
             {% endif %}
 
 
             <a href="{{ path('infos_piece', {'id': opinion.piece.id})}}">{{opinion.piece}}</a>
 
+            <i>#{{opinion.piece.category}}</i>
+
+            <div>
             {# > Star score system #}
             {% set note = opinion.userScore %}
             {# {% set fullStars = note|round(0, 'floor') %} #}
@@ -141,34 +150,36 @@
                 {% for i in range(1, emptyStars) %}
                     <i class="fa-solid fa-star emptystars"></i>
                 {% endfor %}
-            {% endif %}<br>
-        
-        <i>#{{opinion.piece.category}}</i><br><br>
+            {% endif %}
+            </div>
+        </div>
         {% endfor %}
-    
+        </div>
     {% endif %}
 
     {% if user.influencers is not empty %}
         <h3 id="influencerDashTitle">You appreciate</h3>
+        <hr>
 
+        <div id="userInfluListDash">
         {% for influencer in user.influencers %}
 
-            <div id="likedInfluencerDash{{influencer.id}}">
+            <div id="likedInfluencerDash{{influencer.id}}" class="oneUserInfluDash">
 
                 <a href="{{ path('show_influencer', {'id': influencer.id})}}">
 
                 {% if influencer.photo %}
                     <img src="/uploads/photos/influPhotos/{{influencer.photo}}"
-                    alt="{{influencer}}-picture" 
-                    style="width: 88px; height: 120px; object-fit: cover">
+                    alt="{{influencer}}-picture">
                 {% else %}
                     <img src="/uploads/photos/influPhotos/influencer-default.png" 
-                    alt="influencer-default-picture" 
-                    style="width: 88px; height: 120px; object-fit: cover">
+                    alt="influencer-default-picture">
                 {% endif %}
 
-                </a><br>
-                <a href="{{ path('show_influencer', {'id': influencer.id})}}">{{influencer}}</a><br>
+                </a>
+                <a href="{{ path('show_influencer', {'id': influencer.id})}}">{{influencer}}</a>
+
+                <i class="fas fa-heart"></i>
 
                 {# <button class="deleteConfirm">Unlike</button><br>
                     <dialog class="openModal">
@@ -184,13 +195,10 @@
                         data-influencer-id="{{ influencer.id }}"
                         data-action="unlike">Yes</button>
                     <button class="closeModal">No</button>
-                </dialog><br>
-
+                </dialog>
             </div>
-
         {% endfor %}
-
-
+        </div>
     {% endif %}
-    
+</div>
 {% endblock %}

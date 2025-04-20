@@ -1,42 +1,110 @@
-#userContainer h2 {
+#userContainer h2, #userDashContainer h2 {
     font-size: 175%;
     font-weight: 500;
     letter-spacing: 0.5px;
 }
 
-#userContainer hr {
+#userContainer > h3, #userDashContainer > h3 {
+    font-size: 150%;
+    font-weight: 500;
+}
+
+#userContainer hr:first-of-type, #userDashContainer hr:first-of-type {
     width: 60%;
+    color: var(--white);
+    margin-top: 0;
+}
+
+#userContainer hr, #userDashContainer hr {
+    width: 20%;
+    margin-top: 7.5px;
     margin-bottom: 25px;
     color: var(--white);
 }
 
-#userInfos {
+#userInfos, #userDashInfos {
     display: flex;
     width: 60%;
     gap: 20px;
+    margin-bottom: 50px;
+
+    & img {
+        width: 180px; 
+        height: 180px; 
+        object-fit: cover;
+        border-radius: 50%;
+    }
 }
 
-#userImage img {
-    width: 180px; 
-    height: 180px; 
-    object-fit: cover;
-    border-radius: 50%;
-}
-
-#userInfosText h1 {
+#userInfosText h1, #userDashInfosText h1 {
     font-weight: 600;
     margin-bottom: 5px;
 }
 
-#userInfosText p {
-    margin: 25px 0 5px 0;
+#userInfosText p, #userDashInfosText p {
+    margin: 25px 0 10px 0;
     font-weight: 200;
 }
 
-#userInfosText strong {
+#userInfosText strong, #userDashInfosText strong {
     font-weight: 500;
 }
 
-#userInfosText span {
+#userDashInfosText button:last-of-type {
+    margin-bottom: 10px;
+}
+
+#userInfosText span, #userDashInfosText span {
     font-weight: 200;
+}
+
+#userCriticsList, #userInfluList, #userCriticsListDash, #userInfluListDash {
+    display: flex;
+    gap: 150px;
+    margin-bottom: 50px;
+}
+
+#oneUserCritic, #oneUserInflu, #oneUserCriticDash, #userInfluListDash .oneUserInfluDash {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & img {
+        width: 132.5px;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 5px;
+    }
+
+    & #musicCriticsUser, #musicCriticsUserDash {
+        height: 132.5px;
+    }
+}
+
+#oneUserCritic a:last-of-type, #oneUserInflu a:last-of-type, #oneUserCriticDash a:last-of-type, #userInfluListDash .oneUserInfluDash a:last-of-type {
+    color: var(--white);
+    margin-top: 7.5px;
+    text-decoration: none;
+    font-size: 110%;
+    font-weight: 600;
+}
+
+#oneUserCritic a:last-of-type:hover, #oneUserInflu a:last-of-type:hover, #oneUserCriticDash a:last-of-type:hover, #userInfluListDash .oneUserInfluDash a:last-of-type:hover {
+    text-decoration: underline;
+}
+
+#oneUserCritic > i, #oneUserCriticDash > i {
+    font-size: 85%;
+    font-weight: 300;
+    margin-bottom: 15px;
+}
+
+#oneUserInflu i {
+    margin-top: 7.5px;
+    font-size: 150%;
+}
+
+#userInfluListDash .oneUserInfluDash i {
+    margin-top: 7.5px;
+    font-size: 150%;
 }

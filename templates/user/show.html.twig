@@ -35,75 +35,85 @@
     </div>
 
     {% if user.opinions is not empty %}
-        <h3> {{user}}'s ratings</h3>
+        <h3> {{user}}'s ratings (latest)</h3>
+        <hr>
 
+        <div id="userCriticsList">
         {% for opinion in user.opinions|sort((a, b) => b.piece.releaseDate <=> a.piece.releaseDate) %}
             
-            
-            {% if opinion.piece.category == "Music" %}
-            
-                <a href="{{ path('infos_piece', {'id': opinion.piece.id})}}"><img src="/uploads/images/{{opinion.piece.poster}}"
-                alt="{{opinion.piece}}-visual" 
-                style="width: 88px; height: 88px; object-fit: cover"></a><br>
-            
-            {% else %}
+            <div id="oneUserCritic">
+
+                {% if opinion.piece.category == "Music" %}
                 
-                <a href="{{ path('infos_piece', {'id': opinion.piece.id})}}"><img src="/uploads/images/{{opinion.piece.poster}}"
-                alt="{{opinion.piece}}-visual" 
-                style="width: 88px; height: 120px; object-fit: cover"></a><br>
-            
-            {% endif %}
-            
-            
-            <a href="{{ path('infos_piece', {'id': opinion.piece.id})}}">{{opinion.piece}}</a>
+                    <a href="{{ path('infos_piece', {'id': opinion.piece.id})}}"><img id="musicCriticsUser" src="/uploads/images/{{opinion.piece.poster}}"
+                    alt="{{opinion.piece}}-visual"></a>
+                
+                {% else %}
+                    
+                    <a href="{{ path('infos_piece', {'id': opinion.piece.id})}}"><img src="/uploads/images/{{opinion.piece.poster}}"
+                    alt="{{opinion.piece}}-visual"></a>
+                
+                {% endif %}
+                
+                
+                <a href="{{ path('infos_piece', {'id': opinion.piece.id})}}">{{opinion.piece}}</a>
 
-            {# > Star score system #}
-            {% set note = opinion.userScore %}
-            {# {% set fullStars = note|round(0, 'floor') %} #}
-            {% set fullStars = note %}
-            {# {% set partialStar = (note - fullStars)|round(0, 'ceil') %} #}
-            {% set emptyStars = 5 - fullStars %}
-            {# {% set emptyStars = 5 - fullStars - (partialStar ? 1 : 0) %} #}
+                <i>#{{opinion.piece.category}}</i>
 
-            {% for i in range(1, fullStars) %}
-                <i class="fa-solid fa-star fullstars"></i>
-            {% endfor %}
+                <div>
+                {# > Star score system #}
+                {% set note = opinion.userScore %}
+                {# {% set fullStars = note|round(0, 'floor') %} #}
+                {% set fullStars = note %}
+                {# {% set partialStar = (note - fullStars)|round(0, 'ceil') %} #}
+                {% set emptyStars = 5 - fullStars %}
+                {# {% set emptyStars = 5 - fullStars - (partialStar ? 1 : 0) %} #}
 
-            {# {% if partialStar %}
-                <i class="fa-solid fa-star-half-stroke halfstars"></i>
-            {% endif %} #}
-
-            {% if emptyStars %}
-                {% for i in range(1, emptyStars) %}
-                    <i class="fa-solid fa-star emptystars"></i>
+                {% for i in range(1, fullStars) %}
+                    <i class="fa-solid fa-star fullstars"></i>
                 {% endfor %}
-            {% endif %}<br>
 
-        <i>#{{opinion.piece.category}}</i><br><br>       
+                {# {% if partialStar %}
+                    <i class="fa-solid fa-star-half-stroke halfstars"></i>
+                {% endif %} #}
+
+                {% if emptyStars %}
+                    {% for i in range(1, emptyStars) %}
+                        <i class="fa-solid fa-star emptystars"></i>
+                    {% endfor %}
+                {% endif %}
+                </div>
+            </div>      
         {% endfor %}
+        </div>
     
     {% endif %}
     
     {% if user.influencers is not empty %}
         <h3> {{user}} appreciates</h3>
+        <hr>
 
+        <div id="userInfluList">
         {% for influencer in user.influencers %}
-            <a href="{{ path('show_influencer', {'id': influencer.id})}}">
-            
-            {% if influencer.photo %}
-                <img src="/uploads/photos/influPhotos/{{influencer.photo}}"
-                alt="{{influencer}}-picture" 
-                style="width: 88px; height: 120px; object-fit: cover">
-            {% else %}
-                <img src="/uploads/photos/influPhotos/influencer-default.png" 
-                alt="influencer-default-picture" 
-                style="width: 88px; height: 120px; object-fit: cover">
-            {% endif %}
 
-            </a><br>
-            <a href="{{ path('show_influencer', {'id': influencer.id})}}">{{influencer}}</a><br><br>
+            <div id="oneUserInflu">
+                <a href="{{ path('show_influencer', {'id': influencer.id})}}">
+                
+                {% if influencer.photo %}
+                    <img src="/uploads/photos/influPhotos/{{influencer.photo}}"
+                    alt="{{influencer}}-picture">
+                {% else %}
+                    <img src="/uploads/photos/influPhotos/influencer-default.png" 
+                    alt="influencer-default-picture">
+                {% endif %}
+
+                </a>
+                <a href="{{ path('show_influencer', {'id': influencer.id})}}">{{influencer}}</a>
+
+                <i class="fas fa-heart"></i>
+            </div>
         {% endfor %}
-
+        </div>
     {% endif %}
 </div>
 {% endblock %}

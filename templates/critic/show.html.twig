@@ -270,7 +270,7 @@
                     {% for comment in critic.comments|sort((a, b) => b.datePost <=> a.datePost) %}
                         {% if comment.isVIP == 0 %}
                         
-                            <div class="commentDisplay">
+                            <article class="commentDisplay">
 
                                 {# > User PP display #}
                                 {% if comment.user.profilePicture %}
@@ -314,7 +314,7 @@
 
                                 {# > Show more button #}
                                 <button class="moreBtn" aria-label="Display More Button"><i class="fa-solid fa-plus moreIcon"></i></button>
-                            </div>
+                            </article>
                         {% endif %}
                     {% endfor %}
                 </div>

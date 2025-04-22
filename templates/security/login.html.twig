@@ -5,9 +5,9 @@
 {% block body %}
     <div class="logsFormContainer">
         <form class="logsForm" method="post">
-            {% if error %}
+            {# {% if error %}
                 <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-            {% endif %}
+            {% endif %} #}
 
             {% if app.user %}
                 <div>
@@ -43,6 +43,7 @@
                 <button type="submit">
                     Login
                 </button>
+                <a href="{{ path('app_forgot_password_request') }}">Forgot your password ?</a>
             </div>
             {% endif %}
         </form>

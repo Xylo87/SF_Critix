@@ -331,6 +331,12 @@ footer {
     text-decoration: underline;
 }
 
+#loginForm a {
+    color: var(--white);
+    font-size: 80%;
+    font-weight: 500;
+}
+
 #registerForm .logsFormGroup:nth-of-type(2) {
     margin-bottom: 30px;
 }
@@ -352,7 +358,13 @@ footer {
     margin-bottom: 15px;
 }
 
+#resetRequestForm input {
+    margin-bottom: 0;
+}
 
+#resetRequestForm button, #resetForm button  {
+    margin-top: 15px;
+}
 
 .alert {
     position: fixed;

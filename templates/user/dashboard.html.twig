@@ -9,99 +9,104 @@
     <h2>Your dashboard</h2>
     <hr>
 
-    <div id="userDashInfos">
-        <div id="userDashImage">
-            {% if user.profilePicture %}
-                <img src="/uploads/photos/userPhotos/{{user.profilePicture}}" alt="{{user}}-profile-picture">
-            {% else %}
-                <img src="/uploads/photos/userPhotos/user-default.png" alt="user-default-profile-picture">
-            {% endif %}
-        </div>
-    
-        <div id="userDashInfosText">
-            <h1>{{user}}</h1>
+    <div id="userDashSubContainer">
+        <div id="userDashInfos">
+            <div id="userDashImage">
+                {% if user.profilePicture %}
+                    <img src="/uploads/photos/userPhotos/{{user.profilePicture}}" alt="{{user}}-profile-picture">
+                {% else %}
+                    <img src="/uploads/photos/userPhotos/user-default.png" alt="user-default-profile-picture">
+                {% endif %}
+            </div>
+        
+            <div id="userDashInfosText">
+                <h1>{{user}}</h1>
 
-            <a href="{{ path('edit_user')}}"><button style="padding: 0.1em 0.2em;">Edit your profile</button></a>
-            <button class="deleteConfirm" style="padding: 0.1em 0.2em;">Delete your profile</button><br>
+                <a href="{{ path('edit_user')}}"><button style="padding: 0.1em 0.2em;">Edit your profile</button></a>
+                <button class="deleteConfirm" style="padding: 0.1em 0.2em;">Delete your profile</button><br>
 
-            {# > Suppression (modal) #}
-            <dialog class="openModal">
-                <h3>Are you sure you want to delete your profile ?</h3>
-                <a href="{{ path('delete_user')}}"><button>Yes</button></a>
-                <button class="closeModal">No</button>
-            </dialog>
-
-            <strong>Mood : </strong><span>{{user.status}}</span><br>
-            <p><strong>Bio : </strong>{{user.bio}}</p>
-            <strong>Member since : </strong><span>{{user.creationDateEng}}</span><br>
-
-            {% if "ROLE_MODO" in user.roles %}
-                <strong>Role : </strong><span>Moderator</span>
-            {% endif %}
-    
-            {% if "ROLE_ADMIN" in user.roles %}
-                <strong>Role</u> : </strong><span>Administrator</span>
-            {% endif %}
-        </div>
-    </div>
-    
-
-    {% if user.pieces is not empty %}
-        <h3 id="criticDashTitle">Saved critics page</h3>
-
-        {% for piece in user.pieces %}
-            
-            <div id="savedCriticDash{{piece.id}}">
-
-
-            {% if piece.category == "Music" %}
-            
-                <a href="{{ path('show_critics', {'id': piece.id})}}"><img src="/uploads/images/{{piece.poster}}" 
-                alt="{{piece}}-visual" 
-                style="width: 88px; height: 88px; object-fit: cover"></a><br>
-
-            {% else %}
-                
-                <a href="{{ path('show_critics', {'id': piece.id})}}"><img src="/uploads/images/{{piece.poster}}" 
-                alt="{{piece}}-visual" 
-                style="width: 88px; height: 120px; object-fit: cover"></a><br>
-
-            {% endif %}
-
-
-                <a href="{{ path('show_critics', {'id': piece.id})}}">{{piece}}</a><br>
-                <em>#{{piece.category}}</em><br>
-
-            {% if piece.critics|length > 0 %}
-                <p>Critic Score : {{piece.criticTotalScore}}/10</p>
-            {% endif %}
-            {% if piece.opinions|length > 0 %}
-                <p>User score : {{ piece.userTotalScore }}/10</p>
-            {% else %}
-                <p>User score : Not rated yet</p>
-            {% endif %}
-
-                {# <button class="deleteConfirm">Unsave page</button><br>
-                    <dialog class="openModal">
-                    <h3>Are you sure you want to unsave critics page on "{{piece}}" ?</h3>
-                    <a href="{{ path('unsave_critics', {'id': piece.id})}}"><button>Yes</button></a>
+                {# > Suppression (modal) #}
+                <dialog class="openModal">
+                    <h3>Are you sure you want to delete your profile ?</h3>
+                    <a href="{{ path('delete_user')}}"><button>Yes</button></a>
                     <button class="closeModal">No</button>
-                </dialog><br> #}
+                </dialog>
 
-                <button class="deleteConfirm">Unsave page</button><br>
-                    <dialog class="openModal">
-                    <h3>Are you sure you want to unsave critics page on "{{piece}}" ?</h3>
-                    <button class="save-critics-btn closeModal"
-                        data-piece-id="{{ piece.id }}"
-                        data-action="unsave">Yes</button>
-                    <button class="closeModal">No</button>
-                </dialog><br>
+                <strong>Mood : </strong><span>{{user.status}}</span><br>
+                <p><strong>Bio : </strong>{{user.bio}}</p>
+                <strong>Member since : </strong><span>{{user.creationDateEng}}</span><br>
 
+                {% if "ROLE_MODO" in user.roles %}
+                    <strong>Role : </strong><span>Moderator</span>
+                {% endif %}
+        
+                {% if "ROLE_ADMIN" in user.roles %}
+                    <strong>Role</u> : </strong><span>Administrator</span>
+                {% endif %}
+            </div>
+        </div>
+        
+
+        {% if user.pieces is not empty %}
+
+            <div id="savedCriticsDashContainer">
+                <h3 id="criticDashTitle">Saved critics page</h3>
+
+                <div id="savedCriticsDashSubContainer">
+                    {% for piece in user.pieces %}
+                        
+                        <div id="savedCriticDash{{piece.id}}" class="savedCriticDash">
+
+
+                        {% if piece.category == "Music" %}
+                        
+                            <a href="{{ path('show_critics', {'id': piece.id})}}"><img id="musicCriticsUserDashSaved" src="/uploads/images/{{piece.poster}}" 
+                            alt="{{piece}}-visual"></a>
+
+                        {% else %}
+                            
+                            <a href="{{ path('show_critics', {'id': piece.id})}}"><img src="/uploads/images/{{piece.poster}}" 
+                            alt="{{piece}}-visual"></a>
+
+                        {% endif %}
+
+
+                            <a href="{{ path('show_critics', {'id': piece.id})}}">{{piece}}</a>
+                            <i>#{{piece.category}}</i>
+
+                        {# {% if piece.critics|length > 0 %}
+                            <p>Critic Score : {{piece.criticTotalScore}}/10</p>
+                        {% endif %}
+                        {% if piece.opinions|length > 0 %}
+                            <p>User score : {{ piece.userTotalScore }}/10</p>
+                        {% else %}
+                            <p>User score : Not rated yet</p>
+                        {% endif %} #}
+
+                            {# <button class="deleteConfirm">Unsave page</button><br>
+                                <dialog class="openModal">
+                                <h3>Are you sure you want to unsave critics page on "{{piece}}" ?</h3>
+                                <a href="{{ path('unsave_critics', {'id': piece.id})}}"><button>Yes</button></a>
+                                <button class="closeModal">No</button>
+                            </dialog><br> #}
+
+                            <button class="deleteConfirm delFromDash"><i class="fa-solid fa-bookmark"></i></button>
+                                <dialog class="openModal">
+                                <h3>Are you sure you want to unsave critics page on "{{piece}}" ?</h3>
+                                <button class="save-critics-btn closeModal"
+                                    data-piece-id="{{ piece.id }}"
+                                    data-action="unsave">Yes</button>
+                                <button class="closeModal">No</button>
+                            </dialog>
+
+                        </div>
+
+                    {% endfor %}
+                </div>
             </div>
 
-        {% endfor %}
-
-    {% endif %}
+        {% endif %}
+    </div>
 
     {% if user.opinions is not empty %}
         <h3>Your ratings (latest)</h3>
@@ -179,7 +184,7 @@
                 </a>
                 <a href="{{ path('show_influencer', {'id': influencer.id})}}">{{influencer}}</a>
 
-                <i class="fas fa-heart"></i>
+                {# <i class="fas fa-heart"></i> #}
 
                 {# <button class="deleteConfirm">Unlike</button><br>
                     <dialog class="openModal">
@@ -188,7 +193,7 @@
                     <button class="closeModal">No</button>
                 </dialog><br> #}
 
-                <button class="deleteConfirm">Unlike</button><br>
+                <button class="deleteConfirm delFromDash"><i class="fas fa-heart"></i></button>
                     <dialog class="openModal">
                     <h3>Are you sure you want to unlike "{{ influencer }}" ?</h3>
                     <button class="like-influencer-btn closeModal"

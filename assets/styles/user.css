@@ -22,6 +22,76 @@
     color: var(--white);
 }
 
+#userDashSubContainer {
+    display: flex;
+    gap: 20px;
+}
+
+#savedCriticsDashContainer {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+
+    & h3 {
+        font-weight: 600;
+    }
+}
+
+#savedCriticsDashSubContainer {
+    display: flex;
+    gap: 25px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+#userDashSubContainer .savedCriticDash {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#userDashSubContainer .savedCriticDash img {
+    width: 110px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+#userDashSubContainer {
+    & #musicCriticsUserDashSaved {
+        height: 110px;
+    }
+}
+
+#userDashSubContainer .savedCriticDash a {
+    color: var(--white);
+    margin-top: 5px;
+    text-decoration: none;
+    font-size: 100%;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 110px;
+    text-align: center;
+}
+
+#userDashSubContainer .savedCriticDash i {
+    font-size: 75%;
+    font-weight: 300;
+    margin-bottom: 10px;
+}
+
+#userDashSubContainer .savedCriticDash .fa-bookmark {
+    font-size: 150%;
+    margin-bottom: 0;
+    font-weight: 900;
+}
+
+#userDashSubContainer .savedCriticDash a:hover {
+    text-decoration: underline;
+}
+
 #userInfos, #userDashInfos {
     display: flex;
     width: 60%;
@@ -34,6 +104,10 @@
         object-fit: cover;
         border-radius: 50%;
     }
+}
+
+#userDashInfos {
+    flex-shrink: 0;
 }
 
 #userInfosText h1, #userDashInfosText h1 {
@@ -89,6 +163,10 @@
     font-weight: 600;
 }
 
+#userInfluListDash .oneUserInfluDash a:last-of-type {
+    margin-bottom: 7.5px;
+}
+
 #oneUserCritic a:last-of-type:hover, #oneUserInflu a:last-of-type:hover, #oneUserCriticDash a:last-of-type:hover, #userInfluListDash .oneUserInfluDash a:last-of-type:hover {
     text-decoration: underline;
 }
@@ -105,6 +183,13 @@
 }
 
 #userInfluListDash .oneUserInfluDash i {
-    margin-top: 7.5px;
     font-size: 150%;
+}
+
+
+
+.delFromDash {
+    background: none;
+    border: none;
+    width: fit-content;
 }

@@ -127,6 +127,7 @@ const flashMessageContainer = document.querySelector('nav')
 // > AJAX for Critics Save button
 const saveButtons = document.querySelectorAll('.save-critics-btn')
 const criticDashTitle = document.getElementById('criticDashTitle')
+const savedCriticsDashSubContainer = document.getElementById('savedCriticsDashSubContainer')
 
 saveButtons.forEach(button => {
     button.addEventListener('click', async() => {
@@ -151,22 +152,26 @@ saveButtons.forEach(button => {
             const flashMessage = document.createElement('div')
 
             if (data.success) {
+
                 if (action === 'save') {
                     saveIcon.classList.replace('fa-regular', 'fa-solid')
                     button.dataset.action = 'unsave'
                     button.nextElementSibling.textContent = "Saved on your dashboard !"
                 } else {
-                    saveIcon.classList.replace('fa-solid', 'fa-regular')
-                    button.dataset.action = 'save'
-                    button.nextElementSibling.textContent = "Come back later"
+
+                    if (saveIcon) {
+                        saveIcon.classList.replace('fa-solid', 'fa-regular')
+                        button.dataset.action = 'save'
+                        button.nextElementSibling.textContent = "Come back later"
+                    }
 
                     if (savedCriticDash) {
                         savedCriticDash.remove()
                     }
 
                     if (criticDashTitle) {
-                        if (criticDashTitle.nextElementSibling != document.querySelector('[id^="savedCriticDash"]') || 
-                        criticDashTitle.nextElementSibling === null) {
+
+                        if (savedCriticsDashSubContainer.children.length === 0) {
 
                             criticDashTitle.remove()
                         }
@@ -199,6 +204,7 @@ saveButtons.forEach(button => {
 const likeButtons = document.querySelectorAll('.like-influencer-btn')
 const likeCounter = document.getElementById('likeCounter')
 const influencerDashTitle = document.getElementById('influencerDashTitle')
+const userInfluListDash = document.getElementById('userInfluListDash')
 
 likeButtons.forEach(button => {
     button.addEventListener('click', async() => {
@@ -224,26 +230,29 @@ likeButtons.forEach(button => {
 
             if (data.success) {
 
-                if (data.totalLikes <= 1 ) {
-                    likeCounter.textContent = data.totalLikes + ' Heart'
-                } else {
-                    likeCounter.textContent = data.totalLikes + ' Hearts'
+                if (likeCounter) {
+                    if (data.totalLikes <= 1 ) {
+                        likeCounter.textContent = data.totalLikes + ' Heart'
+                    } else {
+                        likeCounter.textContent = data.totalLikes + ' Hearts'
+                    }
                 }
 
                 if (action === 'like') {
                     likeIcon.classList.replace('far', 'fas')
                     button.dataset.action = 'unlike'
                 } else {
-                    likeIcon.classList.replace('fas', 'far')
-                    button.dataset.action = 'like'
+                    if (likeIcon) {
+                        likeIcon.classList.replace('fas', 'far')
+                        button.dataset.action = 'like'
+                    }
 
                     if (likedInfluencerDash) {
                         likedInfluencerDash.remove()
                     }
 
                     if (influencerDashTitle) {
-                        if (influencerDashTitle.nextElementSibling != document.querySelector('[id^="likedInfluencerDash"]') ||
-                        influencerDashTitle.nextElementSibling === null ) {
+                        if (userInfluListDash.children.length === 0) {
                             
                             influencerDashTitle.remove()
                         }  

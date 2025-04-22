@@ -366,6 +366,7 @@ footer {
     font-weight: 600;
     border-radius: 0 0 15px 15px;
     transition: all 0.5s;
+    z-index: 999;
 }
 
 .alert.fade-out {

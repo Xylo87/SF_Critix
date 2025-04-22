@@ -227,6 +227,10 @@ a, button {
     color: var(--red);
 }
 
+.fa-solid.fa-bookmark, .fa-regular.fa-bookmark {
+    color: var(--white);
+}
+
 
 
 /* > > Accessibility trick for labels */

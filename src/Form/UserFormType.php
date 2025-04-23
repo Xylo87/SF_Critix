@@ -22,7 +22,7 @@ class UserFormType extends AbstractType
     {
         $builder
             ->add('profilePicture', FileType::class, [
-                'label' => 'Profile picture :',
+                'label' => 'Profile picture',
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [
@@ -40,7 +40,7 @@ class UserFormType extends AbstractType
                 ]
             ])
             ->add('status', TextType::class, [
-                'label' => 'Mood :',
+                'label' => 'Mood',
                 'attr' => [
                     'size' => 60,
                     'placeholder' => 'Status may not exceed 75 characters'
@@ -54,7 +54,7 @@ class UserFormType extends AbstractType
                 ]
             ])
             ->add('bio', TextareaType::class, [
-                'label' => 'Bio :',
+                'label' => 'Bio',
                 'attr' => [
                     'rows' => 5,
                     'cols' => 40,
@@ -63,7 +63,7 @@ class UserFormType extends AbstractType
                 'required' => false,
                 'constraints' => [
                     new Length([
-                        'max' => 50,
+                        'max' => 220,
                         'maxMessage' => 'Bio may not exceed 220 characters'
                     ])
                 ]

@@ -5,14 +5,21 @@
 {% endblock %}
 
 {% block body %}
-    <h1>Edit profile</h1><br>
-    
-    {{ form_start(formAddUser) }}
-    
-        {{ form_row(formAddUser.status) }}<br>
-        {{ form_row(formAddUser.bio) }}<br>
-        {{ form_row(formAddUser.profilePicture) }}<br>
 
-    {{ form_end(formAddUser) }}
+<div class="logsFormContainer">
+    <div class="logsForm" id="editUserForm">
+        <h1>Edit profile</h1>
+    
+        {{ form_start(formAddUser) }}
 
+        {{ form_label(formAddUser.status)}}<br>
+        {{ form_widget(formAddUser.status)}}<br>
+        {{ form_label(formAddUser.bio)}}<br>
+        {{ form_widget(formAddUser.bio)}}<br>
+        {{ form_label(formAddUser.profilePicture)}}<br>
+        {{ form_widget(formAddUser.profilePicture)}}<br>
+
+        {{ form_end(formAddUser) }}
+    </div>
+</div>
 {% endblock %}

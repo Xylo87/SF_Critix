@@ -366,6 +366,27 @@ footer {
     margin-top: 15px;
 }
 
+#editUserForm.logsForm {
+    max-width: 100%;
+}
+
+#editUserForm.logsForm textarea {
+    padding: 5px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    font-family: "Inter";
+    resize: none;
+}
+
+#editUserForm.logsForm input:nth-of-type(2) {
+    padding: 0;
+    cursor: pointer;
+}
+
+#editUserForm.logsForm button {
+    margin-top: 15px;
+}
+
 .alert {
     position: fixed;
     width: 66vw;

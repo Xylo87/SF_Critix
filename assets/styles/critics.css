@@ -357,13 +357,19 @@
 
 
 
-#criticComments {
+#commentsContainer {
+    display: flex;
+    gap: 20px;
     margin-top: 35px;
+}
+
+#criticComments {
     width: 60%;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
+    flex-shrink: 0;
 
     & form {
         width: 100%;
@@ -471,14 +477,64 @@
     text-decoration: underline;
 }
 
-.commentDisplay.expanded {
+.commentDisplay.expanded, #vipComment .commentDisplay.expanded {
     height: auto;
 }
 
-.commentDisplay.expanded p {
+.commentDisplay.expanded p, #vipComment .commentDisplay.expanded p {
     -webkit-line-clamp: initial;
     line-clamp: initial;
-  }
+}
+
+#vipComment {
+    flex-grow: 1;
+
+    & p {
+        display: -webkit-box;
+        -webkit-line-clamp: 9;
+        -webkit-box-orient: vertical;
+        line-clamp: 9;
+        overflow-wrap: break-word;
+    }
+}
+
+#vipComment .commentDisplay {
+    height: 348.5px;
+    display: flex;
+    flex-direction: column;
+}
+
+#vipCommentTitle {
+    display: flex;
+    justify-content: center;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    gap: 10px;
+    font-size: 125%;
+}
+
+#vipCommentContent {
+    display: flex;
+}
+
+#vipCommentUserScore {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    & h4 {
+        font-size: 120%;
+        font-weight: 300;
+    }
+}
+
+#vipCommentUserScore .fa-star{
+    font-size: 133%;
+}
+
+
 
 .delComBtn, .vipBtn, .moreBtn {
     width: 25px;

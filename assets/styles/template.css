@@ -107,7 +107,7 @@ nav {
     }
     
     &:last-of-type:hover {
-        background: rgb(210, 65, 11);
+        background: #ae3408;
     }
 }
 

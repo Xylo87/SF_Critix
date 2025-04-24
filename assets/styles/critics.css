@@ -494,7 +494,7 @@
         -webkit-line-clamp: 9;
         -webkit-box-orient: vertical;
         line-clamp: 9;
-        overflow-wrap: break-word;
+        word-break: break-word;
     }
 }
 

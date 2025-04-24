@@ -110,6 +110,7 @@
         <link rel="stylesheet" href="{{ asset('styles/infos.css')}}">
         <link rel="stylesheet" href="{{ asset('styles/influencer.css')}}">
         <link rel="stylesheet" href="{{ asset('styles/user.css')}}">
+        <link rel="stylesheet" href="{{ asset('styles/home.css')}}">
 
     {% endblock %}
 </head>
@@ -452,6 +453,8 @@
             </nav>
         </header>
         <hr>
+
+    {% block banner %}{% endblock %}
 
         <main>
 

@@ -298,13 +298,13 @@
                                     {% endfor %}
 
                                     {% if app.user and "ROLE_MODO" in app.user.roles and critic.comments|filter(comment => comment.isVip)|length == 0 and userScore %}
-                                        <a class="vipLink" href="{{ path('comment_vip', {'critic': critic.id, 'comment': comment.id})}}"><button class="vipBtn"><i class="fa-solid fa-medal vipIcon"></i></button></a>
+                                        <a class="vipLink" href="{{ path('comment_vip', {'critic': critic.id, 'comment': comment.id})}}"><button class="vipBtn" aria-label="VIP Button"><i class="fa-solid fa-medal vipIcon"></i></button></a>
                                     {% endif %}
 
 
                                     {# > Delete button #}
                                     {% if (app.user and app.user.id == comment.user.id) or (app.user and "ROLE_MODO" in app.user.roles) %}
-                                        <button class="delComBtn deleteConfirm"><i class="fa-solid fa-trash delComIcon"></i></button>
+                                        <button class="delComBtn deleteConfirm" aria-label="Delete Button"><i class="fa-solid fa-trash delComIcon"></i></button>
                                         <dialog class="openModal">
                                             <h3>Are you sure you want to delete this comment ?</h3>
                                             <a href="{{ path('comment_delete', {'critic': critic.id, 'comment': comment.id})}}"><button>Yes</button></a>
@@ -382,13 +382,13 @@
                                         
                                         {# > VIP button #}
                                         {% if app.user and "ROLE_MODO" in app.user.roles %}
-                                            <a class="vipLink" href="{{ path('comment_vip', {'critic': critic.id, 'comment': comment.id})}}"><button class="vipBtn" style="background: #1E1F25"><i class="fa-solid fa-medal vipIcon" style="color: #fe8d01"></i></button></a>
+                                            <a class="vipLink" href="{{ path('comment_vip', {'critic': critic.id, 'comment': comment.id})}}"><button class="vipBtn" style="background: #1E1F25" aria-label="VIP Button"><i class="fa-solid fa-medal vipIcon" style="color: #fe8d01"></i></button></a>
                                         {% endif %}
                                         
 
                                         {# > Delete button #}
                                         {% if (app.user and "ROLE_MODO" in app.user.roles) %}
-                                            <button class="delComBtn deleteConfirm"><i class="fa-solid fa-trash delComIcon"></i></button>
+                                            <button class="delComBtn deleteConfirm" aria-label="Delete Button"><i class="fa-solid fa-trash delComIcon"></i></button>
                                             <dialog class="openModal">
                                                 <h3>Are you sure you want to delete this comment ?</h3>
                                                 <a href="{{ path('comment_delete', {'critic': critic.id, 'comment': comment.id})}}"><button>Yes</button></a>

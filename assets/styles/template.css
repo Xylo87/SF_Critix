@@ -280,7 +280,7 @@ footer {
 
 #legalInfos a, #privacyInfos a {
     text-decoration: none;
-    color: var(--orange);
+    color: rgb(255, 72, 0);
 }
 
 #legalInfos a:hover, #privacyInfos a:hover {

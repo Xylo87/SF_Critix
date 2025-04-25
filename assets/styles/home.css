@@ -32,7 +32,7 @@
     font-size: 133%;
     font-weight: 600;
     text-decoration: none;
-    border-radius: 7.5px;
+    border-radius: 25px;
     transition: all 0.1s;
     color: var(--white);
     background: var(--orange);
@@ -42,4 +42,153 @@
 
 #homeBanner a:hover {
     background: #ae3408;
+}
+
+
+
+ #homeContainer h2 {
+    font-size: 175%;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+#pieceListContainerHome {
+    margin-bottom: 45px;
+}
+
+#pieceListHome {
+    margin-top: 33px;
+    display: flex;
+    justify-content: space-evenly;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+#onePieceListHome, #oneInfluencerListHome {
+    max-width: 265px;
+    text-align: center;
+
+    & h3 {
+        font-size: 133%;
+        margin-top: 10px;
+        font-weight: 500;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        text-decoration-color: rgba(255, 255, 255, 0.5);
+    }
+
+    & h3 a {
+        text-decoration: none;
+        color: var(--white);
+    }
+
+    & i {
+        font-size: 90%;
+        font-weight: 300;
+    }
+
+    & img {
+        width: 265px;
+        height: 360px;
+        object-fit: cover;
+        border-radius: 5px;
+        transition: transform 0.2s ease-out;
+        will-change: transform;
+    }
+
+    & img:hover {
+        transform: scale(1.02);
+    }
+
+    & #musicPieceListHome {
+        height: 265px;
+    }
+}
+
+#onePieceListScoreContainerHome {
+    display: flex;
+    margin-top: 22.5px;
+    justify-content: space-evenly;
+}
+
+#onePieceListScoreHome {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & strong {
+        margin-bottom: 7.5px;
+        font-weight: 500;
+    }
+}
+
+#onePieceListScoreTokenHome {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 66px;
+    height: 66px;
+    color: black;
+    font-size: 125%;
+    font-weight: 800;
+    border-radius: 50%;
+
+    & hr {
+        border: none;
+        width: 25%;
+        height: 2px;
+        background: black;
+    }
+}
+
+#onePieceListScoreTokenHome.goodScore {
+    background: var(--green);
+}
+
+#onePieceListScoreTokenHome.averageScore {
+    background: var(--lightOrange);
+}
+
+#onePieceListScoreTokenHome.badScore {
+    background: var(--red);
+}
+
+#onePieceListScoreTokenHome.noScore {
+    background: var(--lightGrey);
+}
+
+#homeContainer section:nth-of-type(2) h1 {
+    text-align: center;
+    font-size: 200%;
+    margin-top: 66px;
+    margin-bottom: 20px;
+    text-shadow: 5px 5px 2.5px black;
+}
+
+
+
+#influListContainerHome hr {
+    width: 20%;
+}
+
+#influencerListHome {
+    margin-top: 33px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+#oneInfluencerListHome {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 45px;
+
+    & h4 {
+        font-size: 95%;
+        font-weight: 300;
+    }
 }

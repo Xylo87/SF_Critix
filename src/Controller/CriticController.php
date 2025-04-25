@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Piece;
 use App\Entity\Critic;
 use App\Form\CriticFormType;
+use App\Repository\PieceRepository;
 use App\Repository\CriticRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -57,6 +58,17 @@ final class CriticController extends AbstractController
 
         $this->addFlash('crDeleteSuccess', 'Critic on "'.$critic->getPiece()->getTitle().'" by "'.$critic->getInfluencer().'" deleted !');
         return $this->redirectToRoute('app_home');
+    }
+
+    // Display random critics by Piece
+    #[Route('/critics/random', name: 'random_critics')]
+    public function randomCritics(PieceRepository $pieceRepository): Response
+    {
+        $IDs = $pieceRepository->getPieceId();
+
+        $randomId = $IDs[array_rand($IDs)]['id'];
+
+        return $this->redirectToRoute('show_critics', ['id' => $randomId]);
     }
 
     // > Display critics by Piece

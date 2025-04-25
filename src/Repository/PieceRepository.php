@@ -40,4 +40,13 @@ class PieceRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
+    public function getPieceId()
+   {
+
+    return $this->createQueryBuilder('piece')
+        ->select('piece.id')
+        ->getQuery()
+        ->getResult();
+   }
 }

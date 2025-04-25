@@ -96,19 +96,15 @@
         <hr>
     
         <div id="influencerListHome">
-            {% for influencer in influencers|slice(0, 8) %}
+            {% for influencer in influencers
+                |filter(i => i.photo is not empty)
+                |slice(0, 8) %}
                 {# {% if influencer.photo %} #}
 
                 <div id="oneInfluencerListHome">
                 
                     <a href="{{ path('show_influencer', {'id': influencer.id})}}">
-
-                    {% if influencer.photo %}
                         <img src="/uploads/photos/influPhotos/{{influencer.photo}}" alt="{{influencer}}-picture">
-                    {% else %}
-                        <img src="/uploads/photos/influPhotos/influencer-default.png" alt="influencer-default-picture">
-                    {% endif %}
-
                     </a>
 
                     <h3><a href="{{ path('show_influencer', {'id': influencer.id})}}">{{influencer}}</a></h3>

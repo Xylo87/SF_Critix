@@ -83,9 +83,9 @@
                 </div>
             {% endfor %}
         </div>
+    <hr>
     </section>
 
-    <hr>
     <section>
         <h1><em>Watch, comment and react to what they think</em></h1>
     </section>
@@ -99,7 +99,6 @@
             {% for influencer in influencers
                 |filter(i => i.photo is not empty)
                 |slice(0, 8) %}
-                {# {% if influencer.photo %} #}
 
                 <div id="oneInfluencerListHome">
                 
@@ -121,10 +120,82 @@
         </div>
     </section>
 
-    <hr>
-    <section>
-        
+    <section id="vipCommentListContainerHome">
+
+        <h2>Comments of the week</h2>
+        <hr>
+
+        <div id="vipCommentListHome">
+            {% for vipComment in vipComments|slice(0, 2) %}
+
+            <div id="vipCommentListSubContainerHome">
+                <article class="commentDisplay">
+                        
+                    <div id="vipCommentTitleHome">
+                        <h4>Comment of the Week</h4>
+                        <i class="fa-solid fa-medal vipIcon"></i>
+                    </div>
+                
+                    <div id="vipCommentContentHome">
+                        {% if vipComment.user.profilePicture %}
+                            <a class="ppLink" href="{{ path('show_user', {'id': vipComment.user.id})}}"><img src="/uploads/photos/userPhotos/{{vipComment.user.profilePicture}}" alt="{{vipComment.user}}-profile-picture"></a>
+                        {% else %}
+                            <a class="ppLink" href="{{ path('show_user', {'id': vipComment.user.id})}}"><img src="/uploads/photos/userPhotos/user-default.png" alt="user-default-profile-picture"></a>
+                        {% endif %}
+
+                        <div class="mainComment">
+                            <a href="{{ path('show_user', {'id': vipComment.user.id})}}"><strong>{{vipComment.user}}</a> - </strong>
+                            <span>{{vipComment.datePostENG}}</span><br>
+
+                            <div id="vipCommentUserScoreHome">
+                                <h4>Score :</h4>
+
+                                {# > User score fetch #}
+                                {% set userScore = null %}
+                                {% for opinion in vipComment.user.opinions %}
+                                    {% if opinion.piece.id == vipComment.critic.piece.id %}
+                                        {% set userScore = opinion.userScore %}
+                                    {% endif %}
+                                {% endfor %}
+
+                                {# > Star score system #}
+                                {% set note = userScore %}
+                                {# {% set fullStars = note|round(0, 'floor') %} #}
+                                {% set fullStars = note %}
+                                {# {% set partialStar = (note - fullStars)|round(0, 'ceil') %} #}
+                                {% set emptyStars = 5 - fullStars %}
+                                {# {% set emptyStars = 5 - fullStars - (partialStar ? 1 : 0) %} #}
+
+                                <div>
+                                    {% for i in range(1, fullStars) %}
+                                        <i class="fa-solid fa-star fullstars"></i>
+                                    {% endfor %}
+
+                                    {# {% if partialStar %}
+                                        <i class="fa-solid fa-star-half-stroke halfstars"></i>
+                                    {% endif %} #}
+
+                                    {% if emptyStars %}
+                                        {% for i in range(1, emptyStars) %}
+                                            <i class="fa-solid fa-star emptystars"></i>
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <p>{{vipComment.text}}</p>
+                        </div>
+                    </div>
+                </article>
+
+            <h3>On : <a href="{{ path('show_critics', {'id': vipComment.critic.piece.id})}}#critic-{{vipComment.critic.id}}">{{vipComment.critic.piece}}</a></h3>
+            <i>#{{vipComment.critic.piece.category}}</i>
+            </div>
+            {% endfor %}
+        </div>
     </section>
+
+    <a href="#homeLink"><i class="fa-regular fa-circle-up"></i></a>
 </div>
 
 {% endblock %}

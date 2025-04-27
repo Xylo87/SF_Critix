@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\PieceRepository;
+use App\Repository\CommentRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\InfluencerRepository;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,16 +13,18 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 final class HomeController extends AbstractController
 {
     #[Route('/home', name: 'app_home')]
-    public function index(PieceRepository $pieceRepository, InfluencerRepository $influencerRepository)
+    public function index(PieceRepository $pieceRepository, InfluencerRepository $influencerRepository, CommentRepository $commentRepository)
     {
 
         $pieces = $pieceRepository->findBy([], ["releaseDate" => "DESC"]);
         $influencers = $influencerRepository->findBy([], ["nickName" => "DESC"]);
+        $vipComments = $commentRepository->findBy(['isVIP' => 1], ["datePost" => "DESC"]);
 
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
             'pieces' => $pieces,
-            'influencers' => $influencers
+            'influencers' => $influencers,
+            'vipComments' => $vipComments
         ]);
     }
 

@@ -517,6 +517,10 @@
     display: flex;
 }
 
+#vipCommentContent .mainComment {
+    width: 75%;
+}
+
 #vipCommentUserScore {
     margin-top: 15px;
     margin-bottom: 15px;

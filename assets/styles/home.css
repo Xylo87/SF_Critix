@@ -279,6 +279,10 @@
     display: flex;
 }
 
+#vipCommentContentHome .mainComment {
+    width: 75%;
+}
+
 #vipCommentUserScoreHome {
     margin-top: 15px;
     margin-bottom: 15px;

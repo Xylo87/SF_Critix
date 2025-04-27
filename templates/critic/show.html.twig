@@ -342,38 +342,44 @@
                                             <span>{{comment.datePostENG}}</span><br>
 
                                             <div id="vipCommentUserScore">
-                                                <h4>Score :</h4>
-                                                {# > User score fetch #}
-                                                {% set userScore = null %}
-                                                {% for opinion in comment.user.opinions %}
-                                                    {% if opinion.piece.id == critic.piece.id %}
-                                                        {% set userScore = opinion.userScore %}
-                                                    {% endif %}
-                                                {% endfor %}
 
-                                                {# > Star score system #}
-                                                {% set note = userScore %}
-                                                {# {% set fullStars = note|round(0, 'floor') %} #}
-                                                {% set fullStars = note %}
-                                                {# {% set partialStar = (note - fullStars)|round(0, 'ceil') %} #}
-                                                {% set emptyStars = 5 - fullStars %}
-                                                {# {% set emptyStars = 5 - fullStars - (partialStar ? 1 : 0) %} #}
+                                            {# > User score fetch #}
+                                            {% set userScore = null %}
+                                            {% for opinion in comment.user.opinions %}
+                                                {% if opinion.piece.id == critic.piece.id %}
+                                                    {% set userScore = opinion.userScore %}
+                                                {% endif %}
+                                            {% endfor %}
 
-                                                <div>
-                                                    {% for i in range(1, fullStars) %}
-                                                        <i class="fa-solid fa-star fullstars"></i>
-                                                    {% endfor %}
+                                                {% if userScore %}
+                                                
+                                                    <h4>Score :</h4>
 
-                                                    {# {% if partialStar %}
-                                                        <i class="fa-solid fa-star-half-stroke halfstars"></i>
-                                                    {% endif %} #}
+                                                    {# > Star score system #}
+                                                    {% set note = userScore %}
+                                                    {# {% set fullStars = note|round(0, 'floor') %} #}
+                                                    {% set fullStars = note %}
+                                                    {# {% set partialStar = (note - fullStars)|round(0, 'ceil') %} #}
+                                                    {% set emptyStars = 5 - fullStars %}
+                                                    {# {% set emptyStars = 5 - fullStars - (partialStar ? 1 : 0) %} #}
 
-                                                    {% if emptyStars %}
-                                                        {% for i in range(1, emptyStars) %}
-                                                            <i class="fa-solid fa-star emptystars"></i>
+                                                    <div>
+                                                        {% for i in range(1, fullStars) %}
+                                                            <i class="fa-solid fa-star fullstars"></i>
                                                         {% endfor %}
-                                                    {% endif %}
-                                                </div>
+
+                                                        {# {% if partialStar %}
+                                                            <i class="fa-solid fa-star-half-stroke halfstars"></i>
+                                                        {% endif %} #}
+
+                                                        {% if emptyStars %}
+                                                            {% for i in range(1, emptyStars) %}
+                                                                <i class="fa-solid fa-star emptystars"></i>
+                                                            {% endfor %}
+                                                        {% endif %}
+                                                    </div>
+
+                                                {% endif %}
                                             </div>
 
                                             <p>{{comment}}</p>

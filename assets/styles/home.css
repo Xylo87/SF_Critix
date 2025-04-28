@@ -57,14 +57,14 @@
     letter-spacing: 0.5px;
 }
 
-#homeContainer .fa-circle-up {
+#homeContainer a:has(.fa-circle-up) {
     margin-top: 45px;
     font-size: 200%;
     color: var(--white);
     transition: all 0.1s;
 }
 
-#homeContainer .fa-circle-up:hover {
+#homeContainer a:has(.fa-circle-up):hover {
     cursor: pointer;
     color: rgb(175, 175, 175);
 }

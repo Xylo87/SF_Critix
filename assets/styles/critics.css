@@ -600,6 +600,7 @@
     }
 }
 
+
 @media screen and (max-width: 1150px) {
     
     #criticsPage {
@@ -634,6 +635,7 @@
         align-items: center;
 
         & blockquote {
+            text-align: center;
             margin-bottom: 30px;
         }
 
@@ -642,15 +644,53 @@
             align-items: center;
         }
     }
+
+    #commentsContainer {
+        flex-wrap: wrap;
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+
+    #vipComment {
+        width: 66%;
+    }
+
+    #criticComments {
+        width: 66%;
+    }
+
+    .mainComment {
+        width: 75%;
+    }
+
+    #vipCommentContent .mainComment {
+        width: 80%;
+    }
 }
 
 @media screen and (max-width: 960px) {
 
-    /* #criticVideo {
-        width: 85%;
+    #criticsInfos {
+        max-width: 85%;
+    }
+
+    #criticVideo {
+        width: 100%;
     }
 
     #criticVideoInfos {
-        width: 85%;
-    } */
+        width: 100%;
+    }
+
+    #vipComment {
+        width: 80%;
+    }
+
+    #criticComments {
+        width: 80%;
+    }
+
+    #vipCommentContent .mainComment {
+        width: 75%;
+    }
 }

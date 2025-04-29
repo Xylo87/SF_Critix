@@ -421,7 +421,7 @@ footer {
 @media screen and (max-width: 1550px) {
     
     nav {
-        width: 75vw;;
+        width: 75vw;
     }
 
     main {
@@ -437,6 +437,17 @@ footer {
 
     main {
         width: 85vw;
+    }
+}
+
+@media screen and (max-width: 1250px) {
+    
+    nav {
+        width: 90vw;;
+    }
+
+    main {
+        width: 90vw;
     }
 }
 

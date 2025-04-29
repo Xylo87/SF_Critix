@@ -315,6 +315,7 @@
         border-radius: 50%;
         overflow: hidden;
         margin-left: 25px;
+        flex-shrink: 0;
     }
 
     & .portraitLink img {
@@ -587,4 +588,9 @@
 
 
 
-
+@media screen and (max-width: 1650px) {
+    
+    #vipCommentContent .mainComment {
+        width: 66%;
+    }
+}

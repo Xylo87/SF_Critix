@@ -418,5 +418,27 @@ footer {
 
 
 
+@media screen and (max-width: 1550px) {
+    
+    nav {
+        width: 75vw;;
+    }
+
+    main {
+        width: 75vw;
+    }
+}
+
+@media screen and (max-width: 1380px) {
+    
+    nav {
+        width: 85vw;;
+    }
+
+    main {
+        width: 85vw;
+    }
+}
+
 
 

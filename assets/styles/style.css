@@ -144,6 +144,12 @@ a, button {
     opacity: 0.33;
 }
 
+.starsDisplay {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 2.5px;
+}
+
 /* User star score vote */
 .user-score-form {
     width: fit-content;

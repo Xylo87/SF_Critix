@@ -134,28 +134,28 @@
 
             <i>#{{opinion.piece.category}}</i>
 
-            <div>
-            {# > Star score system #}
-            {% set note = opinion.userScore %}
-            {# {% set fullStars = note|round(0, 'floor') %} #}
-            {% set fullStars = note %}
-            {# {% set partialStar = (note - fullStars)|round(0, 'ceil') %} #}
-            {% set emptyStars = 5 - fullStars %}
-            {# {% set emptyStars = 5 - fullStars - (partialStar ? 1 : 0) %} #}
+            <div class="starsDisplay">
+                {# > Star score system #}
+                {% set note = opinion.userScore %}
+                {# {% set fullStars = note|round(0, 'floor') %} #}
+                {% set fullStars = note %}
+                {# {% set partialStar = (note - fullStars)|round(0, 'ceil') %} #}
+                {% set emptyStars = 5 - fullStars %}
+                {# {% set emptyStars = 5 - fullStars - (partialStar ? 1 : 0) %} #}
 
-            {% for i in range(1, fullStars) %}
-                <i class="fa-solid fa-star fullstars"></i>
-            {% endfor %}
-
-            {# {% if partialStar %}
-                <i class="fa-solid fa-star-half-stroke halfstars"></i>
-            {% endif %} #}
-
-            {% if emptyStars %}
-                {% for i in range(1, emptyStars) %}
-                    <i class="fa-solid fa-star emptystars"></i>
+                {% for i in range(1, fullStars) %}
+                    <i class="fa-solid fa-star fullstars"></i>
                 {% endfor %}
-            {% endif %}
+
+                {# {% if partialStar %}
+                    <i class="fa-solid fa-star-half-stroke halfstars"></i>
+                {% endif %} #}
+
+                {% if emptyStars %}
+                    {% for i in range(1, emptyStars) %}
+                        <i class="fa-solid fa-star emptystars"></i>
+                    {% endfor %}
+                {% endif %}
             </div>
         </div>
         {% endfor %}

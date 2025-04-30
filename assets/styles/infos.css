@@ -178,4 +178,54 @@
 
 
 
+@media screen and (max-width: 960px) {
+
+    #pieceContainer {
+        align-items: center;
+    }
+
+    #pieceSubContainer {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    #pieceInfos {
+        max-width: 85%;
+    }
+
+    #pieceScores {
+        margin-top: 10px;
+        margin-bottom: 50px;
+        margin-left: 0;
+        flex-basis: 100%;
+    }
+
+    #pieceVideo {
+        width: 85%;
+
+        & .youtube_player {
+            width: 100%;
+        }
+    }
+}
+
+@media screen and (max-width: 750px) {
+
+    #pieceVideo {
+        width: 100%;
+    }
+
+    #pieceInfos {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    #pieceInfosText {
+        text-align: center;
+    }
+}
+
+
+
+
 

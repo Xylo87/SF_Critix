@@ -220,7 +220,11 @@
         justify-content: center;
     }
 
-    #pieceInfosText {
+    #pieceInfosText h1, #pieceInfosText h2, #pieceInfosText i {
+        text-align: center;
+    }
+
+    #pieceScores a:last-of-type {
         text-align: center;
     }
 }

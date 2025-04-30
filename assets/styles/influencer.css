@@ -61,6 +61,10 @@
     font-size: 115%;
 }
 
+#likeCounter {
+    font-size: 120%;
+}
+
 #influInfosText button.like-influencer-btn {
     width: 75px;
     height: 40px;
@@ -178,5 +182,63 @@
 
 
 
+@media screen and (max-width: 960px) {
+
+    #influContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #influSubContainer {
+        flex-wrap: wrap;
+        width: 85%;
+        justify-content: center;
+    }
+
+    #influInfos {
+        margin-left: 0;
+        margin-right: 0;
+        width: 100%;
+        margin-bottom: 35px;
+    }
+}
+
+@media screen and (max-width: 720px) {
+
+    #influSubContainer {
+        width: 100%;
+    }
+
+    #influInfos {
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
+    #influInfosText h1, h3 {
+        text-align: center;
+    }
+
+    #influHearts {
+        text-align: center;
+    }
+
+    #influLive {
+        margin-bottom: 15px;
+    }
+
+    #influContainer > h3 {
+        text-align: center;
+    }
+
+    #influCriticsList {
+        flex-wrap: wrap;
+        display: flex;
+        gap: 75px;
+        flex-direction: column;
+        align-items: center;
+    }
+}
 
 

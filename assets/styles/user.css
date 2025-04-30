@@ -234,6 +234,18 @@
     #userInfos, #userDashInfos {
         flex-wrap: wrap;
         justify-content: center;
+    }
+
+    #userInfos h1, #userDashInfos h1 {
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    #dashButtons {
+        text-align: center;
+    }
+
+    #userContainer > h3 {
         text-align: center;
     }
 }

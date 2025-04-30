@@ -27,32 +27,35 @@
 
                 <p><strong>Bio : </strong>{{influencer.bio}}</p>
 
-                {% if influencer.totalLikes <= 1 %}
-                    <strong id="likeCounter">{{influencer.totalLikes}} Heart</strong>
-                {% else %}
-                    <strong id="likeCounter">{{influencer.totalLikes}} Hearts</strong>
-                {% endif %}
-                {# <p>{{influencer.users|length}}</p> #}
+                <div id="influHearts">
+                    {% if influencer.totalLikes <= 1 %}
+                        <strong id="likeCounter">{{influencer.totalLikes}} Heart</strong>
+                    {% else %}
+                        <strong id="likeCounter">{{influencer.totalLikes}} Hearts</strong>
+                    {% endif %}
+                    {# <p>{{influencer.users|length}}</p> #}
 
-                {# > Like + dislike button #}
-                {# {% if app.user in influencer.users %}
-                    <a href="{{ path('unlike_influencer', {'id': influencer.id, 'origin': 'influencerPage'}) }}"><button>Unlike</button></a>
-                {% else %}
-                    <a href="{{ path('like_influencer', {'id': influencer.id})}}"><button>Like</button></a>
-                {% endif %}<br><br> #}
+                    {# > Like + dislike button #}
+                    {# {% if app.user in influencer.users %}
+                        <a href="{{ path('unlike_influencer', {'id': influencer.id, 'origin': 'influencerPage'}) }}"><button>Unlike</button></a>
+                    {% else %}
+                        <a href="{{ path('like_influencer', {'id': influencer.id})}}"><button>Like</button></a>
+                    {% endif %}<br><br> #}
 
-                {# > Like + dislike button (AJAX ver.) #}
-                {% if app.user in influencer.users %}
-                    <button class="like-influencer-btn"
-                            data-influencer-id="{{ influencer.id }}"
-                            data-action="unlike"
-                            aria-label="Like Content Creator Button"><i class="fas fa-heart"></i></button><br>
-                {% else %}
-                    <button class="like-influencer-btn"
-                            data-influencer-id="{{ influencer.id }}"
-                            data-action="like"
-                            aria-label="Like Content Creator Button"><i class="far fa-heart"></i></button><br>
-                {% endif %}
+                    {# > Like + dislike button (AJAX ver.) #}
+                    {% if app.user in influencer.users %}
+                        <button class="like-influencer-btn"
+                                data-influencer-id="{{ influencer.id }}"
+                                data-action="unlike"
+                                aria-label="Like Content Creator Button"><i class="fas fa-heart"></i></button><br>
+                    {% else %}
+                        <button class="like-influencer-btn"
+                                data-influencer-id="{{ influencer.id }}"
+                                data-action="like"
+                                aria-label="Like Content Creator Button"><i class="far fa-heart"></i></button><br>
+                    {% endif %}
+
+                </div>
 
                 {# > Edit and suppression (modal) #}
                 {# <a href="{{ path('edit_influencer', {'id': influencer.id})}}"><button style="width: 50px; padding: 2.5px;">Edit</button></a> #}

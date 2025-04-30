@@ -11,7 +11,7 @@
     margin-top: 33px;
     display: flex;
     justify-content: space-evenly;
-    gap: 25px;
+    gap: 50px;
     flex-wrap: wrap;
 }
 
@@ -143,4 +143,30 @@
 #oneInfluencerList h2:has(+ h3) {
     margin-bottom: 5px;
 }
+
+
+
+
+
+@media screen and (max-width: 645px) {
+    
+    #pieceListContainer h1 {
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 995px) {
+    
+    #influencerList {
+        justify-content: space-evenly;
+    }
+}
+
+@media screen and (max-width: 645px) {
+    
+    #influencerListContainer h1 {
+        text-align: center;
+    }
+}
+
 

@@ -78,7 +78,7 @@
     margin: 33px 0;
     display: flex;
     justify-content: space-evenly;
-    gap: 25px;
+    gap: 50px;
     flex-wrap: wrap;
 }
 
@@ -196,8 +196,9 @@
 #influencerListHome {
     margin-top: 33px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     flex-wrap: wrap;
+    gap: 35px;
 }
 
 #oneInfluencerListHome {
@@ -224,6 +225,8 @@
     margin-top: 33px;
     display: flex;
     justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 35px;
 
     & p {
         display: -webkit-box;
@@ -331,6 +334,62 @@
     
     #homeBanner {
         width: 90vw;
+    }
+
+    #vipCommentListContainerHome h2 {
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 960px) {
+    
+    #homeBanner h1 {
+        top: 57.5%;
+        margin: 0 25px;
+    }
+}
+
+@media screen and (max-width: 644px) {
+    
+    #homeContainer h2:not(#influListContainerHome *) {
+        text-align: center;
+    }
+
+    #influListContainerHome h2 {
+        text-align: center;
+    }
+
+    #influListContainerHome hr {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 560px) {
+    
+    #vipCommentListSubContainerHome {
+        width: 100%;
+    }
+
+    #vipCommentListSubContainerHome .commentDisplay {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 487px) {
+    
+    #homeBanner a {
+        top: 82.5%;
+    }
+}
+
+@media screen and (max-width: 409px) {
+    
+    #homeBanner a {
+        top: 89%;
+    }
+
+    #vipCommentListHome p {
+        width: 95%;
     }
 }
 

@@ -56,8 +56,8 @@ class UserFormType extends AbstractType
             ->add('bio', TextareaType::class, [
                 'label' => 'Bio',
                 'attr' => [
-                    'rows' => 5,
-                    'cols' => 40,
+                    // 'rows' => 5,
+                    // 'cols' => 40,
                     'placeholder' => 'Bio may not exceed 220 characters'
                 ],
                 'required' => false,

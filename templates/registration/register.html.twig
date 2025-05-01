@@ -41,8 +41,10 @@
                         {{ form_widget(registrationForm.plainPassword.second) }}<br>
                     </div>
                 </div>
-                {{ form_widget(registrationForm.agreeTerms) }}
-                {{ form_label(registrationForm.agreeTerms)}}<br>
+                <div class="checkBoxes">
+                    {{ form_widget(registrationForm.agreeTerms) }}
+                    {{ form_label(registrationForm.agreeTerms)}}
+                </div>
                 <small><em>By joining CritX, you agree to our <a href="{{ path('app_privacy')}}">Privacy Policy</a>.</em></small>
 
                 <button type="submit" class="btn">Register</button>

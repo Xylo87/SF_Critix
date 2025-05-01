@@ -314,6 +314,7 @@ footer {
     }
     
     & input {
+        width: 100%;
         margin-top: 5px;
         margin-bottom: 15px;
         padding: 5px;
@@ -357,6 +358,35 @@ footer {
 #registerForm small {
     margin-bottom: 15px;
 }
+
+.checkBoxes, .mb-3 {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.checkBoxes input, .mb-3 input {
+    width: fit-content;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-right: 5px;
+}
+
+.checkBoxes input:hover, .mb-3 input:hover {
+    cursor: pointer;
+}
+
+.checkBoxes label, .mb-3 label {
+    margin-bottom: 0;
+}
+
+.mb-3 input {
+    margin-right: 5px;
+}
+
+/* .checkBoxes .mb-3 label {
+    ;
+} */
 
 #resetRequestForm input {
     margin-bottom: 0;

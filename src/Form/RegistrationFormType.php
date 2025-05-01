@@ -22,15 +22,15 @@ class RegistrationFormType extends AbstractType
         $builder
             ->add('nickName', TextType::class, [
                 'label' => 'Nickname',
-                'attr' => [
-                    'size' => 40
-                ]
+                // 'attr' => [
+                //     'size' => 40
+                // ]
             ])
             ->add('email', EmailType::class, [
                 'label' => 'Email',
-                'attr' => [
-                    'size' => 40
-                ]
+                // 'attr' => [
+                //     'size' => 40
+                // ]
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
@@ -77,13 +77,15 @@ class RegistrationFormType extends AbstractType
                 'invalid_message' => 'Passwords must match',
                 'required' => true,
                 'first_options' => ['label' => 'Password', 
-                    'attr' => [
-                        'size' => 40
-                ]],
+                //     'attr' => [
+                //         'size' => 40
+                // ]
+                ],
                 'second_options' => ['label' => 'Confirm password', 
-                'attr' => [
-                    'size' => 40
-                ]],
+                // 'attr' => [
+                //     'size' => 40
+                // ]
+                ],
             ])
         ;
     }

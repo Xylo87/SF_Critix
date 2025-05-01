@@ -455,6 +455,10 @@ footer {
     main {
         width: 75vw;
     }
+
+    .alert {
+        width: 75vw;
+    }
 }
 
 @media screen and (max-width: 1380px) {
@@ -466,6 +470,10 @@ footer {
     main {
         width: 85vw;
     }
+
+    .alert {
+        width: 85vw;
+    }
 }
 
 @media screen and (max-width: 1250px) {
@@ -475,6 +483,10 @@ footer {
     }
 
     main {
+        width: 90vw;
+    }
+
+    .alert {
         width: 90vw;
     }
 }
@@ -493,11 +505,33 @@ footer {
     }
 }
 
+@media screen and (max-width: 640px) {
+    
+    .alert {
+        font-size: 100%;
+    }
+}
+
 @media screen and (max-width: 580px) {
     
     .footInfos {
         width: 85vw;
     }
 }
+
+@media screen and (max-width: 540px) {
+    
+    .alert {
+        font-size: 75%;
+    }
+}
+
+@media screen and (max-width: 475px) {
+    
+    .alert {
+        font-size: 65%;
+    }
+}
+
 
 

@@ -285,7 +285,7 @@ class SecurityController extends AbstractController
 
     // User's critic like
     #[Route('/critic/{id}/like', name: 'like_critic')]
-    public function likeCritic(Security $security, EntityManagerInterface $entityManager, Critic $critic = null, AgreementRepository $agreementRepository) {
+    public function likeCritic(Security $security, EntityManagerInterface $entityManager, Critic $critic, AgreementRepository $agreementRepository) {
 
         $user = $security->getUser();
 

@@ -10,6 +10,7 @@ use App\Entity\Opinion;
 use App\Entity\Agreement;
 use App\Entity\Influencer;
 use App\Form\UserFormType;
+use App\Repository\OpinionRepository;
 use App\Repository\AgreementRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\SecurityBundle\Security;
@@ -227,7 +228,7 @@ class SecurityController extends AbstractController
 
     // > User's score vote
     #[Route('/piece/{id}/score', name: 'score_piece')]
-    public function scorePiece(Security $security, EntityManagerInterface $entityManager, Piece $piece = null, Request $request)
+    public function scorePiece(Security $security, EntityManagerInterface $entityManager, Piece $piece, Request $request, OpinionRepository $opinionRepository)
     {
         $user = $security->getUser();
 
@@ -239,7 +240,12 @@ class SecurityController extends AbstractController
         if (isset($_POST["submit"])) {
             $userScore = filter_input(INPUT_POST, "rating", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-            if ($userScore && $userScore >= 1 && $userScore <= 5) {
+            $existingOpinion = $opinionRepository->findOneBy([
+                    'user' => $user,
+                    'piece' => $piece
+                ]);
+
+            if ($userScore && $userScore >= 1 && $userScore <= 5 && !$existingOpinion) {
 
                 $opinion = new Opinion();
 
@@ -254,7 +260,7 @@ class SecurityController extends AbstractController
                 return $this->redirectToRoute('infos_piece', ['id' => $piece->getId()]);
                     
             } else {
-                $this->addFlash('scPieceFail', 'Please set a score between 1 & 5 !');
+                $this->addFlash('scPieceFail', 'Please set only one score between 1 & 5 !');
                 return $this->redirectToRoute('infos_piece', ['id' => $piece->getId()]);
             }
         }
@@ -262,7 +268,7 @@ class SecurityController extends AbstractController
 
     // > User's score reset
     #[Route('/piece/{piece}/opinion/{opinion}/reset', name: 'score_reset')]
-    public function resetScore(Security $security, EntityManagerInterface $entityManager, Piece $piece = null, Opinion $opinion = null) {
+    public function resetScore(Security $security, EntityManagerInterface $entityManager, Piece $piece, Opinion $opinion) {
         
         $user = $security->getUser();
 
@@ -273,7 +279,7 @@ class SecurityController extends AbstractController
 
         if ($user->getId() != $opinion->getUser()->getId()) {
             $this->addFlash('scResetFail', 'You do not have the required authorisation !');
-            return $this->redirectToRoute('app_login');
+            return $this->redirectToRoute('infos_piece', ['id' => $piece->getId()]);
         }
 
         $entityManager->remove($opinion);

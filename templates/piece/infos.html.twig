@@ -46,11 +46,13 @@
 
         <div id="pieceScores">
 
-            {# > User score fetch #}
+            {# > User score and opinion ID fetch #}
             {% set userScore = null %}
+            {% set opinionId = null %}
             {% for opinion in piece.opinions %}
-                {% if app.user and app.user.id == opinion.user.id and opinion.piece.id == piece.id %}
+                {% if app.user and app.user.id == opinion.user.id %}
                     {% set userScore = opinion.userScore %}
+                    {% set opinionId = opinion.id %}
                 {% endif %}
             {% endfor %}
 
@@ -83,16 +85,12 @@
                         {% endif %}
                     </div>
                     <small>Your score has been set !</small>
-                    {% for opinion in piece.opinions %}
-                        {% if app.user.id == opinion.user.id %}
-                            <button class="deleteConfirm user-score-reset">Reset vote</button><br>
-                                <dialog class="openModal">
-                                    <h3>Are you sure you want to reset your score on "{{piece}}" ?</h3>
-                                    <a href="{{ path('score_reset', {'piece': piece.id, 'opinion': opinion.id})}}"><button>Yes</button></a>
-                                    <button class="closeModal">No</button>
-                                </dialog>
-                        {% endif %}
-                    {% endfor %}
+                    <button class="deleteConfirm user-score-reset">Reset vote</button><br>
+                        <dialog class="openModal">
+                            <h3>Are you sure you want to reset your score on "{{piece}}" ?</h3>
+                            <a href="{{ path('score_reset', {'piece': piece.id, 'opinion': opinionId})}}"><button>Yes</button></a>
+                            <button class="closeModal">No</button>
+                        </dialog>
                 </div>
 
             {% else %}

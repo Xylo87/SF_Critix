@@ -69,6 +69,7 @@ nav {
         font-weight: 600;
         color: var(--white);
         transition: all 0.1s;
+        text-align: center;
     }
 
     & a:hover {

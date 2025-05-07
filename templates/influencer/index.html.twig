@@ -7,7 +7,9 @@
 
     <h1>All content creators</h1>
 
-    {# <a href="{{ path('new_influencer')}}">Add an Influencer</a> #}
+    {% if app.user and "ROLE_ADMIN" in app.user.roles %}
+        <a href="{{ path('new_influencer')}}">Add an Influencer</a>
+    {% endif %}
     <hr>
     
     <div id="influencerList">
@@ -32,14 +34,16 @@
                 </a>
                 
                 {# > Edit and suppression (modal) #}
-                {# <a href="{{ path('edit_influencer', {'id': influencer.id})}}"><button>Edit</button></a> #}
-                {# <a href="{{ path('delete_influencer', {'id': influencer.id})}}">Delete</a></h2><br> #}
-                {# <button class="deleteConfirm">Delete</button><br>
-                <dialog class="openModal">
-                    <h3>Are you sure you want to delete "{{influencer}}" ?</h3>
-                    <a href="{{ path('delete_influencer', {'id': influencer.id})}}"><button>Yes</button></a>
-                    <button class="closeModal">No</button>
-                </dialog> #}
+                {% if app.user and "ROLE_ADMIN" in app.user.roles %}
+                    <a href="{{ path('edit_influencer', {'id': influencer.id})}}"><button>Edit</button></a>
+                    {# <a href="{{ path('delete_influencer', {'id': influencer.id})}}">Delete</a></h2><br> #}
+                    <button class="deleteConfirm">Delete</button><br>
+                    <dialog class="openModal">
+                        <h3>Are you sure you want to delete "{{influencer}}" ?</h3>
+                        <a href="{{ path('delete_influencer', {'id': influencer.id})}}"><button>Yes</button></a>
+                        <button class="closeModal">No</button>
+                    </dialog>
+                {% endif %}
             </section>
         {% endfor %}
     </div>

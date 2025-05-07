@@ -58,14 +58,16 @@
                 </div>
 
                 {# > Edit and suppression (modal) #}
-                {# <a href="{{ path('edit_influencer', {'id': influencer.id})}}"><button style="width: 50px; padding: 2.5px;">Edit</button></a> #}
-                {# <a href="{{ path('delete_influencer', {'id': influencer.id})}}">Delete</a></h2><br> #}
-                {# <button class="deleteConfirm" style="width: 50px; padding: 2.5px;">Delete</button><br>
+                {% if app.user and "ROLE_ADMIN" in app.user.roles %}
+                    <a href="{{ path('edit_influencer', {'id': influencer.id})}}"><button style="width: 50px; padding: 2.5px;">Edit</button></a>
+                    {# <a href="{{ path('delete_influencer', {'id': influencer.id})}}">Delete</a></h2><br> #}
+                    <button class="deleteConfirm" style="width: 50px; padding: 2.5px;">Delete</button><br>
                     <dialog class="openModal">
                         <h3>Are you sure you want to delete "{{influencer}}" ?</h3>
                         <a href="{{ path('delete_influencer', {'id': influencer.id})}}"><button>Yes</button></a>
                         <button class="closeModal">No</button>
-                    </dialog> #}
+                    </dialog>
+                {% endif %}
             </div>
         </div>
         

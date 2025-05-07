@@ -470,7 +470,7 @@ class SecurityController extends AbstractController
 
         if ($user->getId() != $comment->getUser()->getId() && !$authorizationChecker->isGranted('ROLE_MODO')) {
             $this->addFlash('coDeleteFail', 'You do not have the required authorisation !');
-            return $this->redirectToRoute('app_login');
+            return $this->redirectToRoute('app_home');
         }
 
         $entityManager->remove($comment);

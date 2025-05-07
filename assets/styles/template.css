@@ -530,7 +530,6 @@ footer {
 @media (max-width: 1080px) {
 
     #menu {
-        /* display: none; */
         margin: 0;
         padding: 10px;
         width: 210px;
@@ -542,6 +541,10 @@ footer {
         z-index: 998;
         left: 50%;
         transform: translateX(-50%)
+    }
+
+    #menu.hidden {
+        display: none;
     }
 
     #menu hr {
@@ -647,6 +650,13 @@ footer {
 
     #menu {
         width: 175px;
+    }
+}
+
+@media screen and (max-width: 475px) {
+    
+    #menuContainer {
+        margin: 0 25px;
     }
 }
 

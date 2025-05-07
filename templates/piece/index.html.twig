@@ -6,8 +6,10 @@
 
 <div id="pieceListContainer">
     <h1>All {{category}}<sup>({{category.pieces|length}})</sup></h1>
-    {# <a href="{{ path('new_piece')}}">Add a Piece</a><br>
-    <a href="{{ path('new_critic')}}">Add a Critic</a> #}
+    {% if app.user and "ROLE_ADMIN" in app.user.roles %}
+        <a href="{{ path('new_piece')}}">Add a Piece</a><br>
+        <a href="{{ path('new_critic')}}">Add a Critic</a>
+    {% endif %}
     <hr>
 
     <div id="pieceList">

@@ -311,5 +311,28 @@ window.onload = function() {
 
 // > Burger menu display
 const burgerBtn = document.getElementById("burgerBtn")
+const displayMenu = document.getElementById("menu")
 
-console.log(burgerBtn)
+burgerBtn.addEventListener('click', () => {
+
+    const burgerIcon = burgerBtn.querySelector('i')
+
+    displayMenu.classList.toggle('hidden')
+
+    if (displayMenu.classList.contains('hidden')) {
+        burgerIcon.classList.replace('fa-xmark', 'fa-bars')
+    } else {
+        burgerIcon.classList.replace('fa-bars', 'fa-xmark')
+    }
+})
+
+// > Burger menu target closing
+document.addEventListener('click', (e) => {
+    if (!burgerBtn.contains(e.target) && !displayMenu.contains(e.target)) {
+        if (!displayMenu.classList.contains('hidden')) {
+            displayMenu.classList.add('hidden');
+            const burgerIcon = burgerBtn.querySelector('i');
+            burgerIcon.classList.replace('fa-xmark', 'fa-bars');
+        }
+    }
+});

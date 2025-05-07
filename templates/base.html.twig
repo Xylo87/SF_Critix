@@ -442,9 +442,13 @@
                     <a id="nickName" href="{{ path('dashboard_user')}}">{{app.user}}</a>
 
                     {% if app.user.profilePicture %}
-                        <img src="/uploads/photos/userPhotos/{{app.user.profilePicture}}" alt="{{app.user}}-profile-picture">
+                        <a id="dashLink" href="{{ path('dashboard_user')}}">
+                            <img src="/uploads/photos/userPhotos/{{app.user.profilePicture}}" alt="{{app.user}}-profile-picture">
+                        </a>
                     {% else %}
-                        <img src="/uploads/photos/userPhotos/user-default.png" alt="user-default-profile-picture">
+                        <a id="dashLink" href="{{ path('dashboard_user')}}">
+                            <img src="/uploads/photos/userPhotos/user-default.png" alt="user-default-profile-picture">
+                        </a>
                     {% endif %}
     
                     <a class="logsBtn" href="{{ path('app_logout')}}">Logout</a>

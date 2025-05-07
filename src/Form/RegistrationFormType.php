@@ -23,14 +23,14 @@ class RegistrationFormType extends AbstractType
             ->add('nickName', TextType::class, [
                 'label' => 'Nickname',
                 'attr' => [
-                    'placeholder' => 'Min. 3 characters, max. 12 characters'
+                    'placeholder' => 'Min. 3 characters, max. 20 characters'
                 ],
                 'constraints' => [
                     new Length([
                         'min' => 3,
                         'minMessage' => 'Nickname may not be under 3 characters',
-                        'max' => 12,
-                        'maxMessage' => 'Nickname may not exceed 12 characters',
+                        'max' => 20,
+                        'maxMessage' => 'Nickname may not exceed 20 characters',
                     ]),
                     // new Regex([
                     //     'pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*?_-]).{12,}$/',

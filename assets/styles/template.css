@@ -518,10 +518,10 @@ footer {
     }
 }
 
-@media screen and (max-width: 1120px) and (min-width: 1080px) {
+@media screen and (max-width: 1125px) and (min-width: 1080px) {
     
     #menuContainer {
-        margin: 0 20px;
+        margin: 0 15px;
     }
 }
 

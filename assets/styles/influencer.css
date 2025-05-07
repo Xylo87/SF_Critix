@@ -216,7 +216,7 @@
         margin-bottom: 20px;
     }
 
-    #influInfosText h1, h3 {
+    #influInfosText h1, #influInfosText h3 {
         text-align: center;
     }
 

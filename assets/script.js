@@ -104,19 +104,21 @@ comments.forEach(comment => {
     const expandBtn = comment.querySelector(".moreBtn")
     const expandIcon = comment.querySelector(".moreIcon")
 
-    if (paragraph.scrollHeight <= paragraph.clientHeight) {
-        expandBtn.style.display = "none"
-    }
-
-    expandBtn.addEventListener("click", function () {
-        if (comment.classList.contains("expanded")) {
-            comment.classList.remove("expanded")
-            expandIcon.classList.replace("fa-minus", "fa-plus")
-        } else {
-            comment.classList.add("expanded")
-            expandIcon.classList.replace("fa-plus", "fa-minus")
+    if (expandBtn) {
+        if (paragraph.scrollHeight <= paragraph.clientHeight) {
+            expandBtn.style.display = "none"
         }
-    })
+
+        expandBtn.addEventListener("click", function () {
+            if (comment.classList.contains("expanded")) {
+                comment.classList.remove("expanded")
+                expandIcon.classList.replace("fa-minus", "fa-plus")
+            } else {
+                comment.classList.add("expanded")
+                expandIcon.classList.replace("fa-plus", "fa-minus")
+            }
+        })
+    }
 })
 
 
@@ -305,3 +307,9 @@ window.onload = function() {
     }, 100); // Ajustez le délai si nécessaire
 };
 
+
+
+// > Burger menu display
+const burgerBtn = document.getElementById("burgerBtn")
+
+console.log(burgerBtn)

@@ -22,6 +22,21 @@ class RegistrationFormType extends AbstractType
         $builder
             ->add('nickName', TextType::class, [
                 'label' => 'Nickname',
+                'attr' => [
+                    'placeholder' => 'Min. 3 characters, max. 15 characters'
+                ],
+                'constraints' => [
+                    new Length([
+                        'min' => 3,
+                        'minMessage' => 'Nickname may not be under 3 characters',
+                        'max' => 15,
+                        'maxMessage' => 'Nickname may not exceed 15 characters',
+                    ]),
+                    // new Regex([
+                    //     'pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*?_-]).{12,}$/',
+                    //     'message' => 'Your password must contain at least 12 characters, one lowercase letter, one uppercase letter, one number, and one special character from the following: "!@#$%^&*?_-"'
+                    // ])
+                ],
                 // 'attr' => [
                 //     'size' => 40
                 // ]

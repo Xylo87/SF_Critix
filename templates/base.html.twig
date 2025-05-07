@@ -419,16 +419,22 @@
                     <img src="{{ asset('logo/logo-darkOrange.png')}}" alt="CritX logo">
                 </a>
 
-                <div id="menu">
-                    <a href="{{ path('show_category', {'id': 1})}}">Games</a>
-                    <a href="{{ path('show_category', {'id': 2})}}">Movies</a>
-                    <a href="{{ path('show_category', {'id': 3})}}">TV Shows</a>
-                    <a href="{{ path('show_category', {'id': 4})}}">Music</a>
-                    <a href="{{ path('show_category', {'id': 5})}}">Books</a>
+                <div id="menuContainer">
+                    <button id="burgerBtn" aria-label="Display Menu Button">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
 
-                    <hr>
-                    
-                    <a href="{{path('app_influencer')}}">Content creators</a>
+                    <div id="menu">
+                        <a href="{{ path('show_category', {'id': 1})}}">Games</a>
+                        <a href="{{ path('show_category', {'id': 2})}}">Movies</a>
+                        <a href="{{ path('show_category', {'id': 3})}}">TV Shows</a>
+                        <a href="{{ path('show_category', {'id': 4})}}">Music</a>
+                        <a href="{{ path('show_category', {'id': 5})}}">Books</a>
+
+                        <hr>
+                        
+                        <a href="{{path('app_influencer')}}">Content creators</a>
+                    </div>
                 </div>
                 
                 {% if app.user %}

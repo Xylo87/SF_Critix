@@ -41,10 +41,23 @@ nav {
     }
 }
 
+#menuContainer {
+    flex-grow: 1;
+    height: 100%;
+    margin: 0 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+#burgerBtn {
+    display: none;
+}
+
 #menu {
     height: 100%;
     display: flex;
-    margin: 0 35px;
     flex-grow: 1;
     align-items: center;
     justify-content: space-evenly;
@@ -67,7 +80,7 @@ nav {
 #menu hr {
     height: 75%;
 }
- 
+
 #logs {
     max-width: 550px;
     height: 100%;
@@ -498,6 +511,46 @@ footer {
     }
 }
 
+@media screen and (max-width: 1120px) and (min-width: 1080px) {
+    
+    #menuContainer {
+        margin: 0 20px;
+    }
+}
+
+@media (max-width: 1080px) {
+
+    #menu {
+        /* display: none; */
+        margin: 0;
+        padding: 10px;
+        width: 210px;
+        height: fit-content;
+        flex-direction: column;
+        position: absolute;
+        top: 66px;
+        background: var(--black);
+        z-index: 998;
+        left: 50%;
+        transform: translateX(-50%)
+    }
+
+    #menu hr {
+        height: 0;
+        width: 75%;
+        margin: 7.5px 0;
+    }
+
+    #burgerBtn {
+        display: block;
+        height: fit-content;
+        border: none;
+        background: none;
+        font-size: 225%;
+        color: var(--white);
+    }
+}
+
 @media screen and (max-width: 960px) {
     
     footer {
@@ -538,6 +591,10 @@ footer {
     .footInfos {
         width: 85vw;
     }
+
+    #nickName {
+        display: none;
+    }
 }
 
 @media screen and (max-width: 540px) {
@@ -569,6 +626,18 @@ footer {
     
     .alert {
         font-size: 65%;
+    }
+
+    #homeLink h1 {
+        display: none;
+    }
+
+    #homeLink img {
+        margin-left: 5px;
+    }
+
+    #menu {
+        width: 175px;
     }
 }
 

@@ -77,10 +77,10 @@ class RegistrationFormType extends AbstractType
                     new NotBlank([
                         'message' => 'Please enter a password',
                     ]),
-                    // new Regex([
-                    //     'pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*?_-]).{12,}$/',
-                    //     'message' => 'Your password must contain at least 12 characters, one lowercase letter, one uppercase letter, one number, and one special character from the following: "!@#$%^&*?_-"'
-                    // ])
+                    new Regex([
+                        'pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*?_-]).{12,}$/',
+                        'message' => 'Your password must contain at least 12 characters, one lowercase letter, one uppercase letter, one number, and one special character from the following: "!@#$%^&*?_-"'
+                    ])
                 ],
                     // new Length([
                     //     'min' => 6,

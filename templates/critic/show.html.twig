@@ -258,6 +258,8 @@
                                     <label class="accessLabel" for="addComment">Add comment</label>
                                     <textarea class="addComment" name="addComment" id="addComment" maxlength="3500" placeholder="➕ Add comment (3500 characters max. )" required></textarea>
                                     {# <i class="fa-solid fa-square-plus commentPlus"></i> #}
+
+                                    <input type="hidden" name="_token" value="{{ csrf_token('comment_add') }}">
                                     <input type="submit" name="submit" class="add-comment-submit" value="Post !">
                                 </div>
                             {% else %}

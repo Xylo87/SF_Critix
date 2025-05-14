@@ -21,8 +21,10 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
+use Symfony\Component\Security\Csrf\CsrfToken;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
@@ -228,7 +230,7 @@ class SecurityController extends AbstractController
 
     // > User's score vote
     #[Route('/piece/{id}/score', name: 'score_piece')]
-    public function scorePiece(Security $security, EntityManagerInterface $entityManager, Piece $piece, Request $request, OpinionRepository $opinionRepository)
+    public function scorePiece(Security $security, EntityManagerInterface $entityManager, Piece $piece, Request $request, OpinionRepository $opinionRepository, CsrfTokenManagerInterface $csrfTokenManager)
     {
         $user = $security->getUser();
 
@@ -246,6 +248,11 @@ class SecurityController extends AbstractController
                 ]);
 
             if ($userScore && $userScore >= 1 && $userScore <= 5 && !$existingOpinion) {
+
+                $submittedToken = $request->request->get('_token');
+                if (!$csrfTokenManager->isTokenValid(new CsrfToken('rating_add', $submittedToken))) {
+                    throw new AccessDeniedHttpException('Invalid CSRF token');
+                }
 
                 $opinion = new Opinion();
 
@@ -420,7 +427,7 @@ class SecurityController extends AbstractController
 
     // > User's comment add
     #[Route('/critic/{id}/comment', name: 'comment_critic')]
-    public function commentCritic(Security $security, EntityManagerInterface $entityManager, Critic $critic, Request $request)
+    public function commentCritic(Security $security, EntityManagerInterface $entityManager, Critic $critic, Request $request, CsrfTokenManagerInterface $csrfTokenManager)
     {
         $user = $security->getUser();
 
@@ -437,6 +444,11 @@ class SecurityController extends AbstractController
             var_dump($addComment);
 
             if (!empty($addComment) && trim($addComment) != '' && strlen($addComment) <= 3500 ) {
+
+                $submittedToken = $request->request->get('_token');
+                if (!$csrfTokenManager->isTokenValid(new CsrfToken('comment_add', $submittedToken))) {
+                    throw new AccessDeniedHttpException('Invalid CSRF token');
+                }
 
                 $comment = new Comment();
 

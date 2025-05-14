@@ -113,6 +113,7 @@
                         <label class="fa-solid fa-star emptystars" for="rating1"></label>
                     </fieldset><br>
                     <small>Please set a score between 1 & 5</small>
+                    <input type="hidden" name="_token" value="{{ csrf_token('rating_add') }}">
                     <input type="submit" name="submit" class="user-score-submit" value="Vote !">
                 </form>
 

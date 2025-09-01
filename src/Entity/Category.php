@@ -6,6 +6,7 @@ use App\Repository\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation\Slug;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
 class Category
@@ -23,6 +24,10 @@ class Category
      */
     #[ORM\OneToMany(targetEntity: Piece::class, mappedBy: 'category')]
     private Collection $pieces;
+
+    #[ORM\Column(length: 100, unique: true)]
+    #[Slug(fields: ['name'])]
+    private ?string $slug = null;
 
     public function __construct()
     {
@@ -78,6 +83,18 @@ class Category
                 $piece->setCategory(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): static
+    {
+        $this->slug = $slug;
 
         return $this;
     }

@@ -109,7 +109,7 @@ final class PieceController extends AbstractController
     }
 
     // > Display pieces by Category
-    #[Route('/category/{id}', name: 'show_category')]
+    #[Route('/category/{slug:category}', name: 'show_category')]
     public function show(Category $category = null): Response
     {
         if (!$category) {

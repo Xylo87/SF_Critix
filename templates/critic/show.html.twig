@@ -189,9 +189,9 @@
 
                     <aside id="criticVideoInfos">
                         <div id="criticVideoName">
-                            <h3><span>By : </span><a href="{{ path('show_influencer', {'id': critic.influencer.id})}}">{{critic.influencer}}</a></h3>
+                            <h3><span>By : </span><a href="{{ path('show_influencer', {'slug': critic.influencer.slug})}}">{{critic.influencer}}</a></h3>
 
-                            <a class="portraitLink" href="{{ path('show_influencer', {'id': critic.influencer.id})}}">
+                            <a class="portraitLink" href="{{ path('show_influencer', {'slug': critic.influencer.slug})}}">
                             {% if critic.influencer.photo %}
                                 <img src="/uploads/photos/influPhotos/{{critic.influencer.photo}}" alt="{{critic.influencer}}-picture">
                             {% else %}

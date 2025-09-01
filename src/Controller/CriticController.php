@@ -4,9 +4,11 @@ namespace App\Controller;
 
 use App\Entity\Piece;
 use App\Entity\Critic;
+use App\Entity\Influencer;
 use App\Form\CriticFormType;
 use App\Repository\PieceRepository;
 use App\Repository\CriticRepository;
+use App\Repository\InfluencerRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -62,13 +64,42 @@ final class CriticController extends AbstractController
 
     // Display random critics by Piece
     #[Route('/critics/random', name: 'random_critics')]
-    public function randomCritics(PieceRepository $pieceRepository): Response
+    public function randomCritics(PieceRepository $pieceRepository, EntityManagerInterface $entityManager): Response
     {
         $IDs = $pieceRepository->getPieceId();
 
         $randomId = $IDs[array_rand($IDs)]['id'];
 
         return $this->redirectToRoute('show_critics', ['id' => $randomId]);
+
+
+        // $influencer = new Influencer();
+
+        // $influencer->setNickName('Influ Test');
+        // $influencer->setBio('Influ Bio Test');
+
+        // $entityManager->persist($influencer);
+        // $entityManager->flush();
+
+        // die();
+
+
+        // $allInflus = $influencerRepository->findAll();
+
+        // foreach ($allInflus as $influ) {
+        //     $slugName = $influ->getNickName();
+        //     $slugNameMin = strtolower($slugName);
+        //     $finalSlug = preg_replace('/\s+/', '-', $slugNameMin);
+
+        //     // var_dump($finalSlug);
+
+        //     $influ->setSlug($finalSlug);
+
+        //     $entityManager->persist($influ);
+        //     $entityManager->flush();
+        // }
+
+        // die();
     }
 
     // > Display critics by Piece

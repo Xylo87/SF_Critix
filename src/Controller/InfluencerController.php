@@ -116,7 +116,7 @@ final class InfluencerController extends AbstractController
     }
 
     // > Display influencer details
-    #[Route('/influencer/{id}', name: 'show_influencer')]
+    #[Route('/influencer/{slug:influencer}', name: 'show_influencer')]
     public function show(Influencer $influencer = null, ApiHttpClient $apiHttpClient): Response
     {
         if (!$influencer) {

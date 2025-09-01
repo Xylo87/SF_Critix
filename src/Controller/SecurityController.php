@@ -613,7 +613,9 @@ class SecurityController extends AbstractController
         $existingComments = $commentRepository->findBy([
             'user' => $user,
         ]);
-        $deletedUser = $userRepository->find(58);
+        $deletedUser = $userRepository->findOneBy([
+            'nickName' => 'Deleted User'
+        ]);
 
         foreach ($existingComments as $existingComment) {
             $existingComment->setUser($deletedUser);

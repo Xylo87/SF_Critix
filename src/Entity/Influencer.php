@@ -2,11 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\InfluencerRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation\Slug;
+use App\Repository\InfluencerRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: InfluencerRepository::class)]
 class Influencer
@@ -45,6 +46,10 @@ class Influencer
      */
     #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'influencers')]
     private Collection $users;
+
+    #[ORM\Column(length: 100, unique: true)]
+    #[Slug(fields: ['nickName'])]
+    private ?string $slug = null;
 
     public function __construct()
     {
@@ -200,5 +205,17 @@ class Influencer
 
         $totalLikes = count($this->users);
         return $totalLikes;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(?string $slug): static
+    {
+        $this->slug = $slug;
+
+        return $this;
     }
 }

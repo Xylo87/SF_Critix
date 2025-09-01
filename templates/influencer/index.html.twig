@@ -16,14 +16,14 @@
         {% for influencer in influencers %}
             <section id="oneInfluencerList">
                 
-                <h2><a href="{{ path('show_influencer', {'id': influencer.id})}}">{{influencer}}</a></h2>
+                <h2><a href="{{ path('show_influencer', {'slug': influencer.slug})}}">{{influencer}}</a></h2>
 
                 {# > If Influencer's real name is known #}
                 {% if influencer.realName and influencer != influencer.realName %}
                     <h3>({{influencer.realname}})</h3>
                 {% endif %}
                
-                <a href="{{ path('show_influencer', {'id': influencer.id})}}">
+                <a href="{{ path('show_influencer', {'slug': influencer.slug})}}">
 
                 {% if influencer.photo %}
                     <img src="/uploads/photos/influPhotos/{{influencer.photo}}" alt="{{influencer}}-picture">

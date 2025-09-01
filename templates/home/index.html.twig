@@ -102,11 +102,11 @@
 
                 <div id="oneInfluencerListHome">
                 
-                    <a href="{{ path('show_influencer', {'id': influencer.id})}}">
+                    <a href="{{ path('show_influencer', {'slug': influencer.slug})}}">
                         <img src="/uploads/photos/influPhotos/{{influencer.photo}}" alt="{{influencer}}-picture">
                     </a>
 
-                    <h3><a href="{{ path('show_influencer', {'id': influencer.id})}}">{{influencer}}</a></h3>
+                    <h3><a href="{{ path('show_influencer', {'slug': influencer.slug})}}">{{influencer}}</a></h3>
 
                     {# > If Influencer's real name is known #}
                     {% if influencer.realName and influencer != influencer.realName %}

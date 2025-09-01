@@ -161,7 +161,7 @@ CREATE TABLE IF NOT EXISTS `doctrine_migration_versions` (
   PRIMARY KEY (`version`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
--- Listage des données de la table sfcritix.doctrine_migration_versions : ~0 rows (environ)
+-- Listage des données de la table sfcritix.doctrine_migration_versions : ~1 rows (environ)
 INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
 	('DoctrineMigrations\\Version20250218150339', '2025-02-18 16:03:49', 274);
 
@@ -185,32 +185,34 @@ CREATE TABLE IF NOT EXISTS `influencer` (
   `real_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `photo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `bio` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `slug` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UNIQ_3D9F8CA3989D9B62` (`slug`)
+) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table sfcritix.influencer : ~21 rows (environ)
-INSERT INTO `influencer` (`id`, `nick_name`, `real_name`, `photo`, `bio`) VALUES
-	(2, 'ExServ', 'Benoît Reinier', 'influ-ExServ-67b769a27f05d.webp', 'Since 2010, ExServ has been providing \'From Software\' video game guides, tests and news analysis. A former video game journalist, he now works as an independant since 2016 and divides his time between his YouTube channel, the podcast \'Fin du Game\' and writing books for \'Third Editions\'.'),
-	(12, 'Carole Quintaine', 'Carole Quintaine', 'influ-Carole-Quintaine-67b769c9dbc25.jpg', 'Carole is a superhero who wears a cape and a bat mask. And she\'s also on YouTube to talk about video games.'),
-	(17, 'Clapman', NULL, 'influ-Clapman-67b769e3a92ac.jpg', 'Guillaume, Film/TV Series and Video Games video-maker on Youtube.'),
-	(41, 'theneedledrop', 'Anthony Fantano', 'influ-Anthony-Fantano-67ed9caf1cdc2.jpg', '"The Internet\'s busiest music nerd."'),
-	(42, 'Joseph Anderson', NULL, NULL, 'In-depth video game reviews and critiques, with a sharp focus on gameplay and narrative where applicable.'),
-	(43, 'IamYunie', NULL, 'influ-iAmYunie-67eda517dd8d9.jpg', 'Lead UX/UI Designer | Content Creator | Passionate about video games.'),
-	(44, 'Loudic', NULL, 'influ-Loudic-67ed0ab2d4200.png', '"Touch the withered arm and travel to the Realm of Shadow, i will not be far behind."'),
-	(45, 'Playmoo', NULL, NULL, '"Helping hands on Souls-Like and reviews!"'),
-	(46, 'ACG  / Angry Centaur Gaming', 'Jeremy Penter', NULL, '"I buy every game I review."'),
-	(47, 'Le Fossoyeur de Films', 'François Theurel', 'influ-LeFossoyeurDeFilms-67eeaf96981bf.jpg', '"Le Fossoyeur" likes to explore the mysteries of cinema and enjoy a good cup of coffee along the way.'),
-	(48, 'Merej', NULL, 'influ-Merej-67eeafb278fa9.jpg', '"The film-loving neighbour."'),
-	(49, 'Regelegorila', NULL, 'influ-Regelegorila-67eda8115faf6.jpg', 'Youtuber with a passion for cinema and TV series.'),
-	(50, 'Karsten Runquist', NULL, 'influ-KarstenRunquist-67eda6de0a79e.jpg', '"Talking about the movies • Los Angeles"'),
-	(51, 'Captain Popcorn', NULL, 'influ-CaptainPopCorn-67eda41575c9d.jpg', 'Captain Popcorn is a channel of reviews, theories, analyses and opinions on films and series.'),
-	(53, 'deep cuts', 'Oliver Kemp', 'influ-OliverKemp-67eed26a48f84.jpg', 'A channel dedicated to music, for lovers of music! Discussions on genres, guides to band discographies and commenting on the  ever-changing landscape of modern music.'),
-	(54, 'Volksgeist', 'Philip D’amico', 'influ-Volksgeist-67eed68633209.jpg', '"I’m Philip and this is volksgeist. I’m here to share my love of music and talk about all the ways music can change the world."'),
-	(56, 'Spectrum Pulse', 'Mark Grondin', 'influ-SpectrumPulse-67eede4998478.webp', '"Where we talk about music, movies, art, and culture."'),
-	(57, 'Lie Likes Music', 'Christian Haug Lie', 'influ-LieLikesMusic-67eee67c69618.jpg', '"Fretboard flyer mentor - Oslo, Norway"'),
-	(58, 'Canal Franzo', NULL, 'influ-CanalFranzo-67f24aee2f790.jpg', 'My name is Franzo, and I\'m a writer published by self-publishing houses.'),
-	(59, 'Margaud Liseuse', 'Margaud Quartenoud', 'influ-MargaudQuartenoud-67f254936b13a.jpg', 'Margaud talks mainly about books, and everything that revolves around this universe. There\'s something for everyone. She chats in the comments and it\'s always a nice, relaxing moment.'),
-	(60, 'PeruseProject', NULL, 'influ-PeruseProject-67f25c510203f.jpg', '"I am Regan I like to talk about books."');
+INSERT INTO `influencer` (`id`, `nick_name`, `real_name`, `photo`, `bio`, `slug`) VALUES
+	(2, 'ExServ', 'Benoît Reinier', 'influ-ExServ-67b769a27f05d.webp', 'Since 2010, ExServ has been providing \'From Software\' video game guides, tests and news analysis. A former video game journalist, he now works as an independant since 2016 and divides his time between his YouTube channel, the podcast \'Fin du Game\' and writing books for \'Third Editions\'.', 'exserv'),
+	(12, 'Carole Quintaine', 'Carole Quintaine', 'influ-Carole-Quintaine-67b769c9dbc25.jpg', 'Carole is a superhero who wears a cape and a bat mask. And she\'s also on YouTube to talk about video games.', 'carole-quintaine'),
+	(17, 'Clapman', NULL, 'influ-Clapman-67b769e3a92ac.jpg', 'Guillaume, Film/TV Series and Video Games video-maker on Youtube.', 'clapman'),
+	(41, 'theneedledrop', 'Anthony Fantano', 'influ-Anthony-Fantano-67ed9caf1cdc2.jpg', '"The Internet\'s busiest music nerd."', 'theneedledrop'),
+	(42, 'Joseph Anderson', NULL, NULL, 'In-depth video game reviews and critiques, with a sharp focus on gameplay and narrative where applicable.', 'joseph-anderson'),
+	(43, 'IamYunie', NULL, 'influ-iAmYunie-67eda517dd8d9.jpg', 'Lead UX/UI Designer | Content Creator | Passionate about video games.', 'iamyunie'),
+	(44, 'Loudic', NULL, 'influ-Loudic-67ed0ab2d4200.png', '"Touch the withered arm and travel to the Realm of Shadow, i will not be far behind."', 'loudic'),
+	(45, 'Playmoo', NULL, NULL, '"Helping hands on Souls-Like and reviews!"', 'playmoo'),
+	(46, 'ACG  / Angry Centaur Gaming', 'Jeremy Penter', NULL, '"I buy every game I review."', 'acg-angry-centaur-gaming'),
+	(47, 'Le Fossoyeur de Films', 'François Theurel', 'influ-LeFossoyeurDeFilms-67eeaf96981bf.jpg', '"Le Fossoyeur" likes to explore the mysteries of cinema and enjoy a good cup of coffee along the way.', 'le-fossoyeur-de-films'),
+	(48, 'Merej', NULL, 'influ-Merej-67eeafb278fa9.jpg', '"The film-loving neighbour."', 'merej'),
+	(49, 'Regelegorila', NULL, 'influ-Regelegorila-67eda8115faf6.jpg', 'Youtuber with a passion for cinema and TV series.', 'regelegorila'),
+	(50, 'Karsten Runquist', NULL, 'influ-KarstenRunquist-67eda6de0a79e.jpg', '"Talking about the movies • Los Angeles"', 'karsten-runquist'),
+	(51, 'Captain Popcorn', NULL, 'influ-CaptainPopCorn-67eda41575c9d.jpg', 'Captain Popcorn is a channel of reviews, theories, analyses and opinions on films and series.', 'captain-popcorn'),
+	(53, 'deep cuts', 'Oliver Kemp', 'influ-OliverKemp-67eed26a48f84.jpg', 'A channel dedicated to music, for lovers of music! Discussions on genres, guides to band discographies and commenting on the  ever-changing landscape of modern music.', 'deep-cuts'),
+	(54, 'Volksgeist', 'Philip D’amico', 'influ-Volksgeist-67eed68633209.jpg', '"I’m Philip and this is volksgeist. I’m here to share my love of music and talk about all the ways music can change the world."', 'volksgeist'),
+	(56, 'Spectrum Pulse', 'Mark Grondin', 'influ-SpectrumPulse-67eede4998478.webp', '"Where we talk about music, movies, art, and culture."', 'spectrum-pulse'),
+	(57, 'Lie Likes Music', 'Christian Haug Lie', 'influ-LieLikesMusic-67eee67c69618.jpg', '"Fretboard flyer mentor - Oslo, Norway"', 'lie-likes-music'),
+	(58, 'Canal Franzo', NULL, 'influ-CanalFranzo-67f24aee2f790.jpg', '"My name is Franzo, and I\'m a writer published by self-publishing houses."', 'canal-franzo'),
+	(59, 'Margaud Liseuse', 'Margaud Quartenoud', 'influ-MargaudQuartenoud-67f254936b13a.jpg', 'Margaud talks mainly about books, and everything that revolves around this universe. There\'s something for everyone. She chats in the comments and it\'s always a nice, relaxing moment.', 'margaud-liseuse'),
+	(60, 'PeruseProject', NULL, 'influ-PeruseProject-67f25c510203f.jpg', '"I am Regan I like to talk about books."', 'peruseproject');
 
 -- Listage de la structure de table sfcritix. influencer_user
 CREATE TABLE IF NOT EXISTS `influencer_user` (
@@ -223,7 +225,7 @@ CREATE TABLE IF NOT EXISTS `influencer_user` (
   CONSTRAINT `FK_DC19FDE4A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfcritix.influencer_user : ~4 rows (environ)
+-- Listage des données de la table sfcritix.influencer_user : ~3 rows (environ)
 INSERT INTO `influencer_user` (`influencer_id`, `user_id`) VALUES
 	(12, 36),
 	(17, 35),

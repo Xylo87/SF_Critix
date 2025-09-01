@@ -21,6 +21,7 @@ class Opinion
     private ?Piece $piece = null;
 
     #[ORM\ManyToOne(inversedBy: 'opinions')]
+    #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
     public function getId(): ?int

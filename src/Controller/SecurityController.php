@@ -10,6 +10,8 @@ use App\Entity\Opinion;
 use App\Entity\Agreement;
 use App\Entity\Influencer;
 use App\Form\UserFormType;
+use App\Repository\UserRepository;
+use App\Repository\CommentRepository;
 use App\Repository\OpinionRepository;
 use App\Repository\AgreementRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -17,11 +19,11 @@ use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Csrf\CsrfToken;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
-use Symfony\Component\Security\Csrf\CsrfToken;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
@@ -597,7 +599,7 @@ class SecurityController extends AbstractController
 
     // -> Delete User's account
     #[Route('/user/delete', name: 'delete_user')]
-    public function delete(EntityManagerInterface $entityManager, Security $security, TokenStorageInterface $tokenStorage)
+    public function delete(EntityManagerInterface $entityManager, Security $security, TokenStorageInterface $tokenStorage, CommentRepository $commentRepository, UserRepository $userRepository)
     {
         $user = $security->getUser();
 
@@ -607,6 +609,17 @@ class SecurityController extends AbstractController
             return $this->redirectToRoute('app_login');
         }
 
+        // > Anonymizing user's comments
+        $existingComments = $commentRepository->findBy([
+            'user' => $user,
+        ]);
+        $deletedUser = $userRepository->find(58);
+
+        foreach ($existingComments as $existingComment) {
+            $existingComment->setUser($deletedUser);
+        }
+
+        
         // > Delete User's custom profile picture
         $profilePictureName = $user->getProfilePicture();
 

@@ -97,7 +97,7 @@
         {% for influencer in user.influencers %}
 
             <div id="oneUserInflu">
-                <a href="{{ path('show_influencer', {'id': influencer.id})}}">
+                <a href="{{ path('show_influencer', {'slug': influencer.slug})}}">
                 
                 {% if influencer.photo %}
                     <img src="/uploads/photos/influPhotos/{{influencer.photo}}"
@@ -108,7 +108,7 @@
                 {% endif %}
 
                 </a>
-                <a href="{{ path('show_influencer', {'id': influencer.id})}}">{{influencer}}</a>
+                <a href="{{ path('show_influencer', {'slug': influencer.slug})}}">{{influencer}}</a>
 
                 <i class="fas fa-heart"></i>
             </div>

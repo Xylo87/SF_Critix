@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `agreement` (
   CONSTRAINT `FK_2E655A24C7BE2830` FOREIGN KEY (`critic_id`) REFERENCES `critic` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=172 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfcritix.agreement : ~10 rows (environ)
+-- Listage des données de la table sfcritix.agreement : ~8 rows (environ)
 INSERT INTO `agreement` (`id`, `is_ok`, `critic_id`, `user_id`) VALUES
 	(155, 0, 44, 36),
 	(159, 0, 49, 36),
@@ -161,7 +161,7 @@ CREATE TABLE IF NOT EXISTS `doctrine_migration_versions` (
   PRIMARY KEY (`version`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
--- Listage des données de la table sfcritix.doctrine_migration_versions : ~1 rows (environ)
+-- Listage des données de la table sfcritix.doctrine_migration_versions : ~0 rows (environ)
 INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
 	('DoctrineMigrations\\Version20250218150339', '2025-02-18 16:03:49', 274);
 
@@ -225,7 +225,7 @@ CREATE TABLE IF NOT EXISTS `influencer_user` (
   CONSTRAINT `FK_DC19FDE4A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfcritix.influencer_user : ~3 rows (environ)
+-- Listage des données de la table sfcritix.influencer_user : ~4 rows (environ)
 INSERT INTO `influencer_user` (`influencer_id`, `user_id`) VALUES
 	(12, 36),
 	(17, 35),
@@ -389,18 +389,21 @@ CREATE TABLE IF NOT EXISTS `user` (
   `bio` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `account_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `is_verified` tinyint(1) NOT NULL,
+  `slug` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_8D93D649E7927C74` (`email`),
-  UNIQUE KEY `UNIQ_8D93D649A045A5E9` (`nick_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  UNIQUE KEY `UNIQ_8D93D649A045A5E9` (`nick_name`),
+  UNIQUE KEY `UNIQ_8D93D649989D9B62` (`slug`)
+) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfcritix.user : ~5 rows (environ)
-INSERT INTO `user` (`id`, `email`, `roles`, `password`, `nick_name`, `profile_picture`, `status`, `bio`, `account_date`, `is_verified`) VALUES
-	(35, 'our@exemple.com', '[]', '$2y$13$Xt4Q1F4qrjamc1NT8P7DYeMJSkd06a.CS5kRT7aFNJ/agrCpXlOk6', 'Our', 'Onizuka-grimace-67ce0177cce60.webp', 'Les "Infiltrés" ont tout copié sur "Infernal Affairs"', '"Si tu veux m\'parler envoie moi un...FAX !!"', '2025-03-09 21:54:50', 0),
-	(36, 'sparkster@exemple.com', '["ROLE_MODO"]', '$2y$13$JLkesG6lVl2qcDnSjJ0FPOVkIcMWzGDvlmDa2XdCoRgNj4oXSpRZi', 'Sparkster', 'Sparkster-67d090a1a590d.jpg', 'isOk', 'Renard à Jet-Pack.\r\nTous les matins je vois Joe Hallenbeck dans le miroir.', '2025-03-11 20:33:05', 0),
-	(41, 'xylo@exemple.com', '["ROLE_ADMIN"]', '$2y$13$qkJGstRg.qngODX1qTT1wuK2EEiHqKtCwylh0ZtwE7imLaRy32Dry', 'Xylo', NULL, NULL, NULL, '2025-04-10 19:50:30', 0),
-	(57, 'isimorn@exemple.com', '[]', '$2y$13$sM5c2OKE.G1JI7eMuz1EX.Pu5yqJehSeEja/w12Nk3jqM.T8/BPa6', 'Isimorn', NULL, NULL, NULL, '2025-09-01 12:14:18', 0),
-	(58, 'deleteduser@exemple.com', '[]', 'XXXXXXXXXXXX', 'Deleted User', NULL, NULL, NULL, '2025-09-01 13:07:34', 0);
+-- Listage des données de la table sfcritix.user : ~6 rows (environ)
+INSERT INTO `user` (`id`, `email`, `roles`, `password`, `nick_name`, `profile_picture`, `status`, `bio`, `account_date`, `is_verified`, `slug`) VALUES
+	(35, 'our@exemple.com', '[]', '$2y$13$Xt4Q1F4qrjamc1NT8P7DYeMJSkd06a.CS5kRT7aFNJ/agrCpXlOk6', 'Our', 'Onizuka-grimace-67ce0177cce60.webp', 'Les "Infiltrés" ont tout copié sur "Infernal Affairs"', '"Si tu veux m\'parler envoie moi un...FAX !!"', '2025-03-09 21:54:50', 0, 'our'),
+	(36, 'sparkster@exemple.com', '["ROLE_MODO"]', '$2y$13$JLkesG6lVl2qcDnSjJ0FPOVkIcMWzGDvlmDa2XdCoRgNj4oXSpRZi', 'Sparkster', 'Sparkster-67d090a1a590d.jpg', 'isOk', 'Renard à Jet-Pack.\r\nTous les matins je vois Joe Hallenbeck dans le miroir.', '2025-03-11 20:33:05', 0, 'sparkster'),
+	(41, 'xylo@exemple.com', '["ROLE_ADMIN"]', '$2y$13$qkJGstRg.qngODX1qTT1wuK2EEiHqKtCwylh0ZtwE7imLaRy32Dry', 'Xylo', NULL, NULL, NULL, '2025-04-10 19:50:30', 0, 'xylo'),
+	(57, 'isimorn@exemple.com', '[]', '$2y$13$sM5c2OKE.G1JI7eMuz1EX.Pu5yqJehSeEja/w12Nk3jqM.T8/BPa6', 'Isimorn', NULL, NULL, NULL, '2025-09-01 12:14:18', 0, 'isimorn'),
+	(58, 'deleteduser@exemple.com', '[]', 'XXXXXXXXXXXX', 'Deleted User', NULL, NULL, NULL, '2025-09-01 13:07:34', 0, 'delete-user'),
+	(59, 'bansheebot@exemple.com', '[]', '$2y$13$onddqbSG0OMAbSWK269tbOTaatNUb6KY3PHDlRI2XCcUDRh9XbFCy', 'Bansheebot 2', NULL, NULL, NULL, '2025-09-02 01:28:00', 0, 'bansheebot-2');
 
 -- Listage de la structure de table sfcritix. user_piece
 CREATE TABLE IF NOT EXISTS `user_piece` (

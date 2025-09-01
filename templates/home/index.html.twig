@@ -138,13 +138,13 @@
                 
                     <div id="vipCommentContentHome">
                         {% if vipComment.user.profilePicture %}
-                            <a class="ppLink" href="{{ path('show_user', {'id': vipComment.user.id})}}"><img src="/uploads/photos/userPhotos/{{vipComment.user.profilePicture}}" alt="{{vipComment.user}}-profile-picture"></a>
+                            <a class="ppLink" href="{{ path('show_user', {'slug': vipComment.user.slug})}}"><img src="/uploads/photos/userPhotos/{{vipComment.user.profilePicture}}" alt="{{vipComment.user}}-profile-picture"></a>
                         {% else %}
-                            <a class="ppLink" href="{{ path('show_user', {'id': vipComment.user.id})}}"><img src="/uploads/photos/userPhotos/user-default.png" alt="user-default-profile-picture"></a>
+                            <a class="ppLink" href="{{ path('show_user', {'slug': vipComment.user.slug})}}"><img src="/uploads/photos/userPhotos/user-default.png" alt="user-default-profile-picture"></a>
                         {% endif %}
 
                         <div class="mainComment">
-                            <a href="{{ path('show_user', {'id': vipComment.user.id})}}"><strong>{{vipComment.user}}</a> - </strong>
+                            <a href="{{ path('show_user', {'slug': vipComment.user.slug})}}"><strong>{{vipComment.user}}</a> - </strong>
                             <span>{{vipComment.datePostENG}}</span><br>
 
                             <div id="vipCommentUserScoreHome">

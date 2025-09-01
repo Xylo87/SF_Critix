@@ -279,13 +279,13 @@
 
                                     {# > User PP display #}
                                     {% if comment.user.profilePicture %}
-                                        <a class="ppLink" href="{{ path('show_user', {'id': comment.user.id})}}"><img src="/uploads/photos/userPhotos/{{comment.user.profilePicture}}" alt="{{comment.user}}-profile-picture"></a>
+                                        <a class="ppLink" href="{{ path('show_user', {'slug': comment.user.slug})}}"><img src="/uploads/photos/userPhotos/{{comment.user.profilePicture}}" alt="{{comment.user}}-profile-picture"></a>
                                     {% else %}
-                                        <a class="ppLink" href="{{ path('show_user', {'id': comment.user.id})}}"><img src="/uploads/photos/userPhotos/user-default.png" alt="user-default-profile-picture"></a>
+                                        <a class="ppLink" href="{{ path('show_user', {'slug': comment.user.slug})}}"><img src="/uploads/photos/userPhotos/user-default.png" alt="user-default-profile-picture"></a>
                                     {% endif %}
 
                                     <div class="mainComment">
-                                        <a href="{{ path('show_user', {'id': comment.user.id})}}"><strong>{{comment.user}}</a> - </strong>
+                                        <a href="{{ path('show_user', {'slug': comment.user.slug})}}"><strong>{{comment.user}}</a> - </strong>
                                         <span>{{comment.datePostENG}}</span>
                                         <p>{{comment}}</p>
                                     </div>
@@ -336,13 +336,13 @@
 
                                     <div id="vipCommentContent">
                                         {% if comment.user.profilePicture %}
-                                            <a class="ppLink" href="{{ path('show_user', {'id': comment.user.id})}}"><img src="/uploads/photos/userPhotos/{{comment.user.profilePicture}}" alt="{{comment.user}}-profile-picture"></a>
+                                            <a class="ppLink" href="{{ path('show_user', {'slug': comment.user.slug})}}"><img src="/uploads/photos/userPhotos/{{comment.user.profilePicture}}" alt="{{comment.user}}-profile-picture"></a>
                                         {% else %}
-                                            <a class="ppLink" href="{{ path('show_user', {'id': comment.user.id})}}"><img src="/uploads/photos/userPhotos/user-default.png" alt="user-default-profile-picture"></a>
+                                            <a class="ppLink" href="{{ path('show_user', {'slug': comment.user.slug})}}"><img src="/uploads/photos/userPhotos/user-default.png" alt="user-default-profile-picture"></a>
                                         {% endif %}
 
                                         <div class="mainComment">
-                                            <a href="{{ path('show_user', {'id': comment.user.id})}}"><strong>{{comment.user}}</a> - </strong>
+                                            <a href="{{ path('show_user', {'slug': comment.user.slug})}}"><strong>{{comment.user}}</a> - </strong>
                                             <span>{{comment.datePostENG}}</span><br>
 
                                             <div id="vipCommentUserScore">

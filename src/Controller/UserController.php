@@ -10,7 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 final class UserController extends AbstractController
 {
     // > Display a User page
-    #[Route('/user/{id}', name: 'show_user')]
+    #[Route('/user/{slug:user}', name: 'show_user')]
     public function showUser(User $user = null): Response
     {
         if (!$user) {

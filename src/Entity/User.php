@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
+use Gedmo\Mapping\Annotation\Slug;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -90,6 +91,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\ManyToMany(targetEntity: Piece::class, inversedBy: 'users')]
     private Collection $pieces;
+
+    #[ORM\Column(length: 100, unique: true)]
+    #[Slug(fields: ['nickName'])]
+    private ?string $slug = null;
 
     public function __construct()
     {
@@ -432,6 +437,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function removePiece(Piece $piece): static
     {
         $this->pieces->removeElement($piece);
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(?string $slug): static
+    {
+        $this->slug = $slug;
 
         return $this;
     }

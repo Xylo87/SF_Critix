@@ -49,17 +49,19 @@ INSERT INTO `agreement` (`id`, `is_ok`, `critic_id`, `user_id`) VALUES
 CREATE TABLE IF NOT EXISTS `category` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `slug` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UNIQ_64C19C1989D9B62` (`slug`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table sfcritix.category : ~6 rows (environ)
-INSERT INTO `category` (`id`, `name`) VALUES
-	(1, 'Games'),
-	(2, 'Movies'),
-	(3, 'TV Shows'),
-	(4, 'Music'),
-	(5, 'Books'),
-	(6, 'Mangas/Comics');
+INSERT INTO `category` (`id`, `name`, `slug`) VALUES
+	(1, 'Games', 'games'),
+	(2, 'Movies', 'movies'),
+	(3, 'TV Shows', 'tv-shows'),
+	(4, 'Music', 'music'),
+	(5, 'Books', 'books'),
+	(6, 'Mangas/Comics', 'mangas-comics');
 
 -- Listage de la structure de table sfcritix. comment
 CREATE TABLE IF NOT EXISTS `comment` (
@@ -159,7 +161,7 @@ CREATE TABLE IF NOT EXISTS `doctrine_migration_versions` (
   PRIMARY KEY (`version`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
--- Listage des données de la table sfcritix.doctrine_migration_versions : ~1 rows (environ)
+-- Listage des données de la table sfcritix.doctrine_migration_versions : ~0 rows (environ)
 INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
 	('DoctrineMigrations\\Version20250218150339', '2025-02-18 16:03:49', 274);
 
@@ -221,7 +223,7 @@ CREATE TABLE IF NOT EXISTS `influencer_user` (
   CONSTRAINT `FK_DC19FDE4A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfcritix.influencer_user : ~3 rows (environ)
+-- Listage des données de la table sfcritix.influencer_user : ~4 rows (environ)
 INSERT INTO `influencer_user` (`influencer_id`, `user_id`) VALUES
 	(12, 36),
 	(17, 35),

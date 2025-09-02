@@ -1,25 +1,48 @@
-
 services:
-###> doctrine/doctrine-bundle ###
-  database:
-    image: postgres:${POSTGRES_VERSION:-16}-alpine
+  xylodb:
+    image: mariadb:latest
+    container_name: xylodb
+    ports:
+      - "3306:3306"
     environment:
-      POSTGRES_DB: ${POSTGRES_DB:-app}
-      # You should definitely change the password in production
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-!ChangeMe!}
-      POSTGRES_USER: ${POSTGRES_USER:-app}
-    healthcheck:
-      test: ["CMD", "pg_isready", "-d", "${POSTGRES_DB:-app}", "-U", "${POSTGRES_USER:-app}"]
-      timeout: 5s
-      retries: 5
-      start_period: 60s
+      MARIADB_ROOT_PASSWORD: ${DB_PASSWORD}
     volumes:
-      - database_data:/var/lib/postgresql/data:rw
-      # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
-      # - ./docker/db/data:/var/lib/postgresql/data:rw
-###< doctrine/doctrine-bundle ###
+      - databasedata:/var/lib/mysql
+      - ./sfcritix.sql:/docker-entrypoint-initdb.d/schema.sql:ro
+    networks:
+      - xylo_network
+
+  fpm:
+    container_name: fpm
+    build: # Info to build the Docker image
+      context: . # Specify where the Dockerfile is located (e.g. in the root directory of the project)
+      dockerfile: ./docker/Dockerfile-fpm # Specify the name of the Dockerfile
+    environment: # You can use this section to set environment variables. But you can also use the .env file.
+     APP_ENV: ${APP_ENV:-dev}
+     DATABASE_URL: ${DATABASE_URL}
+    volumes:
+      .:/var/www/project
+    depends_on:
+      - xylodb
+    networks:
+      - xylo_network # Docker containers (services) that need to connect to each other should be on the same network.
+
+  nginx:
+    container_name: nginx
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile-nginx
+    ports:
+      - 10302:80 # Ports that are exposed, you can connect to port 8001 to port 80 of the container.
+    volumes:
+      - .:/var/www/project
+    depends_on:
+      - xylodb
+    networks:
+      - xylo_network
 
 volumes:
-###> doctrine/doctrine-bundle ###
-  database_data:
-###< doctrine/doctrine-bundle ###
+  databasedata:
+
+networks:
+  xylo_network:

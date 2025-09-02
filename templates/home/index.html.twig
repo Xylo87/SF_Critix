@@ -20,16 +20,16 @@
             {% for piece in pieces|slice(0, 3) %}
                 <div id="onePieceListHome">
                     {% if piece.category == "Music" %}
-                    <a href="{{ path('infos_piece', {'id': piece.id})}}">
+                    <a href="{{ path('infos_piece', {'slug': piece.slug})}}">
                         <img id="musicPieceListHome" src="/uploads/images/{{piece.poster}}" alt="{{piece}}-visual">
                     </a>
                     {% else %}
-                    <a href="{{ path('infos_piece', {'id': piece.id})}}">
+                    <a href="{{ path('infos_piece', {'slug': piece.slug})}}">
                         <img src="/uploads/images/{{piece.poster}}" alt="{{piece}}-visual">
                     </a>
                     {% endif %}
 
-                    <h3><a href="{{ path('infos_piece', {'id': piece.id})}}">{{piece}}</a></h3>
+                    <h3><a href="{{ path('infos_piece', {'slug': piece.slug})}}">{{piece}}</a></h3>
                     <i>#{{piece.category}}</i>
 
                     <div id="onePieceListScoreContainerHome">
@@ -193,7 +193,7 @@
                     </div>
                 </article>
 
-            <h3>On : <a href="{{ path('show_critics', {'id': vipComment.critic.piece.id})}}#critic-{{vipComment.critic.id}}">{{vipComment.critic.piece}}</a></h3>
+            <h3>On : <a href="{{ path('show_critics', {'slug': vipComment.critic.piece.slug})}}#critic-{{vipComment.critic.id}}">{{vipComment.critic.piece}}</a></h3>
             <i>#{{vipComment.critic.piece.category}}</i>
             </div>
             {% endfor %}

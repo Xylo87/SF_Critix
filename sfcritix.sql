@@ -282,7 +282,7 @@ CREATE TABLE IF NOT EXISTS `piece` (
   `category_id` int NOT NULL,
   `is_upcoming` tinyint(1) DEFAULT NULL,
   `poster` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `slug` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_44CA0B23989D9B62` (`slug`),
   KEY `IDX_44CA0B2312469DE2` (`category_id`),

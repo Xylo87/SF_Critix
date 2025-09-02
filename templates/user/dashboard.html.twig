@@ -62,18 +62,18 @@
 
                         {% if piece.category == "Music" %}
                         
-                            <a href="{{ path('show_critics', {'id': piece.id})}}"><img id="musicCriticsUserDashSaved" src="/uploads/images/{{piece.poster}}" 
+                            <a href="{{ path('show_critics', {'slug': piece.slug})}}"><img id="musicCriticsUserDashSaved" src="/uploads/images/{{piece.poster}}" 
                             alt="{{piece}}-visual"></a>
 
                         {% else %}
                             
-                            <a href="{{ path('show_critics', {'id': piece.id})}}"><img src="/uploads/images/{{piece.poster}}" 
+                            <a href="{{ path('show_critics', {'slug': piece.slug})}}"><img src="/uploads/images/{{piece.poster}}" 
                             alt="{{piece}}-visual"></a>
 
                         {% endif %}
 
 
-                            <a href="{{ path('show_critics', {'id': piece.id})}}">{{piece}}</a>
+                            <a href="{{ path('show_critics', {'slug': piece.slug})}}">{{piece}}</a>
                             <i>#{{piece.category}}</i>
 
                         {# {% if piece.critics|length > 0 %}
@@ -121,18 +121,18 @@
 
             {% if opinion.piece.category == "Music" %}
             
-                <a href="{{ path('infos_piece', {'id': opinion.piece.id})}}"><img id="musicCriticsUserDash" src="/uploads/images/{{opinion.piece.poster}}"
+                <a href="{{ path('infos_piece', {'slug': opinion.piece.slug})}}"><img id="musicCriticsUserDash" src="/uploads/images/{{opinion.piece.poster}}"
                 alt="{{opinion.piece}}-visual"></a>
             
             {% else %}
                 
-                <a href="{{ path('infos_piece', {'id': opinion.piece.id})}}"><img src="/uploads/images/{{opinion.piece.poster}}"
+                <a href="{{ path('infos_piece', {'slug': opinion.piece.slug})}}"><img src="/uploads/images/{{opinion.piece.poster}}"
                 alt="{{opinion.piece}}-visual"></a>
             
             {% endif %}
 
 
-            <a href="{{ path('infos_piece', {'id': opinion.piece.id})}}">{{opinion.piece}}</a>
+            <a href="{{ path('infos_piece', {'slug': opinion.piece.slug})}}">{{opinion.piece}}</a>
 
             <i>#{{opinion.piece.category}}</i>
 
@@ -184,7 +184,7 @@
                 {% endif %}
 
                 </a>
-                <a href="{{ path('show_influencer', {'slug': influencer.slug})}}">{{influencer}}</a>
+                <a href="{{ path('show_influencer', {'slug': influencer.slug})}}">{{influencer}}</slug
 
                 {# <i class="fas fa-heart"></i> #}
 

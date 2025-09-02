@@ -66,45 +66,15 @@ final class CriticController extends AbstractController
     #[Route('/critics/random', name: 'random_critics')]
     public function randomCritics(PieceRepository $pieceRepository, EntityManagerInterface $entityManager): Response
     {
-        $IDs = $pieceRepository->getPieceId();
+        $slugs = $pieceRepository->getPieceSlug();
 
-        $randomId = $IDs[array_rand($IDs)]['id'];
+        $randomSlug = $slugs[array_rand($slugs)]['slug'];
 
-        return $this->redirectToRoute('show_critics', ['id' => $randomId]);
-
-
-        // $influencer = new Piece();
-
-        // $influencer->setNickName('Influ Test');
-        // $influencer->setBio('Influ Bio Test');
-
-        // $entityManager->persist($influencer);
-        // $entityManager->flush();
-
-        // die();
-
-
-        // $allPieces = $pieceRepository->findAll();
-
-        // foreach ($allPieces as $piece) {
-        //     $slugName = $piece->getTitle();
-        //     $slugNameMin = strtolower($slugName);
-        //     $finalSlug = preg_replace('/[^a-zA-Z0-9]/', ' ', $slugNameMin);
-        //     $finalSlug2 = preg_replace('/\s+/', '-', $finalSlug);
-
-        //     // var_dump($finalSlug2);
-
-        //     $piece->setSlug($finalSlug);
-
-        //     $entityManager->persist($piece);
-        //     $entityManager->flush();
-        // }
-
-        // die();
+        return $this->redirectToRoute('show_critics', ['slug' => $randomSlug]);
     }
 
     // > Display critics by Piece
-    #[Route('/critics/{id}', name: 'show_critics')]
+    #[Route('/critics/{slug:piece}', name: 'show_critics')]
     public function showCritics(Piece $piece = null): Response
     {
         if (!$piece) {

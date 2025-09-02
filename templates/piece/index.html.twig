@@ -16,15 +16,15 @@
         {% for piece in category.pieces|sort((a, b) => b.releaseDate <=> a.releaseDate) %}
 
             <section id="onePieceList">
-                <h2><a href="{{ path('show_critics', {'id': piece.id})}}">{{piece}}</a></h2>
+                <h2><a href="{{ path('show_critics', {'slug': piece.slug})}}">{{piece}}</a></h2>
 
                 {% if piece.category == "Music" %}
-                <a href="{{ path('show_critics', {'id': piece.id})}}">
+                <a href="{{ path('show_critics', {'slug': piece.slug})}}">
                     <img id="musicPieceList" src="/uploads/images/{{piece.poster}}" alt="{{piece}}-visual">
                 </a>
 
                 {% else %}
-                <a href="{{ path('show_critics', {'id': piece.id})}}">
+                <a href="{{ path('show_critics', {'slug': piece.slug})}}">
                     <img src="/uploads/images/{{piece.poster}}" alt="{{piece}}-visual">
                 </a>
 

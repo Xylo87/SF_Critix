@@ -41,11 +41,11 @@ class PieceRepository extends ServiceEntityRepository
     //        ;
     //    }
 
-    public function getPieceId()
+    public function getPieceSlug()
    {
 
     return $this->createQueryBuilder('piece')
-        ->select('piece.id')
+        ->select('piece.slug')
         ->getQuery()
         ->getResult();
    }

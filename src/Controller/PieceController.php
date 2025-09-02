@@ -123,7 +123,7 @@ final class PieceController extends AbstractController
     }
 
     // > Display piece details
-    #[Route('/piece/{id}/infos', name: 'infos_piece')]
+    #[Route('/piece/{slug:piece}/infos', name: 'infos_piece')]
     public function infosPiece(Piece $piece = null): Response
     {
         if (!$piece) {

@@ -45,18 +45,18 @@
 
                 {% if opinion.piece.category == "Music" %}
                 
-                    <a href="{{ path('infos_piece', {'id': opinion.piece.id})}}"><img id="musicCriticsUser" src="/uploads/images/{{opinion.piece.poster}}"
+                    <a href="{{ path('infos_piece', {'slug': opinion.piece.slug})}}"><img id="musicCriticsUser" src="/uploads/images/{{opinion.piece.poster}}"
                     alt="{{opinion.piece}}-visual"></a>
                 
                 {% else %}
                     
-                    <a href="{{ path('infos_piece', {'id': opinion.piece.id})}}"><img src="/uploads/images/{{opinion.piece.poster}}"
+                    <a href="{{ path('infos_piece', {'slug': opinion.piece.slug})}}"><img src="/uploads/images/{{opinion.piece.poster}}"
                     alt="{{opinion.piece}}-visual"></a>
                 
                 {% endif %}
                 
                 
-                <a href="{{ path('infos_piece', {'id': opinion.piece.id})}}">{{opinion.piece}}</a>
+                <a href="{{ path('infos_piece', {'slug': opinion.piece.slug})}}">{{opinion.piece}}</a>
 
                 <i>#{{opinion.piece.category}}</i>
 

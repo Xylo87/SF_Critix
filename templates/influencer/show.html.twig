@@ -119,18 +119,18 @@
 
             {% if critic.piece.category == "Music" %}
             
-            <a href="{{ path('show_critics', {'id': critic.piece.id})}}#critic-{{critic.id}}"><img id="musicCriticsInflu" src="/uploads/images/{{critic.piece.poster}}"
+            <a href="{{ path('show_critics', {'slug': critic.piece.slug})}}#critic-{{critic.id}}"><img id="musicCriticsInflu" src="/uploads/images/{{critic.piece.poster}}"
             alt="{{critic.piece}}-visual"></a>
 
             {% else %}
                 
-            <a href="{{ path('show_critics', {'id': critic.piece.id})}}#critic-{{critic.id}}"><img src="/uploads/images/{{critic.piece.poster}}"
+            <a href="{{ path('show_critics', {'slug': critic.piece.slug})}}#critic-{{critic.id}}"><img src="/uploads/images/{{critic.piece.poster}}"
             alt="{{critic.piece}}-visual"></a>
 
             {% endif %}
 
 
-            <a href="{{ path('show_critics', {'id': critic.piece.id})}}#critic-{{critic.id}}">{{critic.piece}}</a>
+            <a href="{{ path('show_critics', {'slug': critic.piece.slug})}}#critic-{{critic.id}}">{{critic.piece}}</a>
 
             <i>#{{critic.piece.category}}</i>
 

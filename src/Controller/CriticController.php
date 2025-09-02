@@ -73,7 +73,7 @@ final class CriticController extends AbstractController
         return $this->redirectToRoute('show_critics', ['id' => $randomId]);
 
 
-        // $influencer = new Influencer();
+        // $influencer = new Piece();
 
         // $influencer->setNickName('Influ Test');
         // $influencer->setBio('Influ Bio Test');
@@ -84,18 +84,19 @@ final class CriticController extends AbstractController
         // die();
 
 
-        // $allInflus = $influencerRepository->findAll();
+        // $allPieces = $pieceRepository->findAll();
 
-        // foreach ($allInflus as $influ) {
-        //     $slugName = $influ->getNickName();
+        // foreach ($allPieces as $piece) {
+        //     $slugName = $piece->getTitle();
         //     $slugNameMin = strtolower($slugName);
-        //     $finalSlug = preg_replace('/\s+/', '-', $slugNameMin);
+        //     $finalSlug = preg_replace('/[^a-zA-Z0-9]/', ' ', $slugNameMin);
+        //     $finalSlug2 = preg_replace('/\s+/', '-', $finalSlug);
 
-        //     // var_dump($finalSlug);
+        //     // var_dump($finalSlug2);
 
-        //     $influ->setSlug($finalSlug);
+        //     $piece->setSlug($finalSlug);
 
-        //     $entityManager->persist($influ);
+        //     $entityManager->persist($piece);
         //     $entityManager->flush();
         // }
 

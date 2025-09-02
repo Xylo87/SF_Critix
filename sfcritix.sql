@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `agreement` (
   CONSTRAINT `FK_2E655A24C7BE2830` FOREIGN KEY (`critic_id`) REFERENCES `critic` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=172 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfcritix.agreement : ~8 rows (environ)
+-- Listage des données de la table sfcritix.agreement : ~10 rows (environ)
 INSERT INTO `agreement` (`id`, `is_ok`, `critic_id`, `user_id`) VALUES
 	(155, 0, 44, 36),
 	(159, 0, 49, 36),
@@ -161,7 +161,7 @@ CREATE TABLE IF NOT EXISTS `doctrine_migration_versions` (
   PRIMARY KEY (`version`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
--- Listage des données de la table sfcritix.doctrine_migration_versions : ~0 rows (environ)
+-- Listage des données de la table sfcritix.doctrine_migration_versions : ~1 rows (environ)
 INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
 	('DoctrineMigrations\\Version20250218150339', '2025-02-18 16:03:49', 274);
 
@@ -225,7 +225,7 @@ CREATE TABLE IF NOT EXISTS `influencer_user` (
   CONSTRAINT `FK_DC19FDE4A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfcritix.influencer_user : ~4 rows (environ)
+-- Listage des données de la table sfcritix.influencer_user : ~3 rows (environ)
 INSERT INTO `influencer_user` (`influencer_id`, `user_id`) VALUES
 	(12, 36),
 	(17, 35),
@@ -282,25 +282,27 @@ CREATE TABLE IF NOT EXISTS `piece` (
   `category_id` int NOT NULL,
   `is_upcoming` tinyint(1) DEFAULT NULL,
   `poster` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
+  UNIQUE KEY `UNIQ_44CA0B23989D9B62` (`slug`),
   KEY `IDX_44CA0B2312469DE2` (`category_id`),
   CONSTRAINT `FK_44CA0B2312469DE2` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table sfcritix.piece : ~12 rows (environ)
-INSERT INTO `piece` (`id`, `title`, `about`, `maker`, `release_date`, `category_id`, `is_upcoming`, `poster`) VALUES
-	(1, 'Dune: Awakening', 'Dune: Awakening is a massively multiplayer online game where players must survive in the desert of Arrakis. It takes place in an open world.', 'Funcom', '2025-01-01 00:00:00', 1, 1, 'games-DuneA-poster-67c0af2463993.png'),
-	(19, 'The Brutalist', 'Escaping post-war Europe, visionary architect László Toth arrives in America to rebuild his life, his work, and his marriage to his wife Erzsébet after being forced apart during wartime by shifting borders and regimes. On his own in a strange new country, László settles in Pennsylvania, where an industrialist recognizes his talent for building.', 'Brady Corbet', '2025-02-12 00:00:00', 2, 0, 'movies-TheBrutalist-67edabfff0677.jpg'),
-	(62, 'Mr. Morale & The Big Steppers', 'Mr. Morale & the Big Steppers is a concept album that analyzes and reflects on his life experiences during his therapy journey. Its lyrics touch on a variety of personal themes, including childhood and generational trauma, infidelity, and celebrity worship.', 'Kendrick Lamar', '2022-05-13 00:00:00', 4, 0, 'music-Mr-Morale-and-TheBigSteppers-poster-67c1da00466e2.jpg'),
-	(63, 'Lies of P', 'Lies of P is a thrilling soulslike that takes the story of Pinocchio, turns it on its head, and sets it against the darkly elegant backdrop of the Belle Epoque era.', 'Neowiz', '2023-09-18 00:00:00', 1, 0, 'games-LiesOfP-poster-67ed99c1ef49d.avif'),
-	(64, 'Monster Hunter Wilds', 'As with other Monster Hunter games, Wilds has the player control a hunter that is part of a guild assigned to explore the Forbidden Lands, a nearly uninhabitable area with multiple biomes and dangerous storms. During their exploration, the hunters are assigned quests to fight large monsters that threaten their group, either by killing or capturing them.', 'Capcom', '2025-02-28 00:00:00', 1, 0, 'games-MHWilds-poster-67ed9b46a88b9.jpg'),
-	(65, 'The Man Who Killed Don Quixote', 'Toby Grummett, a director, is in rural Spain, struggling with the production of a commercial featuring Don Quixote. After an unsuccessful day of shooting, Toby\'s superior, the Boss, introduces him to a Romani street merchant who sells him an old DVD of The Man Who Killed Don Quixote, a film he wrote and directed ten years earlier as a student.', 'Terry Gilliam', '2018-05-19 00:00:00', 2, 0, 'movies-TheManWhoKilledDonQuixote-poster-67eda28b9f4b0.jpg'),
-	(66, 'Mickey 17', 'In the year 2054, Mickey Barnes and his friend Timo join a spaceship crew heading to colonize the ice-planet Niflheim, in order to escape a murderous loan shark.', 'Bong Joon Ho', '2025-02-13 00:00:00', 2, 0, 'movies-Mickey17-poster-67eda19756f56.jpg'),
-	(69, 'Skeleton Tree', 'Skeleton Tree is the sixteenth studio album by Australian rock band Nick Cave and the Bad Seeds. Skeleton Tree\'s minimal production and "less polished" sound incorporates elements of electronica and ambient music and, like Push the Sky Away, features extensive use of synthesizers, drum machines and loops.', 'Nick Cave & the Bad Seeds', '2016-09-09 00:00:00', 4, 0, 'music-Skeleton-Tree-67eecc6d559ea.jpg'),
-	(70, 'Villains', 'Villains is the seventh studio album by American rock band Queens of the Stone Age. The album was announced with a teaser trailer taking the form of a comedy skit featuring the band performing a polygraph test with Liam Lynch.', 'Queens of the Stone Age', '2017-08-25 00:00:00', 4, 0, 'music-Villains-67eee4c95e5b4.jpg'),
-	(71, 'Les impatientes', 'Three women, three stories, three linked destinies. This polyphonic novel traces the fate of young Ramla, who is torn from her love to be married to Safira\'s husband, while Hindou, her sister, is forced to marry her cousin.', 'Djaïli Amadou Amal', '2020-09-04 00:00:00', 5, 0, 'books-LesImpatientes-67f249862398f.jpg'),
-	(72, 'Le coeur des louves', 'Célia and her mother, a successful writer with a writer\'s block, return to live in their grandmother\'s house, dead for years, in the heart of a village lost in the mountains. Their return is resented by some, as if it revives old buried stories.', 'Stéphane Servant', '2013-08-17 00:00:00', 5, 0, 'books-LeCoeurDesLouves-67f2520937230.jpg'),
-	(73, 'Warbreaker', 'Warbreaker tells the story of two Idrian princesses, Vivenna and Siri. Vivenna was contracted through a treaty written before she was born to marry the God King of rival nation Hallandren. However, King Dedelin sends his other daughter Siri to meet the treaty instead.', 'Brandon Sanderson', '2016-06-09 00:00:00', 5, 0, 'books-Warbreaker-67f2571169c75.jpg');
+INSERT INTO `piece` (`id`, `title`, `about`, `maker`, `release_date`, `category_id`, `is_upcoming`, `poster`, `slug`) VALUES
+	(1, 'Dune: Awakening', 'Dune: Awakening is a massively multiplayer online game where players must survive in the desert of Arrakis. It takes place in an open world.', 'Funcom', '2025-01-01 00:00:00', 1, 1, 'games-DuneA-poster-67c0af2463993.png', 'dune-awakening'),
+	(19, 'The Brutalist', 'Escaping post-war Europe, visionary architect László Toth arrives in America to rebuild his life, his work, and his marriage to his wife Erzsébet after being forced apart during wartime by shifting borders and regimes. On his own in a strange new country, László settles in Pennsylvania, where an industrialist recognizes his talent for building.', 'Brady Corbet', '2025-02-12 00:00:00', 2, 0, 'movies-TheBrutalist-67edabfff0677.jpg', 'the-brutalist'),
+	(62, 'Mr. Morale & The Big Steppers', 'Mr. Morale & the Big Steppers is a concept album that analyzes and reflects on his life experiences during his therapy journey. Its lyrics touch on a variety of personal themes, including childhood and generational trauma, infidelity, and celebrity worship.', 'Kendrick Lamar', '2022-05-13 00:00:00', 4, 0, 'music-Mr-Morale-and-TheBigSteppers-poster-67c1da00466e2.jpg', 'mr-morale-&-the-big-steppers'),
+	(63, 'Lies of P', 'Lies of P is a thrilling soulslike that takes the story of Pinocchio, turns it on its head, and sets it against the darkly elegant backdrop of the Belle Epoque era.', 'Neowiz', '2023-09-18 00:00:00', 1, 0, 'games-LiesOfP-poster-67ed99c1ef49d.avif', 'lies-of-p'),
+	(64, 'Monster Hunter Wilds', 'As with other Monster Hunter games, Wilds has the player control a hunter that is part of a guild assigned to explore the Forbidden Lands, a nearly uninhabitable area with multiple biomes and dangerous storms. During their exploration, the hunters are assigned quests to fight large monsters that threaten their group, either by killing or capturing them.', 'Capcom', '2025-02-28 00:00:00', 1, 0, 'games-MHWilds-poster-67ed9b46a88b9.jpg', 'monster-hunter-wilds'),
+	(65, 'The Man Who Killed Don Quixote', 'Toby Grummett, a director, is in rural Spain, struggling with the production of a commercial featuring Don Quixote. After an unsuccessful day of shooting, Toby\'s superior, the Boss, introduces him to a Romani street merchant who sells him an old DVD of The Man Who Killed Don Quixote, a film he wrote and directed ten years earlier as a student.', 'Terry Gilliam', '2018-05-19 00:00:00', 2, 0, 'movies-TheManWhoKilledDonQuixote-poster-67eda28b9f4b0.jpg', 'the-man-who-killed-don-quixote'),
+	(66, 'Mickey 17', 'In the year 2054, Mickey Barnes and his friend Timo join a spaceship crew heading to colonize the ice-planet Niflheim, in order to escape a murderous loan shark.', 'Bong Joon Ho', '2025-02-13 00:00:00', 2, 0, 'movies-Mickey17-poster-67eda19756f56.jpg', 'mickey-17'),
+	(69, 'Skeleton Tree', 'Skeleton Tree is the sixteenth studio album by Australian rock band Nick Cave and the Bad Seeds. Skeleton Tree\'s minimal production and "less polished" sound incorporates elements of electronica and ambient music and, like Push the Sky Away, features extensive use of synthesizers, drum machines and loops.', 'Nick Cave & the Bad Seeds', '2016-09-09 00:00:00', 4, 0, 'music-Skeleton-Tree-67eecc6d559ea.jpg', 'skeleton-tree'),
+	(70, 'Villains', 'Villains is the seventh studio album by American rock band Queens of the Stone Age. The album was announced with a teaser trailer taking the form of a comedy skit featuring the band performing a polygraph test with Liam Lynch.', 'Queens of the Stone Age', '2017-08-25 00:00:00', 4, 0, 'music-Villains-67eee4c95e5b4.jpg', 'villains'),
+	(71, 'Les impatientes', 'Three women, three stories, three linked destinies. This polyphonic novel traces the fate of young Ramla, who is torn from her love to be married to Safira\'s husband, while Hindou, her sister, is forced to marry her cousin.', 'Djaïli Amadou Amal', '2020-09-04 00:00:00', 5, 0, 'books-LesImpatientes-67f249862398f.jpg', 'les-impatientes'),
+	(72, 'Le coeur des louves', 'Célia and her mother, a successful writer with a writer\'s block, return to live in their grandmother\'s house, dead for years, in the heart of a village lost in the mountains. Their return is resented by some, as if it revives old buried stories.', 'Stéphane Servant', '2013-08-17 00:00:00', 5, 0, 'books-LeCoeurDesLouves-67f2520937230.jpg', 'le-coeur-des-louves'),
+	(73, 'Warbreaker', 'Warbreaker tells the story of two Idrian princesses, Vivenna and Siri. Vivenna was contracted through a treaty written before she was born to marry the God King of rival nation Hallandren. However, King Dedelin sends his other daughter Siri to meet the treaty instead.', 'Brandon Sanderson', '2016-06-09 00:00:00', 5, 0, 'books-Warbreaker-67f2571169c75.jpg', 'warbreaker');
 
 -- Listage de la structure de table sfcritix. reset_password_request
 CREATE TABLE IF NOT EXISTS `reset_password_request` (
@@ -396,14 +398,13 @@ CREATE TABLE IF NOT EXISTS `user` (
   UNIQUE KEY `UNIQ_8D93D649989D9B62` (`slug`)
 ) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfcritix.user : ~6 rows (environ)
+-- Listage des données de la table sfcritix.user : ~5 rows (environ)
 INSERT INTO `user` (`id`, `email`, `roles`, `password`, `nick_name`, `profile_picture`, `status`, `bio`, `account_date`, `is_verified`, `slug`) VALUES
 	(35, 'our@exemple.com', '[]', '$2y$13$Xt4Q1F4qrjamc1NT8P7DYeMJSkd06a.CS5kRT7aFNJ/agrCpXlOk6', 'Our', 'Onizuka-grimace-67ce0177cce60.webp', 'Les "Infiltrés" ont tout copié sur "Infernal Affairs"', '"Si tu veux m\'parler envoie moi un...FAX !!"', '2025-03-09 21:54:50', 0, 'our'),
 	(36, 'sparkster@exemple.com', '["ROLE_MODO"]', '$2y$13$JLkesG6lVl2qcDnSjJ0FPOVkIcMWzGDvlmDa2XdCoRgNj4oXSpRZi', 'Sparkster', 'Sparkster-67d090a1a590d.jpg', 'isOk', 'Renard à Jet-Pack.\r\nTous les matins je vois Joe Hallenbeck dans le miroir.', '2025-03-11 20:33:05', 0, 'sparkster'),
 	(41, 'xylo@exemple.com', '["ROLE_ADMIN"]', '$2y$13$qkJGstRg.qngODX1qTT1wuK2EEiHqKtCwylh0ZtwE7imLaRy32Dry', 'Xylo', NULL, NULL, NULL, '2025-04-10 19:50:30', 0, 'xylo'),
 	(57, 'isimorn@exemple.com', '[]', '$2y$13$sM5c2OKE.G1JI7eMuz1EX.Pu5yqJehSeEja/w12Nk3jqM.T8/BPa6', 'Isimorn', NULL, NULL, NULL, '2025-09-01 12:14:18', 0, 'isimorn'),
-	(58, 'deleteduser@exemple.com', '[]', 'XXXXXXXXXXXX', 'Deleted User', NULL, NULL, NULL, '2025-09-01 13:07:34', 0, 'delete-user'),
-	(59, 'bansheebot@exemple.com', '[]', '$2y$13$onddqbSG0OMAbSWK269tbOTaatNUb6KY3PHDlRI2XCcUDRh9XbFCy', 'Bansheebot 2', NULL, NULL, NULL, '2025-09-02 01:28:00', 0, 'bansheebot-2');
+	(58, 'deleteduser@exemple.com', '[]', 'XXXXXXXXXXXX', 'Deleted User', NULL, NULL, NULL, '2025-09-01 13:07:34', 0, 'delete-user');
 
 -- Listage de la structure de table sfcritix. user_piece
 CREATE TABLE IF NOT EXISTS `user_piece` (

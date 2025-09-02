@@ -5,6 +5,7 @@ namespace App\Entity;
 use IntlDateFormatter;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation\Slug;
 use App\Repository\PieceRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -68,6 +69,10 @@ class Piece
      */
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'pieces')]
     private Collection $users;
+
+    #[ORM\Column(length: 100, unique: true)]
+    #[Slug(fields: ['title'])]
+    private ?string $slug = null;
 
     public function __construct()
     {
@@ -344,6 +349,18 @@ class Piece
         if ($this->users->removeElement($user)) {
             $user->removePiece($this);
         }
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(?string $slug): static
+    {
+        $this->slug = $slug;
 
         return $this;
     }

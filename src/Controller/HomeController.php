@@ -12,7 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 final class HomeController extends AbstractController
 {
-    #[Route('/home', name: 'app_home')]
+    #[Route('/', name: 'app_home')]
     public function index(PieceRepository $pieceRepository, InfluencerRepository $influencerRepository, CommentRepository $commentRepository)
     {
 

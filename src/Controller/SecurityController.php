@@ -266,11 +266,11 @@ class SecurityController extends AbstractController
                 $entityManager->flush();
 
                 $this->addFlash('scPieceSuccess', 'Your score on "'.$piece.'" has been set !');
-                return $this->redirectToRoute('infos_piece', ['id' => $piece->getId()]);
+                return $this->redirectToRoute('infos_piece', ['slug' => $piece->getSlug()]);
                     
             } else {
                 $this->addFlash('scPieceFail', 'Please set only one score between 1 & 5 !');
-                return $this->redirectToRoute('infos_piece', ['id' => $piece->getId()]);
+                return $this->redirectToRoute('infos_piece', ['slug' => $piece->getSlug()]);
             }
         }
     }
@@ -288,14 +288,14 @@ class SecurityController extends AbstractController
 
         if ($user->getId() != $opinion->getUser()->getId()) {
             $this->addFlash('scResetFail', 'You do not have the required authorisation !');
-            return $this->redirectToRoute('infos_piece', ['id' => $piece->getId()]);
+            return $this->redirectToRoute('infos_piece', ['slug' => $piece->getSlug()]);
         }
 
         $entityManager->remove($opinion);
         $entityManager->flush();
         
         $this->addFlash('scResetSuccess', 'Your score on "'.$piece.'" has been reset !');
-        return $this->redirectToRoute('infos_piece', ['id' => $piece->getId()]);
+        return $this->redirectToRoute('infos_piece', ['slug' => $piece->getSlug()]);
     }
 
     // User's critic like
@@ -338,7 +338,7 @@ class SecurityController extends AbstractController
 
         $entityManager->flush();
 
-        return $this->redirectToRoute('show_critics', ['id' => $critic->getPiece()->getId()]);
+        return $this->redirectToRoute('show_critics', ['slug' => $critic->getPiece()->getSlug()]);
     }
 
     // User's critic like (AJAX ver.)
@@ -424,7 +424,7 @@ class SecurityController extends AbstractController
 
         $entityManager->flush();
 
-        return $this->redirectToRoute('show_critics', ['id' => $critic->getPiece()->getId()]);
+        return $this->redirectToRoute('show_critics', ['slug' => $critic->getPiece()->getSlug()]);
     }
 
     // > User's comment add
@@ -462,11 +462,11 @@ class SecurityController extends AbstractController
                 $entityManager->flush();
 
                 $this->addFlash('scPieceSuccess', 'Your comment on '.$critic->getInfluencer().'\'s critic has been posted !');
-                return $this->redirectToRoute('show_critics', ['id' => $critic->getPiece()->getId()]);
+                return $this->redirectToRoute('show_critics', ['slug' => $critic->getPiece()->getSlug()]);
                     
             } else {
                 $this->addFlash('coCriticFail', 'Comment empty or too long !');
-                return $this->redirectToRoute('show_critics', ['id' => $critic->getPiece()->getId()]);
+                return $this->redirectToRoute('show_critics', ['slug' => $critic->getPiece()->getSlug()]);
             }
         }
     }
@@ -491,7 +491,7 @@ class SecurityController extends AbstractController
         $entityManager->flush();
         
         $this->addFlash('coDeleteSuccess', 'Comment has been deleted !');
-        return $this->redirectToRoute('show_critics', ['id' => $critic->getPiece()->getId()]);
+        return $this->redirectToRoute('show_critics', ['slug' => $critic->getPiece()->getSlug()]);
     }
 
     // > VIP a comment
@@ -521,7 +521,7 @@ class SecurityController extends AbstractController
             $this->addFlash('vipSuccess', 'VIPed has been unset !');
         }
 
-        return $this->redirectToRoute('show_critics', ['id' => $critic->getPiece()->getId()]);
+        return $this->redirectToRoute('show_critics', ['slug' => $critic->getPiece()->getSlug()]);
     }
 
     // > Edit User's infos

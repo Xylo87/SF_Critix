@@ -30,20 +30,22 @@ CREATE TABLE IF NOT EXISTS `agreement` (
   KEY `IDX_2E655A24A76ED395` (`user_id`),
   CONSTRAINT `FK_2E655A24A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
   CONSTRAINT `FK_2E655A24C7BE2830` FOREIGN KEY (`critic_id`) REFERENCES `critic` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=172 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=176 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfcritix.agreement : ~10 rows (environ)
+-- Listage des données de la table sfcritix.agreement : ~12 rows (environ)
 INSERT INTO `agreement` (`id`, `is_ok`, `critic_id`, `user_id`) VALUES
-	(155, 0, 44, 36),
 	(159, 0, 49, 36),
 	(161, 1, 45, 35),
 	(162, 0, 44, 35),
 	(163, 0, 51, 36),
 	(166, 1, 58, 36),
-	(168, 0, 45, 36),
 	(169, 1, 43, 36),
 	(170, 0, 39, 36),
-	(171, 1, 17, 36);
+	(171, 1, 17, 36),
+	(172, 0, 45, 36),
+	(173, 1, 44, 36),
+	(174, 1, 49, 57),
+	(175, 1, 49, 35);
 
 -- Listage de la structure de table sfcritix. category
 CREATE TABLE IF NOT EXISTS `category` (
@@ -76,24 +78,19 @@ CREATE TABLE IF NOT EXISTS `comment` (
   KEY `IDX_9474526CA76ED395` (`user_id`),
   CONSTRAINT `FK_9474526CA76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
   CONSTRAINT `FK_9474526CC7BE2830` FOREIGN KEY (`critic_id`) REFERENCES `critic` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfcritix.comment : ~14 rows (environ)
+-- Listage des données de la table sfcritix.comment : ~9 rows (environ)
 INSERT INTO `comment` (`id`, `text`, `date_post`, `is_vip`, `critic_id`, `user_id`) VALUES
-	(31, 'Hello', '2025-04-16 11:07:27', NULL, 45, 36),
-	(32, 'Ça va ?', '2025-04-16 11:07:41', 1, 45, 36),
-	(33, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '2025-04-16 11:08:20', 0, 45, 36),
-	(35, 'Test', '2025-04-16 18:28:57', 0, 45, 35),
-	(46, 'OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO', '2025-04-22 15:07:05', NULL, 44, 36),
-	(48, 'Eh ben moi, j\'ai pas du tout aimé !!!!!', '2025-04-23 20:16:02', 1, 49, 36),
-	(49, 'Eh toc !', '2025-04-23 20:16:21', NULL, 49, 36),
-	(50, 'OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO', '2025-04-24 08:33:07', 0, 45, 36),
-	(51, 'Test', '2025-04-24 21:01:49', 0, 45, 35),
-	(55, 'Test', '2025-05-22 11:16:21', 1, 43, 36),
-	(56, 'Test', '2025-05-25 14:18:49', 0, 17, 36),
+	(48, 'I watched Mickey 17 with a certain curiosity, mainly because the concept of “replaceable” clones sounded really promising. The movie does have some great ideas and occasionally raises interesting questions about identity, the value of life, and the meaning of sacrifice. Visually, a few sequences are striking, and the world has a unique aesthetic that’s definitely worth seeing. However, overall I was left with mixed feelings. The pacing is rather uneven, alternating between intense moments and slower parts that break immersion. The characters, while sometimes endearing, often lack depth, and their relationships aren’t fully explored. There’s also a sense that the story brushes against fascinating themes without ever really committing to them. Leaving the theater, I felt the film had potential and even some brilliant moments, but in the end it’s a bit frustrating, as if it didn’t fully embrace its own ambitions.', '2025-04-23 20:16:02', 1, 49, 36),
+	(50, 'D\'accord avec toi ExServ, j\'attendrai que les devs corrigent quelques bugs pour y jouer...', '2025-04-24 08:33:07', 0, 45, 36),
 	(65, 'Pas d\'accord !', '2025-09-01 12:15:07', NULL, 16, 58),
 	(66, 'Moi j\'ai adoré !', '2025-09-01 12:15:39', NULL, 50, 58),
-	(67, 'Enfin une bonne critique sur le chef d’œuvre du dernier "crooner".', '2025-09-01 12:16:13', NULL, 56, 58);
+	(67, 'Finally, a good review of the masterpiece by the latest crooner.', '2025-09-01 12:16:13', NULL, 56, 58),
+	(70, 'De mon côté, j’ai été bluffé par Monster Hunter Wilds, qui réussit à pousser encore plus loin ce que la série proposait déjà de mieux. Dès les premières heures de jeu, on sent une véritable évolution dans la fluidité des combats et l’immersion dans des environnements vivants, dynamiques et impressionnants visuellement. Les créatures sont plus expressives et imprévisibles que jamais, donnant vraiment l’impression de traquer des êtres sauvages et puissants dans leur habitat naturel. La direction artistique est splendide : chaque zone fourmille de détails et change en fonction des conditions climatiques ou de l’heure, ce qui apporte une vraie profondeur à l’exploration. Le système de progression est à la fois exigeant et gratifiant, et j’ai adoré la façon dont chaque chasse devient une aventure en soi. On sent que Capcom a écouté la communauté en rendant l’expérience plus accessible sans sacrifier la richesse ni la difficulté. C’est clairement un jeu pensé pour durer, et qui donne envie d’y revenir encore et encore. Pour moi, c’est une réussite totale et l’un des meilleurs épisodes de la saga.', '2025-09-03 15:46:56', 1, 45, 35),
+	(71, 'Beau visuellement, mais trop répétitif et lassant à la longue, manque de vrai renouveau.', '2025-09-03 16:52:36', NULL, 45, 57),
+	(72, 'Totally agree !', '2025-09-03 16:57:36', NULL, 49, 57),
+	(73, 'What a movie indeed !', '2025-09-03 16:59:32', NULL, 49, 35);
 
 -- Listage de la structure de table sfcritix. critic
 CREATE TABLE IF NOT EXISTS `critic` (
@@ -259,9 +256,9 @@ CREATE TABLE IF NOT EXISTS `opinion` (
   KEY `IDX_AB02B027A76ED395` (`user_id`),
   CONSTRAINT `FK_AB02B027A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
   CONSTRAINT `FK_AB02B027C40FCFA8` FOREIGN KEY (`piece_id`) REFERENCES `piece` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=124 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=128 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfcritix.opinion : ~8 rows (environ)
+-- Listage des données de la table sfcritix.opinion : ~10 rows (environ)
 INSERT INTO `opinion` (`id`, `user_score`, `piece_id`, `user_id`) VALUES
 	(83, 4, 70, 36),
 	(91, 2, 66, 36),
@@ -270,7 +267,9 @@ INSERT INTO `opinion` (`id`, `user_score`, `piece_id`, `user_id`) VALUES
 	(111, 4, 19, 36),
 	(121, 3, 63, 36),
 	(122, 4, 1, 36),
-	(123, 3, 64, 36);
+	(123, 3, 64, 36),
+	(126, 5, 64, 35),
+	(127, 1, 66, 35);
 
 -- Listage de la structure de table sfcritix. piece
 CREATE TABLE IF NOT EXISTS `piece` (
@@ -293,7 +292,7 @@ CREATE TABLE IF NOT EXISTS `piece` (
 INSERT INTO `piece` (`id`, `title`, `about`, `maker`, `release_date`, `category_id`, `is_upcoming`, `poster`, `slug`) VALUES
 	(1, 'Dune: Awakening', 'Dune: Awakening is a massively multiplayer online game where players must survive in the desert of Arrakis. It takes place in an open world.', 'Funcom', '2025-01-01 00:00:00', 1, 1, 'games-DuneA-poster-67c0af2463993.png', 'dune-awakening'),
 	(19, 'The Brutalist', 'Escaping post-war Europe, visionary architect László Toth arrives in America to rebuild his life, his work, and his marriage to his wife Erzsébet after being forced apart during wartime by shifting borders and regimes. On his own in a strange new country, László settles in Pennsylvania, where an industrialist recognizes his talent for building.', 'Brady Corbet', '2025-02-12 00:00:00', 2, 0, 'movies-TheBrutalist-67edabfff0677.jpg', 'the-brutalist'),
-	(62, 'Mr. Morale & The Big Steppers', 'Mr. Morale & the Big Steppers is a concept album that analyzes and reflects on his life experiences during his therapy journey. Its lyrics touch on a variety of personal themes, including childhood and generational trauma, infidelity, and celebrity worship.', 'Kendrick Lamar', '2022-05-13 00:00:00', 4, 0, 'music-Mr-Morale-and-TheBigSteppers-poster-67c1da00466e2.jpg', 'mr-morale-&-the-big-steppers'),
+	(62, 'Mr. Morale & The Big Steppers', 'Mr. Morale & the Big Steppers is a concept album that analyzes and reflects on his life experiences during his therapy journey. Its lyrics touch on a variety of personal themes, including childhood and generational trauma, infidelity, and celebrity worship.', 'Kendrick Lamar', '2022-05-13 00:00:00', 4, 0, 'music-Mr-Morale-and-TheBigSteppers-poster-67c1da00466e2.jpg', 'mr-morale-and-the-big-steppers'),
 	(63, 'Lies of P', 'Lies of P is a thrilling soulslike that takes the story of Pinocchio, turns it on its head, and sets it against the darkly elegant backdrop of the Belle Epoque era.', 'Neowiz', '2023-09-18 00:00:00', 1, 0, 'games-LiesOfP-poster-67ed99c1ef49d.avif', 'lies-of-p'),
 	(64, 'Monster Hunter Wilds', 'As with other Monster Hunter games, Wilds has the player control a hunter that is part of a guild assigned to explore the Forbidden Lands, a nearly uninhabitable area with multiple biomes and dangerous storms. During their exploration, the hunters are assigned quests to fight large monsters that threaten their group, either by killing or capturing them.', 'Capcom', '2025-02-28 00:00:00', 1, 0, 'games-MHWilds-poster-67ed9b46a88b9.jpg', 'monster-hunter-wilds'),
 	(65, 'The Man Who Killed Don Quixote', 'Toby Grummett, a director, is in rural Spain, struggling with the production of a commercial featuring Don Quixote. After an unsuccessful day of shooting, Toby\'s superior, the Boss, introduces him to a Romani street merchant who sells him an old DVD of The Man Who Killed Don Quixote, a film he wrote and directed ten years earlier as a student.', 'Terry Gilliam', '2018-05-19 00:00:00', 2, 0, 'movies-TheManWhoKilledDonQuixote-poster-67eda28b9f4b0.jpg', 'the-man-who-killed-don-quixote'),
@@ -396,14 +395,14 @@ CREATE TABLE IF NOT EXISTS `user` (
   UNIQUE KEY `UNIQ_8D93D649E7927C74` (`email`),
   UNIQUE KEY `UNIQ_8D93D649A045A5E9` (`nick_name`),
   UNIQUE KEY `UNIQ_8D93D649989D9B62` (`slug`)
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table sfcritix.user : ~5 rows (environ)
 INSERT INTO `user` (`id`, `email`, `roles`, `password`, `nick_name`, `profile_picture`, `status`, `bio`, `account_date`, `is_verified`, `slug`) VALUES
 	(35, 'our@exemple.com', '[]', '$2y$13$Xt4Q1F4qrjamc1NT8P7DYeMJSkd06a.CS5kRT7aFNJ/agrCpXlOk6', 'Our', 'Onizuka-grimace-67ce0177cce60.webp', 'Les "Infiltrés" ont tout copié sur "Infernal Affairs"', '"Si tu veux m\'parler envoie moi un...FAX !!"', '2025-03-09 21:54:50', 0, 'our'),
 	(36, 'sparkster@exemple.com', '["ROLE_MODO"]', '$2y$13$JLkesG6lVl2qcDnSjJ0FPOVkIcMWzGDvlmDa2XdCoRgNj4oXSpRZi', 'Sparkster', 'Sparkster-67d090a1a590d.jpg', 'isOk', 'Renard à Jet-Pack.\r\nTous les matins je vois Joe Hallenbeck dans le miroir.', '2025-03-11 20:33:05', 0, 'sparkster'),
 	(41, 'xylo@exemple.com', '["ROLE_ADMIN"]', '$2y$13$qkJGstRg.qngODX1qTT1wuK2EEiHqKtCwylh0ZtwE7imLaRy32Dry', 'Xylo', NULL, NULL, NULL, '2025-04-10 19:50:30', 0, 'xylo'),
-	(57, 'isimorn@exemple.com', '[]', '$2y$13$sM5c2OKE.G1JI7eMuz1EX.Pu5yqJehSeEja/w12Nk3jqM.T8/BPa6', 'Isimorn', NULL, NULL, NULL, '2025-09-01 12:14:18', 0, 'isimorn'),
+	(57, 'isimorn@exemple.com', '[]', '$2y$13$sM5c2OKE.G1JI7eMuz1EX.Pu5yqJehSeEja/w12Nk3jqM.T8/BPa6', 'Isimorn', 'FeiLong-68b85663e0f36.png', NULL, NULL, '2025-09-01 12:14:18', 0, 'isimorn'),
 	(58, 'deleteduser@exemple.com', '[]', 'XXXXXXXXXXXX', 'Deleted User', NULL, NULL, NULL, '2025-09-01 13:07:34', 0, 'delete-user');
 
 -- Listage de la structure de table sfcritix. user_piece

@@ -235,6 +235,8 @@
                             <p><strong>First aired : </strong>{{critic.originDatePostENG}}</p>
                         </div>
 
+                        <button class="shareBtn"><i class="fa-solid fa-share"></i></button>
+
                         {# > Suppression (modal) #}
                         {% if app.user and "ROLE_ADMIN" in app.user.roles %}
                             <a href="{{ path('edit_critic', {'id': critic.id})}}"><button style="width: 50px; padding: 2.5px;">Edit</button></a>

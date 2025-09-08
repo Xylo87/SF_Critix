@@ -586,6 +586,29 @@
 
 
 
+.shareBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px 0;
+    width: 75px;
+    height: 40px;
+    font-size: 150%;
+    border: none;
+    border-radius: 25px;
+}
+
+.shareCopyIcon {
+    font-size: 60%;
+    /* font-style: normal; */
+}
+
+.shareCopyIcon::before {
+    content: 'Copied !'
+}
+
+
+
 
 
 @media screen and (max-width: 1650px) {

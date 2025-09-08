@@ -1,4 +1,4 @@
-console.log("Hello")
+// console.log("Hello")
 
 
 
@@ -336,3 +336,43 @@ document.addEventListener('click', (e) => {
         }
     }
 });
+
+
+
+// > Share button project
+const shareScrollHashs = document.querySelectorAll('section[id^="critic-"]')
+const shareBtns = document.querySelectorAll('.shareBtn')
+
+shareScrollHashs.forEach((section, btnIndex) => {
+    const hash = section.getAttribute('id')
+    const btn = shareBtns[btnIndex]
+
+    btn.addEventListener('click', () => {
+        navigator.clipboard.writeText(window.location.href.split('#')[0] + `#${hash}`)
+
+        const shareIcon = btn.querySelector('i')
+        shareIcon.classList.remove('fa-solid', 'fa-share')
+        shareIcon.classList.add('shareCopyIcon')
+
+        setTimeout(() => {
+            shareIcon.classList.add('fa-solid', 'fa-share')
+            shareIcon.classList.remove('shareCopyIcon')
+        }, 3000)
+    })
+})
+
+// shareBtns.forEach(shareBtn => {
+//     shareBtn.addEventListener('click', () => {
+//         navigator.clipboard.writeText(window.location.href)
+
+//         const shareIcon = shareBtn.querySelector('i')
+//         shareIcon.classList.remove('fa-solid', 'fa-share')
+//         shareIcon.classList.add('shareCopyIcon')
+
+//         setTimeout(() => {
+//             shareIcon.classList.add('fa-solid', 'fa-share')
+//             shareIcon.classList.remove('shareCopyIcon')
+//         }, 3000)
+       
+//     });
+// })

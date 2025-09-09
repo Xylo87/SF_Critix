@@ -87,7 +87,7 @@ final class PieceController extends AbstractController
             $entityManager->flush();
 
             $this->addFlash('piAddEditSuccess', ' "'.$piece.'" added/edited !');
-            return $this->redirectToRoute('infos_piece', ['id' => $piece->getId()]);
+            return $this->redirectToRoute('infos_piece', ['slug' => $piece->getSlug()]);
         }
         
         // > Return infos to view

@@ -8,10 +8,11 @@ framework:
     #esi: true
     #fragments: true
 
+    csrf_protection: true
     form:
         csrf_protection:
             enabled: true
-            field_name: 'tokenCSRF'
+            # field_name: 'tokenCSRF'
 
     # > API links
     http_client:

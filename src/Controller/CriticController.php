@@ -41,7 +41,7 @@ final class CriticController extends AbstractController
             $entityManager->flush();
 
             $this->addFlash('crAddEditSuccess', 'Critic on "'.$critic->getPiece()->getTitle().'" by "'.$critic->getInfluencer().'" added/edited !');
-            return $this->redirectToRoute('show_critics', ['id' => $critic->getPiece()->getId()]);
+            return $this->redirectToRoute('show_critics', ['slug' => $critic->getPiece()->getSlug()]);
         }
 
         // > Return infos to view

@@ -414,6 +414,12 @@
                     </div>
                 {% endfor %}
 
+                {% for message in app.flashes('resetSuccess') %}
+                    <div class="alert alert-success">
+                        {{message}}
+                    </div>
+                {% endfor %}
+
                 
 
                 <a id="homeLink" href="{{ path('app_home')}}">

@@ -41,6 +41,7 @@
                         {{ form_widget(registrationForm.plainPassword.second) }}<br>
                     </div>
                 </div>
+                {{ form_row(registrationForm.recaptcha) }}
                 <div class="checkBoxes">
                     {{ form_widget(registrationForm.agreeTerms) }}
                     {{ form_label(registrationForm.agreeTerms)}}

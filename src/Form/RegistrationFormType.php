@@ -12,9 +12,11 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use EWZ\Bundle\RecaptchaBundle\Form\Type\EWZRecaptchaV3Type;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use EWZ\Bundle\RecaptchaBundle\Validator\Constraints\IsTrueV3;
 
 class RegistrationFormType extends AbstractType
 {
@@ -102,6 +104,12 @@ class RegistrationFormType extends AbstractType
                 //     'size' => 40
                 // ]
                 ],
+            ])
+            ->add('recaptcha', EWZRecaptchaV3Type::class, [
+                'constraints' => [
+                    new IsTrueV3()
+                ],
+                'mapped' => false,
             ])
         ;
     }

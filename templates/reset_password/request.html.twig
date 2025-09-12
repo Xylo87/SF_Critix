@@ -13,6 +13,7 @@
             {{ form_start(requestForm) }}
                 {{ form_label(requestForm.email)}}<br>
                 {{ form_widget(requestForm.email)}}<br>
+                {{ form_row(requestForm.recaptcha) }}
                 <div>
                     <small>
                         Enter your email address, and we will send you a

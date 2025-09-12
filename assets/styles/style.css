@@ -251,6 +251,12 @@ a, button {
 
 
 
+/* > > Position of the ReCaptcha badge */
+.grecaptcha-badge {
+    bottom: 80px !important;
+}
+
+
 
 
 @media screen and (max-width: 960px) {

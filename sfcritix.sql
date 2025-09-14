@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `agreement` (
   CONSTRAINT `FK_2E655A24C7BE2830` FOREIGN KEY (`critic_id`) REFERENCES `critic` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=176 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfcritix.agreement : ~12 rows (environ)
+-- Listage des données de la table sfcritix.agreement : ~11 rows (environ)
 INSERT INTO `agreement` (`id`, `is_ok`, `critic_id`, `user_id`) VALUES
 	(159, 0, 49, 36),
 	(161, 1, 45, 35),
@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS `comment` (
   KEY `IDX_9474526CA76ED395` (`user_id`),
   CONSTRAINT `FK_9474526CA76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
   CONSTRAINT `FK_9474526CC7BE2830` FOREIGN KEY (`critic_id`) REFERENCES `critic` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table sfcritix.comment : ~9 rows (environ)
 INSERT INTO `comment` (`id`, `text`, `date_post`, `is_vip`, `critic_id`, `user_id`) VALUES
@@ -86,9 +86,9 @@ INSERT INTO `comment` (`id`, `text`, `date_post`, `is_vip`, `critic_id`, `user_i
 	(50, 'D\'accord avec toi ExServ, j\'attendrai que les devs corrigent quelques bugs pour y jouer...', '2025-04-24 08:33:07', 0, 45, 36),
 	(65, 'Pas d\'accord !', '2025-09-01 12:15:07', NULL, 16, 58),
 	(66, 'Moi j\'ai adoré !', '2025-09-01 12:15:39', NULL, 50, 58),
-	(67, 'Finally, a good review of the masterpiece by the latest crooner.', '2025-09-01 12:16:13', NULL, 56, 58),
+	(67, 'Finally, a good review of the masterpiece by the latest crooner. This album is just absolutely brillant.', '2025-09-01 12:16:13', NULL, 56, 58),
 	(70, 'De mon côté, j’ai été bluffé par Monster Hunter Wilds, qui réussit à pousser encore plus loin ce que la série proposait déjà de mieux. Dès les premières heures de jeu, on sent une véritable évolution dans la fluidité des combats et l’immersion dans des environnements vivants, dynamiques et impressionnants visuellement. Les créatures sont plus expressives et imprévisibles que jamais, donnant vraiment l’impression de traquer des êtres sauvages et puissants dans leur habitat naturel. La direction artistique est splendide : chaque zone fourmille de détails et change en fonction des conditions climatiques ou de l’heure, ce qui apporte une vraie profondeur à l’exploration. Le système de progression est à la fois exigeant et gratifiant, et j’ai adoré la façon dont chaque chasse devient une aventure en soi. On sent que Capcom a écouté la communauté en rendant l’expérience plus accessible sans sacrifier la richesse ni la difficulté. C’est clairement un jeu pensé pour durer, et qui donne envie d’y revenir encore et encore. Pour moi, c’est une réussite totale et l’un des meilleurs épisodes de la saga.', '2025-09-03 15:46:56', 1, 45, 35),
-	(71, 'Beau visuellement, mais trop répétitif et lassant à la longue, manque de vrai renouveau.', '2025-09-03 16:52:36', NULL, 45, 57),
+	(71, 'Beau visuellement, mais trop répétitif et lassant à la longue, manque de vrai renouveau. Je préfère très largement l\'épisode précédent : Monster Hunter Rise.', '2025-09-03 16:52:36', NULL, 45, 57),
 	(72, 'Totally agree !', '2025-09-03 16:57:36', NULL, 49, 57),
 	(73, 'What a movie indeed !', '2025-09-03 16:59:32', NULL, 49, 35);
 
@@ -158,7 +158,7 @@ CREATE TABLE IF NOT EXISTS `doctrine_migration_versions` (
   PRIMARY KEY (`version`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
--- Listage des données de la table sfcritix.doctrine_migration_versions : ~1 rows (environ)
+-- Listage des données de la table sfcritix.doctrine_migration_versions : ~0 rows (environ)
 INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
 	('DoctrineMigrations\\Version20250218150339', '2025-02-18 16:03:49', 274);
 
@@ -222,7 +222,7 @@ CREATE TABLE IF NOT EXISTS `influencer_user` (
   CONSTRAINT `FK_DC19FDE4A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfcritix.influencer_user : ~3 rows (environ)
+-- Listage des données de la table sfcritix.influencer_user : ~4 rows (environ)
 INSERT INTO `influencer_user` (`influencer_id`, `user_id`) VALUES
 	(12, 36),
 	(17, 35),
@@ -258,7 +258,7 @@ CREATE TABLE IF NOT EXISTS `opinion` (
   CONSTRAINT `FK_AB02B027C40FCFA8` FOREIGN KEY (`piece_id`) REFERENCES `piece` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=128 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfcritix.opinion : ~10 rows (environ)
+-- Listage des données de la table sfcritix.opinion : ~8 rows (environ)
 INSERT INTO `opinion` (`id`, `user_score`, `piece_id`, `user_id`) VALUES
 	(83, 4, 70, 36),
 	(91, 2, 66, 36),
@@ -314,7 +314,7 @@ CREATE TABLE IF NOT EXISTS `reset_password_request` (
   PRIMARY KEY (`id`),
   KEY `IDX_7CE748AA76ED395` (`user_id`),
   CONSTRAINT `FK_7CE748AA76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table sfcritix.reset_password_request : ~0 rows (environ)
 
@@ -395,7 +395,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   UNIQUE KEY `UNIQ_8D93D649E7927C74` (`email`),
   UNIQUE KEY `UNIQ_8D93D649A045A5E9` (`nick_name`),
   UNIQUE KEY `UNIQ_8D93D649989D9B62` (`slug`)
-) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table sfcritix.user : ~5 rows (environ)
 INSERT INTO `user` (`id`, `email`, `roles`, `password`, `nick_name`, `profile_picture`, `status`, `bio`, `account_date`, `is_verified`, `slug`) VALUES

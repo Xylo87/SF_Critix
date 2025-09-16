@@ -80,7 +80,7 @@ CREATE TABLE IF NOT EXISTS `comment` (
   CONSTRAINT `FK_9474526CC7BE2830` FOREIGN KEY (`critic_id`) REFERENCES `critic` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfcritix.comment : ~9 rows (environ)
+-- Listage des données de la table sfcritix.comment : ~10 rows (environ)
 INSERT INTO `comment` (`id`, `text`, `date_post`, `is_vip`, `critic_id`, `user_id`) VALUES
 	(48, 'I watched Mickey 17 with a certain curiosity, mainly because the concept of “replaceable” clones sounded really promising. The movie does have some great ideas and occasionally raises interesting questions about identity, the value of life, and the meaning of sacrifice. Visually, a few sequences are striking, and the world has a unique aesthetic that’s definitely worth seeing. However, overall I was left with mixed feelings. The pacing is rather uneven, alternating between intense moments and slower parts that break immersion. The characters, while sometimes endearing, often lack depth, and their relationships aren’t fully explored. There’s also a sense that the story brushes against fascinating themes without ever really committing to them. Leaving the theater, I felt the film had potential and even some brilliant moments, but in the end it’s a bit frustrating, as if it didn’t fully embrace its own ambitions.', '2025-04-23 20:16:02', 1, 49, 36),
 	(50, 'D\'accord avec toi ExServ, j\'attendrai que les devs corrigent quelques bugs pour y jouer...', '2025-04-24 08:33:07', 0, 45, 36),
@@ -400,7 +400,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Listage des données de la table sfcritix.user : ~5 rows (environ)
 INSERT INTO `user` (`id`, `email`, `roles`, `password`, `nick_name`, `profile_picture`, `status`, `bio`, `account_date`, `is_verified`, `slug`) VALUES
 	(35, 'our@exemple.com', '[]', '$2y$13$Xt4Q1F4qrjamc1NT8P7DYeMJSkd06a.CS5kRT7aFNJ/agrCpXlOk6', 'Our', 'Onizuka-grimace-67ce0177cce60.webp', 'Les "Infiltrés" ont tout copié sur "Infernal Affairs"', '"Si tu veux m\'parler envoie moi un...FAX !!"', '2025-03-09 21:54:50', 0, 'our'),
-	(36, 'sparkster@exemple.com', '["ROLE_MODO"]', '$2y$13$JLkesG6lVl2qcDnSjJ0FPOVkIcMWzGDvlmDa2XdCoRgNj4oXSpRZi', 'Sparkster', 'Sparkster-67d090a1a590d.jpg', 'isOk', 'Renard à Jet-Pack.\r\nTous les matins je vois Joe Hallenbeck dans le miroir.', '2025-03-11 20:33:05', 0, 'sparkster'),
+	(36, 'ludovictor@exemple.com', '["ROLE_MODO"]', '$2y$13$JLkesG6lVl2qcDnSjJ0FPOVkIcMWzGDvlmDa2XdCoRgNj4oXSpRZi', 'Ludovictor', 'Cammy-68c9aefe0ae85.png', 'isOk', 'Meilleur joueur de Cammy de l\'est lyonnais.', '2025-03-11 20:33:05', 0, 'ludovictor'),
 	(41, 'xylo@exemple.com', '["ROLE_ADMIN"]', '$2y$13$qkJGstRg.qngODX1qTT1wuK2EEiHqKtCwylh0ZtwE7imLaRy32Dry', 'Xylo', NULL, NULL, NULL, '2025-04-10 19:50:30', 0, 'xylo'),
 	(57, 'isimorn@exemple.com', '[]', '$2y$13$sM5c2OKE.G1JI7eMuz1EX.Pu5yqJehSeEja/w12Nk3jqM.T8/BPa6', 'Isimorn', 'FeiLong-68b85663e0f36.png', NULL, NULL, '2025-09-01 12:14:18', 0, 'isimorn'),
 	(58, 'deleteduser@exemple.com', '[]', 'XXXXXXXXXXXX', 'Deleted User', NULL, NULL, NULL, '2025-09-01 13:07:34', 0, 'delete-user');

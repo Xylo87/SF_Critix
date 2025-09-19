@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
+use Freema\PerspectiveApiBundle\Service\PerspectiveApiService;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -36,6 +37,7 @@ class RegistrationController extends AbstractController
     AuthenticatorInterface $authenticator,
     EntityManagerInterface $entityManager,
     CsrfTokenManagerInterface $csrf,
+    PerspectiveApiService $perspectiveApi
     ): Response
     {
         $user = new User();
@@ -43,6 +45,18 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $nickName = $form->get('nickName')->getData();
+            // > Filter language
+            $contentAnalyse = $perspectiveApi->analyzeText($nickName);
+            $contentResult = $contentAnalyse->isSafe();
+
+            if (!$contentResult) {
+                $this->addFlash('coCriticFail', 'Your nickname contains inappropriate content !');
+                return $this->redirectToRoute('app_home');
+            }
+
+
             /** @var string $plainPassword */
             $plainPassword = $form->get('plainPassword')->getData();
 

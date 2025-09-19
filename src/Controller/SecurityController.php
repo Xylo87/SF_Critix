@@ -27,6 +27,7 @@ use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Freema\PerspectiveApiBundle\Service\PerspectiveApiService;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
@@ -430,7 +431,8 @@ class SecurityController extends AbstractController
 
     // > User's comment add
     #[Route('/critic/{id}/comment', name: 'comment_critic')]
-    public function commentCritic(Security $security, EntityManagerInterface $entityManager, Critic $critic, Request $request, CsrfTokenManagerInterface $csrfTokenManager, PerspectiveApiService $perspectiveApi)
+    public function commentCritic(Security $security, EntityManagerInterface $entityManager, Critic $critic, Request $request, CsrfTokenManagerInterface $csrfTokenManager, 
+    PerspectiveApiService $perspectiveApi)
     {
         $user = $security->getUser();
 
@@ -542,7 +544,8 @@ class SecurityController extends AbstractController
     SluggerInterface $slugger,
     CsrfTokenManagerInterface $csrf,
     #[Autowire('%kernel.project_dir%/public/uploads/photos/userPhotos')] string $photosDirectory,
-    Security $security
+    Security $security,
+    PerspectiveApiService $perspectiveApi
     ): Response
     {
         $user = $security->getUser();
@@ -559,7 +562,29 @@ class SecurityController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $user = $form->getData();
+
+            $userStatus = $form->get('status')->getData();
+            $userBio = $form->get('bio')->getData();
+            $contentToCheck = [$userStatus, $userBio];
+            
             $photoFile = $form->get('profilePicture')->getData();
+
+
+            // > If status or bio
+            foreach ($contentToCheck as $content) {
+                if ($content) {
+
+                // > Filter language
+                $contentAnalyse = $perspectiveApi->analyzeText($content);
+                $contentResult = $contentAnalyse->isSafe();
+
+                    if (!$contentResult) {
+                        $this->addFlash('coCriticFail', 'Your profile contains inappropriate content !');
+                        return $this->redirectToRoute('dashboard_user');
+                    }
+                }
+            }
+            
 
             // > If a new photo is submitted
             if ($photoFile) {

@@ -24,6 +24,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
+use Freema\PerspectiveApiBundle\Service\PerspectiveApiService;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
@@ -429,7 +430,7 @@ class SecurityController extends AbstractController
 
     // > User's comment add
     #[Route('/critic/{id}/comment', name: 'comment_critic')]
-    public function commentCritic(Security $security, EntityManagerInterface $entityManager, Critic $critic, Request $request, CsrfTokenManagerInterface $csrfTokenManager)
+    public function commentCritic(Security $security, EntityManagerInterface $entityManager, Critic $critic, Request $request, CsrfTokenManagerInterface $csrfTokenManager, PerspectiveApiService $perspectiveApi)
     {
         $user = $security->getUser();
 
@@ -443,9 +444,21 @@ class SecurityController extends AbstractController
 
             // > Filter without escaping spec chars
             $addComment = strip_tags($addComment);
-            var_dump($addComment);
 
-            if (!empty($addComment) && trim($addComment) != '' && strlen($addComment) <= 3500 ) {
+            // > Filter language
+            $contentAnalyse = $perspectiveApi->analyzeText($addComment);
+            $contentResult = $contentAnalyse->isSafe();
+
+            if (empty($addComment) || trim($addComment) == '') {
+                $this->addFlash('coCriticFail', 'Your comment is empty !');
+
+            } elseif (strlen($addComment) > 3500) {
+                $this->addFlash('coCriticFail', 'Your comment is too long !');
+
+            } elseif (!$contentResult) {
+                $this->addFlash('coCriticFail', 'Your comment contains inappropriate content !');
+
+            } else {
 
                 $submittedToken = $request->request->get('_token');
                 if (!$csrfTokenManager->isTokenValid(new CsrfToken('comment_add', $submittedToken))) {
@@ -461,13 +474,10 @@ class SecurityController extends AbstractController
                 $entityManager->persist($comment);
                 $entityManager->flush();
 
-                $this->addFlash('scPieceSuccess', 'Your comment on '.$critic->getInfluencer().'\'s critic has been posted !');
-                return $this->redirectToRoute('show_critics', ['slug' => $critic->getPiece()->getSlug()]);
-                    
-            } else {
-                $this->addFlash('coCriticFail', 'Comment empty or too long !');
-                return $this->redirectToRoute('show_critics', ['slug' => $critic->getPiece()->getSlug()]);
+                $this->addFlash('coCriticSuccess', 'Your comment on '.$critic->getInfluencer().'\'s critic has been posted !'); 
             }
+
+            return $this->redirectToRoute('show_critics', ['slug' => $critic->getPiece()->getSlug()]);
         }
     }
     

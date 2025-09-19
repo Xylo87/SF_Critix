@@ -9,6 +9,7 @@ use Gedmo\Mapping\Annotation\Slug;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\UserInterface;
+// use Freema\PerspectiveApiBundle\Validator\PerspectiveContent;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
@@ -45,6 +46,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $profilePicture = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    // #[PerspectiveContent(
+    //     thresholds: [
+    //         'TOXICITY' => 0.5,
+    //         'PROFANITY' => 0.3
+    //     ],
+    //     message: 'Your comment contains inappropriate content.'
+    // )]
     private ?string $status = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]

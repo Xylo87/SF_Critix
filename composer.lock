@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2201882749f8f4b3c711f582cf67b8aa",
+    "content-hash": "a11b62ec0a35efc542c48204a0e2b929",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -1477,6 +1477,85 @@
                 "source": "https://github.com/excelwebzone/EWZRecaptchaBundle/tree/v1.5.42"
             },
             "time": "2025-02-03T20:57:06+00:00"
+        },
+        {
+            "name": "freema/perspective-api-bundle",
+            "version": "1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/freema/perspective-api-bundle.git",
+                "reference": "ff9cf1c810e6f5b173649d112b0da78092116623"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/freema/perspective-api-bundle/zipball/ff9cf1c810e6f5b173649d112b0da78092116623",
+                "reference": "ff9cf1c810e6f5b173649d112b0da78092116623",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.1",
+                "psr/log": "^1.1|^2.0|^3.0",
+                "symfony/cache": "^5.4|^6.4|^7.1",
+                "symfony/config": "^5.4|^6.4|^7.1",
+                "symfony/dependency-injection": "^5.4|^6.4|^7.1",
+                "symfony/framework-bundle": "^5.4|^6.4|^7.1",
+                "symfony/http-client": "^5.4|^6.4|^7.1",
+                "symfony/http-client-contracts": "^2.5|^3.0",
+                "symfony/http-kernel": "^5.4|^6.4|^7.1",
+                "symfony/validator": "^5.4|^6.4|^7.1",
+                "symfony/yaml": "^5.4|^6.4|^7.1"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.14",
+                "phpstan/phpstan": "^1.12.28",
+                "phpunit/phpunit": "^9.5|^10.0",
+                "symfony/debug-bundle": "^5.4|^6.4|^7.1",
+                "symfony/dotenv": "^5.4|^6.4|^7.1",
+                "symfony/monolog-bundle": "^3.8",
+                "symfony/routing": "^5.4|^6.4|^7.1",
+                "symfony/web-profiler-bundle": "^5.4|^6.4|^7.1"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Freema\\PerspectiveApiBundle\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freema",
+                    "homepage": "https://github.com/freema"
+                }
+            ],
+            "description": "Symfony bundle for Google Perspective API - AI-powered content moderation with flexible threshold management, caching support, and multiple usage patterns. Modern alternative to abandoned wrappers.",
+            "homepage": "https://github.com/freema/perspective-api-bundle",
+            "keywords": [
+                "ai",
+                "bundle",
+                "comment-filter",
+                "content-moderation",
+                "content-safety",
+                "google",
+                "moderation",
+                "perspective-api",
+                "symfony",
+                "text-analysis",
+                "toxicity"
+            ],
+            "support": {
+                "issues": "https://github.com/freema/perspective-api-bundle/issues",
+                "source": "https://github.com/freema/perspective-api-bundle/tree/1.2"
+            },
+            "time": "2025-08-11T13:19:05+00:00"
         },
         {
             "name": "gedmo/doctrine-extensions",

@@ -15,6 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+// use Freema\PerspectiveApiBundle\Form\Type\PerspectiveTextType;
 
 class UserFormType extends AbstractType
 {
@@ -40,6 +41,17 @@ class UserFormType extends AbstractType
                 ]
             ])
             ->add('status', TextType::class, [
+                // 'perspective_thresholds' => [
+                //     'TOXICITY' => 0.5,
+                //     'SEVERE_TOXICITY' => 0.3,
+                //     'IDENTITY_ATTACK' => 0.5,
+                //     'INSULT' => 0.5,
+                //     'PROFANITY' => 0.5,
+                //     'THREAT' => 0.5
+                // ],
+                // 'perspective_validation' => true,
+                // 'perspective_language' => 'en',
+                // 'perspective_message' => 'Please keep your comments respectful.',
                 'label' => 'Mood',
                 'attr' => [
                     'size' => 60,

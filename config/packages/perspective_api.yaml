@@ -1,0 +1,45 @@
+perspective_api:
+    api_key: '%env(PERSPECTIVE_API_KEY)%'
+    
+    # Default thresholds for all attributes
+    thresholds:
+        TOXICITY: 0.5
+        SEVERE_TOXICITY: 0.3
+        IDENTITY_ATTACK: 0.5
+        INSULT: 0.5
+        PROFANITY: 0.5
+        THREAT: 0.5
+    
+    # Which attributes to analyze
+    analyze_attributes:
+        - TOXICITY
+        - SEVERE_TOXICITY
+        - IDENTITY_ATTACK
+        - INSULT
+        - PROFANITY
+        - THREAT
+    
+    # Default language for analysis
+    default_language: 'fr'
+    
+    # Allow runtime threshold override
+    allow_runtime_override: true
+
+    # Configure HTTP client options
+    # http_client_options:
+    #     # Use proxy server
+    #     proxy: '%env(HTTP_PROXY)%'
+        
+    #     # Request timeout in seconds
+    #     timeout: 30
+        
+    #     # Maximum number of redirects
+    #     max_redirects: 5
+        
+    #     # Custom headers
+    #     headers:
+    #         'User-Agent': 'MyApp/1.0'
+        
+    #     # Any other Symfony HTTP client option
+    #     verify_peer: true
+    #     verify_host: true

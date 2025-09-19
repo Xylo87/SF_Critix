@@ -45,14 +45,14 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: ^/critic/new, roles: ROLE_ADMIN }
-        - { path: ^/critic/\d+/edit, roles: ROLE_ADMIN }
-        - { path: ^/critic/\d+/delete, roles: ROLE_ADMIN }
+        - { path: '^/critic/[^/]+/edit', roles: ROLE_ADMIN }
+        - { path: '^/critic/[^/]+/delete', roles: ROLE_ADMIN }
         - { path: ^/influencer/new, roles: ROLE_ADMIN }
-        - { path: ^/influencer/\d+/edit, roles: ROLE_ADMIN }
-        - { path: ^/influencer/\d+/delete, roles: ROLE_ADMIN }
+        - { path: '^/influencer/[^/]+/edit', roles: ROLE_ADMIN }
+        - { path: '^/influencer/[^/]+/delete', roles: ROLE_ADMIN }
         - { path: ^/piece/new, roles: ROLE_ADMIN }
-        - { path: ^/piece/\d+/edit, roles: ROLE_ADMIN }
-        - { path: ^/piece/\d+/delete, roles: ROLE_ADMIN }
+        - { path: '^/piece/[^/]+/edit', roles: ROLE_ADMIN }
+        - { path: '^/piece/[^/]+/delete', roles: ROLE_ADMIN }
 
 when@test:
     security:
